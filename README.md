@@ -57,6 +57,8 @@
 **Vietnamese for now**
 ##  📌 Project Progress
   _* Dựa theo Figma_
+  ### 📱 Mobile
+- [ ] Set up Fragments navigation (Bottom navigation view)
 - [ ] Màn hình giao diện **Home** ( ***!!! Thông tin gì được thể hiện trên đây? dùng để làm gì? nhấn sẽ dẫn đến đâu?*** )
 - [ ] Màn hình giao diện **Shopping** 
   - [ ] Xây dựng giao diện
@@ -94,5 +96,9 @@
   - [ ] Tính năng đăng nhập
   - [ ] Reset mật khẩu
 
-
+### 💻 Web
+- [ ] Set up server Node js
+- [ ] Xây dựng CSDL (PostgresSQL)
+- [ ] Xây dựng API
+- [ ] Deploy web
 
