@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mobye.petinto.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/shoppingFragment"
+        android:name="com.mobye.petinto.ui.fragments.ShoppingFragment"
+        android:label="fragment_shopping"
+        tools:layout="@layout/fragment_shopping" />
+    <fragment
+        android:id="@+id/spaFragment"
+        android:name="com.mobye.petinto.ui.fragments.SpaFragment"
+        android:label="fragment_spa"
+        tools:layout="@layout/fragment_spa" />
+    <fragment
+        android:id="@+id/hotelFragment"
+        android:name="com.mobye.petinto.ui.fragments.HotelFragment"
+        android:label="fragment_hotel"
+        tools:layout="@layout/fragment_hotel" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mobye.petinto.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

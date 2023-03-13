@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PetInto</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="shopping">Shopping</string>
+    <string name="spa">Spa</string>
+    <string name="hotel">Hotel</string>
+    <string name="profile">Profile</string>
 </resources>
