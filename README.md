@@ -11,7 +11,7 @@
     <ul>
         <li><b>Course</b> : CSC13009 – Mobile Application Development </li>
         <li><b>Group ID</b> : 9</li>
-        <li><b>Group Naame</b> : Mobye</li>
+        <li><b>Group Name</b> : Mobye</li>
         <li> <b>Members:</b>
         <table style="width:100%">
   <tr >
@@ -54,7 +54,7 @@
 - [ ]  Customers and shop owners can chat with each other
 <hr>
 
-**Vietnamese for now**
+**(Vietnamese for now)**
 ##  📌 Project Progress
   _* Dựa theo Figma_
   ### 📱 Mobile
@@ -95,6 +95,7 @@
   - [ ] Giao diện **Sign in**
   - [ ] Tính năng đăng nhập
   - [ ] Reset mật khẩu
+- [ ] Giao diện Admin? (cần một app riêng biệt)
 
 ### 💻 Web
 - [ ] Set up server Node js
