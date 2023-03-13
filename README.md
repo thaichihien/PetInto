@@ -1,7 +1,7 @@
-# Final Project - Pet Into 🐶🐱
+# Final Project - Pet Into 🐾
 <hr>
 
-##  Project Introduction
+##  🐶Project Introduction
 - The project aims to develop a mobile application that helps store owners better manage their pets and accompanying services, and help pet users to connect to those stores more conveniently. 
 - The personal finance management app will be developed for Android platforms using Kotlin language. The app will have a simple and user-friendly interface that allows users to input their income and expenses, view reports, and set financial goals.
 - [Get an initial overview of the project (Figma)](https://www.figma.com/file/9wqdJtfTQzIUkpJq1iSCom/Untitled?node-id=0%3A1&t=39MwhdTUMpNLvlgq-1)
@@ -43,7 +43,7 @@
     </ul>
     </details>
     
-## Project Features
+## 🐱Project Features
 - [ ]  Admin account for shop owners to manage all customer notifications, appointments, create new pets, and publish news articles
 - [ ] User account for customers to view information about available or orderable pets in the shop
 - [ ] After selecting and adding desired items to the cart, users can proceed to checkout
@@ -55,10 +55,19 @@
 <hr>
 
 **(Vietnamese for now)**
+## ⚙️Project Version Tool
+Kiểm tra ở  ***Tools*** > ***SDK Manager***
+- **SDK Platform:** Android 13.0 (Tiramisu)
+- **Android SDK Build-Tools:** 33.0.1
+- **Android SDK Platform-Tools:** 33.0.3
+## 🗂️ Project Dependencies
+Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (Module:app)*** . Chọn ***Sync Now*** để tại các thư viện/framework về
+- [**Navigation Component**](https://developer.android.com/guide/navigation/navigation-getting-started)
+
 ##  📌 Project Progress
   _* Dựa theo Figma_
   ### 📱 Mobile
-- [ ] Set up Fragments navigation (Bottom navigation view)
+- [X] Set up Fragments navigation (Bottom navigation view)
 - [ ] Màn hình giao diện **Home** ( ***!!! Thông tin gì được thể hiện trên đây? dùng để làm gì? nhấn sẽ dẫn đến đâu?*** )
 - [ ] Màn hình giao diện **Shopping** 
   - [ ] Xây dựng giao diện
