@@ -57,6 +57,7 @@
 **(Vietnamese for now)**
 ## ⚙️Project Version Tool
 Kiểm tra ở  ***Tools*** > ***SDK Manager***
+- **Android Studio** : Electric Eel | 2022.1.1
 - **SDK Platform:** Android 13.0 (Tiramisu)
 - **Android SDK Build-Tools:** 33.0.1
 - **Android SDK Platform-Tools:** 33.0.3
