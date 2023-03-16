@@ -1,6 +1,15 @@
 # Final Project - Pet Into 🐾
 <hr>
 
+- [Introduction](#project-introduction)
+  - [Project Introduction](#project-introduction)
+  - [Project Features](#project-features)
+- [Project Management Area](#project-version-tool)
+  - [Project Version Tool](#project-version-tool)
+  - [Project Dependencies](#project-dependencies)
+  - [Project Progress](#project-progress)
+<hr>
+
 ##  🐶Project Introduction
 - The project aims to develop a mobile application that helps store owners better manage their pets and accompanying services, and help pet users to connect to those stores more conveniently. 
 - The personal finance management app will be developed for Android platforms using Kotlin language. The app will have a simple and user-friendly interface that allows users to input their income and expenses, view reports, and set financial goals.
@@ -55,7 +64,7 @@
 <hr>
 
 **(Vietnamese for now)**
-## ⚙️Project Version Tool
+##  ⚙️Project Version Tool
 Kiểm tra ở  ***Tools*** > ***SDK Manager***
 - **Android Studio** : Electric Eel | 2022.1.1
 - **SDK Platform:** Android 13.0 (Tiramisu)
