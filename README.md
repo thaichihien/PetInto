@@ -4,10 +4,10 @@
 - [Introduction](#project-introduction)
   - [Project Introduction](#project-introduction)
   - [Project Features](#project-features)
-- [Project Management Area](#project-version-tool)
-  - [Project Version Tool](#project-version-tool)
-  - [Project Dependencies](#project-dependencies)
-  - [Project Progress](#project-progress)
+- [Project Management Area](#%EF%B8%8Fproject-version-tool)
+  - [Project Version Tool](#%EF%B8%8Fproject-version-tool)
+  - [Project Dependencies](#%EF%B8%8F-project-dependencies)
+  - [Project Progress](#-project-progress)
 <hr>
 
 ##  🐶Project Introduction
