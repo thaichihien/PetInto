@@ -84,13 +84,14 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - **SpaFragment + HotelFragment** : Giao diện spa + hotel
   - Người làm :
 - **ProfileFragment** : Giao diện hồ sơ người dùng 
+  - Người làm :
  
 Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
 ## 📌Project Notes
 - Trước khi làm **PULL**, làm xong một chức năng **PUSH**
 - Chỉ làm việc trên Fragment của mình, có thể thêm các Activity, Fragment khác, ***Nhưng không được sửa phần Fragment khác***
 - ***Không sửa MainActivity, các lớp chung, tài nguyên chung (colors.xml,string.xml,...)*** . Nếu muốn sửa phải bàn với nhóm
-- Tham khảo sử dụng các UI components ở **res/layout/ui_components.xml**
+- Tham khảo sử dụng các UI components ở **res/layout/ui_components.xml** và sử dụng màu ở **res/values/colors.xml**
 - Cập nhật thư viện sẽ thông báo trong nhóm, lúc đó thì pull mới về và chọn **File > Sync Project with Gradle Files**
 
 ##  📍 Project Progress
