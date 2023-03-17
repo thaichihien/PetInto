@@ -7,6 +7,8 @@
 - [Project Management Area](#%EF%B8%8Fproject-version-tool)
   - [Project Version Tool](#%EF%B8%8Fproject-version-tool)
   - [Project Dependencies](#%EF%B8%8F-project-dependencies)
+  - [Project Assignment](#project-assignment)
+  - [Project Notes](#project-notes)
   - [Project Progress](#-project-progress)
 <hr>
 
@@ -73,8 +75,25 @@ Kiểm tra ở  ***Tools*** > ***SDK Manager***
 ## 🗂️ Project Dependencies
 Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (Module:app)*** . Chọn ***Sync Now*** để tại các thư viện/framework về
 - [**Navigation Component**](https://developer.android.com/guide/navigation/navigation-getting-started)
+## 📋Project Assignment
+Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
+- **HomeFragment** : Giao diện trang chủ, hiển thị
+  - Người làm: 
+- **ShoppingFragment** Giao diện mua hàng
+  - Người làm: Hiện
+- **SpaFragment + HotelFragment** : Giao diện spa + hotel
+  - Người làm :
+- **ProfileFragment** : Giao diện hồ sơ người dùng 
+ 
+Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
+## 📌Project Notes
+- Trước khi làm **PULL**, làm xong một chức năng **PUSH**
+- Chỉ làm việc trên Fragment của mình, có thể thêm các Activity, Fragment khác, ***Nhưng không được sửa phần Fragment khác***
+- ***Không sửa MainActivity, các lớp chung, tài nguyên chung (colors.xml,string.xml,...)*** . Nếu muốn sửa phải bàn với nhóm
+- Tham khảo sử dụng các UI components ở **res/layout/ui_components.xml**
+- Cập nhật thư viện sẽ thông báo trong nhóm, lúc đó thì pull mới về và chọn **File > Sync Project with Gradle Files**
 
-##  📌 Project Progress
+##  📍 Project Progress
   _* Dựa theo Figma_
   ### 📱 Mobile
 - [X] Set up Fragments navigation (Bottom navigation view)
