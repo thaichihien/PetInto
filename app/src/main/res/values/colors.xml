@@ -7,12 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#777777</color>
 
     <!-- Pet Into theme colors    -->
-    <color name="background_light">#FEF9EA</color>
+    <color name="background_light">#FEFDEA</color>
     <color name="background_dark">#E5D6C1</color>
     <color name="main_light">#AB8262</color>
     <color name="main_medium">#927459</color>
     <color name="main_dark">#775234</color>
     <color name="delete">#E7ECFC</color>
+    <color name="main_light_30">#4DAB8262</color>
 </resources>
