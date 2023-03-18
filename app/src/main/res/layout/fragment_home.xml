@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/foot_logo"
@@ -56,6 +56,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/notifitcation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/notifitcation"
         app:srcCompat="@drawable/chat_icon" />
 
@@ -73,7 +74,7 @@
         android:textColorHint="#CACACA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_title"/>
+        app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
 
     <TextView
         android:id="@+id/PetList"
@@ -88,139 +89,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_main" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/dog_choice_btn"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PetList">
-
-        <ImageButton
-            android:id="@+id/dog_img_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/dog" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/dog_choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Dog"
-        android:textColor="@color/main_dark"
-        android:textSize="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/dog_choice_btn"
-        app:layout_constraintStart_toStartOf="@+id/dog_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/dog_choice_btn" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cat_choice_btn"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dog_choice_btn"
-        app:layout_constraintStart_toEndOf="@+id/dog_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/PetList">
-
-        <ImageButton
-            android:id="@+id/cat_img_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/cat" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/cat_choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Cat"
-        android:textColor="@color/main_dark"
-        android:textSize="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/cat_choice_btn"
-        app:layout_constraintStart_toStartOf="@+id/cat_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/cat_choice_btn" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mouse_choice_btn"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="50dp"
-        app:layout_constraintStart_toEndOf="@+id/cat_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/PetList">
-
-        <ImageButton
-            android:id="@+id/mouse_img_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/hamster" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/mouse_choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Mouse"
-        android:textColor="@color/main_dark"
-        android:textSize="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/mouse_choice_btn"
-        app:layout_constraintStart_toStartOf="@+id/mouse_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/mouse_choice_btn" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/rabbit_choice_btn"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="50dp"
-        app:layout_constraintStart_toEndOf="@+id/mouse_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/PetList">
-
-        <ImageButton
-            android:id="@+id/rabbit_img_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rabbit" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/rabbit_choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Rabbit"
-        android:textColor="@color/main_dark"
-        android:textSize="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/rabbit_choice_btn"
-        app:layout_constraintStart_toStartOf="@+id/rabbit_choice_btn"
-        app:layout_constraintTop_toBottomOf="@+id/rabbit_choice_btn" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/order_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-
         android:background="@drawable/primary_button_background"
         android:text="Order now"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mouse_choice" />
+        app:layout_constraintTop_toBottomOf="@+id/pet_list" />
 
     <TextView
         android:id="@+id/accesories"
@@ -235,17 +118,211 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_btn" />
 
-    <ImageButton
-        android:id="@+id/accesories_btn"
+    <HorizontalScrollView
+        android:id="@+id/pet_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/PetList"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/pet_dog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:baselineAligned="false"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dog_choice_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageButton
+                        android:id="@+id/dog_img_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dog" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/dog_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Dog"
+                    android:textColor="@color/main_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pet_cat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:baselineAligned="false"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cat_choice_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageButton
+                        android:id="@+id/cat_img_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/cat" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/cat_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Cat"
+                    android:textColor="@color/main_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pet_mouse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:baselineAligned="false"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mouse_choice_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageButton
+                        android:id="@+id/mouse_img_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/hamster" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/mouse_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Mouse"
+                    android:textColor="@color/main_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pet_rabbit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:baselineAligned="false"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/rabbit_choice_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageButton
+                        android:id="@+id/rabbit_img_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rabbit" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/rabbit_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Rabbit"
+                    android:textColor="@color/main_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/accesories_list"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
-        android:adjustViewBounds="true"
-        android:background="@color/white"
-        android:scaleType="centerInside"
-        android:src="@drawable/Accessories"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accesories" />
+        app:layout_constraintTop_toBottomOf="@+id/accesories">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/accesories_btn"
+                android:layout_width="383dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:src="@drawable/Accessories" />
+            <ImageButton
+                android:id="@+id/accesories_btn1"
+                android:layout_width="383dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:src="@drawable/Accessories" />
+            <ImageButton
+                android:id="@+id/accesories_btn2"
+                android:layout_width="383dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:src="@drawable/Accessories" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/beauty_spa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Beauty Spa"
+        android:textColor="@color/main_dark"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accesories_list" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
