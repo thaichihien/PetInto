@@ -78,7 +78,7 @@ Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (
 ## 📋Project Assignment
 Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
 - **HomeFragment** : Giao diện trang chủ, hiển thị
-  - Người làm: 
+  - Người làm: Quỳnh
 - **ShoppingFragment** Giao diện mua hàng
   - Người làm: Hiện
 - **SpaFragment + HotelFragment** : Giao diện spa + hotel
