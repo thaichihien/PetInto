@@ -84,7 +84,7 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - **SpaFragment + HotelFragment** : Giao diện spa + hotel
   - Người làm :
 - **ProfileFragment** : Giao diện hồ sơ người dùng 
-  - Người làm :
+  - Người làm : Dũng
  
 Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
 ## 📌Project Notes
