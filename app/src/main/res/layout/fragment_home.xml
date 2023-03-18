@@ -205,5 +205,47 @@
         app:layout_constraintStart_toStartOf="@+id/rabbit_choice_btn"
         app:layout_constraintTop_toBottomOf="@+id/rabbit_choice_btn" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/order_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:background="@drawable/primary_button_background"
+        android:text="Order now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mouse_choice" />
+
+    <TextView
+        android:id="@+id/accesories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Accesories"
+        android:textColor="@color/main_dark"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_btn" />
+
+    <ImageButton
+        android:id="@+id/accesories_btn"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:scaleType="centerInside"
+        android:src="@drawable/Accessories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accesories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
