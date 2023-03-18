@@ -69,7 +69,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/appCompatButton3"
+        />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -87,6 +88,26 @@
             android:src="@drawable/ic_launcher_background" />
 
     </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/notifitcation"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foot_logo"
+        app:srcCompat="@drawable/NotificationIcon" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notifitcation"
+        app:srcCompat="@drawable/Chat" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

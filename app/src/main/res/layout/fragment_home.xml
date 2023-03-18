@@ -7,18 +7,6 @@
     android:background="@color/background_light"
     tools:context=".ui.fragments.HomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/home"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-
     <ImageView
         android:id="@+id/header_main"
         android:layout_width="match_parent"
@@ -26,7 +14,7 @@
         android:outlineAmbientShadowColor="@color/grey"
         android:src="@drawable/header_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
@@ -42,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcome_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -52,5 +40,52 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/foot_logo"
         app:layout_constraintStart_toEndOf="@+id/foot_logo" />
+
+    <ImageView
+        android:id="@+id/notifitcation"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/welcome_title"
+        app:layout_constraintStart_toEndOf="@+id/welcome_title"
+        app:srcCompat="@drawable/NotificationIcon" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/notifitcation"
+        app:layout_constraintStart_toEndOf="@+id/notifitcation"
+        app:srcCompat="@drawable/Chat" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/field_background"
+        android:elevation="5dp"
+        android:hint="Search"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="#CACACA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_title"></EditText>
+
+    <TextView
+        android:id="@+id/PetList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Pet List"
+        android:textColor="@color/main_dark"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
