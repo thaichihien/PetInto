@@ -9,7 +9,7 @@
         android:id="@+id/foot_logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/Foot"
+        android:src="@drawable/foot_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="439dp" />
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foot_logo"
-        app:srcCompat="@drawable/NotificationIcon" />
+        app:srcCompat="@drawable/noti_icon" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifitcation"
-        app:srcCompat="@drawable/Chat" />
+        app:srcCompat="@drawable/chat_icon" />
 
 
 

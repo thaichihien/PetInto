@@ -132,8 +132,20 @@
             android:id="@+id/cat_img_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/dog" />
+            android:background="@drawable/cat" />
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/cat_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Cat"
+        android:textColor="@color/main_dark"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/cat_choice_btn"
+        app:layout_constraintStart_toStartOf="@+id/cat_choice_btn"
+        app:layout_constraintTop_toBottomOf="@+id/cat_choice_btn" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mouse_choice_btn"
@@ -149,8 +161,20 @@
             android:id="@+id/mouse_img_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/dog" />
+            android:background="@drawable/hamster" />
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/mouse_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Mouse"
+        android:textColor="@color/main_dark"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/mouse_choice_btn"
+        app:layout_constraintStart_toStartOf="@+id/mouse_choice_btn"
+        app:layout_constraintTop_toBottomOf="@+id/mouse_choice_btn" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/rabbit_choice_btn"
@@ -166,7 +190,20 @@
             android:id="@+id/rabbit_img_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/dog" />
+            android:background="@drawable/rabbit" />
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/rabbit_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Rabbit"
+        android:textColor="@color/main_dark"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/rabbit_choice_btn"
+        app:layout_constraintStart_toStartOf="@+id/rabbit_choice_btn"
+        app:layout_constraintTop_toBottomOf="@+id/rabbit_choice_btn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
