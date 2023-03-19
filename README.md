@@ -75,6 +75,8 @@ Kiểm tra ở  ***Tools*** > ***SDK Manager***
 ## 🗂️ Project Dependencies
 Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (Module:app)*** . Chọn ***Sync Now*** để tại các thư viện/framework về
 - [**Navigation Component**](https://developer.android.com/guide/navigation/navigation-getting-started)
+- [**Glide**](https://github.com/bumptech/glide)
+- [**Retrofit**](https://github.com/square/retrofit)
 ## 📋Project Assignment
 Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
 - **HomeFragment** : Giao diện trang chủ, hiển thị
