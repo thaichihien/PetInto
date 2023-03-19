@@ -291,7 +291,7 @@
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/Accessories" />
+                android:src="@drawable/accessories" />
             <ImageButton
                 android:id="@+id/accesories_btn1"
                 android:layout_width="383dp"
@@ -299,7 +299,7 @@
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/Accessories" />
+                android:src="@drawable/accessories" />
             <ImageButton
                 android:id="@+id/accesories_btn2"
                 android:layout_width="383dp"
@@ -307,7 +307,7 @@
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/Accessories" />
+                android:src="@drawable/accessories" />
         </LinearLayout>
     </HorizontalScrollView>
 
