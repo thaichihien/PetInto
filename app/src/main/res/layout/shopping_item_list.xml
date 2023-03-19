@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp">
 
     <ImageView
         android:id="@+id/ivShoppingItem"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +28,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:id="@+id/tvShoppingItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/shopping"
+            android:textSize="17sp"
            />
 
         <RelativeLayout
@@ -50,7 +52,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/lbFor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +62,7 @@
 
             <TextView
                 android:textStyle="bold"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/tvAnimalType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +71,7 @@
                 />
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/lbStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +80,7 @@
                 />
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/tvStock"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
@@ -97,7 +99,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/lbDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,7 +109,7 @@
 
             <TextView
                 android:textStyle="bold"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:id="@+id/tvDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +127,7 @@
 
             <TextView
                 android:layout_centerVertical="true"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quantity:"/>
@@ -170,9 +172,9 @@
             
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
-                android:layout_height="22dp"
+                android:layout_height="25dp"
                 android:layout_weight="1"
-                android:textSize="8sp"
+
                 android:background="@drawable/primary_button_background"
                 android:text="Buy"
                 android:textAllCaps="false"
@@ -180,9 +182,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_marginStart="5dp"
                 android:layout_width="0dp"
-                android:layout_height="22dp"
+                android:layout_height="25dp"
                 android:layout_weight="1"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 android:background="@drawable/secondary_button_background"
                 android:text="Add to cart"
                 android:textAllCaps="false"
