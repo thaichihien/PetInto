@@ -239,7 +239,6 @@
                 android:textAlignment="center"
                 android:baselineAligned="false"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
@@ -263,6 +262,75 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Rabbit"
+                    android:textColor="@color/main_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pet_bird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:baselineAligned="false"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/bird_choice_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageButton
+                        android:id="@+id/bird_img_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bird" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/bird_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Bird"
+                    android:textColor="@color/main_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pet_fish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:baselineAligned="false"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/fish_choice_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:cardCornerRadius="50dp">
+
+                    <ImageButton
+                        android:id="@+id/fish_img_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/fish" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/fish_choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Fish"
                     android:textColor="@color/main_dark"
                     android:textSize="13dp" />
             </LinearLayout>
@@ -291,7 +359,7 @@
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/Accessories" />
+                android:src="@drawable/accessories" />
             <ImageButton
                 android:id="@+id/accesories_btn1"
                 android:layout_width="383dp"
@@ -299,7 +367,7 @@
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/Accessories" />
+                android:src="@drawable/accessories" />
             <ImageButton
                 android:id="@+id/accesories_btn2"
                 android:layout_width="383dp"
@@ -307,7 +375,7 @@
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/Accessories" />
+                android:src="@drawable/accessories" />
         </LinearLayout>
     </HorizontalScrollView>
 
