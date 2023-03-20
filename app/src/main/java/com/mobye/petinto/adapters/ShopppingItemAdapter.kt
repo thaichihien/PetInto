@@ -1,6 +1,7 @@
 package com.mobye.petinto.adapters
 
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +11,9 @@ import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ShoppingItemListBinding
 import com.mobye.petinto.models.ShoppingItem
 
-class ShoppingItemAdapter : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
+class ShoppingItemAdapter(
+    private val listener: (ShoppingItem) -> Unit
+) : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
 
     private lateinit var binding: ShoppingItemListBinding
     private val differCallBack = object : DiffUtil.ItemCallback<ShoppingItem>(){
@@ -37,7 +40,12 @@ class ShoppingItemAdapter : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingIte
                         .load(item.image)
                         .placeholder(R.drawable.ic_launcher_background)
                         .into(ivShoppingItem)
+                    root.setOnClickListener{
+                        listener(item)
+                    }
                 }
+
+
             }
 
         }
@@ -55,6 +63,7 @@ class ShoppingItemAdapter : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingIte
     override fun onBindViewHolder(holder: ShoppingItemViewHolder, position: Int) {
         holder.setData(differ.currentList[position])
         holder.setIsRecyclable(false)
+
     }
 
 

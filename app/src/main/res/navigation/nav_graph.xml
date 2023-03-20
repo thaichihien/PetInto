@@ -14,7 +14,11 @@
         android:id="@+id/shoppingFragment"
         android:name="com.mobye.petinto.ui.fragments.ShoppingFragment"
         android:label="fragment_shopping"
-        tools:layout="@layout/fragment_shopping" />
+        tools:layout="@layout/fragment_shopping" >
+        <action
+            android:id="@+id/navigateToDetailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/spaFragment"
         android:name="com.mobye.petinto.ui.fragments.SpaFragment"
@@ -30,4 +34,16 @@
         android:name="com.mobye.petinto.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.mobye.petinto.ui.fragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/navigateToShoppingFragment"
+            app:destination="@id/shoppingFragment" />
+        <argument
+            android:name="itemDetail"
+            app:argType="com.mobye.petinto.models.ShoppingItem" />
+    </fragment>
 </navigation>

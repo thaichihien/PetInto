@@ -55,8 +55,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:paddingBottom="100dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailTitleBar"
         >
         <LinearLayout
@@ -68,6 +70,8 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:contentDescription="@string/shopping"
+                    android:id="@+id/ivItemDetail"
                     android:layout_centerHorizontal="true"
                     android:layout_width="400dp"
                     android:layout_height="400dp"
@@ -83,12 +87,14 @@
 
                <TableRow>
                    <TextView
+                       android:id="@+id/tvItemNameDetails"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Bed"
                        android:textStyle="bold"
                        android:textSize="25sp"/>
                    <TextView
+                       android:id="@+id/tvItemPriceDetails"
                        android:layout_marginStart="24dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -131,7 +137,7 @@
                             android:text="Stock: "
                             android:textSize="20sp"/>
                         <TextView
-
+                            android:id="@+id/tvItemStockDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2"
@@ -156,7 +162,7 @@
                             android:text="Details: "
                             android:textSize="20sp"/>
                         <TextView
-
+                            android:id="@+id/tvItemDetailDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="34x28x28cm"
@@ -176,7 +182,7 @@
                             android:text="For: "
                             android:textSize="20sp"/>
                         <TextView
-
+                            android:id="@+id/tvItemTypeDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cat"
