@@ -102,9 +102,9 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
 - [X] Set up Fragments navigation (Bottom navigation view)
 - [ ] Màn hình giao diện **Home** ( ***!!! Thông tin gì được thể hiện trên đây? dùng để làm gì? nhấn sẽ dẫn đến đâu?*** )
 - [ ] Màn hình giao diện **Shopping** 
-  - [ ] Xây dựng giao diện
+  - [X] Xây dựng giao diện
   - [ ] Lấy dữ liệu từ API nạp vào RecycleView
-  - [ ] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
+  - [X] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
   - [ ] Giao diện giỏ hàng
   - [ ] Thêm vào giỏ hàng
   - [ ] Tính toán số lượng, tiền,...
