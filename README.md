@@ -105,8 +105,8 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [X] Xây dựng giao diện
   - [ ] Lấy dữ liệu từ API nạp vào RecycleView
   - [X] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
-  - [ ] Giao diện giỏ hàng
-  - [ ] Thêm vào giỏ hàng
+  - [X] Giao diện giỏ hàng
+  - [X] Thêm vào giỏ hàng
   - [ ] Tính toán số lượng, tiền,...
   - [ ] Bỏ khỏi giỏ hàng
   - [ ] Thanh toán?
