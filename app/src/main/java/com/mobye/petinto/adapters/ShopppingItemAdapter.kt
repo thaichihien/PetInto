@@ -12,7 +12,8 @@ import com.mobye.petinto.databinding.ShoppingItemListBinding
 import com.mobye.petinto.models.ShoppingItem
 
 class ShoppingItemAdapter(
-    private val listener: (ShoppingItem) -> Unit
+    private val detailListener: (ShoppingItem) -> Unit,
+    private val addListener: (ShoppingItem) -> Unit
 ) : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
 
     private lateinit var binding: ShoppingItemListBinding
@@ -40,8 +41,14 @@ class ShoppingItemAdapter(
                         .load(item.image)
                         .placeholder(R.drawable.ic_launcher_background)
                         .into(ivShoppingItem)
-                    root.setOnClickListener{
-                        listener(item)
+                    ivShoppingItem.setOnClickListener{
+                        detailListener(item)
+                    }
+                    tvShoppingItemName.setOnClickListener {
+                        detailListener(item)
+                    }
+                    btnAddToCart.setOnClickListener {
+                        addListener(item)
                     }
                 }
 
