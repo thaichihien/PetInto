@@ -18,6 +18,9 @@
         <action
             android:id="@+id/navigateToDetailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/shoppingFragmentToCartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/spaFragment"
@@ -45,5 +48,20 @@
         <argument
             android:name="itemDetail"
             app:argType="com.mobye.petinto.models.ShoppingItem" />
+        <action
+            android:id="@+id/detailFragmentToCartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.mobye.petinto.ui.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/cartFragmentToDetailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/cartFragmentToShoppingFragment"
+            app:destination="@id/shoppingFragment" />
     </fragment>
 </navigation>

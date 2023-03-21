@@ -77,6 +77,7 @@ Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (
 - [**Navigation Component**](https://developer.android.com/guide/navigation/navigation-getting-started)
 - [**Glide**](https://github.com/bumptech/glide)
 - [**Retrofit**](https://github.com/square/retrofit)
+- [**Lifecycle for View Model, Live Data**](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 ## 📋Project Assignment
 Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
 - **HomeFragment** : Giao diện trang chủ, hiển thị
@@ -105,10 +106,11 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [X] Xây dựng giao diện
   - [ ] Lấy dữ liệu từ API nạp vào RecycleView
   - [X] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
-  - [ ] Giao diện giỏ hàng
-  - [ ] Thêm vào giỏ hàng
+  - [X] Giao diện giỏ hàng
+  - [X] Thêm vào giỏ hàng
   - [ ] Tính toán số lượng, tiền,...
   - [ ] Bỏ khỏi giỏ hàng
+  - [ ] Lưu giỏ hàng vào local database (Realm)
   - [ ] Thanh toán?
   - [ ] Tìm kiếm (theo tên sản phẩm)
   - [ ] Filter
