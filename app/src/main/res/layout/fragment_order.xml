@@ -13,7 +13,7 @@
     <ImageView
         android:id="@+id/order_header"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="108dp"
         android:src="@drawable/header_rectangle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,10 @@
     </ImageView>
 
     <ImageView
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/exit_icon"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="56dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -36,7 +36,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/main_dark"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -45,25 +45,68 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/order_icon"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="52dp"
         android:layout_marginRight="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
+        android:id="@+id/nav_order"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         app:layout_constraintTop_toBottomOf="@id/order_header"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:background="@drawable/edit_text_border">
+            android:id="@+id/edt_search_order"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/field_background"
+            android:elevation="5dp"
+            android:hint="Search"
+            android:paddingHorizontal="10dp"
+            android:textColorHint="#CACACA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_title"/>
 
-        </EditText>
+        <LinearLayout
+            android:id="@+id/filter_oerder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/filter_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOrderItem"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_order"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
