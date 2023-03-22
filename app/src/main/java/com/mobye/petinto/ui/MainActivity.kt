@@ -1,8 +1,12 @@
 package com.mobye.petinto.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -20,6 +24,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+//            MainActivity.setWindowFlag(
+//                this,
+//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+//                true
+//            )
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+
+        if (Build.VERSION.SDK_INT >= 21) {
+//            MainActivity.setWindowFlag(
+//                this,
+//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+//                false
+//            )
+//
+//            Window.f
+
+
+            window.statusBarColor = Color.TRANSPARENT
+        }
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController
