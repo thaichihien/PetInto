@@ -79,7 +79,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="125dp"
         app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -90,7 +89,7 @@
             android:id="@+id/item_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="325dp"
+            android:paddingBottom="200dp"
             android:orientation="vertical"
             android:textAlignment="center">
 
@@ -728,13 +727,13 @@
                         android:layout_width="410dp"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/advertise2" />
+                        android:src="@drawable/advertise1" />
 
                     <ImageButton
                         android:layout_width="410dp"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/advertise2" />
+                        android:src="@drawable/advertise1" />
                 </LinearLayout>
             </HorizontalScrollView>
 
