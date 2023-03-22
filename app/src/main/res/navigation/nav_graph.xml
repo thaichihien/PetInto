@@ -48,7 +48,9 @@
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/navigateToShoppingFragment"
-            app:destination="@id/shoppingFragment" />
+            app:destination="@id/shoppingFragment"
+            app:enterAnim="@anim/slide_to_right"
+            app:exitAnim="@android:anim/fade_out" />
         <argument
             android:name="itemDetail"
             app:argType="com.mobye.petinto.models.ShoppingItem" />
