@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
@@ -43,11 +44,17 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
             .load(item.image)
             .into(binding.ivItemDetail)
 
-        binding.tvItemNameDetails.text = item.name
-        binding.tvItemPriceDetails.text = item.price.toString()
-        binding.tvItemTypeDetails.text = item.type
-        binding.tvItemDetailDetails.text = item.detail
-        binding.tvItemStockDetails.text = item.stock.toString()
+        binding.apply {
+            tvItemNameDetails.text = item.name
+            tvItemPriceDetails.text = item.price.toString()
+            tvItemTypeDetails.text = item.type
+            tvItemDetailDetails.text = item.detail
+            tvItemStockDetails.text = item.stock.toString()
+            btnBackDetail.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
+
     }
 
 

@@ -5,20 +5,23 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.DetailFragment"
-    android:background="@color/background_light">
+    android:background="@color/background_light"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detailTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_dark"
-        android:padding="9dp"
+        android:paddingHorizontal="9dp"
+        android:paddingBottom="9dp"
+        android:paddingTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageView"
+            android:id="@+id/btnBackDetail"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:padding="12dp"
@@ -55,7 +58,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:paddingBottom="100dp"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,6 +66,7 @@
         >
         <LinearLayout
             android:orientation="vertical"
+            android:paddingBottom="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RelativeLayout

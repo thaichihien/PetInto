@@ -79,16 +79,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
+        app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/header_main">
 
         <LinearLayout
             android:id="@+id/item_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="200dp"
             android:orientation="vertical"
             android:textAlignment="center">
 
@@ -121,13 +122,14 @@
                         android:id="@+id/pet_dog"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:baselineAligned="false"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/dog_choice_btn"
                             android:layout_width="75dp"
@@ -155,13 +157,14 @@
                         android:id="@+id/pet_cat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:baselineAligned="false"
                         android:layout_marginLeft="24dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cat_choice_btn"
                             android:layout_width="75dp"
@@ -189,13 +192,14 @@
                         android:id="@+id/pet_mouse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:baselineAligned="false"
                         android:layout_marginLeft="24dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/mouse_choice_btn"
                             android:layout_width="75dp"
@@ -223,13 +227,14 @@
                         android:id="@+id/pet_rabbit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:baselineAligned="false"
                         android:layout_marginLeft="24dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/rabbit_choice_btn"
                             android:layout_width="75dp"
@@ -257,13 +262,14 @@
                         android:id="@+id/pet_bird"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:baselineAligned="false"
                         android:layout_marginLeft="24dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/bird_choice_btn"
                             android:layout_width="75dp"
@@ -291,14 +297,15 @@
                         android:id="@+id/pet_fish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:baselineAligned="false"
                         android:layout_marginLeft="24dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:layout_marginBottom="10dp"
+                        android:baselineAligned="false"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/fish_choice_btn"
                             android:layout_width="75dp"
@@ -328,6 +335,7 @@
                 android:id="@+id/order_btn"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/primary_button_background"
                 android:text="Order now"
@@ -335,7 +343,6 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
@@ -377,6 +384,7 @@
                         android:background="@color/white"
                         android:scaleType="centerInside"
                         android:src="@drawable/accessories" />
+
                     <ImageButton
                         android:id="@+id/accesories_btn1"
                         android:layout_width="383dp"
@@ -385,6 +393,7 @@
                         android:background="@color/white"
                         android:scaleType="centerInside"
                         android:src="@drawable/accessories" />
+
                     <ImageButton
                         android:id="@+id/accesories_btn2"
                         android:layout_width="383dp"
@@ -437,6 +446,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="center"
                         android:src="@drawable/beauty_spa" />
+
                     <ImageButton
                         android:id="@+id/beauty_spa_btn2"
                         android:layout_width="wrap_content"
@@ -487,6 +497,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="center"
                         android:src="@drawable/hotel" />
+
                     <ImageButton
                         android:id="@+id/hotel_btn2"
                         android:layout_width="wrap_content"
@@ -529,8 +540,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/review1_btn"
                             android:layout_width="200dp"
@@ -557,13 +569,13 @@
                                 android:id="@+id/review1_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:textAlignment="center"
-                                android:layout_marginBottom="25dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
-                                android:textColor="@color/main_dark"
                                 android:layout_gravity="end|bottom"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="25dp"
+                                android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
+                                android:textAlignment="center"
+                                android:textColor="@color/main_dark"
                                 android:textSize="13dp"
                                 tools:ignore="RtlCompat" />
                         </com.google.android.material.card.MaterialCardView>
@@ -579,8 +591,9 @@
                             android:id="@+id/review2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:textAlignment="center">
+
                             <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/review2_btn"
                                 android:layout_width="200dp"
@@ -607,13 +620,13 @@
                                     android:id="@+id/review2_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:textAlignment="center"
-                                    android:layout_marginBottom="25dp"
-                                    android:layout_marginHorizontal="10dp"
-                                    android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
-                                    android:textColor="@color/main_dark"
                                     android:layout_gravity="end|bottom"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
+                                    android:textAlignment="center"
+                                    android:textColor="@color/main_dark"
                                     android:textSize="13dp"
                                     tools:ignore="RtlCompat" />
                             </com.google.android.material.card.MaterialCardView>
@@ -630,8 +643,9 @@
                             android:id="@+id/review3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:textAlignment="center">
+
                             <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/review3_btn"
                                 android:layout_width="200dp"
@@ -658,13 +672,13 @@
                                     android:id="@+id/review3_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:textAlignment="center"
-                                    android:layout_marginBottom="25dp"
-                                    android:layout_marginHorizontal="10dp"
-                                    android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
-                                    android:textColor="@color/main_dark"
                                     android:layout_gravity="end|bottom"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
+                                    android:textAlignment="center"
+                                    android:textColor="@color/main_dark"
                                     android:textSize="13dp"
                                     tools:ignore="RtlCompat" />
                             </com.google.android.material.card.MaterialCardView>
@@ -713,12 +727,13 @@
                         android:layout_width="410dp"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/advertise2" />
+                        android:src="@drawable/advertise1" />
+
                     <ImageButton
                         android:layout_width="410dp"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/advertise2" />
+                        android:src="@drawable/advertise1" />
                 </LinearLayout>
             </HorizontalScrollView>
 
