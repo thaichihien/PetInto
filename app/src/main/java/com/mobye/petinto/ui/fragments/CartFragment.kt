@@ -1,17 +1,21 @@
 package com.mobye.petinto.ui.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.CartItemAdapter
 import com.mobye.petinto.databinding.FragmentCartBinding
 import com.mobye.petinto.databinding.FragmentShoppingBinding
+import com.mobye.petinto.helpers.SwipeHelper
 import com.mobye.petinto.models.ShoppingItem
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
@@ -42,7 +46,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         super.onViewCreated(view, savedInstanceState)
         val activity = activity as MainActivity
         activity.hideBottomNav()
-        cartItemAdapter = CartItemAdapter()
+        cartItemAdapter = CartItemAdapter { cartItem, i ->
+            shoppingViewModel.removeFromCart(i)
+        }
         //cartItemAdapter.differ.submitList(shoppingViewModel.cartItemList.value)
         shoppingViewModel.cartItemList.observe(viewLifecycleOwner) {
             cartItemAdapter.differ.submitList(it)
@@ -55,7 +61,6 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 layoutManager = LinearLayoutManager(requireContext())
             }
         }
-
 
     }
 

@@ -45,6 +45,13 @@ class ShoppingViewModel(
         return false
     }
 
+    fun removeFromCart(index : Int){
+        val cartList = cartItemList.value!!.toMutableList()
+
+        cartList.removeAt(index)
+
+        cartItemList.value = cartList
+    }
 
 
 
