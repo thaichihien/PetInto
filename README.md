@@ -108,8 +108,8 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [X] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
   - [X] Giao diện giỏ hàng
   - [X] Thêm vào giỏ hàng
-  - [ ] Tính toán số lượng, tiền,...
-  - [ ] Bỏ khỏi giỏ hàng
+  - [X] Tính toán số lượng, tiền,...
+  - [X] Bỏ khỏi giỏ hàng
   - [ ] Lưu giỏ hàng vào local database (Realm)
   - [ ] Thanh toán?
   - [ ] Tìm kiếm (theo tên sản phẩm)
