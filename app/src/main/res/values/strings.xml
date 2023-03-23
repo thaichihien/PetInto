@@ -21,4 +21,5 @@
 
 <!--    String for sign in, sign up, reset password-->
     <string name="forget_password"><u>Forget your password?</u></string>
+    <string name="sign_in">Already have an account?<u><b> Sign in</b></u></string>
 </resources>
