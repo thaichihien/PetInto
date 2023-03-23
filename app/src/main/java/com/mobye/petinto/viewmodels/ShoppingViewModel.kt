@@ -57,7 +57,7 @@ class ShoppingViewModel(
     fun changeQuantity(index :Int,number: Int){
         val cartList = cartItemList.value!!.toMutableList()
 
-        if(cartList[index].quantity > 1){
+        if(cartList[index].quantity >= 1){
             cartList[index].quantity += number
         }
         // TODO deal with stock
@@ -70,6 +70,7 @@ class ShoppingViewModel(
     fun changeTotal(index : Int,isAdded: Boolean){
         val cartList = cartItemList.value
         val cartItem = cartList!![index]
+        cartItem.selected = isAdded
 
         if (isAdded){
             total.value = total.value?.plus((cartItem.item.price * cartItem.quantity))
@@ -78,8 +79,38 @@ class ShoppingViewModel(
         }
     }
 
+    fun changeTotal(index: Int,number : Int){
+        val cartList = cartItemList.value
+        val cartItem = cartList!![index]
+
+        total.value = total.value?.plus(cartItem.item.price * number)
+    }
+
     fun resetTotal(){
         total.value = 0
+    }
+
+    fun selectAllCart(yes : Boolean){
+        val cartList = cartItemList.value!!.toMutableList()
+
+        total.value = 0
+        for(cartItem in cartList){
+            cartItem.selected = yes
+            total.value = total.value!! + (cartItem.item.price * cartItem.quantity)
+        }
+
+
+        cartItemList.value = cartList
+    }
+
+    fun isSelectedAll() : Boolean{
+        val cartList = cartItemList.value!!.toMutableList()
+
+        for(cartItem in cartList){
+           if(!cartItem.selected) return false
+        }
+
+        return true
     }
 
 

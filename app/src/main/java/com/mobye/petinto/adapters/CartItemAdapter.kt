@@ -21,7 +21,8 @@ class CartItemAdapter(
     private val removedListener: (CartItem,Int) -> Unit,
     private val addQuantityListener: (Int) -> Unit,
     private val removeQuantityListener: (Int) -> Unit,
-    private val selectedListener: (Boolean,Int) -> Unit
+    private val selectedListener: (Boolean,Int) -> Unit,
+    private val addToTotal: (Int,Int) -> Unit
 ) : RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder>() {
 
     private lateinit var binding: ItemCartSwipeListBinding
@@ -79,7 +80,7 @@ class CartItemAdapter(
 
 
             //Log.e("SELECTED_CART","${holder.adapterPosition} : ${cartItem.selected}")
-
+            cbSelectedCart.isChecked = cartItem.selected
             //selectedListener(isSelectedAll,holder.adapterPosition)
 
             deleteLayout.setOnClickListener{
@@ -92,9 +93,10 @@ class CartItemAdapter(
                 if(quantity > 1){
                     quantity -= 1
                     tvItemQuantityCart.text = quantity.toString()
+                    if(cbSelectedCart.isChecked) addToTotal(holder.adapterPosition,-1)
                 }
-
                 removeQuantityListener(holder.adapterPosition)
+
             }
             btnPlusCart.setOnClickListener {
                 var quantity = tvItemQuantityCart.text.toString().toInt()
@@ -102,13 +104,14 @@ class CartItemAdapter(
                 tvItemQuantityCart.text = quantity.toString()
 
                 addQuantityListener(holder.adapterPosition)
+                if(cbSelectedCart.isChecked) addToTotal(holder.adapterPosition,1)
             }
             cbSelectedCart.setOnClickListener(null)
             cbSelectedCart.setOnCheckedChangeListener{ _,isChecked ->
                 selectedListener(isChecked,holder.adapterPosition)
             }
 
-            cbSelectedCart.isChecked = isSelectedAll
+
 
         }
         holder.setIsRecyclable(false)
@@ -116,10 +119,10 @@ class CartItemAdapter(
 
     }
 
-    fun selectedAll(yes: Boolean){
-        isSelectedAll = yes
-        notifyDataSetChanged()
-    }
+//    fun selectedAll(yes: Boolean){
+//        isSelectedAll = yes
+//        notifyDataSetChanged()
+//    }
 
 
 }

@@ -33,6 +33,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     }
 
     private lateinit var cartItemAdapter : CartItemAdapter
+    private var isSelectedAll = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,13 +60,24 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             },
             { isSelected,index ->
                 shoppingViewModel.changeTotal(index,isSelected)
+
+
+
+                if(binding.cbSelectAll.isChecked && !isSelected){
+                    binding.cbSelectAll.isChecked = false
+                    isSelectedAll = false
+                }else if(shoppingViewModel.isSelectedAll()){
+                    binding.cbSelectAll.isChecked = true
+                    isSelectedAll = true
+                }
+            },
+            { index,amount ->
+                shoppingViewModel.changeTotal(index,amount)
             }
         )
         //cartItemAdapter.differ.submitList(shoppingViewModel.cartItemList.value)
         shoppingViewModel.cartItemList.observe(viewLifecycleOwner) {
-            Log.e("CHANGE_CART_LIST","yes")
             cartItemAdapter.differ.submitList(it)
-            //cartItemAdapter.notifyDataSetChanged()
         }
         shoppingViewModel.total.observe(viewLifecycleOwner) {
             binding.tvTotalCart.text = "%,d đ".format(it)
@@ -81,12 +93,18 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 findNavController().popBackStack()
             }
 
-            cbSelectAll.setOnCheckedChangeListener { _, isChecked ->
-                cartItemAdapter.selectedAll(isChecked)
-                if(!isChecked) shoppingViewModel.resetTotal()
-//                //cartItemAdapter.notifyDataSetChanged()
+            isSelectedAll = shoppingViewModel.isSelectedAll()
+            cbSelectAll.isChecked = isSelectedAll
 
+            cbSelectAll.setOnClickListener {
+                isSelectedAll = !isSelectedAll
+                shoppingViewModel.selectAllCart(isSelectedAll)
+                if(!isSelectedAll) shoppingViewModel.resetTotal()
+                cartItemAdapter.notifyDataSetChanged()
             }
+//            cbSelectAll.setOnCheckedChangeListener { _, isChecked ->
+//
+//            }
         }
 
     }
