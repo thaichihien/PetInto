@@ -77,8 +77,8 @@ class CartItemAdapter(
                 .load(cartItem.item.image)
                 .into(binding.ivItemCart)
 
-            Log.e("SELECTED_CART","${holder.adapterPosition} : $isSelectedAll")
-            cbSelectedCart.isChecked = isSelectedAll
+
+            //Log.e("SELECTED_CART","${holder.adapterPosition} : ${cartItem.selected}")
 
             //selectedListener(isSelectedAll,holder.adapterPosition)
 
@@ -103,16 +103,15 @@ class CartItemAdapter(
 
                 addQuantityListener(holder.adapterPosition)
             }
+            cbSelectedCart.setOnClickListener(null)
             cbSelectedCart.setOnCheckedChangeListener{ _,isChecked ->
-                if(holder.adapterPosition > 0){
-                    selectedListener(isChecked,holder.adapterPosition)
-                }
-
+                selectedListener(isChecked,holder.adapterPosition)
             }
 
+            cbSelectedCart.isChecked = isSelectedAll
 
         }
-        //holder.setIsRecyclable(false)
+        holder.setIsRecyclable(false)
         binderHelper.bind(binding.swipeLayout,differ.currentList[position].item.id)
 
     }
