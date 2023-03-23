@@ -105,7 +105,6 @@
                         android:textStyle="bold"
                         android:textColor="@android:color/holo_red_dark"
                         android:textSize="25sp"/>
-
                 </TableRow>
                 <TableRow
                     android:layout_marginTop="16dp">
@@ -126,8 +125,6 @@
                             android:textStyle="bold"
                             android:textColor="@android:color/holo_green_light"
                             android:textSize="20sp"/>
-
-
                     </LinearLayout>
                     <LinearLayout
                         android:layout_marginStart="24dp"
@@ -149,8 +146,6 @@
 
 
                     </LinearLayout>
-
-
                 </TableRow>
                 <TableRow
                     android:layout_marginTop="6dp"
