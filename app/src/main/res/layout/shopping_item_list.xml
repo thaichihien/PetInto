@@ -139,22 +139,26 @@
 
 
                 <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/btnMinusShopping"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/minus_icon"
                     android:scaleType="fitCenter"/>
 
                 <TextView
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:id="@+id/tvShoppingItemQuantity"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
                     android:text="1"/>
 
                 <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/btnPlusShopping"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/plus_icon"
                     android:scaleType="fitCenter"/>
@@ -169,27 +173,16 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1"
 
-                android:background="@drawable/primary_button_background"
-                android:text="Buy"
-                android:textAllCaps="false"
-                tools:ignore="SmallSp" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAddToCart"
                 android:layout_marginStart="5dp"
                 android:layout_width="0dp"
-                android:layout_height="25dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:textSize="12sp"
                 android:background="@drawable/secondary_button_background"
                 android:text="Add to cart"
-                android:textAllCaps="false"
-                tools:ignore="SmallSp" />
+                android:textAllCaps="false" />
             
         </LinearLayout>
 
