@@ -24,7 +24,11 @@
             app:popExitAnim="@anim/slide_to_right" />
         <action
             android:id="@+id/shoppingFragmentToCartFragment"
-            app:destination="@id/cartFragment" />
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_to_right" />
     </fragment>
     <fragment
         android:id="@+id/spaFragment"

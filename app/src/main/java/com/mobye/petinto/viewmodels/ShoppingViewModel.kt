@@ -15,6 +15,7 @@ class ShoppingViewModel(
 
     val shopItemList :MutableLiveData<List<ShoppingItem>> by lazy { MutableLiveData(listOf()) }
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
+    val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
     fun getShoppingItems(){
         viewModelScope.launch {
@@ -22,22 +23,22 @@ class ShoppingViewModel(
         }
     }
 
-    fun addToCart(item : ShoppingItem){
+    fun addToCart(item : ShoppingItem,quantity : Int){
         val cartList = cartItemList.value!!.toMutableList()
 
 
-        if(!addQuantity(item,cartList)){
-            cartList.add(CartItem(item,1))
+        if(!addQuantity(item,cartList,quantity)){
+            cartList.add(CartItem(item,quantity))
         }
 
         Log.e("SHOP_CART","add ${item.image} to cart : ${cartList.size}")
         cartItemList.value = cartList
     }
 
-    private fun addQuantity(item: ShoppingItem,list: MutableList<CartItem>) : Boolean{
+    private fun addQuantity(item: ShoppingItem,list: MutableList<CartItem>,quantity: Int) : Boolean{
         for((index,cartItem) in list.withIndex()){
             if(cartItem.item.id == item.id){
-                cartItem.quantity += 1
+                cartItem.quantity += quantity
                 list[index] = cartItem
                 return true
             }
@@ -53,7 +54,29 @@ class ShoppingViewModel(
         cartItemList.value = cartList
     }
 
+    fun changeQuantity(index :Int,number: Int){
+        val cartList = cartItemList.value!!.toMutableList()
 
+        if(cartList[index].quantity > 1){
+            cartList[index].quantity += number
+        }
+        // TODO deal with stock
+
+
+        cartItemList.value = cartList
+
+    }
+
+    fun changeTotal(index : Int,isAdded: Boolean){
+        val cartList = cartItemList.value
+        val cartItem = cartList!![index]
+
+        if (isAdded){
+            total.value = total.value?.plus((cartItem.item.price * cartItem.quantity))
+        }else{
+            total.value = total.value?.minus((cartItem.item.price * cartItem.quantity))
+        }
+    }
 
 
 }

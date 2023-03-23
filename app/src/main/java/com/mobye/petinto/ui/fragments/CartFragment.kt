@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobye.petinto.R
@@ -46,12 +47,26 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         super.onViewCreated(view, savedInstanceState)
         val activity = activity as MainActivity
         activity.hideBottomNav()
-        cartItemAdapter = CartItemAdapter { cartItem, i ->
+        cartItemAdapter = CartItemAdapter (
+            { cartItem, i ->
             shoppingViewModel.removeFromCart(i)
-        }
+            },
+            {
+                shoppingViewModel.changeQuantity(it,1)
+            },
+            {
+                shoppingViewModel.changeQuantity(it,-1)
+            },
+            { isSelected,index ->
+                shoppingViewModel.changeTotal(index,isSelected)
+            }
+        )
         //cartItemAdapter.differ.submitList(shoppingViewModel.cartItemList.value)
         shoppingViewModel.cartItemList.observe(viewLifecycleOwner) {
             cartItemAdapter.differ.submitList(it)
+        }
+        shoppingViewModel.total.observe(viewLifecycleOwner) {
+            binding.tvTotalCart.text = "%,d đ".format(it)
         }
 
 
@@ -59,6 +74,13 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             rvCartItem.apply {
                 adapter = cartItemAdapter
                 layoutManager = LinearLayoutManager(requireContext())
+            }
+            btnBackCart.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            cbSelectAll.setOnCheckedChangeListener { _, isChecked ->
+                cartItemAdapter.selectedAll(isChecked)
+                cartItemAdapter.notifyDataSetChanged()
             }
         }
 

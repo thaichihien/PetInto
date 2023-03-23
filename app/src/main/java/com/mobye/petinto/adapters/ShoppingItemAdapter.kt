@@ -12,7 +12,7 @@ import com.mobye.petinto.models.ShoppingItem
 
 class ShoppingItemAdapter(
     private val detailListener: (ShoppingItem) -> Unit,
-    private val addListener: (ShoppingItem) -> Unit
+    private val addListener: (ShoppingItem,Int) -> Unit
 ) : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
 
     private lateinit var binding: ShoppingItemListBinding
@@ -32,7 +32,7 @@ class ShoppingItemAdapter(
             fun setData(item : ShoppingItem){
                 binding.apply {
                     tvShoppingItemName.text = item.name
-                    tvShoppingItemPrice.text = "${item.price.toString()}đ"
+                    tvShoppingItemPrice.text =  "%,d đ".format(item.price)
                     tvAnimalType.text = item.type
                     tvDetails.text = item.detail
                     tvStock.text = item.stock.toString()
@@ -46,13 +46,31 @@ class ShoppingItemAdapter(
                     tvShoppingItemName.setOnClickListener {
                         detailListener(item)
                     }
-                    btnAddToCart.setOnClickListener {
-                        addListener(item)
+                    btnPlusShopping.setOnClickListener{
+                        var quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()
+                        quantity += 1
+                        tvShoppingItemQuantity.text = quantity.toString()
                     }
+                    btnMinusShopping.setOnClickListener{
+                        var quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()
+                        if(quantity > 1){
+                            quantity -= 1
+                            tvShoppingItemQuantity.text = quantity.toString()
+                        }
+
+                    }
+
+                    btnAddToCart.setOnClickListener {
+                        val quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()
+                        addListener(item,quantity)
+                    }
+
                 }
 
 
             }
+
+
 
         }
 
