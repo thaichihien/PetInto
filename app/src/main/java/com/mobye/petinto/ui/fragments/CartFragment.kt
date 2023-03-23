@@ -63,7 +63,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         )
         //cartItemAdapter.differ.submitList(shoppingViewModel.cartItemList.value)
         shoppingViewModel.cartItemList.observe(viewLifecycleOwner) {
+            Log.e("CHANGE_CART_LIST","yes")
             cartItemAdapter.differ.submitList(it)
+            //cartItemAdapter.notifyDataSetChanged()
         }
         shoppingViewModel.total.observe(viewLifecycleOwner) {
             binding.tvTotalCart.text = "%,d đ".format(it)
@@ -78,9 +80,12 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             btnBackCart.setOnClickListener {
                 findNavController().popBackStack()
             }
+
             cbSelectAll.setOnCheckedChangeListener { _, isChecked ->
                 cartItemAdapter.selectedAll(isChecked)
-                cartItemAdapter.notifyDataSetChanged()
+                if(!isChecked) shoppingViewModel.resetTotal()
+//                //cartItemAdapter.notifyDataSetChanged()
+
             }
         }
 

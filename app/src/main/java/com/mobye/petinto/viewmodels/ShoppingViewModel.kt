@@ -78,5 +78,11 @@ class ShoppingViewModel(
         }
     }
 
+    fun resetTotal(){
+        total.value = 0
+    }
+
+
+
 
 }
