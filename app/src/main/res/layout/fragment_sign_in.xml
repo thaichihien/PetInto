@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Forget your password?"
+        android:text="@string/forget_password"
         android:textAlignment="center"
         android:textColor="@color/main_dark"
         android:textStyle="italic"
