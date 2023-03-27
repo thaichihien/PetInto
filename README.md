@@ -110,7 +110,7 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [X] Thêm vào giỏ hàng
   - [X] Tính toán số lượng, tiền,...
   - [X] Bỏ khỏi giỏ hàng
-  - [ ] Lưu giỏ hàng vào local database (Realm)
+  - [X] Lưu giỏ hàng vào local database (Realm)
   - [ ] Thanh toán?
   - [ ] Tìm kiếm (theo tên sản phẩm)
   - [ ] Filter

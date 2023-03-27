@@ -1,23 +1,17 @@
 package com.mobye.petinto.ui.fragments
 
-import android.graphics.Color
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.CartItemAdapter
 import com.mobye.petinto.databinding.FragmentCartBinding
-import com.mobye.petinto.databinding.FragmentShoppingBinding
-import com.mobye.petinto.helpers.SwipeHelper
-import com.mobye.petinto.models.ShoppingItem
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.ShoppingViewModel
@@ -83,6 +77,25 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             binding.tvTotalCart.text = "%,d đ".format(it)
         }
 
+        val warningDeleteDialog = requireActivity().let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setMessage("Do you really want to clear all items in cart?")
+                setTitle("Clear all")
+                setPositiveButton("Yes") { _, _ ->
+                    shoppingViewModel.apply {
+                        clearAllCart()
+                        resetTotal()
+                    }
+                    cartItemAdapter.notifyDataSetChanged()
+                }
+                setNegativeButton("No") { _, _ ->
+                    //nothing
+                }
+                builder.create()
+            }
+        }
+
 
         binding.apply {
             rvCartItem.apply {
@@ -91,6 +104,10 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             }
             btnBackCart.setOnClickListener {
                 findNavController().popBackStack()
+            }
+
+            btnClearAll.setOnClickListener{
+                warningDeleteDialog.show()
             }
 
             isSelectedAll = shoppingViewModel.isSelectedAll()
@@ -102,9 +119,12 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 if(!isSelectedAll) shoppingViewModel.resetTotal()
                 cartItemAdapter.notifyDataSetChanged()
             }
-//            cbSelectAll.setOnCheckedChangeListener { _, isChecked ->
-//
-//            }
+
+            btnBuyCart.setOnClickListener {
+                val action = CartFragmentDirections.cartFragmentToPaymentFragment()
+                findNavController().navigate(action)
+            }
+
         }
 
     }
