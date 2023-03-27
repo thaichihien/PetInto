@@ -2,5 +2,6 @@ package com.mobye.petinto.models
 
 data class CartItem (
     val item: ShoppingItem,
-    var quantity : Int
+    var quantity : Int,
+    var selected : Boolean = false
 )
