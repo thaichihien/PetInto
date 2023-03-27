@@ -7,7 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.BookingDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <!--    HEADER    -->
     <ImageView
         android:id="@+id/bookingDetailHeader"
