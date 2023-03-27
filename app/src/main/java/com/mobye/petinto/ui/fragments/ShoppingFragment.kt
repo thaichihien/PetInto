@@ -133,14 +133,8 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         activity.showBottomNav()
     }
 
-
-
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
