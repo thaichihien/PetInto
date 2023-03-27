@@ -23,23 +23,37 @@ class ShoppingViewModel(
         }
     }
 
+    fun getCartItems(){
+        viewModelScope.launch {
+            cartItemList.value = repository.getAllCartItems()
+        }
+    }
+
     fun addToCart(item : ShoppingItem,quantity : Int){
         val cartList = cartItemList.value!!.toMutableList()
 
-
         if(!addQuantity(item,cartList,quantity)){
-            cartList.add(CartItem(item,quantity))
+            val newCartItem = CartItem(item,quantity)
+            cartList.add(newCartItem)
+            viewModelScope.launch{
+                repository.saveCartItem(newCartItem)
+            }
         }
 
-        Log.e("SHOP_CART","add ${item.image} to cart : ${cartList.size}")
         cartItemList.value = cartList
     }
 
+
+
     private fun addQuantity(item: ShoppingItem,list: MutableList<CartItem>,quantity: Int) : Boolean{
         for((index,cartItem) in list.withIndex()){
-            if(cartItem.item.id == item.id){
+            if(cartItem.item!!.id == item.id){
                 cartItem.quantity += quantity
                 list[index] = cartItem
+                viewModelScope.launch{
+                    repository.saveCartItem(cartItem)
+                }
+
                 return true
             }
         }
@@ -50,6 +64,10 @@ class ShoppingViewModel(
         val cartList = cartItemList.value!!.toMutableList()
 
         cartList.removeAt(index)
+        viewModelScope.launch{
+            repository.deleteCartItem(cartList[index])
+        }
+
 
         cartItemList.value = cartList
     }
@@ -59,6 +77,9 @@ class ShoppingViewModel(
 
         if(cartList[index].quantity >= 1){
             cartList[index].quantity += number
+            viewModelScope.launch {
+                repository.updateCartItem(cartList[index])
+            }
         }
         // TODO deal with stock
 
@@ -73,9 +94,9 @@ class ShoppingViewModel(
         cartItem.selected = isAdded
 
         if (isAdded){
-            total.value = total.value?.plus((cartItem.item.price * cartItem.quantity))
+            total.value = total.value?.plus((cartItem.item!!.price * cartItem.quantity))
         }else{
-            total.value = total.value?.minus((cartItem.item.price * cartItem.quantity))
+            total.value = total.value?.minus((cartItem.item!!.price * cartItem.quantity))
         }
     }
 
@@ -83,7 +104,7 @@ class ShoppingViewModel(
         val cartList = cartItemList.value
         val cartItem = cartList!![index]
 
-        total.value = total.value?.plus(cartItem.item.price * number)
+        total.value = total.value?.plus(cartItem.item!!.price * number)
     }
 
     fun resetTotal(){
@@ -96,7 +117,7 @@ class ShoppingViewModel(
         total.value = 0
         for(cartItem in cartList){
             cartItem.selected = yes
-            total.value = total.value!! + (cartItem.item.price * cartItem.quantity)
+            total.value = total.value!! + (cartItem.item!!.price * cartItem.quantity)
         }
 
 
@@ -112,6 +133,17 @@ class ShoppingViewModel(
 
         return true
     }
+
+    fun clearAllCart(){
+        val cartList = cartItemList.value!!.toMutableList()
+        cartList.clear()
+        viewModelScope.launch{
+            repository.clearCart()
+        }
+        cartItemList.value = cartList
+    }
+
+
 
 
 

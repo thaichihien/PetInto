@@ -1,9 +1,13 @@
 package com.mobye.petinto.repository
 
 import com.mobye.petinto.R
+import com.mobye.petinto.database.CartItemDatabase
+import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.ShoppingItem
 
 class ShoppingRepository {
+
+
 
     suspend fun getShoppingItems() : List<ShoppingItem>
          = listOf(
@@ -44,5 +48,24 @@ class ShoppingRepository {
                 image = R.drawable.house
             )
         )
+
+        suspend fun getAllCartItems() : List<CartItem> = CartItemDatabase.getAllCart()
+
+        suspend fun saveCartItem(cartItem: CartItem) {
+            CartItemDatabase.createOrUpdate(cartItem)
+        }
+
+        suspend fun deleteCartItem(cartItem: CartItem){
+            CartItemDatabase.remove(cartItem)
+        }
+
+        suspend fun updateCartItem(cartItem: CartItem){
+            CartItemDatabase.update(cartItem)
+        }
+
+    suspend fun clearCart(){
+        CartItemDatabase.removeAll()
+    }
+
 
 }

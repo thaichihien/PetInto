@@ -105,6 +105,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         )
 
         shoppingViewModel.getShoppingItems()
+        shoppingViewModel.getCartItems()
         shoppingViewModel.shopItemList.observe(viewLifecycleOwner) {
             shoppingItemAdapter.differ.submitList(it)
         }

@@ -1,5 +1,6 @@
 package com.mobye.petinto.adapters
 
+import android.annotation.SuppressLint
 import android.nfc.NfcAdapter.OnTagRemovedListener
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,9 +29,10 @@ class CartItemAdapter(
     private lateinit var binding: ItemCartSwipeListBinding
     private val differCallBack = object : DiffUtil.ItemCallback<CartItem>(){
         override fun areItemsTheSame(oldItem: CartItem, newItem: CartItem): Boolean {
-            return oldItem.item.id == newItem.item.id
+            return oldItem.item!!.id == newItem.item!!.id
         }
 
+        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: CartItem, newItem: CartItem): Boolean {
             return oldItem == newItem
         }
@@ -67,15 +69,17 @@ class CartItemAdapter(
     override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
         //holder.setData(,holder.adapterPosition)
         val cartItem = differ.currentList[position]
+
+
         binding.apply {
-            tvItemNameCart.text = cartItem.item.name
-            tvItemStockCart.text = cartItem.item.stock.toString()
-            tvItemPriceCart.text = "%,d đ".format(cartItem.item.price)
-            tvItemTypeCart.text = cartItem.item.type
-            tvItemDetailCart.text = cartItem.item.detail
+            tvItemNameCart.text = cartItem.item!!.name
+            tvItemStockCart.text = cartItem.item!!.stock.toString()
+            tvItemPriceCart.text = "%,d đ".format(cartItem.item!!.price)
+            tvItemTypeCart.text = cartItem.item!!.type
+            tvItemDetailCart.text = cartItem.item!!.detail
             tvItemQuantityCart.text = cartItem.quantity.toString()
             Glide.with(binding.root)
-                .load(cartItem.item.image)
+                .load(cartItem.item!!.image)
                 .into(binding.ivItemCart)
 
 
@@ -115,7 +119,7 @@ class CartItemAdapter(
 
         }
         holder.setIsRecyclable(false)
-        binderHelper.bind(binding.swipeLayout,differ.currentList[position].item.id)
+        binderHelper.bind(binding.swipeLayout,differ.currentList[position].item!!.id)
 
     }
 

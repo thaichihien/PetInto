@@ -73,5 +73,21 @@
         <action
             android:id="@+id/cartFragmentToShoppingFragment"
             app:destination="@id/shoppingFragment" />
+        <action
+            android:id="@+id/cartFragmentToPaymentFragment"
+            app:destination="@id/paymentFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.mobye.petinto.ui.fragments.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/paymentFragmentToCartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
 </navigation>
