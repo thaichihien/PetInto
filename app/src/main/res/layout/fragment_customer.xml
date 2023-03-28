@@ -106,6 +106,8 @@
 
         android:background="@drawable/other_button_background"
         android:text="Save Information"
+        android:textAllCaps="false"
+        android:textSize="16dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
