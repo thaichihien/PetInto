@@ -128,8 +128,9 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [ ] Filter
 - [ ] Màn hình giao diện **Spa**
   - [ ] Xây dựng giao diện
-  - [ ] Sau khi booking sẽ dẫn đến đâu ?
-  - [ ] Làm sao để biết booking thành công ?
+  - [ ] Sau khi booking sẽ dẫn đến trang Your Booking (fragment_booking_details)
+  - [ ] Nếu bấm delete thì sẽ xóa hết những thông tin đang hiển thị và trả về trạng thái không có thông tin gì ban đầu
+  - [ ] Để biết booking thành công sẽ xem ở trang Your Booking (fragment_booking_details)
   - [ ] Có nên tự động fill vào thông tin theo tài khoản đã đăng nhập (đã có thông tin pet ở **Profile**)
 - [ ] Màn hình giao diện **Hotel**
   - [ ] Xây dựng giao diện
@@ -141,7 +142,7 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [ ] Giao diện **History**
   - [ ] Giao diện **Rate**
   - [ ] Giao diện **Order**/**Order Details**
-  - [ ] Mục đích của Order ?
+  - [ ] Mục đích của Order để phân biệt ra giữa mua Pet(Order) và mua Accesories(Shopping)
   - [ ] Giao diện **Booking**
   - [ ] Giao diện **Setting**
 - [ ] Màn hình **Sign up /Sign in**
