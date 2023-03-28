@@ -27,6 +27,7 @@ class CartItemAdapter(
 ) : RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder>() {
 
     private lateinit var binding: ItemCartSwipeListBinding
+
     private val differCallBack = object : DiffUtil.ItemCallback<CartItem>(){
         override fun areItemsTheSame(oldItem: CartItem, newItem: CartItem): Boolean {
             return oldItem.item!!.id == newItem.item!!.id
@@ -36,8 +37,8 @@ class CartItemAdapter(
         override fun areContentsTheSame(oldItem: CartItem, newItem: CartItem): Boolean {
             return oldItem == newItem
         }
-
     }
+
     var differ = AsyncListDiffer(this,differCallBack)
     private val binderHelper : ViewBinderHelper by lazy {
         val setting = ViewBinderHelper()
@@ -46,7 +47,6 @@ class CartItemAdapter(
     }
 
     private var isSelectedAll = false
-
 
     inner class CartItemViewHolder : RecyclerView.ViewHolder(binding.root){
 //        fun setData(cartItem : CartItem,index: Int){
@@ -114,13 +114,9 @@ class CartItemAdapter(
             cbSelectedCart.setOnCheckedChangeListener{ _,isChecked ->
                 selectedListener(isChecked,holder.adapterPosition)
             }
-
-
-
         }
         holder.setIsRecyclable(false)
         binderHelper.bind(binding.swipeLayout,differ.currentList[position].item!!.id)
-
     }
 
 //    fun selectedAll(yes: Boolean){

@@ -16,6 +16,18 @@ class PetList {
             true,
             "Golden",
             1.5,
-            "Brown")
+            "Brown"),
+        PetInfo("PET10002",
+            "British Golden Cat",
+            15000000,
+            "Cat",
+            "Sold out",
+            R.drawable.cat,
+            "Female",
+            2,
+            false,
+            "Golden",
+            1.2,
+            "Yellow")
     )
 }

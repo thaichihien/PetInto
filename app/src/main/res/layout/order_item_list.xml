@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp">
+    android:layout_margin="6dp"
+    android:id="@+id/itemOrderLayout">
 
     <ImageView
-        android:id="@+id/imgview_order"
+        android:id="@+id/imgviewOrder"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:src="@drawable/ic_launcher_background"
@@ -22,14 +23,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/imgview_order"
-        app:layout_constraintStart_toStartOf="@+id/imgview_order"
-        app:layout_constraintTop_toBottomOf="@+id/imgview_order">
+        app:layout_constraintEnd_toEndOf="@+id/imgviewOrder"
+        app:layout_constraintStart_toStartOf="@+id/imgviewOrder"
+        app:layout_constraintTop_toBottomOf="@+id/imgviewOrder">
 
         <TextView
             android:textStyle="bold"
             android:textSize="15sp"
-            android:id="@+id/tv_name"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shopping"
@@ -38,7 +39,7 @@
         <TextView
             android:textStyle="bold"
             android:textColor="@android:color/holo_red_dark"
-            android:id="@+id/tv_price"
+            android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -53,7 +54,7 @@
 
             <TextView
                 android:textSize="12sp"
-                android:id="@+id/lb_condition"
+                android:id="@+id/lbCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -66,7 +67,7 @@
                 android:id="@+id/tv_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/lb_condition"
+                android:layout_toEndOf="@id/lbCondition"
                 android:text="Available"
                 />
         </RelativeLayout>
@@ -78,7 +79,7 @@
 
             <TextView
                 android:textSize="12sp"
-                android:id="@+id/lb_id"
+                android:id="@+id/lbId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ID: "/>
@@ -86,10 +87,10 @@
             <TextView
                 android:textStyle="bold"
                 android:textSize="12sp"
-                android:id="@+id/tv_id"
+                android:id="@+id/tvId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/lb_id"
+                android:layout_toEndOf="@id/lbId"
                 android:text="20127473"/>
 
         </RelativeLayout>
@@ -101,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_order"
+                android:id="@+id/btnOrder"
                 android:layout_marginStart="5dp"
                 android:layout_width="0dp"
                 android:layout_height="28dp"
