@@ -102,6 +102,17 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   ### 📱 Mobile
 - [X] Set up Fragments navigation (Bottom navigation view)
 - [ ] Màn hình giao diện **Home** ( ***!!! Thông tin gì được thể hiện trên đây? dùng để làm gì? nhấn sẽ dẫn đến đâu?*** )
+  - [ ] Thanh tìm kiếm sẽ dẫn tới tất cả các trang có thể phụ thuộc vào nội dung của text
+  - [ ] Danh sách Pet khi nhấn vào từng Pet sẽ dẫn đến trang **Order** (fragment_order)
+  - [ ] Nút **Order Now** cũng sẽ dẫn đến trang **Order** (fragment_order)
+  - [ ] Ảnh ở mục Accesories chỉ để hiển thị hình ảnh 
+  - [ ] **Chữ Accesories** ở mục Accesories khi bấm vào chuyển sang trang **Shopping**
+  - [ ] Ảnh ở mục Beauty Spa chỉ để hiển thị hình ảnh
+  - [ ] **Chữ Beauty Spa** ở mục Beauty Spa khi bấm vào chuyển sang trang **Spa**
+  - [ ] Ảnh ở mục Hotel chỉ để hiển thị hình ảnh
+  - [ ] **Chữ Hotel** ở mục Hotel khi bấm vào chuyển sang trang **Hotel**
+  - [ ] Ở mục Review chỉ dùng để hiển thị các đánh giá về App
+  - [ ] Ở mục Advertisement, phần chữ sẽ không bấm được, các hình ảnh về bài báo được hiển thị và khi bấm vào từng ảnh sẽ dẫn đến bài báo
 - [ ] Màn hình giao diện **Shopping** 
   - [X] Xây dựng giao diện
   - [ ] Lấy dữ liệu từ API nạp vào RecycleView
