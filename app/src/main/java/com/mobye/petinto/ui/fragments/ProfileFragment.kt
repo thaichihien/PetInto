@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentProfileBinding
 import com.mobye.petinto.databinding.FragmentShoppingBinding
@@ -37,6 +39,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.e(DEBUG_TAG,"onViewCreated")
+
+        binding.apply {
+            navOrder.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOrderFragment())
+            }
+            navBooking.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToBookingFragment())
+            }
+            navHistory.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHistoryInformation())
+            }
+        }
     }
 
 
