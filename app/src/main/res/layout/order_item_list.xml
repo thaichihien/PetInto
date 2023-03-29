@@ -58,17 +58,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Condition: "
+                android:text="Gender: "
                 />
 
             <TextView
                 android:textStyle="bold"
                 android:textSize="12sp"
-                android:id="@+id/tv_condition"
+                android:id="@+id/tvGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/lbCondition"
-                android:text="Available"
+                android:text="Female"
                 />
         </RelativeLayout>
 
@@ -82,16 +82,16 @@
                 android:id="@+id/lbId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID: "/>
+                android:text="Type: "/>
 
             <TextView
                 android:textStyle="bold"
                 android:textSize="12sp"
-                android:id="@+id/tvId"
+                android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/lbId"
-                android:text="20127473"/>
+                android:text="Dog"/>
 
         </RelativeLayout>
 
@@ -102,14 +102,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnOrder"
+                android:id="@+id/btnBuy"
                 android:layout_marginStart="5dp"
                 android:layout_width="0dp"
                 android:layout_height="28dp"
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:background="@drawable/primary_button_background"
-                android:text="Order"
+                android:text="Buy"
                 android:textAllCaps="false"
                 tools:ignore="SmallSp" />
         </LinearLayout>

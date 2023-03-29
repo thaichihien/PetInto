@@ -6,9 +6,6 @@ import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.ShoppingItem
 
 class ShoppingRepository {
-
-
-
     suspend fun getShoppingItems() : List<ShoppingItem>
          = listOf(
             ShoppingItem(

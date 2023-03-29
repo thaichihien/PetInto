@@ -22,7 +22,7 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/tv_fullname"
+        android:id="@+id/tvFullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Golden Dog"
@@ -35,7 +35,7 @@
         tools:layout_editor_absoluteX="110dp" />
 
     <TextView
-        android:id="@+id/tv_price"
+        android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -45,7 +45,7 @@
         android:textColor="#DE0A0A"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iconIV"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fullname"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvFullname"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
             android:textColor="@color/main_dark"/>
 
         <TextView
-            android:id="@+id/tv_color"
+            android:id="@+id/tvColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -73,16 +73,17 @@
             android:textColor="@color/main_dark"/>
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_rate"
+    <TextView
+        android:id="@+id/tvDateBuy"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textColor="#FFF"
-        android:text="Rate"
-        android:background="@drawable/primary_button_background"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:text="11/02/2023"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/main_dark"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
