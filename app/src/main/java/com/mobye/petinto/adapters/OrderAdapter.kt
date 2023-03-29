@@ -1,6 +1,7 @@
 package com.mobye.petinto.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,8 +11,9 @@ import com.bumptech.glide.Glide
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import com.mobye.petinto.databinding.OrderItemListBinding
 import com.mobye.petinto.models.PetInfo
+import com.mobye.petinto.models.ShoppingItem
 
-class OrderAdapter() : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>(){
+class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>(){
 
     private lateinit var binding: OrderItemListBinding
 
@@ -55,16 +57,21 @@ class OrderAdapter() : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>(){
                 .load(pet.image)
                 .into(binding.imgviewOrder)
             tvName.text = pet.name
-            tvCondition.text = pet.condition
-            tvId.text = pet.id
-            tvPrice.text = pet.price.toString()
+            tvGender.text = pet.gender
+            tvType.text = pet.type
+            Log.d("Format", pet.price.toString())
+            tvPrice.text = "%,d đ".format(pet.price)
+            Log.d("Format", tvPrice.text.toString())
+            btnBuy.setOnClickListener {
+                buyListener(pet)
+            }
         }
         holder.setIsRecyclable(false)
 //        binderHelper.bind(binding.itemOrderLayout,differ.currentList[position].id)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return differ.currentList.size
     }
 
 }

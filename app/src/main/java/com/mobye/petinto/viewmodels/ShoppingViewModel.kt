@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobye.petinto.models.CartItem
+import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.ShoppingItem
 import com.mobye.petinto.repository.ShoppingRepository
 import kotlinx.coroutines.launch
@@ -16,6 +17,14 @@ class ShoppingViewModel(
     val shopItemList :MutableLiveData<List<ShoppingItem>> by lazy { MutableLiveData(listOf()) }
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
+
+    val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
+
+    fun getOrderList(){
+        viewModelScope.launch {
+            shopOrderList.value = repository.getPetItems()
+        }
+    }
 
     fun getShoppingItems(){
         viewModelScope.launch {
@@ -42,8 +51,6 @@ class ShoppingViewModel(
 
         cartItemList.value = cartList
     }
-
-
 
     private fun addQuantity(item: ShoppingItem,list: MutableList<CartItem>,quantity: Int) : Boolean{
         for((index,cartItem) in list.withIndex()){

@@ -142,7 +142,7 @@
 
             <!--    OWNER    -->
             <LinearLayout
-                android:id="@+id/wrap_owner"
+                android:id="@+id/wrapOwner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -221,6 +221,80 @@
                                 android:singleLine="true"/>
                         </TableRow>
                     </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--      BOOKING      -->
+            <LinearLayout
+                android:id="@+id/wrapBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="BOOKING"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_dark"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:background="#fff"
+                    android:elevation="5dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Type:"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/tvTypeBooking"
+                        android:layout_marginStart="24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hotel"
+                        android:textStyle="bold"
+                        android:textColor="@color/main_dark"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--      SERVICES      -->
+            <LinearLayout
+                android:id="@+id/wrapServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="SERVICES"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_dark"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:background="#fff"
+                    android:elevation="5dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
