@@ -3,6 +3,7 @@ package com.mobye.petinto.ui
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -11,6 +12,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ActivityMainBinding
 
@@ -18,6 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     lateinit var bottomNavView : BottomNavigationView
+    private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
+
+
 
     lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +56,11 @@ class MainActivity : AppCompatActivity() {
 
             window.statusBarColor = Color.TRANSPARENT
         }
+
+        if(firebaseAuth.currentUser != null){
+            Log.d("MainActivity","Profile : ${firebaseAuth.currentUser!!.email}")
+        }
+
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController

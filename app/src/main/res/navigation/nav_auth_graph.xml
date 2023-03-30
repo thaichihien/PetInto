@@ -13,7 +13,18 @@
         android:id="@+id/signInFragment"
         android:name="com.mobye.petinto.ui.fragments.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/actionSignInFragmentToSignUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_signInFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.mobye.petinto.ui.fragments.ResetPasswordFragment"

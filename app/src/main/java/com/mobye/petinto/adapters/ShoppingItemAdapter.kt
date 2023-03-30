@@ -1,5 +1,6 @@
 package com.mobye.petinto.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -22,6 +23,7 @@ class ShoppingItemAdapter(
             return oldItem.name == newItem.name
         }
 
+        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: ShoppingItem, newItem: ShoppingItem): Boolean {
             return oldItem == newItem
         }

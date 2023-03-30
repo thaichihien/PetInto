@@ -14,18 +14,22 @@
         android:theme="@style/Theme.PetInto"
         tools:targetApi="31">
         <activity
-            android:name=".AuthenticationActivity"
-            android:exported="false"
+            android:name=".ui.AuthenticationActivity"
+            android:exported="true"
             android:label="@string/title_activity_authentication"
-            android:theme="@style/Theme.PetInto.NoActionBar" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:theme="@style/Theme.PetInto.NoActionBar" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+
         </activity>
     </application>
 
