@@ -149,10 +149,4 @@ class ShoppingViewModel(
         }
         cartItemList.value = cartList
     }
-
-
-
-
-
-
 }

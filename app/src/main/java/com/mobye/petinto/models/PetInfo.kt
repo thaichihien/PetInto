@@ -13,7 +13,7 @@ data class PetInfo (
     var image: Int,
     var gender: String,
     var age: Int,
-    var vaccine: Boolean,
+    var vaccine: Int,
     var variety: String,
     var weight: Double,
     var color: String) : Parcelable

@@ -76,4 +76,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'io.realm.kotlin:library-base:1.6.0'
 
+    //Carousel in Android
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
 }

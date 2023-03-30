@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_profileFragment_to_bookingFragment"
             app:destination="@id/bookingFragment" />
+        <action
+            android:id="@+id/actionProfileFragmentToAddPetFragment"
+            app:destination="@id/addPetFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -129,4 +132,9 @@
             android:name="petSelected"
             app:argType="com.mobye.petinto.models.PetInfo" />
     </fragment>
+    <fragment
+        android:id="@+id/addPetFragment"
+        android:name="com.mobye.petinto.ui.fragments.AddPetFragment"
+        android:label="fragment_add_pet"
+        tools:layout="@layout/fragment_add_pet" />
 </navigation>

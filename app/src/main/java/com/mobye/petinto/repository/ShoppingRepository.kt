@@ -56,7 +56,7 @@ class ShoppingRepository {
             R.drawable.dog,
             "Male",
             1,
-            true,
+            1,
             "Golden",
             1.5,
             "Brown"),
@@ -68,7 +68,7 @@ class ShoppingRepository {
             R.drawable.cat,
             "Female",
             2,
-            false,
+            2,
             "Golden",
             1.2,
             "Yellow")
