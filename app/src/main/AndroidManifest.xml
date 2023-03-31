@@ -16,7 +16,6 @@
         <activity
             android:name=".ui.AuthenticationActivity"
             android:exported="true"
-            android:label="@string/title_activity_authentication"
             android:theme="@style/Theme.PetInto.NoActionBar" >
 
             <intent-filter>

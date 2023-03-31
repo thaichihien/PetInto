@@ -121,6 +121,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/loadingBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:indicatorColor="@color/main_dark"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,16 @@ package com.mobye.petinto.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 
 class ShoppingViewModel(
@@ -27,9 +33,17 @@ class ShoppingViewModel(
 
     fun getShoppingItems(){
         viewModelScope.launch {
-            shopItemList.value = repository.getShoppingItems()
+            //shopItemList.value = repository.getShoppingItems()
         }
     }
+
+    val productItemList : Flow<PagingData<Product>> = Pager(
+        config = PagingConfig(pageSize = 10),
+        pagingSourceFactory = {repository.getProductSource()})
+        .flow
+        .cachedIn(viewModelScope)
+
+
 
     fun getCartItems(){
         viewModelScope.launch {

@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.mobye.petinto.R
+import com.mobye.petinto.adapters.ProductItemAdapter
 import com.mobye.petinto.adapters.ShoppingItemAdapter
 import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Product
@@ -19,6 +23,8 @@ import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 
 class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
@@ -32,6 +38,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     private lateinit var testList : MutableList<Product>
     private lateinit var shoppingItemAdapter: ShoppingItemAdapter
+    private lateinit var productAdapter : ProductItemAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,7 +97,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.e(DEBUG_TAG,"onViewCreated")
         shoppingItemAdapter = ShoppingItemAdapter(
             {
                 val action = ShoppingFragmentDirections.navigateToDetailFragment(it)
@@ -102,17 +108,44 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
         )
 
-        shoppingViewModel.getShoppingItems()
+        productAdapter = ProductItemAdapter(
+            {
+                val action = ShoppingFragmentDirections.navigateToDetailFragment(it)
+                findNavController().navigate(action)
+            },
+            { item,quantity ->
+                Toast.makeText(requireContext(),"${item.name} is added to your cart",Toast.LENGTH_SHORT).show()
+                shoppingViewModel.addToCart(item,quantity)
+            }
+        )
+
+        //shoppingViewModel.getShoppingItems()
         shoppingViewModel.getCartItems()
-        shoppingViewModel.shopItemList.observe(viewLifecycleOwner) {
-            shoppingItemAdapter.differ.submitList(it)
+//        shoppingViewModel.shopItemList.observe(viewLifecycleOwner) {
+//            shoppingItemAdapter.differ.submitList(it)
+//        }
+
+
+        lifecycleScope.launchWhenCreated {
+            shoppingViewModel.productItemList.collectLatest {
+                productAdapter.submitData(it)
+
+            }
         }
+
+        lifecycleScope.launchWhenCreated {
+            productAdapter.loadStateFlow.collect{
+                binding.loadingBar.isVisible = it.source.append is LoadState.Loading
+            }
+        }
+
+
         //shoppingItemAdapter.differ.submitList(testList)
 
         binding.apply {
             rvShoppingItem.apply {
                 layoutManager = GridLayoutManager(requireContext(),2)
-                adapter = shoppingItemAdapter
+                adapter = productAdapter
             }
             btnCartShopping.setOnClickListener {
                 findNavController().navigate(ShoppingFragmentDirections.shoppingFragmentToCartFragment())
@@ -121,10 +154,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.e(DEBUG_TAG,"onPause")
-    }
 
     override fun onResume() {
         super.onResume()
