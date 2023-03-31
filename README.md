@@ -80,6 +80,8 @@ Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (
 - [**Lifecycle for View Model, Live Data**](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 ## 📋Project Assignment
 Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
+
+###  📌Assignment 1
 - **HomeFragment** : Giao diện trang chủ, hiển thị
   - Người làm: Quỳnh
 - **ShoppingFragment** Giao diện mua hàng
@@ -88,8 +90,35 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - Người làm :
 - **ProfileFragment** : Giao diện hồ sơ người dùng 
   - Người làm : Dũng
- 
-Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
+
+### 📌 Assignment 2:
+- **HomeFragment :** Quỳnh
+  - Tạm thời code cứng link ảnh và link bài viết vào
+  - Sử dụng **Glide** để cập nhật hình ảnh bằng link
+  - setOnClickLinstener vào từng bước đến mở link bài báo
+    - _Cách 1 (Dễ hơn)_: Khi nhấn vào hình -> mở trình duyệt dẫn đến link báo đó [Hướng dẫn mở browser từ android](https://stackoverflow.com/a/32174773/20864329)
+    - _Cách 2_ : Tạo thêm một Fragment chứa WebView, nhấn vào hình -> gửi link vào Fragment đó-> Fragment hiển thị bài báo lên bằng WebView [Hướng dẫn WebView](https://stackoverflow.com/a/47872253/20864329)
+ - **Spa & Hotel Fragment** : Niên
+    - Sửa lại layout theo yêu cầu từ Dũng:
+      - Pet : xóa các edit text, sửa thành một spinner
+      - Owner: sửa thành các textview tham khảo Your Booking
+    - Có thể sẽ gộp Spa và Hotel Fragment lại sử dụng **TabLayout** [Hướng dẫn TabLayout](https://youtu.be/pIKdHeOjYNw). Liên hệ Dũng để biết chi tiết
+  - **Profile Fragment** : Dũng
+    - Hoàn thành tất cả chức năng thêm, xóa, sửa pet
+    - Tạo lớp User để lưu trữ thông tin người dùng gồm:
+      - id: String =""
+      - name: String = ""
+      - email: String =""
+      - phone: String =""
+      - address: String =""
+      - image: String =""
+    - Khai báo biến MutableLiveData User trong InformationViewModel
+    - Tạm thời code cứng thông tin User tại MainActivity (_Xem hướng dẫn ở onCreate()_)
+    - ở **ProfileFragment** lấy thông tin user của View model và truyền thông tin lên UI
+  - **ShoppingFragment** : Hiện
+    - Lấy dữ liệu shop từ API
+    - Sử dụng phân trang Paging
+
 ## 📌Project Notes
 - Trước khi làm **PULL**, làm xong một chức năng **PUSH**
 - Chỉ làm việc trên Fragment của mình, có thể thêm các Activity, Fragment khác, ***Nhưng không được sửa phần Fragment khác***
@@ -145,11 +174,7 @@ Nên hoàn thành sớm để tiếp tục cho phần đăng nhập/đăng ký
   - [ ] Mục đích của Order để phân biệt ra giữa mua Pet(Order) và mua Accesories(Shopping)
   - [ ] Giao diện **Booking**
   - [ ] Giao diện **Setting**
-- [ ] Màn hình **Sign up /Sign in**
-  - [ ] Giao diện **Sign up**
-  - [ ] Tính năng đăng ký
-  - [ ] Giao diện **Sign in**
-  - [ ] Tính năng đăng nhập
+- [X] Màn hình **Sign up /Sign in**
   - [ ] Reset mật khẩu
 - [ ] Giao diện Admin? (cần một app riêng biệt)
 
