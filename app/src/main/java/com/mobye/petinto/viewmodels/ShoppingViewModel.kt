@@ -1,12 +1,11 @@
 package com.mobye.petinto.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.PetInfo
-import com.mobye.petinto.models.ShoppingItem
+import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
 import kotlinx.coroutines.launch
 
@@ -14,7 +13,7 @@ class ShoppingViewModel(
     private val repository: ShoppingRepository
 ) : ViewModel() {
 
-    val shopItemList :MutableLiveData<List<ShoppingItem>> by lazy { MutableLiveData(listOf()) }
+    val shopItemList :MutableLiveData<List<Product>> by lazy { MutableLiveData(listOf()) }
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
@@ -38,7 +37,7 @@ class ShoppingViewModel(
         }
     }
 
-    fun addToCart(item : ShoppingItem,quantity : Int){
+    fun addToCart(item : Product, quantity : Int){
         val cartList = cartItemList.value!!.toMutableList()
 
         if(!addQuantity(item,cartList,quantity)){
@@ -52,7 +51,7 @@ class ShoppingViewModel(
         cartItemList.value = cartList
     }
 
-    private fun addQuantity(item: ShoppingItem,list: MutableList<CartItem>,quantity: Int) : Boolean{
+    private fun addQuantity(item: Product, list: MutableList<CartItem>, quantity: Int) : Boolean{
         for((index,cartItem) in list.withIndex()){
             if(cartItem.item!!.id == item.id){
                 cartItem.quantity += quantity

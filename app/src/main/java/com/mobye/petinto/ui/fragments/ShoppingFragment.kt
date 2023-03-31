@@ -5,18 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.ShoppingItemAdapter
 import com.mobye.petinto.databinding.FragmentShoppingBinding
-import com.mobye.petinto.models.ShoppingItem
+import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.ShoppingViewModel
@@ -32,7 +30,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         ShoppingViewModelFactory(ShoppingRepository())
     }
 
-    private lateinit var testList : MutableList<ShoppingItem>
+    private lateinit var testList : MutableList<Product>
     private lateinit var shoppingItemAdapter: ShoppingItemAdapter
 
 

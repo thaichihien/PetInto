@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import com.mobye.petinto.databinding.OrderItemListBinding
 import com.mobye.petinto.models.PetInfo
-import com.mobye.petinto.models.ShoppingItem
 
 class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>(){
 

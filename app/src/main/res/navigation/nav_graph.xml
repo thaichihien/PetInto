@@ -69,12 +69,12 @@
             app:destination="@id/shoppingFragment"
             app:enterAnim="@anim/slide_to_right"
             app:exitAnim="@android:anim/fade_out" />
-        <argument
-            android:name="itemDetail"
-            app:argType="com.mobye.petinto.models.ShoppingItem" />
         <action
             android:id="@+id/detailFragmentToCartFragment"
             app:destination="@id/cartFragment" />
+        <argument
+            android:name="item"
+            app:argType="com.mobye.petinto.models.Product" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"

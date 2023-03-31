@@ -2,7 +2,6 @@ package com.mobye.petinto.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -10,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ListOwnerPetBinding
-import com.mobye.petinto.databinding.ShoppingItemListBinding
 import com.mobye.petinto.models.PetInfo
-import com.mobye.petinto.models.ShoppingItem
 
 class CarouselAdapter() :
     RecyclerView.Adapter<CarouselAdapter.CarouseItemViewHolder>() {

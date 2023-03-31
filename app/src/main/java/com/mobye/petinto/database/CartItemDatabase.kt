@@ -1,7 +1,7 @@
 package com.mobye.petinto.database
 
 import com.mobye.petinto.models.CartItem
-import com.mobye.petinto.models.ShoppingItem
+import com.mobye.petinto.models.Product
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import io.realm.kotlin.UpdatePolicy
@@ -14,7 +14,7 @@ object  CartItemDatabase {
     private val realm : Realm by lazy {
         Realm.open(
             RealmConfiguration.Builder(
-                setOf(CartItem::class,ShoppingItem::class)
+                setOf(CartItem::class,Product::class)
             ).name(REALM_NAME).build()
         )
     }

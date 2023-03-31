@@ -9,33 +9,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ShoppingItemListBinding
-import com.mobye.petinto.models.ShoppingItem
+import com.mobye.petinto.models.Product
 
 class ShoppingItemAdapter(
-    private val detailListener: (ShoppingItem) -> Unit,
-    private val addListener: (ShoppingItem,Int) -> Unit
+    private val detailListener: (Product) -> Unit,
+    private val addListener: (Product, Int) -> Unit
 ) : RecyclerView.Adapter<ShoppingItemAdapter.ShoppingItemViewHolder>() {
 
     private lateinit var binding: ShoppingItemListBinding
-    private val differCallBack = object : DiffUtil.ItemCallback<ShoppingItem>(){
-        override fun areItemsTheSame(oldItem: ShoppingItem, newItem: ShoppingItem): Boolean {
+    private val differCallBack = object : DiffUtil.ItemCallback<Product>(){
+        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             //TEMP
             return oldItem.name == newItem.name
         }
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: ShoppingItem, newItem: ShoppingItem): Boolean {
+        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem == newItem
         }
     }
     var differ = AsyncListDiffer(this,differCallBack)
     inner class ShoppingItemViewHolder()
         : RecyclerView.ViewHolder(binding.root){
-            fun setData(item : ShoppingItem){
+            fun setData(item : Product){
                 binding.apply {
                     tvShoppingItemName.text = item.name
                     tvShoppingItemPrice.text =  "%,d đ".format(item.price)
-                    tvAnimalType.text = item.type
+                    tvAnimalType.text = item.typePet
                     tvDetails.text = item.detail
                     tvStock.text = item.stock.toString()
                     Glide.with(binding.root)

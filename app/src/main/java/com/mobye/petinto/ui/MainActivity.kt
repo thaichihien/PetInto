@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -17,12 +19,18 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ActivityMainBinding
+import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.viewmodels.InformationViewModel
+import com.mobye.petinto.viewmodels.InformationViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     lateinit var bottomNavView : BottomNavigationView
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
+    private val informationViewModel : InformationViewModel by viewModels {
+        InformationViewModelFactory(InformationRepository())
+    }
 
 
 
@@ -57,9 +65,20 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
+
+
+
         if(firebaseAuth.currentUser != null){
             Log.d("MainActivity","Profile : ${firebaseAuth.currentUser!!.email}")
         }
+
+
+        // TODO them du lieu nguoi dung vao view model
+        //val user = User("Chi Hien","email@gmail.com",....)
+
+        //informationViewModel. ham them user vao
+
+
 
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment

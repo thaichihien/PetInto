@@ -11,10 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.OrderAdapter
-import com.mobye.petinto.adapters.ShoppingItemAdapter
 import com.mobye.petinto.databinding.FragmentOrderBinding
-import com.mobye.petinto.databinding.FragmentShoppingBinding
-import com.mobye.petinto.models.ShoppingItem
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import com.mobye.petinto.viewmodels.ShoppingViewModelFactory

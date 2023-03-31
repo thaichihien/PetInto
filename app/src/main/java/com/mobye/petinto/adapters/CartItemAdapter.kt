@@ -1,22 +1,16 @@
 package com.mobye.petinto.adapters
 
 import android.annotation.SuppressLint
-import android.nfc.NfcAdapter.OnTagRemovedListener
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemSelectedListener
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chauthai.swipereveallayout.ViewBinderHelper
-import com.mobye.petinto.databinding.ItemCartListBinding
 import com.mobye.petinto.databinding.ItemCartSwipeListBinding
-import com.mobye.petinto.databinding.ShoppingItemListBinding
 import com.mobye.petinto.models.CartItem
-import com.mobye.petinto.models.ShoppingItem
 
 class CartItemAdapter(
     private val removedListener: (CartItem,Int) -> Unit,
@@ -75,7 +69,7 @@ class CartItemAdapter(
             tvItemNameCart.text = cartItem.item!!.name
             tvItemStockCart.text = cartItem.item!!.stock.toString()
             tvItemPriceCart.text = "%,d đ".format(cartItem.item!!.price)
-            tvItemTypeCart.text = cartItem.item!!.type
+            tvItemTypeCart.text = cartItem.item!!.typePet
             tvItemDetailCart.text = cartItem.item!!.detail
             tvItemQuantityCart.text = cartItem.quantity.toString()
             Glide.with(binding.root)

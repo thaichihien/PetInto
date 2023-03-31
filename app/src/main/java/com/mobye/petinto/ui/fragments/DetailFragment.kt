@@ -1,7 +1,6 @@
 package com.mobye.petinto.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentDetailBinding
-import com.mobye.petinto.models.ShoppingItem
 import com.mobye.petinto.ui.MainActivity
 
 
@@ -38,7 +36,7 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
 
         val activity = activity as MainActivity
         activity.hideBottomNav()
-        val item = args.itemDetail
+        val item = args.item
 
         Glide.with(view)
             .load(item.image)
@@ -47,7 +45,7 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
         binding.apply {
             tvItemNameDetails.text = item.name
             tvItemPriceDetails.text = item.price.toString()
-            tvItemTypeDetails.text = item.type
+            tvItemTypeDetails.text = item.typePet
             tvItemDetailDetails.text = item.detail
             tvItemStockDetails.text = item.stock.toString()
             btnBackDetail.setOnClickListener {

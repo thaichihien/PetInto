@@ -5,11 +5,11 @@ import io.realm.kotlin.types.RealmObject
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class ShoppingItem(
+class Product(
     var id : String = "",
     var name : String = "",
     var price : Int = 0,
-    var type : String = "",
+    var typePet : String = "",
     var stock: Int = 0,
     var detail: String = "",
     var image: Int = 0
