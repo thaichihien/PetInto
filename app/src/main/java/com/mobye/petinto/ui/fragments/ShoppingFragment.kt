@@ -1,11 +1,15 @@
 package com.mobye.petinto.ui.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities.*
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -17,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.ProductItemAdapter
 import com.mobye.petinto.adapters.ShoppingItemAdapter
+import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
@@ -41,43 +46,13 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
     private lateinit var productAdapter : ProductItemAdapter
 
 
+    private var firstTimeLoad = true
+    private var number = 0
+    private var lostNetwork = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e(DEBUG_TAG,"onCreate")
-//        testList = mutableListOf(
-//            ShoppingItem(
-//                name = "Bed",
-//                price = 345000,
-//                type = "Cat",
-//                stock = 2,
-//                detail = "32x32x28cm",
-//                image = R.drawable.home
-//            ),
-//            ShoppingItem(
-//                name = "Backpack",
-//                price = 600000,
-//                type = "All",
-//                stock = 12,
-//                detail = "42x31x28cm",
-//                image = R.drawable.balo
-//            ),
-//            ShoppingItem(
-//                name = "Food",
-//                price = 199000,
-//                type = "Dog",
-//                stock = 3,
-//                detail = "3kg",
-//                image = R.drawable.food_dog
-//            ),
-//            ShoppingItem(
-//                name = "Cage",
-//                price = 275000,
-//                type = "Mouse",
-//                stock = 3,
-//                detail = "27x21x30cm",
-//                image = R.drawable.house
-//            )
-//        )
+        Log.e(DEBUG_TAG,"lostNetwork : ${shoppingViewModel.lostNetwork}")
 
     }
 
@@ -89,13 +64,20 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         savedInstanceState: Bundle?
     ): View? {
 
-        Log.e(DEBUG_TAG,"onCreateView")
+
         _binding = FragmentShoppingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
 
         shoppingItemAdapter = ShoppingItemAdapter(
             {
@@ -125,6 +107,11 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 //            shoppingItemAdapter.differ.submitList(it)
 //        }
 
+        if(shoppingViewModel.lostNetwork && hasInternetConnection()){
+            productAdapter.retry()
+            shoppingViewModel.lostNetwork = false
+        }
+
 
         lifecycleScope.launchWhenCreated {
             shoppingViewModel.productItemList.collectLatest {
@@ -134,10 +121,40 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         }
 
         lifecycleScope.launchWhenCreated {
-            productAdapter.loadStateFlow.collect{
-                binding.loadingBar.isVisible = it.source.append is LoadState.Loading
+            productAdapter.loadStateFlow.collect{loadState ->
+                binding.loadingBar.isVisible = loadState.source.append is LoadState.Loading
             }
         }
+
+        productAdapter.addLoadStateListener {loadState ->
+            if(loadState.refresh is LoadState.Loading ||
+                loadState.append is LoadState.Loading){
+                if(firstTimeLoad){
+                    binding.loadingLayout.isVisible = true
+                }
+
+            }else{
+                if(firstTimeLoad){
+                    binding.loadingLayout.isVisible = false
+                    firstTimeLoad = false
+                }
+
+                val errorState = when {
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.prepend is LoadState.Error ->  loadState.prepend as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+                errorState?.let {
+                    // TODO show net work error
+                    shoppingViewModel.lostNetwork = true
+                    Toast.makeText(requireContext(),"error : ${errorState.error}",Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+
+
 
 
         //shoppingItemAdapter.differ.submitList(testList)
@@ -152,6 +169,20 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
         }
 
+    }
+
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager  = requireActivity().application.getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return when {
+            capabilities.hasTransport(TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
     }
 
 

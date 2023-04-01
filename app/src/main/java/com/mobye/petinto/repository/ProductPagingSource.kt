@@ -1,5 +1,6 @@
 package com.mobye.petinto.repository
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobye.petinto.api.RetrofitInstance
@@ -20,6 +21,7 @@ class ProductPagingSource : PagingSource<Int, Product>() {
             val nextPage = params.key ?: FIRST_PAGE
             val response = RetrofitInstance.api.getProducts(nextPage)
 
+
             LoadResult.Page(
                 data = response.body()!!,
                 prevKey = if(nextPage == FIRST_PAGE) null else nextPage - 1,
@@ -27,6 +29,7 @@ class ProductPagingSource : PagingSource<Int, Product>() {
             )
 
         }catch (e: Exception){
+            Log.e("ProductPagingSource",e.toString())
             LoadResult.Error(e)
         }
     }

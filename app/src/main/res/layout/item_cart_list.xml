@@ -39,7 +39,9 @@
 
             <TextView
                 android:id="@+id/tvItemNameCart"
-                android:layout_width="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Food"
                 android:textStyle="bold" />
@@ -111,7 +113,7 @@
             <LinearLayout
                 android:layout_marginStart="24dp"
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -121,9 +123,11 @@
                     />
                 <TextView
                     android:id="@+id/tvItemDetailCart"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cat"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     />
 

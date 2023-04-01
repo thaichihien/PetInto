@@ -19,6 +19,7 @@ class ShoppingViewModel(
     private val repository: ShoppingRepository
 ) : ViewModel() {
 
+    var lostNetwork : Boolean = false
     val shopItemList :MutableLiveData<List<Product>> by lazy { MutableLiveData(listOf()) }
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
