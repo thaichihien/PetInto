@@ -73,6 +73,7 @@
                 android:background="@color/main_light">
 
                 <RadioGroup
+                    android:id="@+id/rgDelivery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +81,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <RadioButton
+                        android:id="@+id/rbPickup"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -197,6 +199,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <RadioButton
+                        android:id="@+id/rbDoor"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -266,17 +269,21 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
+                    android:id="@+id/rgPayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
                     app:layout_constraintStart_toStartOf="parent"
                     >
 
+
                     <RadioButton
+                        android:id="@+id/rbCash"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Cash"/>
                     <RadioButton
+                        android:id="@+id/rbMomo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Momo"/>
@@ -347,6 +354,7 @@
                       android:textColor="@color/main_dark"/>
 
                   <TextView
+                      android:id="@+id/tvSubtotal"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="1.0515.0000 đ"
@@ -366,6 +374,7 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvDeliveryFee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1.0515.0000 đ"
@@ -385,6 +394,7 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1.0515.0000 đ"
@@ -420,6 +430,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
+            android:id="@+id/tvTotalMoney"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -430,6 +441,7 @@
             android:text="1.000.000 đ"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPurchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
