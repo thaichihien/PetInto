@@ -50,8 +50,10 @@ class ShoppingItemAdapter(
                     }
                     btnPlusShopping.setOnClickListener{
                         var quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()
-                        quantity += 1
-                        tvShoppingItemQuantity.text = quantity.toString()
+                        if(quantity < item.stock){
+                            quantity += 1
+                            tvShoppingItemQuantity.text = quantity.toString()
+                        }
                     }
                     btnMinusShopping.setOnClickListener{
                         var quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()

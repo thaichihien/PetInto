@@ -10,6 +10,9 @@ import androidx.paging.cachedIn
 import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
+import com.mobye.petinto.models.apimodel.CartOrder
+import com.mobye.petinto.models.apimodel.Order
+import com.mobye.petinto.models.apimodel.ProductOrder
 import com.mobye.petinto.repository.ShoppingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -19,10 +22,15 @@ class ShoppingViewModel(
     private val repository: ShoppingRepository
 ) : ViewModel() {
 
+    //ShoppingFragment
     var lostNetwork : Boolean = false
-    val shopItemList :MutableLiveData<List<Product>> by lazy { MutableLiveData(listOf()) }
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
+    val paymentItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
+
+    //PaymentFragment
+
+
 
     val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
 
@@ -50,6 +58,23 @@ class ShoppingViewModel(
         viewModelScope.launch {
             cartItemList.value = repository.getAllCartItems()
         }
+    }
+
+    fun getPaymentList(){
+        viewModelScope.launch {
+            cartListToPayment()
+        }
+    }
+
+    private suspend fun cartListToPayment(){
+        val paymentList = paymentItemList.value!!.toMutableList()
+        for(cartItem in cartItemList.value!!){
+            if(cartItem.selected){
+                paymentList.add(cartItem)
+            }
+        }
+
+        paymentItemList.value = paymentList
     }
 
     fun addToCart(item : Product, quantity : Int){
@@ -163,4 +188,28 @@ class ShoppingViewModel(
         }
         cartItemList.value = cartList
     }
+
+    fun isCartNotEmpty() : Boolean
+        = cartItemList.value!!.isNotEmpty()
+
+    fun createProductOrder(info : Order) : ProductOrder{
+        var order : ProductOrder? = null
+        val cart : MutableList<CartOrder> = mutableListOf()
+
+        for(orderItem in paymentItemList.value!!){
+            cart.add(
+                CartOrder(
+                orderItem.item!!.id,
+                orderItem.quantity)
+            )
+        }
+
+        order = info as ProductOrder
+        order.cart = cart
+
+        return order
+    }
+
+
+
 }
