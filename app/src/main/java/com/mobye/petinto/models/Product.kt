@@ -12,9 +12,9 @@ class Product(
     var typePet : String = "",
     var stock: Int = 0,
     var detail: String = "",
-    var image: Int = 0
+    var image: String = ""
 ) : Parcelable,RealmObject{
-    constructor() : this("","",0,"",0,"",0){
+    constructor() : this("","",0,"",0,"",""){
     }
 
 }

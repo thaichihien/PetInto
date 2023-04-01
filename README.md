@@ -78,6 +78,10 @@ Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (
 - [**Glide**](https://github.com/bumptech/glide)
 - [**Retrofit**](https://github.com/square/retrofit)
 - [**Lifecycle for View Model, Live Data**](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- [**Realm**](https://realm.io/)
+- [**Paging**](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+- [**Firebase Auth**](https://firebase.google.com/docs/auth/android/start)
+
 ## 📋Project Assignment
 Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
 
