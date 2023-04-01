@@ -66,6 +66,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         firebaseAuth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(requireActivity()){task ->
                 if(task.isSuccessful){
+                    loadingDialog.dismiss()
                     val gotoMainIntent = Intent(this@SignInFragment.requireContext(), MainActivity::class.java)
                     gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(gotoMainIntent)

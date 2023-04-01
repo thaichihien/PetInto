@@ -1,24 +1,35 @@
 package com.mobye.petinto.ui.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities.*
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.getSystemService
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.mobye.petinto.R
+import com.mobye.petinto.adapters.ProductItemAdapter
 import com.mobye.petinto.adapters.ShoppingItemAdapter
+import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 
 class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
@@ -32,45 +43,16 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     private lateinit var testList : MutableList<Product>
     private lateinit var shoppingItemAdapter: ShoppingItemAdapter
+    private lateinit var productAdapter : ProductItemAdapter
 
+
+    private var firstTimeLoad = true
+    private var number = 0
+    private var lostNetwork = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e(DEBUG_TAG,"onCreate")
-//        testList = mutableListOf(
-//            ShoppingItem(
-//                name = "Bed",
-//                price = 345000,
-//                type = "Cat",
-//                stock = 2,
-//                detail = "32x32x28cm",
-//                image = R.drawable.home
-//            ),
-//            ShoppingItem(
-//                name = "Backpack",
-//                price = 600000,
-//                type = "All",
-//                stock = 12,
-//                detail = "42x31x28cm",
-//                image = R.drawable.balo
-//            ),
-//            ShoppingItem(
-//                name = "Food",
-//                price = 199000,
-//                type = "Dog",
-//                stock = 3,
-//                detail = "3kg",
-//                image = R.drawable.food_dog
-//            ),
-//            ShoppingItem(
-//                name = "Cage",
-//                price = 275000,
-//                type = "Mouse",
-//                stock = 3,
-//                detail = "27x21x30cm",
-//                image = R.drawable.house
-//            )
-//        )
+        Log.e(DEBUG_TAG,"lostNetwork : ${shoppingViewModel.lostNetwork}")
 
     }
 
@@ -82,15 +64,21 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         savedInstanceState: Bundle?
     ): View? {
 
-        Log.e(DEBUG_TAG,"onCreateView")
+
         _binding = FragmentShoppingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.e(DEBUG_TAG,"onViewCreated")
+
+
+
         shoppingItemAdapter = ShoppingItemAdapter(
             {
                 val action = ShoppingFragmentDirections.navigateToDetailFragment(it)
@@ -102,17 +90,79 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
         )
 
-        shoppingViewModel.getShoppingItems()
+        productAdapter = ProductItemAdapter(
+            {
+                val action = ShoppingFragmentDirections.navigateToDetailFragment(it)
+                findNavController().navigate(action)
+            },
+            { item,quantity ->
+                Toast.makeText(requireContext(),"${item.name} is added to your cart",Toast.LENGTH_SHORT).show()
+                shoppingViewModel.addToCart(item,quantity)
+            }
+        )
+
+        //shoppingViewModel.getShoppingItems()
         shoppingViewModel.getCartItems()
-        shoppingViewModel.shopItemList.observe(viewLifecycleOwner) {
-            shoppingItemAdapter.differ.submitList(it)
+//        shoppingViewModel.shopItemList.observe(viewLifecycleOwner) {
+//            shoppingItemAdapter.differ.submitList(it)
+//        }
+
+        if(shoppingViewModel.lostNetwork && hasInternetConnection()){
+            productAdapter.retry()
+            shoppingViewModel.lostNetwork = false
         }
+
+
+        lifecycleScope.launchWhenCreated {
+            shoppingViewModel.productItemList.collectLatest {
+                productAdapter.submitData(it)
+
+            }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            productAdapter.loadStateFlow.collect{loadState ->
+                binding.loadingBar.isVisible = loadState.source.append is LoadState.Loading
+            }
+        }
+
+        productAdapter.addLoadStateListener {loadState ->
+            if(loadState.refresh is LoadState.Loading ||
+                loadState.append is LoadState.Loading){
+                if(firstTimeLoad){
+                    binding.loadingLayout.isVisible = true
+                }
+
+            }else{
+                if(firstTimeLoad){
+                    binding.loadingLayout.isVisible = false
+                    firstTimeLoad = false
+                }
+
+                val errorState = when {
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.prepend is LoadState.Error ->  loadState.prepend as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+                errorState?.let {
+                    // TODO show net work error
+                    shoppingViewModel.lostNetwork = true
+                    Toast.makeText(requireContext(),"error : ${errorState.error}",Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+
+
+
+
         //shoppingItemAdapter.differ.submitList(testList)
 
         binding.apply {
             rvShoppingItem.apply {
                 layoutManager = GridLayoutManager(requireContext(),2)
-                adapter = shoppingItemAdapter
+                adapter = productAdapter
             }
             btnCartShopping.setOnClickListener {
                 findNavController().navigate(ShoppingFragmentDirections.shoppingFragmentToCartFragment())
@@ -121,10 +171,20 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.e(DEBUG_TAG,"onPause")
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager  = requireActivity().application.getSystemService(
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return when {
+            capabilities.hasTransport(TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
     }
+
 
     override fun onResume() {
         super.onResume()

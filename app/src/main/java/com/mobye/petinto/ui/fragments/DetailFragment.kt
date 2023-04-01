@@ -44,7 +44,7 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
 
         binding.apply {
             tvItemNameDetails.text = item.name
-            tvItemPriceDetails.text = item.price.toString()
+            tvItemPriceDetails.text = "%,d đ".format(item.price)
             tvItemTypeDetails.text = item.typePet
             tvItemDetailDetails.text = item.detail
             tvItemStockDetails.text = item.stock.toString()
