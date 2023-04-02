@@ -34,13 +34,20 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         return binding.root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         paymentItemAdapter = PaymentItemAdapter()
 
-        shoppingViewModel.cartItemList.observe(viewLifecycleOwner) {
+        shoppingViewModel.getPaymentList()
+        shoppingViewModel.paymentItemList.observe(viewLifecycleOwner) {
             paymentItemAdapter.differ.submitList(it)
+        }
+        shoppingViewModel.total.observe(viewLifecycleOwner){
+            binding.tvSubtotal.text = "%,d đ".format(it)
+            binding.tvTotalMoney.text = "%,d đ".format(it)
         }
 
         binding.apply {
@@ -51,12 +58,36 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             btnBackPayment.setOnClickListener {
                 findNavController().popBackStack()
             }
+            btnPurchase.setOnClickListener {
+                if(validatePayment()){
+                    sendPurchaseOrder()
+                }
+            }
         }
-
-
     }
 
+    private fun sendPurchaseOrder() {
+        TODO("Not yet implemented")
+    }
 
+    private fun validatePayment(): Boolean {
+        var isEmptyChoice = false
+        if(binding.rgDelivery.checkedRadioButtonId < 0){
+            binding.rbDoor.error = "Please choose a way to get your items"
+            isEmptyChoice = true
+        }else{
+            binding.rbDoor.error = null
+        }
+
+        if(binding.rgPayment.checkedRadioButtonId < 0){
+            binding.rbMomo.error = "Please choose a payment method"
+            isEmptyChoice = true
+        }else{
+            binding.rbMomo.error = null
+        }
+
+        return isEmptyChoice
+    }
 
 
 

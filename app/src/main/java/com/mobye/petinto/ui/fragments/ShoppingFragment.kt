@@ -47,8 +47,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
 
     private var firstTimeLoad = true
-    private var number = 0
-    private var lostNetwork = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,7 +105,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 //            shoppingItemAdapter.differ.submitList(it)
 //        }
 
-        if(shoppingViewModel.lostNetwork && hasInternetConnection()){
+        if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
             productAdapter.retry()
             shoppingViewModel.lostNetwork = false
         }
@@ -171,19 +169,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager  = requireActivity().application.getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-        return when {
-            capabilities.hasTransport(TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
+
 
 
     override fun onResume() {

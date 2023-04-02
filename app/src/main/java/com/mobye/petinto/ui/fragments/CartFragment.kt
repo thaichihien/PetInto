@@ -121,8 +121,13 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             }
 
             btnBuyCart.setOnClickListener {
-                val action = CartFragmentDirections.cartFragmentToPaymentFragment()
-                findNavController().navigate(action)
+                if(shoppingViewModel.isCartNotEmpty()){
+                    val action = CartFragmentDirections.cartFragmentToPaymentFragment()
+                    findNavController().navigate(action)
+                }else{
+                    // TODO show error should choose at least one item
+                }
+
             }
 
         }

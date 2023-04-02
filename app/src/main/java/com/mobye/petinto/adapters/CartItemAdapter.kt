@@ -84,29 +84,31 @@ class CartItemAdapter(
             deleteLayout.setOnClickListener{
                 //swipeLayout.close(true)
                 swipeLayout.visibility = View.GONE
-                removedListener(cartItem,holder.adapterPosition)
+                removedListener(cartItem,holder.absoluteAdapterPosition)
             }
             btnMinusCart.setOnClickListener {
                 var quantity = tvItemQuantityCart.text.toString().toInt()
                 if(quantity > 1){
                     quantity -= 1
                     tvItemQuantityCart.text = quantity.toString()
-                    if(cbSelectedCart.isChecked) addToTotal(holder.adapterPosition,-1)
+                    if(cbSelectedCart.isChecked) addToTotal(holder.absoluteAdapterPosition,-1)
                 }
-                removeQuantityListener(holder.adapterPosition)
+                removeQuantityListener(holder.absoluteAdapterPosition)
 
             }
             btnPlusCart.setOnClickListener {
                 var quantity = tvItemQuantityCart.text.toString().toInt()
-                quantity += 1
-                tvItemQuantityCart.text = quantity.toString()
+               if(quantity < cartItem.item!!.stock){
+                   quantity += 1
+                   tvItemQuantityCart.text = quantity.toString()
+               }
 
-                addQuantityListener(holder.adapterPosition)
-                if(cbSelectedCart.isChecked) addToTotal(holder.adapterPosition,1)
+                addQuantityListener(holder.absoluteAdapterPosition)
+                if(cbSelectedCart.isChecked) addToTotal(holder.absoluteAdapterPosition,1)
             }
             cbSelectedCart.setOnClickListener(null)
             cbSelectedCart.setOnCheckedChangeListener{ _,isChecked ->
-                selectedListener(isChecked,holder.adapterPosition)
+                selectedListener(isChecked,holder.absoluteAdapterPosition)
             }
         }
         holder.setIsRecyclable(false)
