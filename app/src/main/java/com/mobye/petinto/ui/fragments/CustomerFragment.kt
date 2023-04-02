@@ -5,55 +5,93 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.mobye.petinto.R
+import com.mobye.petinto.databinding.FragmentCustomerBinding
+import com.mobye.petinto.databinding.FragmentPaymentBinding
+import com.mobye.petinto.models.CustomerPickup
+import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.viewmodels.InformationViewModel
+import com.mobye.petinto.viewmodels.InformationViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-/**
- * A simple [Fragment] subclass.
- * Use the [CustomerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CustomerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+class CustomerFragment : Fragment(R.layout.fragment_customer) {
+
+    private var _binding : FragmentCustomerBinding? = null
+    private val binding get() = _binding!!
+    private val informationViewModel : InformationViewModel by activityViewModels{
+        InformationViewModelFactory(InformationRepository())
+    }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentCustomerBinding.inflate(layoutInflater)
+        return binding.root
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        informationViewModel.customerPickup.observe(viewLifecycleOwner){
+            fillField(it!!)
+        }
+
+        binding.apply {
+            btnSave.setOnClickListener {
+                if(validate()){
+                    saveInfo()
+                    findNavController().popBackStack()
+                }
+            }
+        }
+
+
+
+    }
+
+    private fun validate(): Boolean {
+        var isValidated = true
+        if(binding.etName.text.isBlank()){
+            binding.etName.error = "Please provide a name"
+            isValidated  = false
+        }else{
+            binding.etName.error = null
+        }
+
+        if(binding.etPhone.text.isBlank()){
+            binding.etPhone.error = "Please provide a phone number"
+            isValidated  = false
+        }else{
+            binding.etPhone.error = null
+        }
+
+        return isValidated
+    }
+
+    private fun saveInfo() {
+        val name = binding.etName.text.trim().toString()
+        val phone = binding.etPhone.text.trim().toString()
+
+        informationViewModel.updateCustomerPickup(
+            CustomerPickup("", name,phone)
+        )
+    }
+
+    private fun fillField(customerPickup: CustomerPickup) {
+        binding.apply {
+            etName.setText(customerPickup.name)
+            if(customerPickup.phone.isNotBlank()) etPhone.setText(customerPickup.phone)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customer, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CustomerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

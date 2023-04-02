@@ -4,30 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_light">
+    android:background="@color/background_light"
+    android:padding="16dp">
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/rbDeliveryAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Vu Duc Dung | 0909456789"
         android:textColor="@color/main_dark"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
+        android:paddingStart="6dp"
+        android:paddingEnd="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></RadioButton>
-
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
+        android:id="@+id/tvAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="0dp"
         android:text="227 Nguyen Van Cu, Phuong 4, Quan 5, TPHCM"
         android:textColor="@color/main_dark"
-        android:textSize="13dp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+        app:layout_constraintTop_toBottomOf="@+id/rbDeliveryAddress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

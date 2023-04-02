@@ -12,6 +12,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -23,18 +24,26 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ActivityMainBinding
+import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     lateinit var bottomNavView : BottomNavigationView
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
+
+
+
     private val informationViewModel : InformationViewModel by viewModels {
         InformationViewModelFactory(InformationRepository())
     }
+
+
 
 
 
@@ -44,36 +53,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-//            MainActivity.setWindowFlag(
-//                this,
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                true
-//            )
-        }
-        if (Build.VERSION.SDK_INT >= 19) {
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
-
-        if (Build.VERSION.SDK_INT >= 21) {
-//            MainActivity.setWindowFlag(
-//                this,
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                false
-//            )
-//
-//            Window.f
-
-
-            window.statusBarColor = Color.TRANSPARENT
-        }
-
-
+        window.statusBarColor = Color.TRANSPARENT
 
 
         if(firebaseAuth.currentUser != null){
+            // check where user from
+
+            // GET user data from Cloud (id,email,name)
+
+            // find user on local database (Realm)
+                //if exist -> get that user
+                // else -> save user to Realm
+
             Log.d("MainActivity","Profile : ${firebaseAuth.currentUser!!.email}")
+            informationViewModel.getUser(firebaseAuth.uid!!)
         }
 
 

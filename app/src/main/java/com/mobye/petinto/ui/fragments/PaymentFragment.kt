@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.PaymentItemAdapter
 import com.mobye.petinto.databinding.FragmentPaymentBinding
+import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
+import com.mobye.petinto.viewmodels.InformationViewModel
+import com.mobye.petinto.viewmodels.InformationViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
 
@@ -23,6 +26,12 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
         ShoppingViewModelFactory(ShoppingRepository())
     }
+    private val informationRepository : InformationViewModel by activityViewModels{
+        InformationViewModelFactory(InformationRepository())
+    }
+
+
+
     private lateinit var paymentItemAdapter: PaymentItemAdapter
 
     override fun onCreateView(
@@ -58,6 +67,14 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             btnBackPayment.setOnClickListener {
                 findNavController().popBackStack()
             }
+            btnEditCustomerInfo.setOnClickListener{
+                findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToCustomerFragment())
+            }
+            btnEditAddress.setOnClickListener{
+                findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToDeliveryAddressFragment())
+            }
+
+
             btnPurchase.setOnClickListener {
                 if(validatePayment()){
                     sendPurchaseOrder()

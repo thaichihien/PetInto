@@ -20,12 +20,12 @@ class ProductPagingSource : PagingSource<Int, Product>() {
         return try {
             val nextPage = params.key ?: FIRST_PAGE
             val response = RetrofitInstance.api.getProducts(nextPage)
-
+            val responseApi = response.body()!!
 
             LoadResult.Page(
-                data = response.body()!!,
+                data = responseApi.body!!,
                 prevKey = if(nextPage == FIRST_PAGE) null else nextPage - 1,
-                nextKey = if(response.body()!!.isEmpty()) null else nextPage + 1
+                nextKey = if(responseApi.body!!.isEmpty()) null else nextPage + 1
             )
 
         }catch (e: Exception){

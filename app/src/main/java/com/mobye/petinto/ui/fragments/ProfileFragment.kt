@@ -1,5 +1,6 @@
 package com.mobye.petinto.ui.fragments
 
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
@@ -7,25 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.CarouselAdapter
-import com.mobye.petinto.adapters.OrderAdapter
 import com.mobye.petinto.databinding.FragmentProfileBinding
-import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.repository.InformationRepository
-import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
-import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -34,11 +31,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private var _binding : FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val carouselViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
-    }
 
     private lateinit var carouselAdapter: CarouselAdapter
+
+    private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
+    private val informationViewModel : InformationViewModel by activityViewModels {
+        InformationViewModelFactory(InformationRepository())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +72,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             btnAdd.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment())
             }
+            btnLogout.setOnClickListener {
+                logout()
+            }
         }
 
         val viewPage = binding.viewPagerCarousel
@@ -88,7 +90,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         carouselAdapter = CarouselAdapter()
 
 //        carouselViewModel.getOrderList()
-        carouselViewModel.myPetList.observe(viewLifecycleOwner){
+        informationViewModel.myPetList.observe(viewLifecycleOwner){
             carouselAdapter.differ.submitList(it)
         }
 
@@ -101,6 +103,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val compositePageTransformer = CompositePageTransformer()
         compositePageTransformer.addTransformer(MarginPageTransformer((40 * Resources.getSystem().displayMetrics.density).toInt()))
         viewPage.setPageTransformer(compositePageTransformer)
+    }
+
+    private fun logout() {
+        if(firebaseAuth.currentUser != null){
+            firebaseAuth.signOut()
+            informationViewModel.clearUser()
+            val gotoMainIntent = Intent(this@ProfileFragment.requireContext(), MainActivity::class.java)
+            gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(gotoMainIntent)
+        }
     }
 
 

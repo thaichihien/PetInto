@@ -28,7 +28,7 @@ class AuthenticationActivity : AppCompatActivity() {
         binding = ActivityAuthenticationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = Color.TRANSPARENT
+        //window.statusBarColor = Color.TRANSPARENT
 
         val checkUser = firebaseAuth.currentUser
         if(checkUser != null){

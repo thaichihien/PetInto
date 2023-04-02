@@ -1,7 +1,15 @@
 package com.mobye.petinto.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.mobye.petinto.R
+import com.mobye.petinto.api.RetrofitInstance
+import com.mobye.petinto.database.AccountInfoDatabase
+import com.mobye.petinto.models.Customer
+import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.models.PetInfo
+import com.mobye.petinto.models.apimodel.ApiResponse
+import retrofit2.Response
 
 class InformationRepository {
 
@@ -31,4 +39,25 @@ class InformationRepository {
             1.2,
             "Yellow")
     )
+
+    suspend fun sendUser(user: Customer) : Response<ApiResponse<Any>>
+        = RetrofitInstance.api.sendUser(user)
+
+    suspend fun getUser(id : String) : Response<ApiResponse<Customer>>
+        = RetrofitInstance.api.getUser(id)
+
+    suspend fun getUserLocal(id: String) : Customer?
+        = AccountInfoDatabase.getUser(id)
+
+    suspend fun saveUserLocal(user: Customer){
+        AccountInfoDatabase.saveUser(user)
+    }
+
+    suspend fun getCustomerPickup(id : String)
+        = AccountInfoDatabase.getCustomerPickup(id)
+
+    suspend fun updateCustomerPickup(customerPickup: CustomerPickup){
+        AccountInfoDatabase.updateCustomerPickup(customerPickup)
+    }
+
 }

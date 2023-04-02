@@ -103,6 +103,12 @@
         <action
             android:id="@+id/paymentFragmentToCartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/actionPaymentFragmentToCustomerFragment"
+            app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/actionPaymentFragmentToDeliveryAddressFragment"
+            app:destination="@id/deliveryAddressFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -137,4 +143,23 @@
         android:name="com.mobye.petinto.ui.fragments.AddPetFragment"
         android:label="fragment_add_pet"
         tools:layout="@layout/fragment_add_pet" />
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="com.mobye.petinto.ui.fragments.CustomerFragment"
+        android:label="fragment_customer"
+        tools:layout="@layout/fragment_customer" />
+    <fragment
+        android:id="@+id/deliveryAddressFragment"
+        android:name="com.mobye.petinto.ui.fragments.DeliveryAddressFragment"
+        android:label="fragment_delivery_address"
+        tools:layout="@layout/fragment_delivery_address" >
+        <action
+            android:id="@+id/actionDeliveryAddressFragmentToDetailsDeliveryAddressFragment"
+            app:destination="@id/detailsDeliveryAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsDeliveryAddressFragment"
+        android:name="com.mobye.petinto.ui.fragments.DetailsDeliveryAddressFragment"
+        android:label="fragment_details_delivery_address"
+        tools:layout="@layout/fragment_details_delivery_address" />
 </navigation>
