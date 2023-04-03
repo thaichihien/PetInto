@@ -1,5 +1,6 @@
 package com.mobye.petinto.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 class InformationViewModel(val repository: InformationRepository) :
     ViewModel(){
 
+    val TAG = "InformationViewModel"
     val myPetList : MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
     val user : MutableLiveData<Customer> by lazy { MutableLiveData() }
     val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
@@ -49,16 +51,14 @@ class InformationViewModel(val repository: InformationRepository) :
 
                 }else{
                     //505 server error
+                    Log.e(TAG,response.body()!!.error)
                 }
 
             }catch (e: Exception){
                 // no internet connection
+                Log.e(TAG,e.toString())
             }
         }
-
-        // find user on local database (Realm)
-            //if exist -> get that user
-            // else -> save user to Realm
 
     }
 
@@ -89,10 +89,7 @@ class InformationViewModel(val repository: InformationRepository) :
          }catch (e: Exception){
              // no internet connection
          }
-
         }
-
-        //get response
     }
 
 
@@ -100,11 +97,12 @@ class InformationViewModel(val repository: InformationRepository) :
         viewModelScope.launch {
             var customerPickupLocal = repository.getCustomerPickup(this@InformationViewModel.user.value!!.id)
             if(customerPickupLocal == null){
+                Log.e(TAG,"customerPickup is null")
                 customerPickupLocal = CustomerPickup(
                     customerID = this@InformationViewModel.user.value!!.id,
                     name = this@InformationViewModel.user.value!!.name
                 )
-                repository.updateCustomerPickup(customerPickupLocal)
+                repository.createCustomerPickup(customerPickupLocal)
             }
 
             customerPickup.value = customerPickupLocal
@@ -119,9 +117,9 @@ class InformationViewModel(val repository: InformationRepository) :
         }
     }
 
-    fun getDefaultDeliveryAddress(){
+    fun getDefaultDeliveryAddress(id: String){
         viewModelScope.launch {
-            defaultDeliveryAddress.value = repository.getDefaultDeliveryAddress()
+            defaultDeliveryAddress.value = repository.getDefaultDeliveryAddress(id)
         }
     }
 

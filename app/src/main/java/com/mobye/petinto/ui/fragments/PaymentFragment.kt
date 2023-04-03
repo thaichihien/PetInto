@@ -1,6 +1,7 @@
 package com.mobye.petinto.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,9 +61,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         }
 
         informationRepository.getCustomerPickup()
-        informationRepository.getDefaultDeliveryAddress()
+        informationRepository.getDefaultDeliveryAddress(informationRepository.getUserID())
         informationRepository.customerPickup.observe(viewLifecycleOwner){
             it?.let {
+                Log.e("PaymentFragment",it.phone)
                 binding.tvCustomerInformation.text = it.toString()
             }
         }

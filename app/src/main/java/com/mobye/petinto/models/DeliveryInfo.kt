@@ -11,8 +11,11 @@ import kotlinx.parcelize.RawValue
 class DeliveryInfo(
     var address: String = "",
     var isDefault : Boolean = false,
+    var customerID : String = "",
+    var name: String = "",
+    var phone: String = "",
     @PrimaryKey
     var id : @RawValue RealmUUID = RealmUUID.random()
-) : RealmObject, CustomerPickup(), Parcelable {
-    constructor() : this("",false)
+) : RealmObject, Parcelable {
+    constructor() : this("",false,"","","")
 }

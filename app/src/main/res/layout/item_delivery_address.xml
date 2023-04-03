@@ -7,8 +7,8 @@
     android:background="@color/background_light"
     android:padding="16dp">
 
-    <RadioButton
-        android:id="@+id/rbDeliveryAddress"
+    <CheckBox
+        android:id="@+id/cbDeliveryAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Vu Duc Dung | 0909456789"
@@ -31,6 +31,6 @@
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDeliveryAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/cbDeliveryAddress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

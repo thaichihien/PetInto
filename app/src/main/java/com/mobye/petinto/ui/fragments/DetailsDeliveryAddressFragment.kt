@@ -82,18 +82,18 @@ class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delive
     }
 
     private fun saveDeliveryInfo() {
-        var deliveryInfo : DeliveryInfo? = null
-      if(isEditing()){
-          deliveryInfo = args.deliveryInfo
+        val deliveryInfo = if(isEditing()){
+            args.deliveryInfo
 
-      }else{
-        deliveryInfo = DeliveryInfo()
-      }
+        }else{
+            DeliveryInfo()
+        }
         deliveryInfo.apply {
-            name = binding.etName.text.trim() as String
-            phone = binding.etPhone.text.trim() as String
-            address = binding.etAddress.text.trim() as String
+            name = binding.etName.text.toString().trim()
+            phone = binding.etPhone.text.toString().trim()
+            address = binding.etAddress.text.toString().trim()
             isDefault = binding.cbDefault.isChecked
+            customerID = informationViewModel.getUserID()
         }
 
         informationViewModel.updateDeliveryAddress(deliveryInfo)

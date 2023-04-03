@@ -1,12 +1,14 @@
 package com.mobye.petinto.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.DeliveryInfoAdapter
 import com.mobye.petinto.databinding.FragmentCustomerBinding
@@ -47,10 +49,10 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
         deliveryInfoAdapter = DeliveryInfoAdapter (
             {
                 selectedIndex = it
-                informationViewModel.setDefaultDeliveryAddress(selectedIndex,true)
+                //informationViewModel.setDefaultDeliveryAddress(selectedIndex,true)
             },
             {
-                informationViewModel.setDefaultDeliveryAddress(it,false)
+                //informationViewModel.setDefaultDeliveryAddress(it,false)
             },
             {
                 findNavController().navigate(DeliveryAddressFragmentDirections.actionDeliveryAddressFragmentToDetailsDeliveryAddressFragment(
@@ -61,10 +63,15 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
 
         informationViewModel.getAllDeliveryAddress(informationViewModel.getUserID())
         informationViewModel.deliveryList.observe(viewLifecycleOwner){
+            Log.e("DeliveryAddressFragment","deliveryList submit")
             deliveryInfoAdapter.differ.submitList(it)
         }
 
         binding.apply {
+            rvDeliveryAddress.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = deliveryInfoAdapter
+            }
             btnBack.setOnClickListener {
                 saveDefaultAddress()
             }
@@ -83,8 +90,8 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
     private fun saveDefaultAddress() {
         if(selectedIndex >= 0){
             informationViewModel.setDefaultDeliveryAddress(selectedIndex)
-            findNavController().popBackStack()
         }
+        findNavController().popBackStack()
     }
 
 }

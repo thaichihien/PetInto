@@ -120,7 +120,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 isSelectedAll = !isSelectedAll
                 shoppingViewModel.selectAllCart(isSelectedAll)
                 if(!isSelectedAll) shoppingViewModel.resetTotal()
-                lifecycleScope.launch(Dispatchers.IO){
+                lifecycleScope.launch(Dispatchers.Main){
                     cartItemAdapter.notifyDataSetChanged()
                 }
 

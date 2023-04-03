@@ -53,7 +53,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        window.statusBarColor = Color.TRANSPARENT
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+
+        if (Build.VERSION.SDK_INT >= 21) {
+
+            window.statusBarColor = Color.TRANSPARENT
+        }
 
 
         if(firebaseAuth.currentUser != null){
@@ -65,16 +76,9 @@ class MainActivity : AppCompatActivity() {
                 //if exist -> get that user
                 // else -> save user to Realm
 
-            Log.d("MainActivity","Profile : ${firebaseAuth.currentUser!!.email}")
+            Log.d("LOGIN_ACCOUNT","Profile : ${firebaseAuth.currentUser!!.email}")
             informationViewModel.getUser(firebaseAuth.uid!!)
         }
-
-
-        // TODO them du lieu nguoi dung vao view model
-        //val user = User("Chi Hien","email@gmail.com",....)
-
-        //informationViewModel. ham them user vao
-
 
 
 

@@ -29,11 +29,22 @@ object AccountInfoDatabase {
     }
 
     fun getCustomerPickup(id : String) : CustomerPickup?
-            = realm.query<CustomerPickup>("id == $0", id).first().find()
+            = realm.query<CustomerPickup>("customerID == $0", id).first().find()
 
     fun updateCustomerPickup(customerPickup: CustomerPickup){
         realm.writeBlocking {
-            copyToRealm(customerPickup,UpdatePolicy.ALL)
+            val customerPickupDB  = query<CustomerPickup>("customerID == $0", customerPickup.customerID).first().find()
+            customerPickupDB?.apply {
+                name = customerPickup.name
+                phone = customerPickup.phone
+            }
+                ?: Log.e(REALM_NAME,"customerPickupDB is null")
+        }
+    }
+
+    fun createCustomerPickup(customerPickup: CustomerPickup){
+        realm.writeBlocking {
+            copyToRealm(customerPickup)
         }
     }
 
@@ -74,8 +85,8 @@ object AccountInfoDatabase {
         }
     }
 
-    fun getDefaultDeliveryAddress()
-        = realm.query<DeliveryInfo>("isDefault == $0", true).first().find()
+    fun getDefaultDeliveryAddress(id : String)
+        = realm.query<DeliveryInfo>("isDefault == $0 AND customerID == $1", true,id).first().find()
 
 
 

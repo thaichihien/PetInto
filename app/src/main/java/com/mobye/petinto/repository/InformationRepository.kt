@@ -55,6 +55,10 @@ class InformationRepository {
         AccountInfoDatabase.saveUser(user)
     }
 
+    suspend fun createCustomerPickup(customerPickup: CustomerPickup){
+        AccountInfoDatabase.createCustomerPickup(customerPickup)
+    }
+
     suspend fun getCustomerPickup(id : String)
         = AccountInfoDatabase.getCustomerPickup(id)
 
@@ -77,6 +81,6 @@ class InformationRepository {
         AccountInfoDatabase.updateDefaultDeliveryAddress(id)
     }
 
-    suspend fun getDefaultDeliveryAddress()
-        = AccountInfoDatabase.getDefaultDeliveryAddress()
+    suspend fun getDefaultDeliveryAddress(id : String)
+        = AccountInfoDatabase.getDefaultDeliveryAddress(id)
 }

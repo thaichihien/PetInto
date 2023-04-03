@@ -1,6 +1,7 @@
 package com.mobye.petinto.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -50,32 +51,36 @@ class DeliveryInfoAdapter(
     override fun onBindViewHolder(holder: DeliveryInfoViewHolder, position: Int) {
         val deliveryInfo = differ.currentList[position]
 
-        if(deliveryInfo.isDefault){
+
+        if(deliveryInfo.isDefault && selected < 0){
+            Log.e("DeliveryInfoAdapter","button : ${holder.absoluteAdapterPosition} is default")
             selected = holder.absoluteAdapterPosition
             lastSelected = selected
         }
 
-
+        Log.e("DeliveryInfoAdapter","button : ${holder.absoluteAdapterPosition} , selected : $selected, last selected : $lastSelected")
         binding.apply {
             tvAddress.text = deliveryInfo.address
             tvAddress.setOnClickListener{
                 editListener(deliveryInfo)
             }
-            rbDeliveryAddress.apply {
+            cbDeliveryAddress.apply {
                 text = formatCustomerInfo(deliveryInfo)
-                isChecked = selected == position
+                isChecked = selected == holder.absoluteAdapterPosition
                 if(lastSelected != selected){
+                    //differ.currentList[position].isDefault = false
                     unChooseListener(holder.absoluteAdapterPosition)
+                    lastSelected = selected
                 }
-                setOnCheckedChangeListener { _, isChecked ->
-                    if(isChecked){
-                        selected = holder.absoluteAdapterPosition
-                        if(lastSelected >= 0){
-                            notifyItemChanged(lastSelected)
-                        }
-                        lastSelected = selected
-                        chooseListener(holder.absoluteAdapterPosition)
+                setOnClickListener {
+                    selected = holder.absoluteAdapterPosition
+                    if(lastSelected >= 0){
+                        Log.e("DeliveryInfoAdapter","notifyItemChanged($lastSelected)")
+                        notifyItemChanged(lastSelected)
                     }
+
+
+                    chooseListener(holder.absoluteAdapterPosition)
                 }
             }
         }

@@ -105,10 +105,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 //            shoppingItemAdapter.differ.submitList(it)
 //        }
 
-        if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
-            productAdapter.retry()
-            shoppingViewModel.lostNetwork = false
-        }
+
 
 
         lifecycleScope.launchWhenCreated {
@@ -122,6 +119,12 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             productAdapter.loadStateFlow.collect{loadState ->
                 binding.loadingBar.isVisible = loadState.source.append is LoadState.Loading
             }
+        }
+
+        if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
+            Log.e("RETRY_SHOPPING","yes")
+            productAdapter.retry()
+            shoppingViewModel.lostNetwork = false
         }
 
         productAdapter.addLoadStateListener {loadState ->
@@ -151,6 +154,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                 }
             }
         }
+
 
 
 

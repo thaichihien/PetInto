@@ -66,8 +66,8 @@ class ShoppingViewModel(
         }
     }
 
-    private suspend fun cartListToPayment(){
-        val paymentList = paymentItemList.value!!.toMutableList()
+    private fun cartListToPayment(){
+        val paymentList = mutableListOf<CartItem>()
         for(cartItem in cartItemList.value!!){
             if(cartItem.selected){
                 paymentList.add(cartItem)
@@ -193,7 +193,7 @@ class ShoppingViewModel(
         = cartItemList.value!!.isNotEmpty()
 
     fun createProductOrder(info : Order) : ProductOrder{
-        var order : ProductOrder? = null
+        val order: ProductOrder?
         val cart : MutableList<CartOrder> = mutableListOf()
 
         for(orderItem in paymentItemList.value!!){

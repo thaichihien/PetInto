@@ -1,6 +1,7 @@
 package com.mobye.petinto.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,6 +81,8 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
     private fun saveInfo() {
         val name = binding.etName.text.trim().toString()
         val phone = binding.etPhone.text.trim().toString()
+
+        Log.e("CustomerPickup",phone)
 
         informationViewModel.updateCustomerPickup(
             CustomerPickup("", name,phone)

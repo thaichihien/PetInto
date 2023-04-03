@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +56,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
         binding.apply {
             btnSignIn.setOnClickListener {
-                loadingDialog.show()
                 register()
             }
             tvSignIn.setOnClickListener {
@@ -65,13 +65,14 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     }
 
     private fun register() {
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
-        val confirmPassword = binding.etConfirmPassword.text.toString()
-        val name = binding.etUsername.text.toString()
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        val confirmPassword = binding.etConfirmPassword.text.toString().trim()
+        val name = binding.etUsername.text.toString().trim()
 
         if(!validate()) return
 
+        loadingDialog.show()
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(requireActivity()){task ->
                 if(task.isSuccessful){
@@ -88,7 +89,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                         this.name = name
                         this.email = email
                     }
-                    informationViewModel.addUser(newUser)
+                    informationViewModel.sendUser(newUser)
                     informationViewModel.response.observe(viewLifecycleOwner){response ->
                         loadingDialog.dismiss()
                         if(response.result){
@@ -109,7 +110,46 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     }
 
     private fun validate(): Boolean {
-        return true
+        var isValidated = true
+        if(binding.etEmail.text.isBlank()){
+            binding.etEmail.error = "Please fill in a email"
+            isValidated = false
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text).matches()){
+            binding.etEmail.error = "Please fill in a valid email"
+            isValidated = false
+        }else{
+            binding.etEmail.error = null
+        }
+
+        if(binding.etUsername.text.isBlank()){
+            binding.etUsername.error = "Please fill in a name"
+            isValidated =false
+        }else{
+            binding.etUsername.error = null
+        }
+
+        if(binding.etPassword.text!!.isBlank()){
+            binding.etPassword.error = "Please fill in a name"
+            isValidated =false
+        }else{
+            binding.etPassword.error = null
+        }
+
+        if(binding.etConfirmPassword.text!!.isBlank()){
+            binding.etConfirmPassword.error = "Please fill in a name"
+            isValidated =false
+        }else{
+            binding.etConfirmPassword.error = null
+        }
+
+        if(!binding.etPassword.text.contentEquals(binding.etConfirmPassword.text) ){
+            binding.etConfirmPassword.error = "Confirm password is incorrect"
+            isValidated =false
+        }else{
+            binding.etConfirmPassword.error = null
+        }
+
+        return isValidated
     }
 
 
