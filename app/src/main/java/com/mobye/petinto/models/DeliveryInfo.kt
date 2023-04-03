@@ -1,15 +1,18 @@
 package com.mobye.petinto.models
 
+import android.os.Parcelable
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.RealmUUID
+import io.realm.kotlin.types.annotations.PrimaryKey
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
+@Parcelize
 class DeliveryInfo(
-    var customerID : String = "",
-    var name : String = "",
-    var phone : String = "",
     var address: String = "",
     var isDefault : Boolean = false,
-    var id : RealmUUID = RealmUUID.random()
-) : RealmObject{
-    constructor() : this("","","","",false)
+    @PrimaryKey
+    var id : @RawValue RealmUUID = RealmUUID.random()
+) : RealmObject, CustomerPickup(), Parcelable {
+    constructor() : this("",false)
 }

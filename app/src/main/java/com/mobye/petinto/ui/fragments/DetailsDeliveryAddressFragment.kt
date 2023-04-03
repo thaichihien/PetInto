@@ -5,56 +5,117 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
+import com.mobye.petinto.adapters.DeliveryInfoAdapter
+import com.mobye.petinto.databinding.FragmentDeliveryAddressBinding
+import com.mobye.petinto.databinding.FragmentDetailsDeliveryAddressBinding
+import com.mobye.petinto.models.DeliveryInfo
+import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.viewmodels.InformationViewModel
+import com.mobye.petinto.viewmodels.InformationViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailsDeliveryAddressFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class DetailsDeliveryAddressFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delivery_address) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding : FragmentDetailsDeliveryAddressBinding? = null
+    private val binding get() = _binding!!
+    private val informationViewModel : InformationViewModel by activityViewModels{
+        InformationViewModelFactory(InformationRepository())
+    }
+
+    private val args : DetailsDeliveryAddressFragmentArgs by navArgs()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentDetailsDeliveryAddressBinding.inflate(layoutInflater)
+        return binding.root
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fillField()
+
+        binding.btnSave.setOnClickListener{
+            if(validate()){
+                saveDeliveryInfo()
+                findNavController().popBackStack()
+            }
+        }
+
+
+    }
+
+    private fun validate(): Boolean {
+        var isValidated = true
+        if(binding.etName.text.isBlank()){
+            binding.etName.error = "Please fill a name"
+            isValidated = false
+        }else{
+            binding.etName.error = null
+        }
+
+        if(binding.etPhone.text.isBlank()){
+            binding.etPhone.error = "Please fill a phone number"
+            isValidated = false
+        }else{
+            binding.etPhone.error = null
+        }
+
+        if(binding.etAddress.text.isBlank()){
+            binding.etAddress.error = "Please fill a address"
+            isValidated = false
+        }else{
+            binding.etAddress.error = null
+        }
+        return isValidated
+    }
+
+    private fun saveDeliveryInfo() {
+        var deliveryInfo : DeliveryInfo? = null
+      if(isEditing()){
+          deliveryInfo = args.deliveryInfo
+
+      }else{
+        deliveryInfo = DeliveryInfo()
+      }
+        deliveryInfo.apply {
+            name = binding.etName.text.trim() as String
+            phone = binding.etPhone.text.trim() as String
+            address = binding.etAddress.text.trim() as String
+            isDefault = binding.cbDefault.isChecked
+        }
+
+        informationViewModel.updateDeliveryAddress(deliveryInfo)
+        if(binding.cbDefault.isChecked){
+            informationViewModel.setDefaultDeliveryAddress(deliveryInfo.id)
+        }
+
+    }
+
+    private fun fillField() {
+        val deliveryInfo = args.deliveryInfo
+        if(isEditing()){
+            binding.apply {
+                etName.setText(deliveryInfo.name)
+                etPhone.setText(deliveryInfo.phone)
+                etAddress.setText(deliveryInfo.address)
+                cbDefault.isChecked = deliveryInfo.isDefault
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details_delivery_address, container, false)
-    }
+    private fun isEditing(): Boolean
+        = args.deliveryInfo.customerID.isNotBlank()
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailsDeliveryAddressFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailsDeliveryAddressFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

@@ -161,5 +161,9 @@
         android:id="@+id/detailsDeliveryAddressFragment"
         android:name="com.mobye.petinto.ui.fragments.DetailsDeliveryAddressFragment"
         android:label="fragment_details_delivery_address"
-        tools:layout="@layout/fragment_details_delivery_address" />
+        tools:layout="@layout/fragment_details_delivery_address" >
+        <argument
+            android:name="deliveryInfo"
+            app:argType="com.mobye.petinto.models.DeliveryInfo" />
+    </fragment>
 </navigation>

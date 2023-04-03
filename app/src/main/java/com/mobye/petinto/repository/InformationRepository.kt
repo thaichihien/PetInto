@@ -7,8 +7,10 @@ import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.database.AccountInfoDatabase
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.models.CustomerPickup
+import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
+import io.realm.kotlin.types.RealmUUID
 import retrofit2.Response
 
 class InformationRepository {
@@ -60,4 +62,21 @@ class InformationRepository {
         AccountInfoDatabase.updateCustomerPickup(customerPickup)
     }
 
+    suspend fun getAllDeliveryAddress(id : String) : List<DeliveryInfo>
+        = AccountInfoDatabase.getAllDeliveryAddress(id)
+
+    suspend fun updateDeliveryAddress(deliveryInfo: DeliveryInfo){
+        AccountInfoDatabase.updateDeliveryAddress(deliveryInfo)
+    }
+
+    suspend fun updateDefaultDeliveryAddress(id : RealmUUID,isDefault : Boolean){
+        AccountInfoDatabase.updateDefaultDeliveryAddress(id,isDefault)
+    }
+
+    suspend fun updateDefaultDeliveryAddress(id: RealmUUID){
+        AccountInfoDatabase.updateDefaultDeliveryAddress(id)
+    }
+
+    suspend fun getDefaultDeliveryAddress()
+        = AccountInfoDatabase.getDefaultDeliveryAddress()
 }

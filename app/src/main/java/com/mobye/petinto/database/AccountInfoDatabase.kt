@@ -1,10 +1,12 @@
 package com.mobye.petinto.database
 
+import android.util.Log
 import com.mobye.petinto.models.*
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.types.RealmUUID
 
 object AccountInfoDatabase {
 
@@ -34,6 +36,46 @@ object AccountInfoDatabase {
             copyToRealm(customerPickup,UpdatePolicy.ALL)
         }
     }
+
+    fun getAllDeliveryAddress(id : String) : List<DeliveryInfo>
+        = realm.copyFromRealm(realm.query<DeliveryInfo>("customerID = $0",id).find())
+
+    fun updateDeliveryAddress(deliveryInfo: DeliveryInfo){
+        realm.writeBlocking {
+            copyToRealm(deliveryInfo,UpdatePolicy.ALL)
+        }
+    }
+
+    fun updateDefaultDeliveryAddress(id : RealmUUID,isDefault: Boolean){
+        realm.writeBlocking {
+            val deliveryInfo  = query<DeliveryInfo>("id == $0", id).first().find()
+            if(deliveryInfo != null){
+                deliveryInfo.isDefault = isDefault
+            }else{
+                Log.e(REALM_NAME,"deliveryInfo is null")
+            }
+        }
+    }
+
+    fun updateDefaultDeliveryAddress(id : RealmUUID){
+        realm.writeBlocking {
+            val deliveryInfoPrevious  = query<DeliveryInfo>("isDefault == $0", true).first().find()
+            val deliveryInfo  = query<DeliveryInfo>("id == $0", id).first().find()
+
+            if(deliveryInfoPrevious != null){
+                deliveryInfoPrevious.isDefault = false
+            }
+
+            if(deliveryInfo != null){
+                deliveryInfo.isDefault = true
+            }else{
+                Log.e(REALM_NAME,"deliveryInfo is null")
+            }
+        }
+    }
+
+    fun getDefaultDeliveryAddress()
+        = realm.query<DeliveryInfo>("isDefault == $0", true).first().find()
 
 
 

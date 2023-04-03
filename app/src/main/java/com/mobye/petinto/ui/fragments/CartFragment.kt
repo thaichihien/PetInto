@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
@@ -16,6 +17,8 @@ import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class CartFragment : Fragment(R.layout.fragment_cart) {
@@ -43,7 +46,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         val activity = activity as MainActivity
         activity.hideBottomNav()
         cartItemAdapter = CartItemAdapter (
-            { cartItem, i ->
+            { _, i ->
             shoppingViewModel.removeFromCart(i)
             },
             {
@@ -117,7 +120,10 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 isSelectedAll = !isSelectedAll
                 shoppingViewModel.selectAllCart(isSelectedAll)
                 if(!isSelectedAll) shoppingViewModel.resetTotal()
-                cartItemAdapter.notifyDataSetChanged()
+                lifecycleScope.launch(Dispatchers.IO){
+                    cartItemAdapter.notifyDataSetChanged()
+                }
+
             }
 
             btnBuyCart.setOnClickListener {

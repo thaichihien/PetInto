@@ -59,6 +59,20 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             binding.tvTotalMoney.text = "%,d đ".format(it)
         }
 
+        informationRepository.getCustomerPickup()
+        informationRepository.getDefaultDeliveryAddress()
+        informationRepository.customerPickup.observe(viewLifecycleOwner){
+            it?.let {
+                binding.tvCustomerInformation.text = it.toString()
+            }
+        }
+        informationRepository.defaultDeliveryAddress.observe(viewLifecycleOwner){
+            it?.let {
+                binding.tvDeliveryAddress.text = it.address
+            }
+        }
+
+
         binding.apply {
             rvPaymentCart.apply {
                 layoutManager = LinearLayoutManager(requireContext())

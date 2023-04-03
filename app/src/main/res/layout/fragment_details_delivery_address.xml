@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/header_main" />
 
     <EditText
-        android:id="@+id/et_full_name"
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/contact_title" />
 
     <EditText
-        android:id="@+id/et_phone_number"
+        android:id="@+id/etPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -87,31 +87,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_full_name" />
-
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/main_dark"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
+        app:layout_constraintTop_toBottomOf="@+id/etName" />
 
     <TextView
+        android:layout_marginTop="24dp"
         android:id="@+id/address_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
         android:layout_marginEnd="20dp"
         android:text="Address"
         android:textColor="@color/main_dark"
@@ -119,10 +102,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintTop_toBottomOf="@+id/etPhone" />
 
     <EditText
-        android:id="@+id/et_address"
+        android:id="@+id/etAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -136,42 +119,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address_title" />
 
-    <EditText
-        android:id="@+id/et_note"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/background_light"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Your note"
-        android:inputType="textMultiLine"
-        android:textColor="@color/main_dark"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_address" />
-
     <CheckBox
-        android:id="@+id/set_default"
+        android:layout_marginTop="16dp"
+        android:id="@+id/cbDefault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:text="Set as default address"
         android:textColor="@color/main_dark"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_note" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddress" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/save_address_btn"
+        android:id="@+id/btnSave"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/other_button_background"

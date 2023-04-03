@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.models.CustomerPickup
+import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
+import io.realm.kotlin.types.RealmUUID
 import kotlinx.coroutines.launch
 
 class InformationViewModel(val repository: InformationRepository) :
@@ -20,8 +22,9 @@ class InformationViewModel(val repository: InformationRepository) :
 
 
     //Payment
-    val customerPickup : MutableLiveData<CustomerPickup> by lazy { MutableLiveData() }
-
+    val customerPickup : MutableLiveData<CustomerPickup?> by lazy { MutableLiveData(null) }
+    val deliveryList : MutableLiveData<List<DeliveryInfo>> by lazy { MutableLiveData(listOf()) }
+    val defaultDeliveryAddress : MutableLiveData<DeliveryInfo?> by lazy { MutableLiveData(null) }
 
     fun addPet(pet : PetInfo){
         var list = myPetList.value!!.toMutableList()
@@ -98,7 +101,7 @@ class InformationViewModel(val repository: InformationRepository) :
             var customerPickupLocal = repository.getCustomerPickup(this@InformationViewModel.user.value!!.id)
             if(customerPickupLocal == null){
                 customerPickupLocal = CustomerPickup(
-                    id = this@InformationViewModel.user.value!!.id,
+                    customerID = this@InformationViewModel.user.value!!.id,
                     name = this@InformationViewModel.user.value!!.name
                 )
                 repository.updateCustomerPickup(customerPickupLocal)
@@ -110,9 +113,48 @@ class InformationViewModel(val repository: InformationRepository) :
 
     fun updateCustomerPickup(customerPickup: CustomerPickup){
         viewModelScope.launch {
-            customerPickup.id = getUserID()
+            customerPickup.customerID = getUserID()
             repository.updateCustomerPickup(customerPickup)
             this@InformationViewModel.customerPickup.value = customerPickup
+        }
+    }
+
+    fun getDefaultDeliveryAddress(){
+        viewModelScope.launch {
+            defaultDeliveryAddress.value = repository.getDefaultDeliveryAddress()
+        }
+    }
+
+    fun getAllDeliveryAddress(id : String){
+        viewModelScope.launch {
+            deliveryList.value = repository.getAllDeliveryAddress(id)
+        }
+    }
+
+    fun updateDeliveryAddress(deliveryInfo: DeliveryInfo){
+        viewModelScope.launch{
+            repository.updateDeliveryAddress(deliveryInfo)
+        }
+    }
+
+    fun setDefaultDeliveryAddress(index : Int,isDefault : Boolean){
+        val _deliveryList = deliveryList.value!!.toMutableList()
+
+        _deliveryList[index].isDefault = isDefault
+
+        deliveryList.value = _deliveryList
+    }
+
+    fun setDefaultDeliveryAddress(index : Int){
+        viewModelScope.launch {
+            val deliveryInfo = deliveryList.value!![index]
+            repository.updateDefaultDeliveryAddress(deliveryInfo.id)
+        }
+    }
+
+    fun setDefaultDeliveryAddress(id : RealmUUID){
+        viewModelScope.launch {
+            repository.updateDefaultDeliveryAddress(id)
         }
     }
 

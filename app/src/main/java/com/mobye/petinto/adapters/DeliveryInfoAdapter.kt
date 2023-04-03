@@ -14,7 +14,9 @@ import com.mobye.petinto.models.Product
 import io.realm.kotlin.types.RealmUUID
 
 class DeliveryInfoAdapter(
-    val chooseListener : (RealmUUID) -> Unit
+    val chooseListener : (Int) -> Unit,
+    val unChooseListener : (Int) -> Unit,
+    val editListener : (DeliveryInfo) -> Unit
 ) :  RecyclerView.Adapter<DeliveryInfoAdapter.DeliveryInfoViewHolder>(){
     private lateinit var binding: ItemDeliveryAddressBinding
     private val differCallBack = object : DiffUtil.ItemCallback<DeliveryInfo>(){
@@ -22,19 +24,15 @@ class DeliveryInfoAdapter(
             = oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: DeliveryInfo, newItem: DeliveryInfo): Boolean
-            = oldItem.address == newItem.address
+            = oldItem.address == newItem.address &&
+                oldItem.isDefault == newItem.isDefault
 
     }
     var differ = AsyncListDiffer(this,differCallBack)
+    private var selected = -1
+    private var lastSelected = -1
+
     inner class DeliveryInfoViewHolder() : RecyclerView.ViewHolder(binding.root){
-        fun setData(deliveryInfo: DeliveryInfo){
-            binding.apply {
-                rbDeliveryAddress.text = formatCustomerInfo(deliveryInfo)
-                tvAddress.text = deliveryInfo.address
-            }
-
-
-        }
     }
 
     private fun formatCustomerInfo(deliveryInfo: DeliveryInfo)
@@ -51,7 +49,38 @@ class DeliveryInfoAdapter(
 
     override fun onBindViewHolder(holder: DeliveryInfoViewHolder, position: Int) {
         val deliveryInfo = differ.currentList[position]
-        holder.setData(deliveryInfo)
+
+        if(deliveryInfo.isDefault){
+            selected = holder.absoluteAdapterPosition
+            lastSelected = selected
+        }
+
+
+        binding.apply {
+            tvAddress.text = deliveryInfo.address
+            tvAddress.setOnClickListener{
+                editListener(deliveryInfo)
+            }
+            rbDeliveryAddress.apply {
+                text = formatCustomerInfo(deliveryInfo)
+                isChecked = selected == position
+                if(lastSelected != selected){
+                    unChooseListener(holder.absoluteAdapterPosition)
+                }
+                setOnCheckedChangeListener { _, isChecked ->
+                    if(isChecked){
+                        selected = holder.absoluteAdapterPosition
+                        if(lastSelected >= 0){
+                            notifyItemChanged(lastSelected)
+                        }
+                        lastSelected = selected
+                        chooseListener(holder.absoluteAdapterPosition)
+                    }
+                }
+            }
+        }
+
         holder.setIsRecyclable(false)
+
     }
 }
