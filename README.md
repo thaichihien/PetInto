@@ -148,14 +148,14 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - [ ] Ở mục Advertisement, phần chữ sẽ không bấm được, các hình ảnh về bài báo được hiển thị và khi bấm vào từng ảnh sẽ dẫn đến bài báo
 - [ ] Màn hình giao diện **Shopping** 
   - [X] Xây dựng giao diện
-  - [ ] Lấy dữ liệu từ API nạp vào RecycleView
+  - [X] Lấy dữ liệu từ API nạp vào RecycleView
   - [X] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
   - [X] Giao diện giỏ hàng
   - [X] Thêm vào giỏ hàng
   - [X] Tính toán số lượng, tiền,...
   - [X] Bỏ khỏi giỏ hàng
   - [X] Lưu giỏ hàng vào local database (Realm)
-  - [ ] Paging
+  - [X] Paging
   - [ ] Thanh toán?
   - [ ] Tìm kiếm (theo tên sản phẩm)
   - [ ] Filter
