@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 //if exist -> get that user
                 // else -> save user to Realm
 
-            Log.d("LOGIN_ACCOUNT","Profile : ${firebaseAuth.currentUser!!.email}")
+            Log.d("LOGIN_ACCOUNT","Profile : ${firebaseAuth.currentUser!!.email} | ${firebaseAuth.currentUser!!.displayName}")
             informationViewModel.getUser(firebaseAuth.uid!!)
         }
 
