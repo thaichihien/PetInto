@@ -149,7 +149,11 @@
         android:id="@+id/addPetFragment"
         android:name="com.mobye.petinto.ui.fragments.AddPetFragment"
         android:label="fragment_add_pet"
-        tools:layout="@layout/fragment_add_pet" />
+        tools:layout="@layout/fragment_add_pet" >
+        <argument
+            android:name="updatePet"
+            app:argType="com.mobye.petinto.models.PetInfo" />
+    </fragment>
     <fragment
         android:id="@+id/customerFragment"
         android:name="com.mobye.petinto.ui.fragments.CustomerFragment"

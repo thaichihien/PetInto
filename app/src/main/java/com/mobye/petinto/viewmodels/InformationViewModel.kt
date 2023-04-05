@@ -33,6 +33,18 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         myPetList.value = list
     }
 
+    fun updatePet(pet : PetInfo, index: Int){
+        var list = myPetList.value!!.toMutableList()
+        list[index] = pet
+        myPetList.value = list
+    }
+
+    fun deletePet(index : Int){
+        var list = myPetList.value!!.toMutableList()
+        list.removeAt(index)
+        myPetList.value = list
+    }
+
     fun getUser(id : String){
         // get user data by id from backend (id,email,name)
         viewModelScope.launch {

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentAddPetBinding
@@ -33,6 +34,11 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     private var _binding : FragmentAddPetBinding? = null
     private val binding get() = _binding!!
 
+    private var isEditing = false
+
+    private val args : AddPetFragmentArgs by navArgs()
+
+    private lateinit var currentPet : PetInfo
     private val carouselViewModel : InformationViewModel by activityViewModels {
         InformationViewModelFactory(InformationRepository())
     }
@@ -40,6 +46,13 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(DEBUG_TAG,"onCreate")
+
+        if(args.updatePet.name!=""){
+            isEditing = true
+            currentPet= args.updatePet
+        }
+
+
     }
 
     override fun onCreateView(
@@ -56,15 +69,49 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         super.onViewCreated(view, savedInstanceState)
         Log.e(DEBUG_TAG,"onViewCreated")
 
+
         binding.apply {
+
+
             btnAdd.setOnClickListener {
-                createPet()
+                val newPet = createPet()
+
+                if(isEditing){
+                    carouselViewModel.updatePet(newPet, 0)
+                }
+                else{
+
+                    carouselViewModel.addPet(newPet)
+                }
+
                 findNavController().popBackStack()
+            }
+        }
+
+        if(isEditing){
+            binding.apply {
+                titleOwnerPet.setText("Update Pet")
+                btnAdd.setText("Update")
+                edtNamePet.setText(currentPet.name)
+                edtAge.setText(currentPet.age.toString())
+                edtColor.setText(currentPet.color)
+                edtType.setText(currentPet.type)
+                edtVaccine.setText(currentPet.vaccine.toString())
+                edtWeight.setText(currentPet.weight.toString())
+                if(currentPet.gender=="Male"){
+                    rbMale.isSelected = true
+                }
+                else if(currentPet.gender=="Female"){
+                    rbFemale.isSelected = true
+                }
+                else{
+
+                }
             }
         }
     }
 
-    private fun createPet() {
+    private fun createPet() : PetInfo{
         //TODO: Kiem tra tinh hop le
 
         val name = binding.edtNamePet.text.toString().trim()
@@ -95,7 +142,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
             weight,
             color
         )
-        carouselViewModel.addPet(newPet)
+        return newPet
     }
 
     override fun onPause() {

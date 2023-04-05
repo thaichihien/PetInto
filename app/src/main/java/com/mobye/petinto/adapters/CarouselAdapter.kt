@@ -10,8 +10,11 @@ import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ListOwnerPetBinding
 import com.mobye.petinto.models.PetInfo
+import com.mobye.petinto.models.Product
 
-class CarouselAdapter() :
+class CarouselAdapter(
+    private val updateListener: (PetInfo, Int) -> Unit
+) :
     RecyclerView.Adapter<CarouselAdapter.CarouseItemViewHolder>() {
 
     private lateinit var binding: ListOwnerPetBinding
@@ -44,6 +47,8 @@ class CarouselAdapter() :
                     .load(item.image)
                     .placeholder(R.drawable.avatar_1)
                     .into(imgAvatar)
+
+
             }
         }
     }
@@ -61,6 +66,11 @@ class CarouselAdapter() :
     override fun onBindViewHolder(holder: CarouseItemViewHolder, position: Int) {
         holder.setData(differ.currentList[position])
         holder.setIsRecyclable(false)
+        binding.apply {
+            btnChange.setOnClickListener {
+                updateListener(differ.currentList[position], holder.absoluteAdapterPosition)
+            }
+        }
     }
 
 

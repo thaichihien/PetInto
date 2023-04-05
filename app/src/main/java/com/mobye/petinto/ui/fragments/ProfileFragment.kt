@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.CarouselAdapter
 import com.mobye.petinto.databinding.FragmentProfileBinding
+import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
@@ -82,7 +83,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHistoryInformation())
             }
             btnAdd.setOnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment())
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(PetInfo()))
             }
             btnLogout.setOnClickListener {
                 logout()
@@ -99,7 +100,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 RecyclerView.OVER_SCROLL_NEVER
         }
 
-        carouselAdapter = CarouselAdapter()
+        carouselAdapter = CarouselAdapter { petInfo, i ->
+            findNavController().navigate(
+                ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(
+                    petInfo
+                )
+            )
+        }
 
 //        carouselViewModel.getOrderList()
         informationViewModel.myPetList.observe(viewLifecycleOwner){
