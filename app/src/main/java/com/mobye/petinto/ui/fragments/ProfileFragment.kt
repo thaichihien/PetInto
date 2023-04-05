@@ -85,6 +85,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             btnAdd.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(PetInfo()))
             }
+            navOrder.setOnClickListener{
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOrderFragment())
+            }
             btnLogout.setOnClickListener {
                 logout()
             }
@@ -100,13 +103,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 RecyclerView.OVER_SCROLL_NEVER
         }
 
-        carouselAdapter = CarouselAdapter { petInfo, i ->
-            findNavController().navigate(
-                ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(
-                    petInfo
+        carouselAdapter = CarouselAdapter (
+            { petInfo, i ->
+                findNavController().navigate(
+                    ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(
+                        petInfo
+                    )
                 )
-            )
-        }
+            },
+            {
+                informationViewModel.deletePet(it)
+            })
 
 //        carouselViewModel.getOrderList()
         informationViewModel.myPetList.observe(viewLifecycleOwner){

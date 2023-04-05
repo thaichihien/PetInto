@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -43,6 +45,22 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         InformationViewModelFactory(InformationRepository())
     }
 
+    private var newPet : PetInfo = PetInfo()
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        // Callback is invoked after the user selects a media item or closes the
+        // photo picker.
+        if (uri != null) {
+            Glide.with(binding.root)
+                .load(uri)
+                .placeholder(R.drawable.avatar_1)
+                .into(binding.imgAvatar)
+            newPet.image = uri.toString()
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(DEBUG_TAG,"onCreate")
@@ -51,8 +69,6 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
             isEditing = true
             currentPet= args.updatePet
         }
-
-
     }
 
     override fun onCreateView(
@@ -71,7 +87,9 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
 
 
         binding.apply {
-
+            imgAvatar.setOnClickListener {
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            }
 
             btnAdd.setOnClickListener {
                 val newPet = createPet()
@@ -86,26 +104,34 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
 
                 findNavController().popBackStack()
             }
+
         }
 
         if(isEditing){
             binding.apply {
-                titleOwnerPet.setText("Update Pet")
-                btnAdd.setText("Update")
+                titleOwnerPet.text = "Update Pet"
+                btnAdd.text = "Update"
                 edtNamePet.setText(currentPet.name)
                 edtAge.setText(currentPet.age.toString())
                 edtColor.setText(currentPet.color)
                 edtType.setText(currentPet.type)
                 edtVaccine.setText(currentPet.vaccine.toString())
                 edtWeight.setText(currentPet.weight.toString())
-                if(currentPet.gender=="Male"){
-                    rbMale.isSelected = true
-                }
-                else if(currentPet.gender=="Female"){
-                    rbFemale.isSelected = true
-                }
-                else{
-
+                edtVariety.setText(currentPet.variety.toString())
+                Glide.with(binding.root)
+                    .load(currentPet.image)
+                    .placeholder(R.drawable.avatar_1)
+                    .into(imgAvatar)
+                when (currentPet.gender) {
+                    "Male" -> {
+                        rdGroupGender.check(R.id.rbMale)
+                    }
+                    "Female" -> {
+                        rdGroupGender.check(R.id.rbFemale)
+                    }
+                    else -> {
+                        rdGroupGender.check(R.id.rbOther)
+                    }
                 }
             }
         }
@@ -113,35 +139,21 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
 
     private fun createPet() : PetInfo{
         //TODO: Kiem tra tinh hop le
-
-        val name = binding.edtNamePet.text.toString().trim()
-        val type = binding.edtType.text.toString().trim()
-        val age = binding.edtAge.text.toString().trim().toInt()
-        val variety = binding.edtVariety.text.toString().trim()
-        val weight = binding.edtWeight.text.toString().trim().toDouble()
-        val color = binding.edtColor.text.toString().trim()
-        val gender = if(binding.rbMale.isSelected){
+        newPet.name = binding.edtNamePet.text.toString().trim()
+        newPet.type = binding.edtType.text.toString().trim()
+        newPet.age = binding.edtAge.text.toString().trim().toInt()
+        newPet.variety = binding.edtVariety.text.toString().trim()
+        newPet.weight = binding.edtWeight.text.toString().trim().toDouble()
+        newPet.color = binding.edtColor.text.toString().trim()
+        newPet.gender = if(binding.rbMale.isSelected){
             "Male"
         } else if (binding.rbFemale.isSelected){
             "Female"
         } else{
             "Other"
         }
-        val vaccine = binding.edtVaccine.text.toString().trim().toInt()
+        newPet.vaccine = binding.edtVaccine.text.toString().trim().toInt()
 
-        val newPet = PetInfo("PET1111",
-            name,
-            0,
-            type,
-            "",
-            R.drawable.cat,
-            gender,
-            age,
-            vaccine,
-            variety,
-            weight,
-            color
-        )
         return newPet
     }
 

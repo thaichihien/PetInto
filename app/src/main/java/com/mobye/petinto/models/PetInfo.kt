@@ -11,7 +11,7 @@ class PetInfo (
     var price : Int = 0,
     var type : String = "",
     var condition: String = "",
-    var image: Int = 0,
+    var image: String = "",
     var gender: String = "",
     var age: Int = 0,
     var vaccine: Int = 0,
@@ -21,6 +21,6 @@ class PetInfo (
     var customerID : String = ""
     ) : Parcelable,RealmObject{
         constructor() : this("","",0,"",
-        "",0,"",0,0,"",
+        "","","",0,0,"",
             0.0,"","")
     }

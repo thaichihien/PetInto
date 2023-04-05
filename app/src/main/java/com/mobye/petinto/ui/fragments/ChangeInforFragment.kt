@@ -88,7 +88,6 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
                 currentUser.image = it.image
 
                 imgAvatar.setOnClickListener {_ ->
-
                     pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                 }
 

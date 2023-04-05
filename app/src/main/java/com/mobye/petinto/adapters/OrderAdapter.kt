@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chauthai.swipereveallayout.ViewBinderHelper
+import com.mobye.petinto.R
 import com.mobye.petinto.databinding.OrderItemListBinding
 import com.mobye.petinto.models.PetInfo
 
@@ -54,6 +55,7 @@ class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Ad
         binding.apply {
             Glide.with(binding.root)
                 .load(pet.image)
+                .placeholder(R.drawable.dog)
                 .into(binding.imgviewOrder)
             tvName.text = pet.name
             tvGender.text = pet.gender

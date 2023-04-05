@@ -64,11 +64,8 @@
         android:orientation="horizontal"
         android:elevation="8dp">
 
-        <View android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
         <LinearLayout
-            android:id="@+id/nav_history"
+            android:id="@+id/navHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -83,6 +80,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="History"/>
+
+        </LinearLayout>
+        <View android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/navOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/order_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order"/>
 
         </LinearLayout>
         <View android:layout_width="wrap_content"
@@ -151,9 +170,6 @@
                 android:text="Setting"/>
 
         </LinearLayout>
-        <View android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
 
     </LinearLayout>
 

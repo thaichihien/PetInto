@@ -13,7 +13,8 @@ import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
 
 class CarouselAdapter(
-    private val updateListener: (PetInfo, Int) -> Unit
+    private val updateListener: (PetInfo, Int) -> Unit,
+    private val deleteListener: (Int) -> Unit
 ) :
     RecyclerView.Adapter<CarouselAdapter.CarouseItemViewHolder>() {
 
@@ -45,7 +46,7 @@ class CarouselAdapter(
 
                 Glide.with(binding.root)
                     .load(item.image)
-                    .placeholder(R.drawable.avatar_1)
+                    .placeholder(R.drawable.dog)
                     .into(imgAvatar)
 
 
@@ -70,6 +71,11 @@ class CarouselAdapter(
             btnChange.setOnClickListener {
                 updateListener(differ.currentList[position], holder.absoluteAdapterPosition)
             }
+
+            btnDelete.setOnClickListener {
+                deleteListener(holder.absoluteAdapterPosition)
+            }
+
         }
     }
 
