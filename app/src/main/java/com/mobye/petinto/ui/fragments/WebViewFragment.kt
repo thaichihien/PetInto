@@ -1,10 +1,17 @@
 package com.mobye.petinto.ui.fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentDeliveryAddressBinding
@@ -15,6 +22,10 @@ class WebViewFragment : Fragment(R.layout.fragment_web_view) {
 
     private var _binding : FragmentWebViewBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var webView: WebView
+
+    private lateinit var backBtn: ImageButton
 
     private val args : WebViewFragmentArgs by navArgs()
 
@@ -34,10 +45,16 @@ class WebViewFragment : Fragment(R.layout.fragment_web_view) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val url = args.url
-
-
-
+        backBtn = binding.imageView4
+        webView = binding.webview
+        webView.settings.javaScriptEnabled = true
+        try {
+            webView.loadUrl(url)
+        }catch (e: Exception) {
+            Log.e(TAG, e.toString() )
+        }
+        backBtn.setOnClickListener {
+            findNavController().navigate(WebViewFragmentDirections.actionWebViewFragmentToHomeFragment())
+        }
     }
-
-
 }
