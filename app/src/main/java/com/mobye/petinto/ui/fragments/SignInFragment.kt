@@ -153,7 +153,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 val username = credential.displayName
                 val email = credential.id
 
-                Log.e(TAG,"login with $username and $email")
                 loadingDialog.show()
                 when {
                     idToken != null -> {
@@ -165,8 +164,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                                 if (task.isSuccessful) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithCredential:success")
-                                    Toast.makeText(requireContext(),"Login Successfully",
-                                        Toast.LENGTH_SHORT).show()
+
                                     val newUser = Customer().apply {
                                         id = firebaseAuth.uid!!
                                         this.name = username ?: ""
