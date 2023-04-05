@@ -14,8 +14,7 @@ import com.mobye.petinto.repository.ShoppingRepository
 import io.realm.kotlin.types.RealmUUID
 import kotlinx.coroutines.launch
 
-class InformationViewModel(val repository: InformationRepository) :
-    ViewModel(){
+class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
     val TAG = "InformationViewModel"
     val myPetList : MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
@@ -104,7 +103,6 @@ class InformationViewModel(val repository: InformationRepository) :
                 )
                 repository.createCustomerPickup(customerPickupLocal)
             }
-
             customerPickup.value = customerPickupLocal
         }
     }
@@ -155,6 +153,5 @@ class InformationViewModel(val repository: InformationRepository) :
             repository.updateDefaultDeliveryAddress(id)
         }
     }
-
 
 }

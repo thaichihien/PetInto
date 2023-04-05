@@ -42,7 +42,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(DEBUG_TAG,"onCreate")
-
     }
 
     override fun onCreateView(
