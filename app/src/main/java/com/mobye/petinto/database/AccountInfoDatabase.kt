@@ -24,7 +24,17 @@ object AccountInfoDatabase {
 
     fun saveUser(user: Customer) {
         realm.writeBlocking {
-            copyToRealm(user,UpdatePolicy.ALL)
+            val userDB = findLatest(realm.query<Customer>("id == $0",user.id).find().first())
+            if(userDB != null){
+                userDB.apply {
+                    name = user.name
+                    phone = user.phone
+                    image = user.image
+                }
+                copyToRealm(userDB,UpdatePolicy.ALL)
+            }else{
+                copyToRealm(user,UpdatePolicy.ALL)
+            }
         }
     }
 

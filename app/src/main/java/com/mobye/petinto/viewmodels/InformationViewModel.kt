@@ -27,20 +27,23 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     val deliveryList : MutableLiveData<List<DeliveryInfo>> by lazy { MutableLiveData(listOf()) }
     val defaultDeliveryAddress : MutableLiveData<DeliveryInfo?> by lazy { MutableLiveData(null) }
 
+    val customerPickupInfo get() = customerPickup.value!!
+    val deliveryAddressInfo get() = defaultDeliveryAddress.value!!
+
     fun addPet(pet : PetInfo){
-        var list = myPetList.value!!.toMutableList()
+        val list = myPetList.value!!.toMutableList()
         list.add(pet)
         myPetList.value = list
     }
 
     fun updatePet(pet : PetInfo, index: Int){
-        var list = myPetList.value!!.toMutableList()
+        val list = myPetList.value!!.toMutableList()
         list[index] = pet
         myPetList.value = list
     }
 
     fun deletePet(index : Int){
-        var list = myPetList.value!!.toMutableList()
+        val list = myPetList.value!!.toMutableList()
         list.removeAt(index)
         myPetList.value = list
     }

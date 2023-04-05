@@ -1,5 +1,7 @@
 package com.mobye.petinto.ui
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -10,6 +12,8 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.preferences.preferencesDataStore
@@ -29,8 +33,25 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
 
+fun Dialog.changeToFail(message : String){
+    val ivIcon = this.findViewById<ImageView>(R.id.ivIcon)
+    val tvResult = this.findViewById<TextView>(R.id.tvResult)
+    val tvMessage = this.findViewById<TextView>(R.id.tvMessage)
 
+    ivIcon.setImageResource(R.drawable.fail_icon)
+    tvResult.text = "Something Wrong..."
+    tvMessage.text = message
+}
 
+fun Dialog.changeToSuccess(message : String) {
+    val ivIcon = this.findViewById<ImageView>(R.id.ivIcon)
+    val tvResult = this.findViewById<TextView>(R.id.tvResult)
+    val tvMessage = this.findViewById<TextView>(R.id.tvMessage)
+
+    ivIcon.setImageResource(R.drawable.success_icon)
+    tvResult.text = "Success"
+    tvMessage.text = message
+}
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -42,6 +63,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     lateinit var binding : ActivityMainBinding
+
+    val dialog : AlertDialog by lazy {  AlertDialog.Builder(this)
+        .setCancelable(false)
+        .setView(R.layout.loading_dialog)
+        .create()
+    }
+
+    val notiDialog : Dialog by lazy {
+        Dialog(this).apply {
+            setCancelable(false)
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.custom_dialog)
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

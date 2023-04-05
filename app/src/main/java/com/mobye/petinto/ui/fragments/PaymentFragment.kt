@@ -1,5 +1,7 @@
 package com.mobye.petinto.ui.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,8 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.PaymentItemAdapter
 import com.mobye.petinto.databinding.FragmentPaymentBinding
+import com.mobye.petinto.models.apimodel.Order
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
+import com.mobye.petinto.ui.AuthenticationActivity
+import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.ui.changeToFail
+import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
@@ -27,8 +34,17 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
         ShoppingViewModelFactory(ShoppingRepository())
     }
-    private val informationRepository : InformationViewModel by activityViewModels{
+    private val informationViewModel : InformationViewModel by activityViewModels{
         InformationViewModelFactory(InformationRepository())
+    }
+
+    private val loadingDialog : AlertDialog by lazy {
+        val activity = requireActivity() as MainActivity
+        activity.dialog
+    }
+    private val notiDialog : Dialog by lazy {
+        val activity = requireActivity() as MainActivity
+        activity.notiDialog
     }
 
 
@@ -60,15 +76,15 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             binding.tvTotalMoney.text = "%,d đ".format(it)
         }
 
-        informationRepository.getCustomerPickup()
-        informationRepository.getDefaultDeliveryAddress(informationRepository.getUserID())
-        informationRepository.customerPickup.observe(viewLifecycleOwner){
+        informationViewModel.getCustomerPickup()
+        informationViewModel.getDefaultDeliveryAddress(informationViewModel.getUserID())
+        informationViewModel.customerPickup.observe(viewLifecycleOwner){
             it?.let {
                 Log.e("PaymentFragment",it.phone)
                 binding.tvCustomerInformation.text = it.toString()
             }
         }
-        informationRepository.defaultDeliveryAddress.observe(viewLifecycleOwner){
+        informationViewModel.defaultDeliveryAddress.observe(viewLifecycleOwner){
             it?.let {
                 binding.tvDeliveryAddress.text = it.address
             }
@@ -93,6 +109,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
 
             btnPurchase.setOnClickListener {
                 if(validatePayment()){
+                    loadingDialog.show()
                     sendPurchaseOrder()
                 }
             }
@@ -100,7 +117,30 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     }
 
     private fun sendPurchaseOrder() {
-        TODO("Not yet implemented")
+        val order = shoppingViewModel.createProductOrder(
+            id = informationViewModel.getUserID(),
+            customerPickup = informationViewModel.customerPickupInfo,
+            deliveryInfo = informationViewModel.deliveryAddressInfo,
+            isdelivery = binding.rbPickup.isChecked,
+            note = binding.etNote.text.toString().trim(),
+            paymentMethod = if(binding.rbMomo.isChecked) "momo" else "cash"
+        )
+
+        shoppingViewModel.sendProductOrder(order)
+        shoppingViewModel.response.observe(viewLifecycleOwner){response ->
+            loadingDialog.dismiss()
+            if(response.result){
+                notiDialog.changeToSuccess("Yay. It’s a nice order! It will arrive soon.")
+                notiDialog.show()
+                //move to order fragment
+            }else{
+                notiDialog.changeToFail("Something went wrong. Please, try again.")
+                notiDialog.show()
+            }
+        }
+
+
+
     }
 
     private fun validatePayment(): Boolean {

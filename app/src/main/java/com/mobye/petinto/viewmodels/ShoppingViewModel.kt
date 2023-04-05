@@ -1,5 +1,6 @@
 package com.mobye.petinto.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,9 +8,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.mobye.petinto.models.CartItem
-import com.mobye.petinto.models.PetInfo
-import com.mobye.petinto.models.Product
+import com.mobye.petinto.models.*
+import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.CartOrder
 import com.mobye.petinto.models.apimodel.Order
 import com.mobye.petinto.models.apimodel.ProductOrder
@@ -22,6 +22,8 @@ class ShoppingViewModel(
     private val repository: ShoppingRepository
 ) : ViewModel() {
 
+    private val TAG = "ShoppingViewModel"
+
     //ShoppingFragment
     var lostNetwork : Boolean = false
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
@@ -29,7 +31,7 @@ class ShoppingViewModel(
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
     //PaymentFragment
-
+    val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
 
 
     val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
@@ -203,6 +205,7 @@ class ShoppingViewModel(
     }
 
 
+
     fun createProductOrder(info : Order) : ProductOrder{
         val order: ProductOrder?
         val cart : MutableList<CartOrder> = mutableListOf()
@@ -219,6 +222,45 @@ class ShoppingViewModel(
         order.cart = cart
 
         return order
+    }
+
+    fun createProductOrder(id : String,customerPickup: CustomerPickup,deliveryInfo: DeliveryInfo,
+                           isdelivery : Boolean,note : String,paymentMethod : String) : ProductOrder{
+        val order: ProductOrder?
+        val cart : MutableList<CartOrder> = mutableListOf()
+
+        for(orderItem in paymentItemList.value!!){
+            cart.add(
+                CartOrder(
+                    orderItem.item!!.id,
+                    orderItem.quantity)
+            )
+        }
+
+        order = ProductOrder().apply {
+            customerID = id
+            customerName = customerPickup.name
+            customerPhone = customerPickup.phone
+            this.isdelivery = if(isdelivery) "yes" else "no"
+            address = if(isdelivery) deliveryInfo.address else ""
+            this.note = note
+            payment = paymentMethod
+            this.cart = cart
+        }
+
+        return order
+    }
+
+    fun sendProductOrder(order: ProductOrder){
+        viewModelScope.launch {
+            try {
+                val response = repository.sendProductOrder(order)
+                this@ShoppingViewModel.response.value = response.body()
+            }catch (e: Exception){
+                // no internet connection
+                Log.e(TAG,e.toString())
+            }
+        }
     }
 
 

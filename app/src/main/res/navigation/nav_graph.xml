@@ -190,5 +190,8 @@
         <argument
             android:name="url"
             app:argType="string" />
+        <action
+            android:id="@+id/actionWebViewFragmentToHomeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
