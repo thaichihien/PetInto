@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -59,9 +60,20 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         Log.e(DEBUG_TAG,"onViewCreated")
 
+        informationViewModel.user.observe(viewLifecycleOwner) {
+            binding.apply {
+                tvUserName.text = it.name
+                tvEmail.text = it.email
+                Glide.with(binding.root)
+                    .load(it.image)
+                    .placeholder(R.drawable.avatar_1)
+                    .into(imgAvatar)
+            }
+        }
+
         binding.apply {
-            navOrder.setOnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOrderFragment())
+            btnChange.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToChangeInforFragment())
             }
             navBooking.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToBookingFragment())
@@ -108,7 +120,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun logout() {
         if(firebaseAuth.currentUser != null){
             firebaseAuth.signOut()
-            informationViewModel.clearUser()
+//            informationViewModel.clearUser()
             val gotoMainIntent = Intent(this@ProfileFragment.requireContext(), AuthenticationActivity::class.java)
             gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(gotoMainIntent)

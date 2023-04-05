@@ -37,15 +37,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavView : BottomNavigationView
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
 
-
-
     private val informationViewModel : InformationViewModel by viewModels {
         InformationViewModelFactory(InformationRepository())
     }
-
-
-
-
 
     lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

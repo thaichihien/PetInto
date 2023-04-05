@@ -156,4 +156,8 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         }
     }
 
+    fun updateUserInfo(user : Customer){
+        this.user.value = user
+    }
+
 }

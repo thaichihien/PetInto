@@ -37,7 +37,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/field_background"
         android:elevation="5dp"
-        android:hint="Username"
+        android:hint="Full Name"
         android:paddingHorizontal="30dp"
         android:textColorHint="#CACACA"
         app:layout_constraintEnd_toEndOf="parent"
