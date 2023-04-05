@@ -1,10 +1,14 @@
 package com.mobye.petinto.repository
 
 import com.mobye.petinto.R
+import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.database.CartItemDatabase
 import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
+import com.mobye.petinto.models.apimodel.ApiResponse
+import com.mobye.petinto.models.apimodel.ProductOrder
+import retrofit2.Response
 
 class ShoppingRepository {
 
@@ -93,6 +97,9 @@ class ShoppingRepository {
     suspend fun clearCart(){
         CartItemDatabase.removeAll()
     }
+
+    suspend fun sendProductOrder(order : ProductOrder) : Response<ApiResponse<Any>>
+        = RetrofitInstance.api.sendProductOrder(order)
 
 
 }

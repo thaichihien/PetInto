@@ -326,6 +326,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
+                    android:id="@+id/etNote"
                     android:textSize="15sp"
                     android:layout_marginTop="16dp"
                     android:padding="20dp"
