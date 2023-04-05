@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.mobye.petinto.ui.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/actionHomeFragmentToWebViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shoppingFragment"
         android:name="com.mobye.petinto.ui.fragments.ShoppingFragment"
@@ -165,5 +169,14 @@
         <argument
             android:name="deliveryInfo"
             app:argType="com.mobye.petinto.models.DeliveryInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.mobye.petinto.ui.fragments.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" >
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>

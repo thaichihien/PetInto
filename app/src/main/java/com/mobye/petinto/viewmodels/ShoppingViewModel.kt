@@ -192,6 +192,17 @@ class ShoppingViewModel(
     fun isCartNotEmpty() : Boolean
         = cartItemList.value!!.isNotEmpty()
 
+    fun isCartHaveSelected() : Boolean{
+        for(cartItem in cartItemList.value!!){
+            if(cartItem.selected){
+                return true
+            }
+        }
+
+        return false
+    }
+
+
     fun createProductOrder(info : Order) : ProductOrder{
         val order: ProductOrder?
         val cart : MutableList<CartOrder> = mutableListOf()

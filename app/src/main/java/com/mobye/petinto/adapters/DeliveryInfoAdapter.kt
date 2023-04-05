@@ -56,7 +56,6 @@ class DeliveryInfoAdapter(
             selected = holder.absoluteAdapterPosition
         }
 
-        //Log.e("DeliveryInfoAdapter","button : ${holder.absoluteAdapterPosition} , selected : $selected, last selected : $lastSelected")
         binding.apply {
             tvAddress.text = deliveryInfo.address
             tvAddress.setOnClickListener{
@@ -65,17 +64,9 @@ class DeliveryInfoAdapter(
             rbDeliveryAddress.apply {
                 text = formatCustomerInfo(deliveryInfo)
                 isChecked = selected == holder.absoluteAdapterPosition
-//                if(lastSelected != selected){
-//                    //differ.currentList[position].isDefault = false
-//                    unChooseListener(holder.absoluteAdapterPosition)
-//                    lastSelected = selected
-//                }
+
                 setOnCheckedChangeListener { _,isChecked ->
-//                    selected = holder.absoluteAdapterPosition
-//                    if(lastSelected >= 0){
-//                        Log.e("DeliveryInfoAdapter","notifyItemChanged($lastSelected)")
-//                        notifyItemChanged(lastSelected)
-//                    }
+
                     if(isChecked){
                         selected = holder.absoluteAdapterPosition
                         chooseListener(holder.absoluteAdapterPosition)
