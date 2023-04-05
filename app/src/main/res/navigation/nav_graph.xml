@@ -58,9 +58,6 @@
         <action
             android:id="@+id/actionProfileFragmentToAddPetFragment"
             app:destination="@id/addPetFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_changeInforFragment"
-            app:destination="@id/changeInforFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -169,9 +166,4 @@
             android:name="deliveryInfo"
             app:argType="com.mobye.petinto.models.DeliveryInfo" />
     </fragment>
-    <fragment
-        android:id="@+id/changeInforFragment"
-        android:name="com.mobye.petinto.ui.fragments.ChangeInforFragment"
-        android:label="fragment_change_infor"
-        tools:layout="@layout/fragment_change_infor" />
 </navigation>

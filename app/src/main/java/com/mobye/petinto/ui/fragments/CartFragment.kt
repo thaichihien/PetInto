@@ -47,7 +47,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         activity.hideBottomNav()
         cartItemAdapter = CartItemAdapter (
             { _, i ->
-            shoppingViewModel.removeFromCart(i)
+                shoppingViewModel.removeFromCart(i)
             },
             {
                 shoppingViewModel.changeQuantity(it,1)
@@ -57,9 +57,6 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             },
             { isSelected,index ->
                 shoppingViewModel.changeTotal(index,isSelected)
-
-
-
                 if(binding.cbSelectAll.isChecked && !isSelected){
                     binding.cbSelectAll.isChecked = false
                     isSelectedAll = false
@@ -127,7 +124,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             }
 
             btnBuyCart.setOnClickListener {
-                if(shoppingViewModel.isCartNotEmpty()){
+                if(shoppingViewModel.isCartHaveSelected()){
                     val action = CartFragmentDirections.cartFragmentToPaymentFragment()
                     findNavController().navigate(action)
                 }else{
