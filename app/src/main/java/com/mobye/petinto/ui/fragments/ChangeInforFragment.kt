@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentAddPetBinding
 import com.mobye.petinto.databinding.FragmentChangeInforBinding
+import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
@@ -36,6 +39,23 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
     private val informationViewModel : InformationViewModel by activityViewModels {
         InformationViewModelFactory(InformationRepository())
     }
+
+    val currentUser: Customer = Customer()
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        // Callback is invoked after the user selects a media item or closes the
+        // photo picker.
+        if (uri != null) {
+            Glide.with(binding.root)
+                .load(uri)
+                .placeholder(R.drawable.avatar_1)
+                .into(binding.imgAvatar)
+            currentUser.image = uri.toString()
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,10 +84,20 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
                     .into(imgAvatar)
                 etUsername.setText(it.name)
                 etEmail.setText(it.email)
+                etPhoneNumber.setText(it.phone)
+                currentUser.image = it.image
+
+                imgAvatar.setOnClickListener {_ ->
+
+                    pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                }
 
                 btnChange.setOnClickListener {_ ->
-                    it.name = etUsername.text.toString().trim()
-                    it.phone = etPhoneNumber.text.toString().trim()
+                    currentUser.name = etUsername.text.toString().trim()
+                    currentUser.phone = etPhoneNumber.text.toString().trim()
+                    currentUser.email = it.email
+                    currentUser.id = it.id
+                    informationViewModel.updateUserInfo(currentUser)
                     findNavController().popBackStack()
                 }
 
