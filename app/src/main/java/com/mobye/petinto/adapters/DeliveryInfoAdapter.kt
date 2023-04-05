@@ -53,34 +53,35 @@ class DeliveryInfoAdapter(
 
 
         if(deliveryInfo.isDefault && selected < 0){
-            Log.e("DeliveryInfoAdapter","button : ${holder.absoluteAdapterPosition} is default")
             selected = holder.absoluteAdapterPosition
-            lastSelected = selected
         }
 
-        Log.e("DeliveryInfoAdapter","button : ${holder.absoluteAdapterPosition} , selected : $selected, last selected : $lastSelected")
+        //Log.e("DeliveryInfoAdapter","button : ${holder.absoluteAdapterPosition} , selected : $selected, last selected : $lastSelected")
         binding.apply {
             tvAddress.text = deliveryInfo.address
             tvAddress.setOnClickListener{
                 editListener(deliveryInfo)
             }
-            cbDeliveryAddress.apply {
+            rbDeliveryAddress.apply {
                 text = formatCustomerInfo(deliveryInfo)
                 isChecked = selected == holder.absoluteAdapterPosition
-                if(lastSelected != selected){
-                    //differ.currentList[position].isDefault = false
-                    unChooseListener(holder.absoluteAdapterPosition)
-                    lastSelected = selected
-                }
-                setOnClickListener {
-                    selected = holder.absoluteAdapterPosition
-                    if(lastSelected >= 0){
-                        Log.e("DeliveryInfoAdapter","notifyItemChanged($lastSelected)")
-                        notifyItemChanged(lastSelected)
+//                if(lastSelected != selected){
+//                    //differ.currentList[position].isDefault = false
+//                    unChooseListener(holder.absoluteAdapterPosition)
+//                    lastSelected = selected
+//                }
+                setOnCheckedChangeListener { _,isChecked ->
+//                    selected = holder.absoluteAdapterPosition
+//                    if(lastSelected >= 0){
+//                        Log.e("DeliveryInfoAdapter","notifyItemChanged($lastSelected)")
+//                        notifyItemChanged(lastSelected)
+//                    }
+                    if(isChecked){
+                        selected = holder.absoluteAdapterPosition
+                        chooseListener(holder.absoluteAdapterPosition)
                     }
 
 
-                    chooseListener(holder.absoluteAdapterPosition)
                 }
             }
         }

@@ -49,6 +49,7 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
         deliveryInfoAdapter = DeliveryInfoAdapter (
             {
                 selectedIndex = it
+                deliveryInfoAdapter.notifyDataSetChanged()
                 //informationViewModel.setDefaultDeliveryAddress(selectedIndex,true)
             },
             {
@@ -63,7 +64,6 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
 
         informationViewModel.getAllDeliveryAddress(informationViewModel.getUserID())
         informationViewModel.deliveryList.observe(viewLifecycleOwner){
-            Log.e("DeliveryAddressFragment","deliveryList submit")
             deliveryInfoAdapter.differ.submitList(it)
         }
 
