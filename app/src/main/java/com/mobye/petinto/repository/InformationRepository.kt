@@ -45,6 +45,9 @@ class InformationRepository {
     suspend fun sendUser(user: Customer) : Response<ApiResponse<Any>>
         = RetrofitInstance.api.sendUser(user)
 
+    suspend fun sendGoogleUser(user: Customer) : Response<ApiResponse<Any>>
+            = RetrofitInstance.api.sendUser(user,true)
+
     suspend fun getUser(id : String) : Response<ApiResponse<Customer>>
         = RetrofitInstance.api.getUser(id)
 

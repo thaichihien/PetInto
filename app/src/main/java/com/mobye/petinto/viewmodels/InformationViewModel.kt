@@ -63,16 +63,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
     fun getUserID() = user.value!!.id
 
-    fun addUser(user : Customer){
-        // TODO find user ID in realm
-
-
-        // exists -> get this user
-        // else -> create new
-
-        this.user.value = user
-    }
-
     fun clearUser(){
         user.value = null
     }
@@ -88,6 +78,18 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
          }catch (e: Exception){
              // no internet connection
          }
+        }
+    }
+
+    fun sendGoogleUser(user: Customer){
+        // send id,email,username
+        viewModelScope.launch {
+            try {
+                val response = repository.sendGoogleUser(user)
+                this@InformationViewModel.response.value = response.body()
+            }catch (e: Exception){
+                // no internet connection
+            }
         }
     }
 

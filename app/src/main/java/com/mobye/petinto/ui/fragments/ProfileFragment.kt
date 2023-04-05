@@ -20,6 +20,7 @@ import com.mobye.petinto.R
 import com.mobye.petinto.adapters.CarouselAdapter
 import com.mobye.petinto.databinding.FragmentProfileBinding
 import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
@@ -108,7 +109,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if(firebaseAuth.currentUser != null){
             firebaseAuth.signOut()
             informationViewModel.clearUser()
-            val gotoMainIntent = Intent(this@ProfileFragment.requireContext(), MainActivity::class.java)
+            val gotoMainIntent = Intent(this@ProfileFragment.requireContext(), AuthenticationActivity::class.java)
             gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(gotoMainIntent)
         }

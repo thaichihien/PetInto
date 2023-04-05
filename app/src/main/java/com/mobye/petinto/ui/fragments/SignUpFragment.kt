@@ -103,6 +103,9 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                     }
 
                 }else{
+                    if(task.exception.toString().contentEquals("email-already-in-use")){
+                        Log.e("SignUp","Email already in use")
+                    }
                     Log.e("SignUp",task.exception.toString())
                 }
             }

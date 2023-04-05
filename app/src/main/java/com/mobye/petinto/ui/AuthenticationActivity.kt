@@ -19,6 +19,7 @@ class AuthenticationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthenticationBinding
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
     val dialog : AlertDialog by lazy {  AlertDialog.Builder(this)
+        .setCancelable(false)
         .setView(R.layout.loading_dialog)
         .create()
     }

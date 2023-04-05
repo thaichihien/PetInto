@@ -13,8 +13,8 @@
         android:title="@string/spa"
         android:icon="@drawable/spa_btn_icon"/>
     <item
-        android:id="@+id/hotelFragment"
-        android:title="@string/hotel"
+        android:id="@+id/orderFragment"
+        android:title="@string/pet"
         android:icon="@drawable/hotel_btn_icon"/>
     <item
         android:id="@+id/profileFragment"

@@ -18,7 +18,8 @@ interface PetIntoApi {
 
     @POST("/user/add")
     suspend fun sendUser(
-        @Body user : Customer
+        @Body user : Customer,
+        @Query("google") isGoogle: Boolean = false
     ) : Response<ApiResponse<Any>>
 
     @GET("/user/info")
