@@ -80,20 +80,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             )
         )
 
-        advertisement1 = binding.advertisementBtn1
-        Glide.with(this).load(advertisements[0].image).into(advertisement1)
-        advertisement2 = binding.advertisementBtn2
-        Glide.with(this).load(advertisements[1].image).into(advertisement2)
-        advertisement3 = binding.advertisementBtn3
-        Glide.with(this).load(advertisements[2].image).into(advertisement3)
-        advertisement4 = binding.advertisementBtn4
-        Glide.with(this).load(advertisements[3].image).into(advertisement4)
-        advertisement5 = binding.advertisementBtn5
-        Glide.with(this).load(advertisements[4].image).into(advertisement5)
-        advertisement6 = binding.advertisementBtn6
-        Glide.with(this).load(advertisements[5].image).into(advertisement6)
-        advertisement7 = binding.advertisementBtn7
-        Glide.with(this).load(advertisements[6].image).into(advertisement7)
+        Glide.with(this).load(advertisements[0].image).into(binding.advertisementBtn1)
+        Glide.with(this).load(advertisements[1].image).into(binding.advertisementBtn2)
+        Glide.with(this).load(advertisements[2].image).into(binding.advertisementBtn3)
+        Glide.with(this).load(advertisements[3].image).into(binding.advertisementBtn4)
+        Glide.with(this).load(advertisements[4].image).into(binding.advertisementBtn5)
+        Glide.with(this).load(advertisements[5].image).into(binding.advertisementBtn6)
+        Glide.with(this).load(advertisements[6].image).into(binding.advertisementBtn7)
 
         binding.apply {
             advertisementBtn1.setOnClickListener {
