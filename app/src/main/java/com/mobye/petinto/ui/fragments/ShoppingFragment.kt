@@ -42,8 +42,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         ShoppingViewModelFactory(ShoppingRepository())
     }
 
-    private lateinit var testList : MutableList<Product>
-    private lateinit var shoppingItemAdapter: ShoppingItemAdapter
     private lateinit var productAdapter : ProductItemAdapter
 
 
@@ -70,24 +68,10 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-        shoppingItemAdapter = ShoppingItemAdapter(
-            {
-                val action = ShoppingFragmentDirections.navigateToDetailFragment(it)
-                findNavController().navigate(action)
-            },
-            { item,quantity ->
-                Toast.makeText(requireContext(),"${item.name} is added to your cart",Toast.LENGTH_SHORT).show()
-                shoppingViewModel.addToCart(item,quantity)
-            }
-        )
 
         productAdapter = ProductItemAdapter(
             {
@@ -107,7 +91,11 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 //        }
 
 
-
+        if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
+            Log.e("RETRY_SHOPPING","yes")
+            productAdapter.retry()
+            shoppingViewModel.lostNetwork = false
+        }
 
         lifecycleScope.launchWhenCreated {
             shoppingViewModel.productItemList.collectLatest {
@@ -122,17 +110,14 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
         }
 
-        if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
-            Log.e("RETRY_SHOPPING","yes")
-            productAdapter.retry()
-            shoppingViewModel.lostNetwork = false
-        }
-
         productAdapter.addLoadStateListener {loadState ->
             if(loadState.refresh is LoadState.Loading ||
                 loadState.append is LoadState.Loading){
                 if(firstTimeLoad){
-                    binding.loadingLayout.isVisible = true
+                    binding.loadingLayout.apply {
+                        isVisible =true
+                        startShimmer()
+                    }
                 }
 
             }else{
