@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentDeliveryAddressBinding
 import com.mobye.petinto.databinding.FragmentWebViewBinding
+import com.mobye.petinto.ui.MainActivity
 
 
 class WebViewFragment : Fragment(R.layout.fragment_web_view) {
@@ -44,6 +45,8 @@ class WebViewFragment : Fragment(R.layout.fragment_web_view) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = activity as MainActivity
+        activity.hideBottomNav()
         val url = args.url
         backBtn = binding.imageView4
         webView = binding.webview

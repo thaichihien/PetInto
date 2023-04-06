@@ -20,6 +20,7 @@ import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentHomeBinding
 import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Advertisement
+import com.mobye.petinto.ui.MainActivity
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -46,6 +47,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = activity as MainActivity
+        activity.showBottomNav()
         val advertisements = listOf(
             Advertisement(
                 image = "https://baovechomeo.com/wp-content/uploads/2019/05/HAY-BAO-VE-CHO-MEO-1024x576.jpg",
