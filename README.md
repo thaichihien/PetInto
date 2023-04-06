@@ -63,6 +63,20 @@
 - [ ] Users can schedule health check-ups and grooming services for their pets
 - [ ] The app will have a news section where customers can stay updated on pet-related information and knowledge
 - [ ]  Customers and shop owners can chat with each other
+## 📚Project Stack
+- **MVVM Architecture** 
+- **Navigation Component**
+- **ViewBinding**
+- **ViewModel**
+- **LiveData**
+- **Coroutine**
+- **Retrofit**
+- **Glide**
+- **Paging**
+- **Firebase**
+- **Node JS**
+- **PostgresSQL**
+- **Realm**
 <hr>
 
 **(Vietnamese for now)**
@@ -81,6 +95,7 @@ Kiểm tra các thư viện/framework ở **Gradle Scripts** > ***build.gradle (
 - [**Realm**](https://realm.io/)
 - [**Paging**](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
 - [**Firebase Auth**](https://firebase.google.com/docs/auth/android/start)
+- [**Paging**](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
 
 ## 📋Project Assignment
 Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tên tương ứng), chức năng của Fragment đó. Các tài nguyên chung (dữ liệu người dùng,database,...) thì bàn với nhóm và sẽ được đặt ở **MainActivity.kt**
@@ -91,7 +106,7 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - **ShoppingFragment** Giao diện mua hàng
   - Người làm: Hiện
 - **SpaFragment + HotelFragment** : Giao diện spa + hotel
-  - Người làm :
+  - Người làm : Niên
 - **ProfileFragment** : Giao diện hồ sơ người dùng 
   - Người làm : Dũng
 
@@ -122,6 +137,23 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - **ShoppingFragment** : Hiện
     - Lấy dữ liệu shop từ API
     - Sử dụng phân trang Paging
+  
+### 📌 Assignment 3:
+ - **Home** : Quỳnh
+    - Lấy dữ liệu news từ API:
+      - Viết hàm gọi API ở **HomeRepository**
+      - Khai báo MutableLiveData ở **HomeViewModel**
+      - Viết hàm lấy dữ liệu ở **HomeViewModel**
+      - Sử dụng **HomeViewModel** ở ***HomeFragment***
+  - **Spa/Hotel** : Niên
+    - Thiết kế màn hình danh sách booking, chi tiết booking
+    - Kiểm tra dữ liệu nhập và gửi lịch đặt đến API
+  - **Order**: Dũng
+    - Thực hiện lấy dữ liệu người dùng, (customerPickup), địa chỉ giao (deliveryAddress) ở **PetPaymentFragment**
+    - Tham khảo và lấy các hàm gọi từ **PaymentFragment**
+  - **Shopping** : Hiện
+    - Thực hiện thanh toán (TH cash)
+    - Thực hiện thanh toán Zalo Pay
 
 ## 📌Project Notes
 - Trước khi làm **PULL**, làm xong một chức năng **PUSH**
@@ -183,8 +215,8 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - [ ] Giao diện Admin? (cần một app riêng biệt)
 
 ### 💻 Web
-- [ ] Set up server Node js
-- [ ] Xây dựng CSDL (PostgresSQL)
+- [X] Set up server Node js
+- [X] Xây dựng CSDL (PostgresSQL)
 - [ ] Xây dựng API
-- [ ] Deploy web
+- [X] Deploy web
 
