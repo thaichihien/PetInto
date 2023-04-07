@@ -75,7 +75,7 @@
 - **Paging**
 - **Firebase**
 - **Node JS**
-- **PostgresSQL**
+- **PostgreSQL**
 - **Realm**
 <hr>
 
