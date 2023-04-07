@@ -110,10 +110,9 @@ class ShoppingViewModel(
 
     fun removeFromCart(index : Int){
         val cartList = cartItemList.value!!.toMutableList()
-
-        cartList.removeAt(index)
+        val itemRemove = cartList.removeAt(index)
         viewModelScope.launch{
-            repository.deleteCartItem(cartList[index])
+            repository.deleteCartItem(itemRemove)
         }
 
 
@@ -188,7 +187,7 @@ class ShoppingViewModel(
         viewModelScope.launch{
             repository.clearCart()
         }
-        cartItemList.value = cartList
+        cartItemList.value = listOf()
     }
 
     fun isCartNotEmpty() : Boolean

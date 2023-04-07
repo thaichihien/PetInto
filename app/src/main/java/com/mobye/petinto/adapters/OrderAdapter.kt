@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chauthai.swipereveallayout.ViewBinderHelper
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.OrderItemListBinding
 import com.mobye.petinto.models.PetInfo
@@ -31,11 +30,6 @@ class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Ad
 
     var differ = AsyncListDiffer(this, differCallback)
 
-    private val binderHelper : ViewBinderHelper by lazy {
-        val setting = ViewBinderHelper()
-        setting.setOpenOnlyOne(true)
-        setting
-    }
 
     inner class OrderViewHolder : RecyclerView.ViewHolder(binding.root){
     }

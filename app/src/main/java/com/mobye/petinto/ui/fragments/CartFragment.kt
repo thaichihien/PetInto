@@ -87,7 +87,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                         clearAllCart()
                         resetTotal()
                     }
-                    cartItemAdapter.notifyDataSetChanged()
+                    lifecycleScope.launch(Dispatchers.Main){
+                        cartItemAdapter.notifyDataSetChanged()
+                    }
                 }
                 setNegativeButton("No") { _, _ ->
                     //nothing

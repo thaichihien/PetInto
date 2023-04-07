@@ -112,7 +112,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     .addOnFailureListener(requireActivity()) { e ->
                         // No saved credentials found. Launch the One Tap sign-up flow, or
                         // do nothing and continue presenting the signed-out UI.
-                        e.let { it1 -> Log.d(TAG, e.toString()) }
+                        e.let { _ -> Log.d(TAG, e.toString()) }
                     }
             }
         }

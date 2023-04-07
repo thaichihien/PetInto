@@ -49,7 +49,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e(DEBUG_TAG,"lostNetwork : ${shoppingViewModel.lostNetwork}")
 
     }
 
@@ -71,7 +70,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        Log.e(DEBUG_TAG,"onViewCreated")
 
         productAdapter = ProductItemAdapter(
             {
@@ -100,19 +99,20 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         lifecycleScope.launchWhenCreated {
             shoppingViewModel.productItemList.collectLatest {
                 productAdapter.submitData(it)
-
             }
         }
 
         lifecycleScope.launchWhenCreated {
             productAdapter.loadStateFlow.collect{loadState ->
                 binding.loadingBar.isVisible = loadState.source.append is LoadState.Loading
+                //binding.refreshLayout.isRefreshing = loadState.source.append is LoadState.Loading
             }
         }
 
         productAdapter.addLoadStateListener {loadState ->
             if(loadState.refresh is LoadState.Loading ||
                 loadState.append is LoadState.Loading){
+                Log.e(DEBUG_TAG,"firstTimeLoad : $firstTimeLoad")
                 if(firstTimeLoad){
                     binding.loadingLayout.apply {
                         isVisible =true
@@ -120,8 +120,12 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                     }
                 }
 
+
             }else{
                 if(firstTimeLoad){
+                    if(!(requireActivity() as MainActivity).hasInternetConnection()){
+                        // show error at empty fragment
+                    }
                     binding.loadingLayout.isVisible = false
                     firstTimeLoad = false
                 }
@@ -142,11 +146,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         }
 
 
-
-
-
-        //shoppingItemAdapter.differ.submitList(testList)
-
         binding.apply {
             rvShoppingItem.apply {
                 layoutManager = GridLayoutManager(requireContext(),2)
@@ -154,6 +153,17 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
             btnCartShopping.setOnClickListener {
                 findNavController().navigate(ShoppingFragmentDirections.shoppingFragmentToCartFragment())
+            }
+            refreshLayout.setOnRefreshListener {
+                if((requireActivity() as MainActivity).hasInternetConnection()){
+                    productAdapter.retry()
+                    //productAdapter.refresh()
+
+                }else{
+
+                }
+                binding.refreshLayout.isRefreshing = false
+
             }
         }
 
@@ -166,7 +176,14 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         super.onResume()
         val activity = activity as MainActivity
         activity.showBottomNav()
+        Log.e(DEBUG_TAG,"onResume")
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e(DEBUG_TAG,"onStart")
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
