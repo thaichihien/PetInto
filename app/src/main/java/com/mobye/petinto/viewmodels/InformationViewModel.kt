@@ -60,7 +60,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     fun deletePet(pet: PetInfo,index : Int){
         val list = myPetList.value!!.toMutableList()
         list.removeAt(index)
-        pet.idLocal = list[index].idLocal
         viewModelScope.launch {
             repository.deletePet(pet)
         }

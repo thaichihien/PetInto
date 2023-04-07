@@ -162,7 +162,7 @@ object AccountInfoDatabase {
     fun deletePet(pet: PetInfo){
         realm.writeBlocking {
             val petDB = try {
-                findLatest(realm.query<PetInfo>("idLocal == $0",pet.id).find().first())
+                findLatest(realm.query<PetInfo>("idLocal == $0",pet.idLocal).find().first())
             }catch(_ : Exception) {
                 null
             }

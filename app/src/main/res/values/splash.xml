@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/main_light</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/logo_app</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_chat</item>
         <item name="postSplashScreenTheme">@style/Theme.PetInto</item>
     </style>
     
