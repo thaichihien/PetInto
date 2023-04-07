@@ -1,5 +1,6 @@
 package com.mobye.petinto.api
 
+import com.mobye.petinto.models.Advertisement
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.models.apimodel.ApiResponse
@@ -17,6 +18,10 @@ interface PetIntoApi {
     suspend fun getProducts(
         @Query("page") page: Int
     ) : Response<ApiResponse<List<Product>>>
+
+    @GET("/data/news")
+    suspend fun getNews(
+    ) : Response<ApiResponse<List<Advertisement>>>
 
     @POST("/user/add")
     suspend fun sendUser(

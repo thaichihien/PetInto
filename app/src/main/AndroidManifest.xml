@@ -18,7 +18,7 @@
         <activity
             android:name=".ui.AuthenticationActivity"
             android:exported="true"
-            android:theme="@style/Theme.PetInto.NoActionBar" >
+            android:theme="@style/Theme.App.Splash" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

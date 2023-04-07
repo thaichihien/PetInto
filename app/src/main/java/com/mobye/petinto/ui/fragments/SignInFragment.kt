@@ -29,6 +29,7 @@ import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.utils.Constants.WEB_CLIENT
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
 
@@ -73,7 +74,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
                     // Your server's client ID, not your Android client ID.
-                    .setServerClientId(getString(R.string.web_client))
+                    .setServerClientId(WEB_CLIENT)
                     // Only show accounts previously used to sign in.
                     .setFilterByAuthorizedAccounts(false)
                     .build())

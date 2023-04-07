@@ -41,13 +41,14 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     private val args : AddPetFragmentArgs by navArgs()
 
     private lateinit var currentPet : PetInfo
+    private  var currentIndex : Int = -1
     private val carouselViewModel : InformationViewModel by activityViewModels {
         InformationViewModelFactory(InformationRepository())
     }
 
     private var newPet : PetInfo = PetInfo()
 
-    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         // Callback is invoked after the user selects a media item or closes the
         // photo picker.
         if (uri != null) {
@@ -68,6 +69,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         if(args.updatePet.name!=""){
             isEditing = true
             currentPet= args.updatePet
+            currentIndex = args.indexCurrentPet
         }
     }
 
@@ -95,7 +97,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
                 val newPet = createPet()
 
                 if(isEditing){
-                    carouselViewModel.updatePet(newPet, 0)
+                    carouselViewModel.updatePet(newPet,currentIndex)
                 }
                 else{
 
@@ -143,7 +145,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         newPet.type = binding.edtType.text.toString().trim()
         newPet.age = binding.edtAge.text.toString().trim().toInt()
         newPet.variety = binding.edtVariety.text.toString().trim()
-        newPet.weight = binding.edtWeight.text.toString().trim().toDouble()
+        newPet.weight = binding.edtWeight.text.toString().trim()
         newPet.color = binding.edtColor.text.toString().trim()
         newPet.gender = if(binding.rbMale.isSelected){
             "Male"
@@ -153,6 +155,11 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
             "Other"
         }
         newPet.vaccine = binding.edtVaccine.text.toString().trim().toInt()
+        if(isEditing){
+            newPet.apply {
+                id = currentPet.id
+            }
+        }
 
         return newPet
     }

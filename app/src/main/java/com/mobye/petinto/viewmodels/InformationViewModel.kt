@@ -12,6 +12,7 @@ import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
 import io.realm.kotlin.types.RealmUUID
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class InformationViewModel(val repository: InformationRepository) : ViewModel(){
@@ -30,21 +31,39 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     val customerPickupInfo get() = customerPickup.value!!
     val deliveryAddressInfo get() = defaultDeliveryAddress.value!!
 
+
+    fun getPetList(){
+        viewModelScope.launch() {
+            myPetList.value = repository.getPetList(getUserID())
+        }
+    }
     fun addPet(pet : PetInfo){
         val list = myPetList.value!!.toMutableList()
+        pet.customerID = getUserID()
         list.add(pet)
-        myPetList.value = list
+        viewModelScope.launch {
+            repository.updatePet(pet)
+        }
+        //myPetList.value = list
     }
 
     fun updatePet(pet : PetInfo, index: Int){
         val list = myPetList.value!!.toMutableList()
-        list[index] = pet
-        myPetList.value = list
+        pet.customerID = getUserID()
+        pet.idLocal = list[index].idLocal
+        viewModelScope.launch {
+            repository.updatePet(pet)
+        }
+        //myPetList.value = list
     }
 
-    fun deletePet(index : Int){
+    fun deletePet(pet: PetInfo,index : Int){
         val list = myPetList.value!!.toMutableList()
         list.removeAt(index)
+        pet.idLocal = list[index].idLocal
+        viewModelScope.launch {
+            repository.deletePet(pet)
+        }
         myPetList.value = list
     }
 
@@ -65,12 +84,12 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
                 }else{
                     //505 server error
-                    Log.e(TAG,response.body()!!.error)
+                    Log.e(TAG, response.body()!!.error)
                 }
 
             }catch (e: Exception){
                 // no internet connection
-                Log.e(TAG,e.toString())
+                Log.e(TAG,"73 $e")
             }
         }
 
@@ -172,6 +191,10 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     }
 
     fun updateUserInfo(user : Customer){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.saveUserLocal(user)
+        }
+
         this.user.value = user
     }
 
