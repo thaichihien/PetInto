@@ -146,7 +146,7 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
       - **Deadline : 13/04/20230** 
   - **Spa/Hotel** : Niên
     - Lập trình giao diện màn hình danh sách booking, chi tiết booking
-      - **Deadline : 11/04/20230**
+      - **Deadline : 12/04/20230**
     - Kiểm tra dữ liệu nhập và gửi lịch đặt đến API.
       - **Deadline : 15/04/20230**
   - **Order**: Dũng
