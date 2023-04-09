@@ -172,7 +172,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                                         this.email = email
                                     }
                                     informationViewModel.sendGoogleUser(newUser)
-                                    informationViewModel.response.observe(viewLifecycleOwner){response ->
+                                    informationViewModel.responseAPI.observe(viewLifecycleOwner){response ->
                                         loadingDialog.dismiss()
                                         if(response.result){
                                             goToMainActivity()

@@ -89,7 +89,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                         this.email = email
                     }
                     informationViewModel.sendUser(newUser)
-                    informationViewModel.response.observe(viewLifecycleOwner){response ->
+                    informationViewModel.responseAPI.observe(viewLifecycleOwner){response ->
                         loadingDialog.dismiss()
                         if(response.result){
                             val gotoMainIntent = Intent(this@SignUpFragment.requireContext(), MainActivity::class.java)

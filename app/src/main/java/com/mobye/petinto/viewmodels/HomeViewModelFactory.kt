@@ -8,7 +8,7 @@ class HomeViewModelFactory(private val repository: HomeRepository)
     : ViewModelProvider.NewInstanceFactory(){
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(InformationViewModel::class.java)){
+        if(modelClass.isAssignableFrom(HomeViewModel::class.java)){
             return HomeViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown View Model")
