@@ -6,4 +6,12 @@ class ApiResponse<T>(
     var error : String,
     var body : T? = null
 ) {
+    companion object{
+        fun convertToAny(response: ApiResponse<*>)
+            = ApiResponse<Any>(
+                result = response.result,
+                reason = response.reason,
+                error = response.error
+            )
+    }
 }

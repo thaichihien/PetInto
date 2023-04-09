@@ -20,7 +20,7 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     val TAG = "InformationViewModel"
     val myPetList : MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
     val user : MutableLiveData<Customer> by lazy { MutableLiveData() }
-    val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
+    val responseAPI : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
 
 
     //Payment
@@ -83,7 +83,9 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
                 }else{
                     //505 server error
+                    this@InformationViewModel.responseAPI.value = ApiResponse.convertToAny(response.body()!!)
                     Log.e(TAG, response.body()!!.error)
+
                 }
 
             }catch (e: Exception){
@@ -107,7 +109,7 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         viewModelScope.launch {
          try {
              val response = repository.sendUser(user)
-             this@InformationViewModel.response.value = response.body()
+             this@InformationViewModel.responseAPI.value = response.body()
          }catch (e: Exception){
              // no internet connection
          }
@@ -119,7 +121,7 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         viewModelScope.launch {
             try {
                 val response = repository.sendGoogleUser(user)
-                this@InformationViewModel.response.value = response.body()
+                this@InformationViewModel.responseAPI.value = response.body()
             }catch (e: Exception){
                 // no internet connection
             }
