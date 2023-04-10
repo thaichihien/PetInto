@@ -46,7 +46,6 @@ object  CartItemDatabase {
             val cartItemDB = findLatest(realm.query<CartItem>("item.id == $0", cartItem.item!!.id).find().first())
             cartItemDB?.apply {
                quantity = cartItem.quantity
-                selected = cartItem.selected
             }
         }
     }
