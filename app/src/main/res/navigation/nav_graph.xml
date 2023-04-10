@@ -153,6 +153,9 @@
         <argument
             android:name="updatePet"
             app:argType="com.mobye.petinto.models.PetInfo" />
+        <argument
+            android:name="indexCurrentPet"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/customerFragment"
@@ -194,4 +197,9 @@
             android:id="@+id/actionWebViewFragmentToHomeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.mobye.petinto.ui.fragments.ServiceFragment"
+        android:label="fragment_service"
+        tools:layout="@layout/fragment_service" />
 </navigation>

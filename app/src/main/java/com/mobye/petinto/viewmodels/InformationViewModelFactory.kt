@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mobye.petinto.repository.InformationRepository
 
+@Suppress("UNCHECKED_CAST")
 class InformationViewModelFactory (private val repository: InformationRepository)
     :ViewModelProvider.NewInstanceFactory(){
 

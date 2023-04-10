@@ -67,7 +67,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private fun register() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
-        val confirmPassword = binding.etConfirmPassword.text.toString().trim()
         val name = binding.etUsername.text.toString().trim()
 
         if(!validate()) return
@@ -90,7 +89,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                         this.email = email
                     }
                     informationViewModel.sendUser(newUser)
-                    informationViewModel.response.observe(viewLifecycleOwner){response ->
+                    informationViewModel.responseAPI.observe(viewLifecycleOwner){response ->
                         loadingDialog.dismiss()
                         if(response.result){
                             val gotoMainIntent = Intent(this@SignUpFragment.requireContext(), MainActivity::class.java)

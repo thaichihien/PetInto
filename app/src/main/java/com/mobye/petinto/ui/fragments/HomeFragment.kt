@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,26 +15,33 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentHomeBinding
 import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Advertisement
+import com.mobye.petinto.repository.HomeRepository
+import com.mobye.petinto.repository.ShoppingRepository
+import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.viewmodels.HomeViewModel
+import com.mobye.petinto.viewmodels.HomeViewModelFactory
+import com.mobye.petinto.viewmodels.ShoppingViewModel
+import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import kotlinx.coroutines.flow.collectLatest
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-    private lateinit var advertisement1: ImageButton
-    private lateinit var advertisement2: ImageButton
-    private lateinit var advertisement3: ImageButton
-    private lateinit var advertisement4: ImageButton
-    private lateinit var advertisement5: ImageButton
-    private lateinit var advertisement6: ImageButton
-    private lateinit var advertisement7: ImageButton
 
+    private val TAG = "HomeFragment"
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    private val homeViewModel : HomeViewModel by viewModels {
+        HomeViewModelFactory(HomeRepository())
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,6 +54,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = activity as MainActivity
+        activity.showBottomNav()
+
+        homeViewModel.getNews()
+        lifecycleScope.launchWhenCreated {
+            homeViewModel.newsList.collectLatest {
+                Log.e(TAG,"newList = ${it.size}")
+
+                // TODO get news list here
+            }
+        }
+
+
+
         val advertisements = listOf(
             Advertisement(
                 image = "https://baovechomeo.com/wp-content/uploads/2019/05/HAY-BAO-VE-CHO-MEO-1024x576.jpg",
@@ -77,20 +99,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             )
         )
 
-        advertisement1 = binding.advertisementBtn1
-        Glide.with(this).load(advertisements[0].image).into(advertisement1)
-        advertisement2 = binding.advertisementBtn2
-        Glide.with(this).load(advertisements[1].image).into(advertisement2)
-        advertisement3 = binding.advertisementBtn3
-        Glide.with(this).load(advertisements[2].image).into(advertisement3)
-        advertisement4 = binding.advertisementBtn4
-        Glide.with(this).load(advertisements[3].image).into(advertisement4)
-        advertisement5 = binding.advertisementBtn5
-        Glide.with(this).load(advertisements[4].image).into(advertisement5)
-        advertisement6 = binding.advertisementBtn6
-        Glide.with(this).load(advertisements[5].image).into(advertisement6)
-        advertisement7 = binding.advertisementBtn7
-        Glide.with(this).load(advertisements[6].image).into(advertisement7)
+        Glide.with(this).load(advertisements[0].image).into(binding.advertisementBtn1)
+        Glide.with(this).load(advertisements[1].image).into(binding.advertisementBtn2)
+        Glide.with(this).load(advertisements[2].image).into(binding.advertisementBtn3)
+        Glide.with(this).load(advertisements[3].image).into(binding.advertisementBtn4)
+        Glide.with(this).load(advertisements[4].image).into(binding.advertisementBtn5)
+        Glide.with(this).load(advertisements[5].image).into(binding.advertisementBtn6)
+        Glide.with(this).load(advertisements[6].image).into(binding.advertisementBtn7)
 
         binding.apply {
             advertisementBtn1.setOnClickListener {

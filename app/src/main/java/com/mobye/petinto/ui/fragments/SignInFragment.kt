@@ -23,12 +23,12 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.databinding.FragmentSignInBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.utils.Secret.WEB_CLIENT
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
 
@@ -73,7 +73,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
                     // Your server's client ID, not your Android client ID.
-                    .setServerClientId(getString(R.string.web_client))
+                    .setServerClientId(WEB_CLIENT)
                     // Only show accounts previously used to sign in.
                     .setFilterByAuthorizedAccounts(false)
                     .build())
@@ -111,7 +111,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     .addOnFailureListener(requireActivity()) { e ->
                         // No saved credentials found. Launch the One Tap sign-up flow, or
                         // do nothing and continue presenting the signed-out UI.
-                        e.let { it1 -> Log.d(TAG, e.toString()) }
+                        e.let { _ -> Log.d(TAG, e.toString()) }
                     }
             }
         }
@@ -171,7 +171,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                                         this.email = email
                                     }
                                     informationViewModel.sendGoogleUser(newUser)
-                                    informationViewModel.response.observe(viewLifecycleOwner){response ->
+                                    informationViewModel.responseAPI.observe(viewLifecycleOwner){response ->
                                         loadingDialog.dismiss()
                                         if(response.result){
                                             goToMainActivity()

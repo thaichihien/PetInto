@@ -87,7 +87,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                         clearAllCart()
                         resetTotal()
                     }
-                    cartItemAdapter.notifyDataSetChanged()
+                    lifecycleScope.launch(Dispatchers.Main){
+                        cartItemAdapter.notifyDataSetChanged()
+                    }
                 }
                 setNegativeButton("No") { _, _ ->
                     //nothing
@@ -124,12 +126,12 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             }
 
             btnBuyCart.setOnClickListener {
-                if(shoppingViewModel.isCartHaveSelected()){
+
+                if(validate()){
                     val action = CartFragmentDirections.cartFragmentToPaymentFragment()
                     findNavController().navigate(action)
-                }else{
-                    // TODO show error should choose at least one item
                 }
+
 
             }
 
@@ -137,6 +139,21 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     }
 
+    private fun validate(): Boolean {
+        var isValidated = true
+
+        if(!(requireActivity() as MainActivity).hasInternetConnection()){
+            isValidated = false
+            // TODO show network error
+        }
+
+
+        if(!shoppingViewModel.isCartHaveSelected()){
+            // TODO show error should choose at least one item
+            isValidated = false
+        }
+        return isValidated
+    }
 
 
     override fun onDestroyView() {

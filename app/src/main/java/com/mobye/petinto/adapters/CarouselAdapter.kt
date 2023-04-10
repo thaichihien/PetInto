@@ -14,7 +14,7 @@ import com.mobye.petinto.models.Product
 
 class CarouselAdapter(
     private val updateListener: (PetInfo, Int) -> Unit,
-    private val deleteListener: (Int) -> Unit
+    private val deleteListener: (PetInfo,Int) -> Unit
 ) :
     RecyclerView.Adapter<CarouselAdapter.CarouseItemViewHolder>() {
 
@@ -73,7 +73,7 @@ class CarouselAdapter(
             }
 
             btnDelete.setOnClickListener {
-                deleteListener(holder.absoluteAdapterPosition)
+                deleteListener(differ.currentList[holder.absoluteAdapterPosition],holder.absoluteAdapterPosition)
             }
 
         }

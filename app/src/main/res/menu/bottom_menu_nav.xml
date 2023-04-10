@@ -9,7 +9,7 @@
         android:title="@string/shopping"
         android:icon="@drawable/shopping_btn_icon"/>
     <item
-        android:id="@+id/spaFragment"
+        android:id="@+id/serviceFragment"
         android:title="@string/spa"
         android:icon="@drawable/spa_btn_icon"/>
     <item

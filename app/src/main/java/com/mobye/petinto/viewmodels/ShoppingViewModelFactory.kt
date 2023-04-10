@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mobye.petinto.repository.ShoppingRepository
 
+@Suppress("UNCHECKED_CAST")
 class ShoppingViewModelFactory(
     private val repository: ShoppingRepository
 ) : ViewModelProvider.NewInstanceFactory(){

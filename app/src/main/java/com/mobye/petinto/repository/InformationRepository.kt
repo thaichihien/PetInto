@@ -20,25 +20,23 @@ class InformationRepository {
             "Golden Dog",
             11800000,
             "Dog",
-            "Available",
             "",
             "Male",
             1,
             1,
             "Golden",
-            1.5,
+            "",
             "Brown"),
         PetInfo("PET10002",
             "British Golden Cat",
             15000000,
             "Cat",
-            "Sold out",
             "",
             "Female",
             2,
             2,
             "Golden",
-            1.2,
+            "",
             "Yellow")
     )
 
@@ -86,4 +84,18 @@ class InformationRepository {
 
     suspend fun getDefaultDeliveryAddress(id : String)
         = AccountInfoDatabase.getDefaultDeliveryAddress(id)
+
+
+    //Pet
+    suspend fun getPetList(id: String)
+        = AccountInfoDatabase.getPetList(id)
+
+    suspend fun updatePet(petInfo: PetInfo){
+        AccountInfoDatabase.updatePet(petInfo)
+    }
+
+    suspend fun deletePet(petInfo: PetInfo){
+        AccountInfoDatabase.deletePet(petInfo)
+    }
+
 }

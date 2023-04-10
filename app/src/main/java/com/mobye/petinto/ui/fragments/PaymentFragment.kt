@@ -159,7 +159,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             binding.rbMomo.error = null
         }
 
-        return isEmptyChoice
+        return !isEmptyChoice
     }
 
 

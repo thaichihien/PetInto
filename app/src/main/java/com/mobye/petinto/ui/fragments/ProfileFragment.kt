@@ -83,7 +83,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHistoryInformation())
             }
             btnAdd.setOnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(PetInfo()))
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(PetInfo(),-1))
             }
             navOrder.setOnClickListener{
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOrderFragment())
@@ -107,15 +107,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             { petInfo, i ->
                 findNavController().navigate(
                     ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(
-                        petInfo
+                        petInfo,i
                     )
                 )
             },
-            {
-                informationViewModel.deletePet(it)
+            { petInfo, i ->
+                informationViewModel.deletePet(petInfo,i)
             })
 
 //        carouselViewModel.getOrderList()
+
+        informationViewModel.user.observe(viewLifecycleOwner){
+            informationViewModel.getPetList()
+        }
         informationViewModel.myPetList.observe(viewLifecycleOwner){
             carouselAdapter.differ.submitList(it)
         }

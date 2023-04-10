@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chauthai.swipereveallayout.ViewBinderHelper
-import com.mobye.petinto.databinding.ItemCartSwipeListBinding
+import com.mobye.petinto.databinding.ItemCartListSwipeBinding
 import com.mobye.petinto.models.CartItem
 
 class CartItemAdapter(
@@ -20,7 +19,7 @@ class CartItemAdapter(
     private val addToTotal: (Int,Int) -> Unit
 ) : RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder>() {
 
-    private lateinit var binding: ItemCartSwipeListBinding
+    private lateinit var binding: ItemCartListSwipeBinding
 
     private val differCallBack = object : DiffUtil.ItemCallback<CartItem>(){
         override fun areItemsTheSame(oldItem: CartItem, newItem: CartItem): Boolean {
@@ -34,11 +33,11 @@ class CartItemAdapter(
     }
 
     var differ = AsyncListDiffer(this,differCallBack)
-    private val binderHelper : ViewBinderHelper by lazy {
-        val setting = ViewBinderHelper()
-        setting.setOpenOnlyOne(true)
-        setting
-    }
+//    private val binderHelper : ViewBinderHelper by lazy {
+//        val setting = ViewBinderHelper()
+//        setting.setOpenOnlyOne(true)
+//        setting
+//    }
 
     private var isSelectedAll = false
 
@@ -52,7 +51,7 @@ class CartItemAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
-        binding = ItemCartSwipeListBinding.inflate(
+        binding = ItemCartListSwipeBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,false)
         return CartItemViewHolder()
@@ -81,7 +80,7 @@ class CartItemAdapter(
             cbSelectedCart.isChecked = cartItem.selected
             //selectedListener(isSelectedAll,holder.adapterPosition)
 
-            deleteLayout.setOnClickListener{
+            btnDelete.setOnClickListener{
                 //swipeLayout.close(true)
                 swipeLayout.visibility = View.GONE
                 removedListener(cartItem,holder.absoluteAdapterPosition)
@@ -112,7 +111,7 @@ class CartItemAdapter(
             }
         }
         holder.setIsRecyclable(false)
-        binderHelper.bind(binding.swipeLayout,differ.currentList[position].item!!.id)
+        //binderHelper.bind(binding.swipeLayout,differ.currentList[position].item!!.id)
     }
 
 //    fun selectedAll(yes: Boolean){

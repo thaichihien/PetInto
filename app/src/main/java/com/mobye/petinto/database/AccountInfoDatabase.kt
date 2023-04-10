@@ -19,12 +19,24 @@ object AccountInfoDatabase {
         )
     }
 
-    fun getUser(id: String) : Customer?
-        = realm.query<Customer>("id == $0", id).first().find()
+    fun getUser(id: String) : Customer?{
+        return try {
+            realm.query<Customer>("id == $0", id).first().find()
+        }catch (e : Exception){
+            null
+        }
+    }
+
 
     fun saveUser(user: Customer) {
         realm.writeBlocking {
-            val userDB = findLatest(realm.query<Customer>("id == $0",user.id).find().first())
+
+            val userDB = try {
+                findLatest(realm.query<Customer>("id == $0",user.id).find().first())
+            }catch(_ : Exception) {
+                null
+            }
+
             if(userDB != null){
                 userDB.apply {
                     name = user.name
@@ -63,7 +75,23 @@ object AccountInfoDatabase {
 
     fun updateDeliveryAddress(deliveryInfo: DeliveryInfo){
         realm.writeBlocking {
-            copyToRealm(deliveryInfo,UpdatePolicy.ALL)
+            val deliveryInfoDB = try {
+                findLatest(realm.query<DeliveryInfo>("id == $0",deliveryInfo.id).find().first())
+            }catch(_ : Exception) {
+                null
+            }
+
+            if(deliveryInfoDB != null){
+                deliveryInfoDB.apply {
+                    address = deliveryInfo.address
+                    isDefault = deliveryInfo.isDefault
+                    name = deliveryInfo.name
+                    phone = deliveryInfo.phone
+                }
+                copyToRealm(deliveryInfoDB,UpdatePolicy.ALL)
+            }else{
+                copyToRealm(deliveryInfo,UpdatePolicy.ALL)
+            }
         }
     }
 
@@ -99,8 +127,51 @@ object AccountInfoDatabase {
         = realm.query<DeliveryInfo>("isDefault == $0 AND customerID == $1", true,id).first().find()
 
 
+    // Pet database
+    fun getPetList(id : String)
+        = realm.copyFromRealm(realm.query<PetInfo>("customerID = $0",id).find())
 
 
+    fun updatePet(pet : PetInfo){
+        realm.writeBlocking {
+            val petDB = try {
+                findLatest(realm.query<PetInfo>("idLocal == $0",pet.id).find().first())
+            }catch(_ : Exception) {
+                null
+            }
+
+            if(petDB != null){
+                petDB.apply {
+                    name = pet.name
+                    type = pet.type
+                    image = pet.image
+                    gender = pet.gender
+                    age = pet.age
+                    variety = pet.variety
+                    vaccine = pet.vaccine
+                    weight = pet.weight
+                    color = pet.color
+                }
+                copyToRealm(petDB,UpdatePolicy.ALL)
+            }else{
+                copyToRealm(pet,UpdatePolicy.ALL)
+            }
+        }
+    }
+
+    fun deletePet(pet: PetInfo){
+        realm.writeBlocking {
+            val petDB = try {
+                findLatest(realm.query<PetInfo>("idLocal == $0",pet.idLocal).find().first())
+            }catch(_ : Exception) {
+                null
+            }
+
+            if(petDB != null){
+                delete(petDB)
+            }
+        }
+    }
 
 
 }
