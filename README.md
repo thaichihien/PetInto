@@ -140,21 +140,25 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   
 ### 📌 Assignment 3:
  - **Home** : Quỳnh
-    - Lấy dữ liệu news từ API:
-      - Viết hàm gọi API ở **HomeRepository**
-      - Khai báo MutableLiveData ở **HomeViewModel**
-      - Viết hàm lấy dữ liệu ở **HomeViewModel**
-      - Sử dụng **HomeViewModel** ở ***HomeFragment***
+    - Thiết kế màn hình hóa đơn (sau khi thanh toán), danh sách lịch hẹn, chi tiết của một lịch hẹn (cho phần Spa và Hotel).
+      - **Deadline : 11/04/20230**
+    - Lấy dữ liệu news từ API: Sử dụng **HomeViewModel** ở ***HomeFragment***. 
+      - **Deadline : 13/04/20230** 
   - **Spa/Hotel** : Niên
-    - Thiết kế màn hình danh sách booking, chi tiết booking
-    - Kiểm tra dữ liệu nhập và gửi lịch đặt đến API
+    - Lập trình giao diện màn hình danh sách booking, chi tiết booking
+      - **Deadline : 12/04/20230**
+    - Kiểm tra dữ liệu nhập và gửi lịch đặt đến API.
+      - **Deadline : 15/04/20230**
   - **Order**: Dũng
-    - Thực hiện lấy dữ liệu người dùng, (customerPickup), địa chỉ giao (deliveryAddress) ở **PetPaymentFragment**
-    - Tham khảo và lấy các hàm gọi từ **PaymentFragment**
+    - Chuẩn bị dữ liệu Pet:
+      - **Deadline : 10/04/20230**
+    - cài đặt gọi API, Paging, lấy dữ liệu đưa giao diện, tham khảo **ProductPagingSource, productItemList trong ShoppingViewModel, ShoppingFragment** của Hiện, làm ở **ShoppingViewModel**  
+      - **Deadline : 15/04/20230**
+     - Thực hiện lấy dữ liệu người dùng, (customerPickup), địa chỉ giao (deliveryAddress) ở **PetPaymentFragment**. Tham khảo và lấy các hàm gọi từ **PaymentFragment** 
+        - **Deadline : 16/04/20230**
   - **Shopping** : Hiện
     - Thực hiện thanh toán (TH cash)
     - Thực hiện thanh toán Zalo Pay
-
 ## 📌Project Notes
 - Trước khi làm **PULL**, làm xong một chức năng **PUSH**
 - Chỉ làm việc trên Fragment của mình, có thể thêm các Activity, Fragment khác, ***Nhưng không được sửa phần Fragment khác***
