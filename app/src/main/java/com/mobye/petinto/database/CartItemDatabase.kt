@@ -43,7 +43,7 @@ object  CartItemDatabase {
 
     fun update(cartItem: CartItem){
         realm.writeBlocking {
-            val cartItemDB = findLatest(realm.query<CartItem>("id == $0", cartItem.item!!.id).find().first())
+            val cartItemDB = findLatest(realm.query<CartItem>("item.id == $0", cartItem.item!!.id).find().first())
             cartItemDB?.apply {
                quantity = cartItem.quantity
                 selected = cartItem.selected

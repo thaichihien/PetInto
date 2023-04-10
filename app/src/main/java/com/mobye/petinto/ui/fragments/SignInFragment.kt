@@ -23,13 +23,12 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.databinding.FragmentSignInBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
-import com.mobye.petinto.utils.Constants.WEB_CLIENT
+import com.mobye.petinto.utils.Secret.WEB_CLIENT
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.InformationViewModelFactory
 

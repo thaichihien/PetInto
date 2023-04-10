@@ -1,11 +1,10 @@
 package com.mobye.petinto.api
 
-import com.mobye.petinto.utils.Constants.BASE_URL
+import com.mobye.petinto.utils.Secret.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object RetrofitInstance {
     private val retrofit by lazy {
