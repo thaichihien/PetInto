@@ -6,6 +6,7 @@ import com.mobye.petinto.models.Product
 import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.Order
 import com.mobye.petinto.models.apimodel.ProductOrder
+import com.mobye.petinto.models.apimodel.SpaBooking
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -36,9 +37,16 @@ interface PetIntoApi {
     ) : Response<ApiResponse<Customer>>
 
 
+    //Order
     @POST("/order/new")
     suspend fun sendProductOrder(
         @Body order: ProductOrder
+    ) : Response<ApiResponse<Any>>
+
+    //Booking
+    @POST("/booking/spa/new")
+    suspend fun sendSpaBooking(
+        @Body booking: SpaBooking
     ) : Response<ApiResponse<Any>>
 
 }
