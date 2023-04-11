@@ -17,7 +17,7 @@
         android:paddingTop="50dp">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btnBack"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="24dp"
@@ -41,7 +41,7 @@
             android:paddingEnd="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            app:layout_constraintTop_toBottomOf="@+id/btnBack" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,7 +98,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Address"
+                        android:text="Your Information"
                         app:layout_constraintStart_toEndOf="@+id/imageView3"
                         app:layout_constraintTop_toTopOf="parent"
                         android:textColor="@color/main_dark"/>
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
-                        android:text="@string/petinto_address"
+                        android:text="Nguyễn Nhật Quỳnh | 0546546"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -141,17 +141,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="Your Information"
+                        android:text="PetInto Address"
                         android:textColor="@color/main_dark"
                         app:layout_constraintStart_toEndOf="@+id/imageLogo"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tvDeliveryAddress"
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
-                        android:text="Nguyễn Nhật Quỳnh | 056468161"
+                        android:text="@string/petinto_address"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/imageLogo"
@@ -274,6 +275,7 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvOrderID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1.0515.0000 đ"
@@ -293,6 +295,7 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvOrderDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1.0515.0000 đ"
@@ -306,6 +309,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/tvPaymentMethod"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Payment method"
@@ -331,6 +335,7 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvShipmentDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1.0515.0000 đ"

@@ -116,6 +116,9 @@
         <action
             android:id="@+id/actionPaymentFragmentToDeliveryAddressFragment"
             app:destination="@id/deliveryAddressFragment" />
+        <action
+            android:id="@+id/actionPaymentFragmentToOrderPaymentFragment"
+            app:destination="@id/orderPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -202,4 +205,19 @@
         android:name="com.mobye.petinto.ui.fragments.ServiceFragment"
         android:label="fragment_service"
         tools:layout="@layout/fragment_service" />
+    <fragment
+        android:id="@+id/orderPaymentFragment"
+        android:name="com.mobye.petinto.ui.fragments.OrderPaymentFragment"
+        android:label="fragment_order_payment"
+        tools:layout="@layout/fragment_order_payment" >
+        <argument
+            android:name="orderID"
+            app:argType="string" />
+        <argument
+            android:name="isDelivery"
+            app:argType="boolean" />
+        <argument
+            android:name="paymentMethod"
+            app:argType="string" />
+    </fragment>
 </navigation>

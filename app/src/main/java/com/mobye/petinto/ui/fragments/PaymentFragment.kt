@@ -134,6 +134,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 notiDialog.show()
 //                val total = response.body as Int
                 Log.e("Payment",response.body.toString())
+
+
+
+
                 //move to order fragment
             }else{
                 notiDialog.changeToFail("Something went wrong. Please, try again.")
