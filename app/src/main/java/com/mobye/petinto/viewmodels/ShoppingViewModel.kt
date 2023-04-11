@@ -262,6 +262,21 @@ class ShoppingViewModel(
         }
     }
 
+    fun clearCartAfterPayment(){
+        val cart = cartItemList.value!!.toMutableList()
+        val iterator = cart.iterator()
+        while (iterator.hasNext()){
+            val item =iterator.next()
+            if(item.selected){
+                iterator.remove()
+                viewModelScope.launch {
+                    repository.deleteCartItem(item)
+                }
+            }
+        }
+
+        cartItemList.value = cart
+    }
 
 
 }

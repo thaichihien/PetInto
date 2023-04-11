@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
     private lateinit var navController: NavController
-    lateinit var bottomNavView : BottomNavigationView
+    private lateinit var bottomNavView : BottomNavigationView
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
 
     private val informationViewModel : InformationViewModel by viewModels {
