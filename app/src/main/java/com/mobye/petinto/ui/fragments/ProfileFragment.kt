@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -61,6 +62,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         Log.e(DEBUG_TAG,"onViewCreated")
 
+        binding.loadingLayout.apply {
+            isVisible = true
+            startShimmer()
+        }
+
         informationViewModel.user.observe(viewLifecycleOwner) {
             binding.apply {
                 tvUserName.text = it.name
@@ -69,6 +75,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     .load(it.image)
                     .placeholder(R.drawable.avatar_1)
                     .into(imgAvatar)
+                loadingLayout.isVisible = false
             }
         }
 

@@ -6,15 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.OrderAdapter
 import com.mobye.petinto.databinding.FragmentOrderBinding
 import com.mobye.petinto.repository.ShoppingRepository
+import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import kotlinx.coroutines.flow.collectLatest
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +41,8 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
         ShoppingViewModelFactory(ShoppingRepository())
     }
 
+    private var firstTimeLoad = true
+
     private lateinit var orderItemAdapter: OrderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,14 +62,63 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        orderItemAdapter = OrderAdapter {
+        orderItemAdapter = OrderAdapter ({
             val action = OrderFragmentDirections.actionOrderFragmentToPetPaymentFragment(it)
             findNavController().navigate(action)
+        },{
+
+            var action = OrderFragmentDirections.actionOrderFragmentToDetailPetFragment(it)
+            findNavController().navigate(action)
+        })
+
+        if(orderViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
+            Log.e("RETRY_ORDER_PET","yes")
+            orderItemAdapter.retry()
+            orderViewModel.lostNetwork = false
         }
-        orderViewModel.getOrderList()
-        orderViewModel.shopOrderList.observe(viewLifecycleOwner) {
-            orderItemAdapter.differ.submitList(it)
+
+        lifecycleScope.launchWhenCreated {
+            orderViewModel.petItemList.collectLatest {
+                orderItemAdapter.submitData(it)
+            }
         }
+
+        orderItemAdapter.addLoadStateListener {loadState ->
+            if(loadState.refresh is LoadState.Loading ||
+                loadState.append is LoadState.Loading){
+                Log.e(DEBUG_TAG,"firstTimeLoad : $firstTimeLoad")
+                if(firstTimeLoad){
+                    binding.loadingLayout.apply {
+                        isVisible =true
+                        startShimmer()
+                    }
+                }
+
+
+            }else{
+                if(firstTimeLoad){
+                    if(!(requireActivity() as MainActivity).hasInternetConnection()){
+                        // show error at empty fragment
+                    }
+                    binding.loadingLayout.isVisible = false
+                    firstTimeLoad = false
+                }
+
+                val errorState = when {
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.prepend is LoadState.Error ->  loadState.prepend as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+                errorState?.let {
+                    // TODO show net work error
+                    orderViewModel.lostNetwork = true
+                    Toast.makeText(requireContext(),"error : ${errorState.error}", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+
 
         binding.apply {
             rvOrderItem.apply {

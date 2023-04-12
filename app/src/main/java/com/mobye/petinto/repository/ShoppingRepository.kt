@@ -13,6 +13,8 @@ import retrofit2.Response
 class ShoppingRepository {
 
     fun getProductSource() = ProductPagingSource()
+
+    fun getPetSource() = PetPagingSource()
 //    suspend fun getShoppingItems() : List<Product>
 //         = listOf(
 //            Product(
