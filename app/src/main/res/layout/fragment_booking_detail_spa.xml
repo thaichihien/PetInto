@@ -169,6 +169,100 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="270dp"
+                android:layout_height="44dp"
+                android:background="@drawable/header_booking_list_item"
+                android:gravity="left|center"
+                android:paddingLeft="30dp"
+                android:text="Customer Information"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Name:"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Phone number:"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Email:"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView19"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                <TextView
+                    android:id="@+id/customerNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="Thái Chí Hiện"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/customerPhoneNumberTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="098765432"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    app:layout_constraintEnd_toEndOf="@+id/customerNameTV"
+                    app:layout_constraintTop_toBottomOf="@+id/customerNameTV" />
+
+                <TextView
+                    android:id="@+id/customerEmailTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="tchien@gmail.com"
+                    android:textColor="@color/main_dark"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    app:layout_constraintEnd_toEndOf="@+id/customerPhoneNumberTV"
+                    app:layout_constraintTop_toBottomOf="@+id/customerPhoneNumberTV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
 
