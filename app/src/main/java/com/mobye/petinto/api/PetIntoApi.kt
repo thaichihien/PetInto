@@ -2,6 +2,7 @@ package com.mobye.petinto.api
 
 import com.mobye.petinto.models.Advertisement
 import com.mobye.petinto.models.Customer
+import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.Order
@@ -49,4 +50,10 @@ interface PetIntoApi {
         @Body booking: SpaBooking
     ) : Response<ApiResponse<Any>>
 
+
+    //Pets
+    @GET("/data/pets")
+    suspend fun getPets(
+        @Query("page") page: Int
+    ) : Response<ApiResponse<List<PetInfo>>>
 }

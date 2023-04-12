@@ -37,7 +37,7 @@ import com.mobye.petinto.databinding.ActivityMainBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 fun Dialog.changeToFail(message : String){
     val ivIcon = this.findViewById<ImageView>(R.id.ivIcon)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
 
     private val informationViewModel : InformationViewModel by viewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     lateinit var binding : ActivityMainBinding

@@ -9,13 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
-import com.mobye.petinto.adapters.DeliveryInfoAdapter
-import com.mobye.petinto.databinding.FragmentDeliveryAddressBinding
 import com.mobye.petinto.databinding.FragmentDetailsDeliveryAddressBinding
 import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
 class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delivery_address) {
@@ -23,7 +21,7 @@ class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delive
     private var _binding : FragmentDetailsDeliveryAddressBinding? = null
     private val binding get() = _binding!!
     private val informationViewModel : InformationViewModel by activityViewModels{
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     private val args : DetailsDeliveryAddressFragmentArgs by navArgs()

@@ -27,8 +27,8 @@ import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
@@ -39,7 +39,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
     private var _binding : FragmentShoppingBinding? = null
     private val binding get() = _binding!!
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
-        ShoppingViewModelFactory(ShoppingRepository())
+        PetIntoViewModelFactory(ShoppingRepository())
     }
 
     private lateinit var productAdapter : ProductItemAdapter

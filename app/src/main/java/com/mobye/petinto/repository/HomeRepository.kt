@@ -5,7 +5,7 @@ import com.mobye.petinto.models.Advertisement
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class HomeRepository {
+class HomeRepository : IRepository{
 
     suspend fun getNews() : Flow<List<Advertisement>> = flow {
         val response = RetrofitInstance.api.getNews()

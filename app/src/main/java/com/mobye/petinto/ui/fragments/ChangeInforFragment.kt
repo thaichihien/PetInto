@@ -12,13 +12,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentAddPetBinding
 import com.mobye.petinto.databinding.FragmentChangeInforBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +36,7 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
     private val binding get() = _binding!!
 
     private val informationViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     val currentUser: Customer = Customer()

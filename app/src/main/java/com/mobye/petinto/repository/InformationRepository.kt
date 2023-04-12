@@ -13,7 +13,7 @@ import com.mobye.petinto.models.apimodel.ApiResponse
 import io.realm.kotlin.types.RealmUUID
 import retrofit2.Response
 
-class InformationRepository {
+class InformationRepository :IRepository {
 
     suspend fun getPetItems() : List<PetInfo> = listOf(
         PetInfo("PET10001",

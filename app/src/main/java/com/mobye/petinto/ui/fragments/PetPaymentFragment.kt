@@ -1,35 +1,50 @@
 package com.mobye.petinto.ui.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentDetailBinding
 import com.mobye.petinto.databinding.FragmentPetPaymentBinding
+import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.ui.changeToFail
+import com.mobye.petinto.ui.changeToSuccess
+import com.mobye.petinto.viewmodels.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PetPaymentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
     val DEBUG_TAG = "PetPaymentFragment"
     private var _binding : FragmentPetPaymentBinding? = null
     private val binding get() = _binding!!
 
+    private val shoppingViewModel : ShoppingViewModel by activityViewModels {
+        PetIntoViewModelFactory(ShoppingRepository())
+    }
+    private val informationViewModel : InformationViewModel by activityViewModels{
+        PetIntoViewModelFactory(InformationRepository())
+    }
+
     private val args : PetPaymentFragmentArgs by navArgs()
+
+    private val loadingDialog : AlertDialog by lazy {
+        val activity = requireActivity() as MainActivity
+        activity.dialog
+    }
+    private val notiDialog : Dialog by lazy {
+        val activity = requireActivity() as MainActivity
+        activity.notiDialog
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,8 +75,57 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
             btnBackPayment.setOnClickListener {
                 findNavController().popBackStack()
             }
+            btnEditCustomerInfo.setOnClickListener{
+                findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToCustomerFragment())
+            }
+            btnEditAddress.setOnClickListener{
+                findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToDeliveryAddressFragment())
+            }
+            btnPurchase.setOnClickListener {
+                if(validatePayment()){
+                    loadingDialog.show()
+                    sendPurchaseOrder()
+                }
+            }
         }
 
+        informationViewModel.getCustomerPickup()
+        informationViewModel.getDefaultDeliveryAddress(informationViewModel.getUserID())
+        informationViewModel.customerPickup.observe(viewLifecycleOwner){
+            it?.let {
+                Log.e("PaymentFragment",it.phone)
+                binding.tvCustomerInformation.text = it.toString()
+            }
+        }
+        informationViewModel.defaultDeliveryAddress.observe(viewLifecycleOwner){
+            it?.let {
+                binding.tvDeliveryAddress.text = it.address
+            }
+        }
+
+    }
+
+    private fun sendPurchaseOrder() {
+
+    }
+
+    private fun validatePayment(): Boolean {
+        var isEmptyChoice = false
+        if(binding.rgDelivery.checkedRadioButtonId < 0){
+            binding.rbDoor.error = "Please choose a way to get your items"
+            isEmptyChoice = true
+        }else{
+            binding.rbDoor.error = null
+        }
+
+        if(binding.rgPayment.checkedRadioButtonId < 0){
+            binding.rbMomo.error = "Please choose a payment method"
+            isEmptyChoice = true
+        }else{
+            binding.rbMomo.error = null
+        }
+
+        return !isEmptyChoice
     }
 
     override fun onDestroyView() {

@@ -152,6 +152,7 @@
                 android:background="@color/main_light">
 
                 <RadioGroup
+                    android:id="@+id/rgDelivery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +201,7 @@
                                 android:textColor="@color/main_dark"/>
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/tvCustomerInformation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
@@ -212,6 +213,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/lbCustomerInformation" />
 
                             <ImageButton
+                                android:id="@+id/btnEditCustomerInfo"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -276,6 +278,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <RadioButton
+                        android:id="@+id/rbDoor"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -311,6 +314,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageButton
+                            android:id="@+id/btnEditAddress"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -345,6 +349,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
+                    android:id="@+id/rgPayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -356,6 +361,7 @@
                         android:layout_height="wrap_content"
                         android:text="Cash"/>
                     <RadioButton
+                        android:id="@+id/rbMomo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Momo"/>
@@ -509,6 +515,7 @@
             android:text="1.000.000 đ"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPurchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

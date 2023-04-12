@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -25,7 +26,7 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -39,7 +40,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
     private val informationViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +62,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         Log.e(DEBUG_TAG,"onViewCreated")
 
+        binding.loadingLayout.apply {
+            isVisible = true
+            startShimmer()
+        }
+
         informationViewModel.user.observe(viewLifecycleOwner) {
             binding.apply {
                 tvUserName.text = it.name
@@ -69,6 +75,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     .load(it.image)
                     .placeholder(R.drawable.avatar_1)
                     .into(imgAvatar)
+                loadingLayout.isVisible = false
             }
         }
 

@@ -14,23 +14,13 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentAddPetBinding
-import com.mobye.petinto.databinding.FragmentProfileBinding
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddPetFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     val DEBUG_TAG = "AddPetFragment"
     private var _binding : FragmentAddPetBinding? = null
@@ -43,7 +33,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     private lateinit var currentPet : PetInfo
     private  var currentIndex : Int = -1
     private val carouselViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     private var newPet : PetInfo = PetInfo()

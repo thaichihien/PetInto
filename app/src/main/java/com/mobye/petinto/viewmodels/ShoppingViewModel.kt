@@ -54,6 +54,11 @@ class ShoppingViewModel(
         .flow
         .cachedIn(viewModelScope)
 
+    val petItemList : Flow<PagingData<PetInfo>> = Pager(
+        config = PagingConfig(pageSize = 10),
+        pagingSourceFactory = {repository.getPetSource()})
+        .flow
+        .cachedIn(viewModelScope)
 
 
     fun getCartItems(){

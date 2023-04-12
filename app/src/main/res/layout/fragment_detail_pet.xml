@@ -90,14 +90,14 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/tvItemNameDetails_pet"
+                        android:id="@+id/tvItemNameDetailsPet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Golden Dog"
                         android:textStyle="bold"
                         android:textSize="25sp"/>
                     <TextView
-                        android:id="@+id/tvItemPriceDetails_pet"
+                        android:id="@+id/tvItemPriceDetailsPet"
                         android:layout_marginStart="24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,39 +110,28 @@
                     android:layout_marginTop="16dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Condition: "
-                            android:textSize="20sp"/>
-                        <TextView
-                            android:id="@+id/tv_condition_pet"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Available"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/holo_green_light"
-                            android:textSize="20sp"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginStart="24dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Type: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_type_pet"
+                            android:id="@+id/tvTypePet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dog"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginStart="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
 
 
                     </LinearLayout>
@@ -157,13 +146,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ID: "
+                            android:text="Vaccine: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_id_pet"
+                            android:id="@+id/tvVaccinePet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20127473"
+                            android:text="1"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
 
@@ -180,7 +169,7 @@
                             android:text="Variety: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_variety_pet"
+                            android:id="@+id/tvVarietyPet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Golden"
@@ -203,7 +192,7 @@
                             android:text="Gender: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_gender_pet"
+                            android:id="@+id/tvGenderPet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Male"
@@ -223,7 +212,7 @@
                             android:text="Weight: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_weight_pet"
+                            android:id="@+id/tvWeightPet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1.5kg"
@@ -246,7 +235,7 @@
                             android:text="Age: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_age_pet"
+                            android:id="@+id/tvAgePet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1"
@@ -266,7 +255,7 @@
                             android:text="Color: "
                             android:textSize="20sp"/>
                         <TextView
-                            android:id="@+id/tv_color_pet"
+                            android:id="@+id/tvColorPet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Brown"
@@ -275,30 +264,6 @@
                     </LinearLayout>
 
                 </TableRow>
-
-                <TableRow
-                    android:layout_marginTop="6dp"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Vaccine: "
-                            android:textSize="20sp"/>
-                        <TextView
-                            android:id="@+id/tv_vaccine_pet"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textStyle="bold"
-                            android:textSize="20sp"/>
-                    </LinearLayout>
-
-                </TableRow>
-
 
             </TableLayout>
 
@@ -316,7 +281,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
-                        android:id="@+id/btn_down"
+                        android:id="@+id/btnDown"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:background="@android:color/transparent"
@@ -333,7 +298,7 @@
                         android:textStyle="bold"/>
 
                     <ImageButton
-                        android:id="@+id/btn_up"
+                        android:id="@+id/btnUp"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:background="@android:color/transparent"
@@ -356,23 +321,25 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_order_pet"
+                        android:id="@+id/btnOrderPet"
                         android:layout_width="160dp"
                         android:layout_height="40dp"
                         android:background="@drawable/primary_button_background"
                         android:text="Order"
+                        android:textAlignment="center"
                         android:textStyle="bold"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="20sp"/>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_contact_pet"
+                        android:id="@+id/btnContactPet"
                         android:layout_width="160dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/white_button_background"
                         android:text="Contact"
+                        android:textAlignment="center"
                         android:textStyle="bold"
                         android:textAllCaps="false"
                         android:textColor="@color/main_dark"

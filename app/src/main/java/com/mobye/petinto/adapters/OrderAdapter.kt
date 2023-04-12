@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,24 +12,26 @@ import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.OrderItemListBinding
 import com.mobye.petinto.models.PetInfo
+import com.mobye.petinto.models.Product
 
-class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>(){
+class OrderAdapter(
+    private val buyListener: (PetInfo) -> Unit,
+    private val detailListener: (PetInfo) -> Unit
+) : PagingDataAdapter<PetInfo, OrderAdapter.OrderViewHolder>(DiffUtilCallBack()){
 
     private lateinit var binding: OrderItemListBinding
 
-    private val differCallback = object : DiffUtil.ItemCallback<PetInfo>(){
+    class DiffUtilCallBack : DiffUtil.ItemCallback<PetInfo>(){
         override fun areItemsTheSame(oldItem: PetInfo, newItem: PetInfo): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
-        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: PetInfo, newItem: PetInfo): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
+                    && oldItem.id == newItem.id
         }
 
     }
-
-    var differ = AsyncListDiffer(this, differCallback)
 
 
     inner class OrderViewHolder : RecyclerView.ViewHolder(binding.root){
@@ -45,7 +48,7 @@ class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
-        val pet = differ.currentList[position]
+        val pet = getItem(position)!!
         binding.apply {
             Glide.with(binding.root)
                 .load(pet.image)
@@ -60,13 +63,11 @@ class OrderAdapter(private val buyListener: (PetInfo) -> Unit) : RecyclerView.Ad
             btnBuy.setOnClickListener {
                 buyListener(pet)
             }
+            itemOrderLayout.setOnClickListener {
+                detailListener(pet)
+            }
         }
         holder.setIsRecyclable(false)
 //        binderHelper.bind(binding.itemOrderLayout,differ.currentList[position].id)
     }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
-
 }

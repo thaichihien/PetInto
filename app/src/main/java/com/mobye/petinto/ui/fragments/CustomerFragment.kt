@@ -10,11 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentCustomerBinding
-import com.mobye.petinto.databinding.FragmentPaymentBinding
 import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
 class CustomerFragment : Fragment(R.layout.fragment_customer) {
@@ -22,7 +21,7 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
     private var _binding : FragmentCustomerBinding? = null
     private val binding get() = _binding!!
     private val informationViewModel : InformationViewModel by activityViewModels{
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
 
