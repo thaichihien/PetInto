@@ -402,7 +402,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/petGenreTV" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                android:layout_width="217dp"
+                android:layout_height="wrap_content"
+                android:text="CANCEL BOOKING"
+                android:textStyle="bold"
+                android:textColor="@color/main_dark"
+                android:background="@drawable/delete_button_background"
+                android:layout_marginLeft="96dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
 
     </ScrollView>
