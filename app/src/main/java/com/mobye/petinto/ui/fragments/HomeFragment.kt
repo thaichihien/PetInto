@@ -1,36 +1,23 @@
 package com.mobye.petinto.ui.fragments
 
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentHomeBinding
-import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.models.Advertisement
 import com.mobye.petinto.repository.HomeRepository
-import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.HomeViewModel
-import com.mobye.petinto.viewmodels.HomeViewModelFactory
-import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -40,7 +27,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel : HomeViewModel by viewModels {
-        HomeViewModelFactory(HomeRepository())
+        PetIntoViewModelFactory(HomeRepository())
     }
     override fun onCreateView(
         inflater: LayoutInflater,

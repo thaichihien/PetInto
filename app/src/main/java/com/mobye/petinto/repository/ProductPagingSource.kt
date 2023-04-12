@@ -10,8 +10,6 @@ class ProductPagingSource : PagingSource<Int, Product>() {
     companion object{
         const val FIRST_PAGE = 1
     }
-
-
     override fun getRefreshKey(state: PagingState<Int, Product>): Int? {
         return state.anchorPosition
     }

@@ -18,13 +18,9 @@ import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.PaymentItemAdapter
 import com.mobye.petinto.databinding.FragmentOrderPaymentBinding
-import com.mobye.petinto.databinding.FragmentPaymentBinding
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
-import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
-import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import com.mobye.petinto.viewmodels.*
 import java.util.*
 
 
@@ -33,10 +29,10 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
     private val binding get() = _binding!!
 
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
-        ShoppingViewModelFactory(ShoppingRepository())
+        PetIntoViewModelFactory(ShoppingRepository())
     }
     private val informationViewModel : InformationViewModel by activityViewModels{
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
     private lateinit var paymentItemAdapter: PaymentItemAdapter
 

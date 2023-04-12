@@ -18,27 +18,18 @@ import com.mobye.petinto.adapters.OrderAdapter
 import com.mobye.petinto.databinding.FragmentOrderBinding
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OrderFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OrderFragment : Fragment(R.layout.fragment_order) {
 
     val DEBUG_TAG = "OrderFragment"
     private var _binding : FragmentOrderBinding? = null
     private val binding get() = _binding!!
     private val orderViewModel : ShoppingViewModel by activityViewModels {
-        ShoppingViewModelFactory(ShoppingRepository())
+        PetIntoViewModelFactory(ShoppingRepository())
     }
 
     private var firstTimeLoad = true

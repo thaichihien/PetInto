@@ -26,7 +26,7 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -40,7 +40,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
     private val informationViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

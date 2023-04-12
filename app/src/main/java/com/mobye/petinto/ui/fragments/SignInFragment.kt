@@ -30,7 +30,7 @@ import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.utils.Secret.WEB_CLIENT
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
@@ -43,7 +43,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         activity.dialog
     }
     private val informationViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     private lateinit var oneTapClient: SignInClient

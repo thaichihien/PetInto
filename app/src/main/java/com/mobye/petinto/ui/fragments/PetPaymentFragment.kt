@@ -20,10 +20,7 @@ import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
-import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
-import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import com.mobye.petinto.viewmodels.*
 
 class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
@@ -32,10 +29,10 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
     private val binding get() = _binding!!
 
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
-        ShoppingViewModelFactory(ShoppingRepository())
+        PetIntoViewModelFactory(ShoppingRepository())
     }
     private val informationViewModel : InformationViewModel by activityViewModels{
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     private val args : PetPaymentFragmentArgs by navArgs()

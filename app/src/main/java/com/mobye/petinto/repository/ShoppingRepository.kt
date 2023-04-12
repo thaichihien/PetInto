@@ -10,7 +10,7 @@ import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.ProductOrder
 import retrofit2.Response
 
-class ShoppingRepository {
+class ShoppingRepository : IRepository {
 
     fun getProductSource() = ProductPagingSource()
 

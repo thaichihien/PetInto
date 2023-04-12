@@ -9,22 +9,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentSignInBinding
 import com.mobye.petinto.databinding.FragmentSignUpBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
@@ -32,14 +27,13 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private var _binding : FragmentSignUpBinding? = null
     private val binding get() = _binding!!
     private val firebaseAuth : FirebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private val db : FirebaseFirestore by lazy { Firebase.firestore }
     private val loadingDialog : AlertDialog by lazy {
         val activity = requireActivity() as AuthenticationActivity
         activity.dialog
     }
 
     private val informationViewModel : InformationViewModel by activityViewModels {
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     override fun onCreateView(

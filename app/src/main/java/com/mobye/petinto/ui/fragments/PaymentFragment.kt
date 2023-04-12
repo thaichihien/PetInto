@@ -9,22 +9,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.PaymentItemAdapter
 import com.mobye.petinto.databinding.FragmentPaymentBinding
-import com.mobye.petinto.models.apimodel.Order
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
-import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.viewmodels.InformationViewModel
-import com.mobye.petinto.viewmodels.InformationViewModelFactory
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class PaymentFragment : Fragment(R.layout.fragment_payment) {
@@ -32,10 +32,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     private var _binding : FragmentPaymentBinding? = null
     private val binding get() = _binding!!
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
-        ShoppingViewModelFactory(ShoppingRepository())
+        PetIntoViewModelFactory(ShoppingRepository())
     }
     private val informationViewModel : InformationViewModel by activityViewModels{
-        InformationViewModelFactory(InformationRepository())
+        PetIntoViewModelFactory(InformationRepository())
     }
 
     private val loadingDialog : AlertDialog by lazy {
@@ -134,14 +134,24 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 notiDialog.show()
 //                val total = response.body as Int
                 Log.e("Payment",response.body.toString())
-
-
+                val orderID = response.body.toString()
+                lifecycleScope.launch{
+                    delay(3000)
+                    findNavController()
+                        .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
+                            orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
+                        ))
+                }
 
 
                 //move to order fragment
             }else{
                 notiDialog.changeToFail("Something went wrong. Please, try again.")
                 notiDialog.show()
+                lifecycleScope.launch{
+                    delay(3000)
+                    findNavController().popBackStack(R.id.shoppingFragment,false)
+                }
             }
         }
 
