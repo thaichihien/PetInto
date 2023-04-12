@@ -16,6 +16,7 @@
     <color name="main_medium">#927459</color>
     <color name="main_dark">#775234</color>
     <color name="delete">#E7ECFC</color>
+    <color name="service_booking_item">#FEF9EA</color>
     <color name="main_light_30">#4DAB8262</color>
     <color name="loading_dark">#D1BAA4</color>
     <color name="loading_light">#F6F2F0</color>
