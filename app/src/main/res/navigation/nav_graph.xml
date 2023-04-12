@@ -150,6 +150,12 @@
         <argument
             android:name="petSelected"
             app:argType="com.mobye.petinto.models.PetInfo" />
+        <action
+            android:id="@+id/action_petPaymentFragment_to_deliveryAddressFragment"
+            app:destination="@id/deliveryAddressFragment" />
+        <action
+            android:id="@+id/action_petPaymentFragment_to_customerFragment"
+            app:destination="@id/customerFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPetFragment"
