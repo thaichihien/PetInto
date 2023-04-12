@@ -68,6 +68,107 @@
                 android:textSize="30sp"
                 android:textStyle="bold"/>
 
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="270dp"
+                android:layout_height="44dp"
+                android:background="@drawable/header_booking_list_item"
+                android:gravity="left|center"
+                android:paddingLeft="30dp"
+                android:text="Booking Details"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="30dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Booking id:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:id="@+id/bookingIdTV"
+                            android:layout_marginStart="24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="54569887"
+                            android:textStyle="bold"
+                            android:textColor="@color/main_dark"
+                            android:textSize="20sp"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Check in:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:id="@+id/bookingCheckInTV"
+                            android:layout_marginStart="24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10/04/2023"
+                            android:textStyle="bold"
+                            android:textColor="@color/main_dark"
+                            android:textSize="20sp"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Check out:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:id="@+id/bookingCheckOutTV"
+                            android:layout_marginStart="24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11/04/2023"
+                            android:textStyle="bold"
+                            android:textColor="@color/main_dark"
+                            android:textSize="20sp"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:singleLine="true"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Room:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:id="@+id/bookingRoomTV"
+                            android:layout_marginStart="24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VIP"
+                            android:textStyle="bold"
+                            android:textColor="@color/main_dark"
+                            android:textSize="20sp"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:singleLine="true"/>
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
