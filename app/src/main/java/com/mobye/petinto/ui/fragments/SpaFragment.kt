@@ -68,6 +68,15 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
 
 
+        // TODO nap du lieu vao spinner service (cho phep tu do sang tao cac service minh muon toi thieu 3)
+
+        informationViewModel.getPetList()
+        informationViewModel.myPetList.observe(viewLifecycleOwner){pets ->
+            // TODO nap danh sach pet vao spinner pet su dung bien pets
+        }
+
+
+
 
         binding.apply { 
             bookingBtn.setOnClickListener { 
