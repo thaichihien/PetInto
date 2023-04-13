@@ -106,7 +106,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToDeliveryAddressFragment())
             }
 
-
+            // Khi nhan nut mua
             btnPurchase.setOnClickListener {
                 if(validatePayment()){
                     loadingDialog.show()
@@ -117,6 +117,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     }
 
     private fun sendPurchaseOrder() {
+        //Chuan di order
         val order = shoppingViewModel.createProductOrder(
             id = informationViewModel.getUserID(),
             customerPickup = informationViewModel.customerPickupInfo,
@@ -126,15 +127,24 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             paymentMethod = if(binding.rbMomo.isChecked) "momo" else "cash"
         )
 
+        // Gui order
         shoppingViewModel.sendProductOrder(order)
+
+        // Ham nay se chay khi ket qua tra ve
         shoppingViewModel.response.observe(viewLifecycleOwner){response ->
+            // tat loading
             loadingDialog.dismiss()
+
+            // response.result = true khi thanh cong
             if(response.result){
+
+                // Hien dialog thong bao thanh cong
                 notiDialog.changeToSuccess("Yay. It’s a nice order! It will arrive soon.")
                 notiDialog.show()
-//                val total = response.body as Int
                 Log.e("Payment",response.body.toString())
                 val orderID = response.body.toString()
+
+                // Doi 3 giay sau do di chuyen den OrderFragment
                 lifecycleScope.launch{
                     delay(3000)
                     findNavController()
@@ -144,7 +154,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 }
 
 
-                //move to order fragment
+            // response.result = false
             }else{
                 notiDialog.changeToFail("Something went wrong. Please, try again.")
                 notiDialog.show()

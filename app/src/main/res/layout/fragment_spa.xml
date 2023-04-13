@@ -255,7 +255,7 @@
                 android:shadowRadius="@integer/material_motion_duration_long_1"
 
                 android:text="BOOKING"
-                android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+                android:textColor="@color/white"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteBtn"
@@ -265,7 +265,7 @@
                 android:background="@drawable/delete_button_background"
                 android:shadowRadius="@integer/material_motion_duration_long_1"
                 android:text="DELETE"
-                android:textColor="@color/main_dark"></androidx.appcompat.widget.AppCompatButton>
+                android:textColor="@color/main_dark"/>
 
 
         </LinearLayout>

@@ -1,12 +1,8 @@
 package com.mobye.petinto.viewmodels
 
-import android.icu.text.IDNA.Info
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mobye.petinto.repository.HomeRepository
-import com.mobye.petinto.repository.IRepository
-import com.mobye.petinto.repository.InformationRepository
-import com.mobye.petinto.repository.ShoppingRepository
+import com.mobye.petinto.repository.*
 
 @Suppress("UNCHECKED_CAST")
 class PetIntoViewModelFactory(
@@ -18,6 +14,7 @@ class PetIntoViewModelFactory(
             ShoppingViewModel::class.java ->ShoppingViewModel(repository as ShoppingRepository) as T
             InformationViewModel::class.java -> InformationViewModel(repository as InformationRepository) as T
             HomeViewModel::class.java -> HomeViewModel(repository as HomeRepository) as T
+            ServiceViewModel::class.java -> ServiceViewModel(repository as ServiceRepository) as T
             else -> throw IllegalArgumentException("Unknown View Model")
         }
     }
