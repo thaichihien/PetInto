@@ -11,7 +11,7 @@ import com.mobye.petinto.databinding.FragmentHotelBinding
 import com.mobye.petinto.databinding.FragmentShoppingBinding
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModelFactory
+
 
 
 class HotelFragment : Fragment(R.layout.fragment_hotel) {

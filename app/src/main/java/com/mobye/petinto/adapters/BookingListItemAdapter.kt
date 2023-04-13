@@ -1,4 +1,4 @@
 package com.mobye.petinto.adapters
 
-class BookingListItemAdapter: {
+class BookingListItemAdapter {
 }

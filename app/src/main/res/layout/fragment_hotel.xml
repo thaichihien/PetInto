@@ -6,63 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.HotelFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="409dp"
-        android:layout_height="92dp"
-        android:background="@color/background_dark"
-        android:paddingHorizontal="9dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="9dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:contentDescription="@string/shopping"
-            android:src="@drawable/foot_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hotel"
-            android:textColor="@color/main_dark"
-            android:textSize="@dimen/header_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:contentDescription="@string/shopping"
-            android:src="@drawable/foot_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.816" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="635dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:background="@color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,16 +22,15 @@
             android:orientation="vertical">
 
 
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="PET"
                 android:textColor="@color/main_dark"
                 android:textSize="22dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -94,8 +44,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="17dp"
                     android:layout_marginEnd="36dp"
-                    android:padding="5dp"
                     android:elevation="50dp"
+                    android:padding="5dp"
                     android:src="@drawable/dropdown_icon" />
 
 
@@ -123,7 +73,7 @@
                 android:text="OWNER"
                 android:textColor="@color/main_dark"
                 android:textSize="22dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,59 +84,68 @@
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TableRow>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Name"
-                            android:textStyle="bold"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/tvNameOwner"
-                            android:layout_marginStart="24dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
                             android:text="Thái Chí Hiện"
-                            android:textStyle="bold"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </TableRow>
+
                     <TableRow>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Phone number"
-                            android:textStyle="bold"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/tvPhoneOwner"
-                            android:layout_marginStart="24dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
                             android:text="0987999999"
-                            android:textStyle="bold"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </TableRow>
+
                     <TableRow>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Email"
-                            android:textStyle="bold"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/tvEmailOwner"
-                            android:layout_marginStart="24dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="thaichickenhien@gmail.com"
-                            android:textStyle="bold"
-                            android:textColor="@color/main_dark"
-                            android:textSize="20sp"
+                            android:layout_marginStart="24dp"
                             android:ellipsize="marquee"
                             android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"/>
+                            android:singleLine="true"
+                            android:text="thaichickenhien@gmail.com"
+                            android:textColor="@color/main_dark"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </TableRow>
                 </TableLayout>
 
@@ -196,11 +155,11 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Time"
                 android:textColor="@color/main_dark"
                 android:textSize="22dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -210,14 +169,14 @@
                     android:id="@+id/checkInET"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:background="@drawable/field_background"
-                    android:paddingLeft="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
+                    android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="Check in"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingLeft="20dp" />
 
                 <ImageView
                     android:layout_width="33dp"
@@ -239,14 +198,14 @@
                     android:id="@+id/checkOutET"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:background="@drawable/field_background"
-                    android:paddingLeft="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
+                    android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="Check in"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingLeft="20dp" />
 
                 <ImageView
                     android:layout_width="33dp"
@@ -264,24 +223,22 @@
                 android:id="@+id/bookingBtn"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:text="BOOKING"
-                android:textColor="@color/white"
-                android:background="@drawable/primary_button_background"
-
                 android:layout_marginTop="30dp"
-                android:shadowRadius="@integer/material_motion_duration_long_1">
-            </androidx.appcompat.widget.AppCompatButton>
+                android:background="@drawable/primary_button_background"
+                android:shadowRadius="@integer/material_motion_duration_long_1"
+
+                android:text="BOOKING"
+                android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteBtn"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:text="DELETE"
-                android:textColor="@color/main_dark"
-                android:background="@drawable/delete_button_background"
                 android:layout_marginTop="30dp"
-                android:shadowRadius="@integer/material_motion_duration_long_1">
-            </androidx.appcompat.widget.AppCompatButton>
+                android:background="@drawable/delete_button_background"
+                android:shadowRadius="@integer/material_motion_duration_long_1"
+                android:text="DELETE"
+                android:textColor="@color/main_dark"></androidx.appcompat.widget.AppCompatButton>
 
 
         </LinearLayout>
