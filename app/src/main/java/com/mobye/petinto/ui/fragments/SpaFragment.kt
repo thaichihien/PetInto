@@ -85,6 +85,8 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
     // Tham khao co huong dan chi tiet tai ham sendPurchaseOrder() o PaymentFragment.kt
     private fun sendSpaBooking() {
         // chuan bi bien SpaBooking
+        // LUU Y property date cua SpaBooking chi chap nhan format "YYYY-mm-dd HH:mm:ss" vi du "2023-02-12 20:00:00"
+        //       property customerID lay tu informationViewModel.getUserID()
 
         //Gui spa booking
         //serviceViewModel.sendSpaBooking(..
