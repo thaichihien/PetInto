@@ -140,21 +140,21 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   
 ### 📌 Assignment 3:
  - **Home** : Quỳnh
-    - Thiết kế màn hình hóa đơn (sau khi thanh toán), danh sách lịch hẹn, chi tiết của một lịch hẹn (cho phần Spa và Hotel).
+    - [X] Thiết kế màn hình hóa đơn (sau khi thanh toán), danh sách lịch hẹn, chi tiết của một lịch hẹn (cho phần Spa và Hotel).
       - **Deadline : 11/04/20230**
     - Lấy dữ liệu news từ API: Sử dụng **HomeViewModel** ở ***HomeFragment***. 
       - **Deadline : 13/04/20230** 
   - **Spa/Hotel** : Niên
-    - Lập trình giao diện màn hình danh sách booking, chi tiết booking
+    - [X] Lập trình giao diện màn hình danh sách booking, chi tiết booking
       - **Deadline : 12/04/20230**
-    - Kiểm tra dữ liệu nhập và gửi lịch đặt đến API.
+    - [ ] Kiểm tra dữ liệu nhập và gửi lịch đặt đến API. Làm theo hướng dẫn chi tiết tại **SpaFragment**
       - **Deadline : 15/04/20230**
   - **Order**: Dũng
-    - Chuẩn bị dữ liệu Pet:
+    - [X] Chuẩn bị dữ liệu Pet:
       - **Deadline : 10/04/20230**
-    - cài đặt gọi API, Paging, lấy dữ liệu đưa giao diện, tham khảo **ProductPagingSource, productItemList trong ShoppingViewModel, ShoppingFragment** của Hiện, làm ở **ShoppingViewModel**  
+    - [X] cài đặt gọi API, Paging, lấy dữ liệu đưa giao diện, tham khảo **ProductPagingSource, productItemList trong ShoppingViewModel, ShoppingFragment** của Hiện, làm ở **ShoppingViewModel**  
       - **Deadline : 15/04/20230**
-     - Thực hiện lấy dữ liệu người dùng, (customerPickup), địa chỉ giao (deliveryAddress) ở **PetPaymentFragment**. Tham khảo và lấy các hàm gọi từ **PaymentFragment** 
+     - [X] Thực hiện lấy dữ liệu người dùng, (customerPickup), địa chỉ giao (deliveryAddress) ở **PetPaymentFragment**. Tham khảo và lấy các hàm gọi từ **PaymentFragment** 
         - **Deadline : 16/04/20230**
   - **Shopping** : Hiện
     - Thực hiện thanh toán (TH cash)
@@ -196,18 +196,18 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - [ ] Tìm kiếm (theo tên sản phẩm)
   - [ ] Filter
 - [ ] Màn hình giao diện **Spa**
-  - [ ] Xây dựng giao diện
+  - [X] Xây dựng giao diện
   - [ ] Sau khi booking sẽ dẫn đến trang Your Booking (fragment_booking_details)
   - [ ] Nếu bấm delete thì sẽ xóa hết những thông tin đang hiển thị và trả về trạng thái không có thông tin gì ban đầu
   - [ ] Để biết booking thành công sẽ xem ở trang Your Booking (fragment_booking_details)
   - [ ] Có nên tự động fill vào thông tin theo tài khoản đã đăng nhập (đã có thông tin pet ở **Profile**)
 - [ ] Màn hình giao diện **Hotel**
-  - [ ] Xây dựng giao diện
+  - [X] Xây dựng giao diện
   - [ ] Sau khi booking sẽ dẫn đến đâu ?
   - [ ] Làm sao để biết booking thành công ?
   - [ ] Có nên tự động fill vào thông tin theo tài khoản đã đăng nhập (đã có thông tin pet ở **Profile**)
 - [ ] Màn hình giao diện **Profile**
-  - [ ] Xây dựng giao diện
+  - [X] Xây dựng giao diện
   - [ ] Giao diện **History**
   - [ ] Giao diện **Rate**
   - [ ] Giao diện **Order**/**Order Details**
