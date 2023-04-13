@@ -48,44 +48,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         lifecycleScope.launchWhenCreated {
             homeViewModel.newsList.collectLatest {
                 Log.e(TAG,"newList = ${it.size}")
-
+                loadImage(it)
                 // TODO get news list here
             }
         }
+    }
 
-
-
-        val advertisements = listOf(
-            Advertisement(
-                image = "https://baovechomeo.com/wp-content/uploads/2019/05/HAY-BAO-VE-CHO-MEO-1024x576.jpg",
-                url = "https://baovechomeo.com/hay-bao-ve-cho-meo-vi-chung-la-nhung-nguoi-ban-cua-chung-ta.html"
-            ),
-            Advertisement(
-                image = "https://baovechomeo.com/wp-content/uploads/2019/08/Cach-nuoi-va-cham-soc-cho-con-1024x576.jpg",
-                url = "https://baovechomeo.com/cach-nuoi-va-cham-soc-cho-con-khi-moi-mua.html"
-            ),
-            Advertisement(
-                image = "https://i.ibb.co/qdwdbFs/Nh-ng-i-u-c-n-l-u-khi-nu-i-th-1.png",
-                url = "https://colocolo.vn/luu-y-khi-nuoi-meo/"
-            ),
-            Advertisement(
-                image = "https://i.ibb.co/p1qT3tc/Nh-ng-i-u-c-n-l-u-khi-nu-i-th.png",
-                url = "https://www.wikihow.vn/Nu%C3%B4i-Th%E1%BB%8F"
-            ),
-            Advertisement(
-                image = "https://i.ibb.co/34Y0588/Nh-ng-i-u-c-n-l-u-khi-nu-i-th-2.png",
-                url = "https://www.chotot.com/kinh-nghiem/cac-loai-chim-canh-nho.html"
-            ),
-            Advertisement(
-                image = "https://i.ibb.co/XXfk03h/Nh-ng-i-u-c-n-l-u-khi-nu-i-th-3.png",
-                url = "https://www.chotot.com/kinh-nghiem/cach-nuoi-chuot-hamster.html"
-            ),
-            Advertisement(
-                image = "https://i.ibb.co/QmS3JSs/Nh-ng-i-u-c-n-l-u-khi-nu-i-th-4.png",
-                url = "https://vnexpress.net/loi-ich-khi-nuoi-ca-canh-4394900.html"
-            )
-        )
-
+    fun loadImage(advertisements: List<Advertisement>) {
         Glide.with(this).load(advertisements[0].image).into(binding.advertisementBtn1)
         Glide.with(this).load(advertisements[1].image).into(binding.advertisementBtn2)
         Glide.with(this).load(advertisements[2].image).into(binding.advertisementBtn3)
@@ -117,6 +86,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToWebViewFragment(advertisements[6].url))
             }
         }
-
     }
 }
