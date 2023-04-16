@@ -125,7 +125,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                     adapter ->
                 adapter.setDropDownViewResource(
                     android.R.layout.simple_spinner_dropdown_item)
-                binding.servicesSpinner.adapter=adapter
+                binding.petSpinner.adapter=adapter
             }
         }
 
@@ -138,7 +138,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                     sendSpaBooking()
                 }else{
                     // TODO hien loi chua nhap cac truong
-                    notiDialog.changeToSuccess("Please input all the fields!!!")
+                    notiDialog.changeToSuccess("Please correctly input all the fields!!!")
                     notiDialog.show()
                                    }
             }
