@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:id="@+id/iconIV"
+        android:id="@+id/ivImage"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:contentDescription="@string/app_name"
@@ -22,13 +22,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iconIV"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
         app:layout_constraintTop_toTopOf="parent"
         >
 
         <TextView
-            android:id="@+id/tv_fullname"
-            android:layout_width="120dp"
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="Bed"
@@ -53,11 +53,11 @@
         android:layout_marginTop="6dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iconIV"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
         app:layout_constraintTop_toBottomOf="@+id/nameLayout">
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="345.000đ"
@@ -75,7 +75,7 @@
         android:layout_marginTop="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iconIV"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
         app:layout_constraintTop_toBottomOf="@id/relativeLayout5">
 
         <TableRow>
@@ -92,10 +92,10 @@
                    />
 
                 <TextView
-                    android:id="@+id/tv_type_pet"
+                    android:id="@+id/tvTypePet"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="6dp"
                     android:text="Cat"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold" />
@@ -113,7 +113,7 @@
                     android:textColor="@color/main_dark" />
 
                 <TextView
-                    android:id="@+id/tv_detail"
+                    android:id="@+id/tvDetail"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -140,9 +140,11 @@
                   />
 
                 <TextView
+                    android:id="@+id/tvQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5"
+                    android:layout_marginStart="6dp"
                     android:textColor="@color/main_dark"
 
                     android:textStyle="bold" />
@@ -160,6 +162,7 @@
                     android:textColor="@color/main_dark" />
 
                 <TextView
+                    android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shipping"
@@ -182,6 +185,7 @@
                  />
 
             <TextView
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12/02/2023"

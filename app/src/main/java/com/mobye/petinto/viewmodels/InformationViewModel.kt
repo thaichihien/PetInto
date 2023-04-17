@@ -9,6 +9,7 @@ import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
+import com.mobye.petinto.models.apimodel.OrderHistory
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
 import io.realm.kotlin.types.RealmUUID
@@ -30,6 +31,9 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
     val customerPickupInfo get() = customerPickup.value!!
     val deliveryAddressInfo get() = defaultDeliveryAddress.value!!
+
+    //History
+    val orderHistoryList : MutableLiveData<List<OrderHistory>> by lazy { MutableLiveData(listOf()) }
 
 
     fun getPetList(){
@@ -195,8 +199,24 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         viewModelScope.launch(Dispatchers.IO) {
             repository.saveUserLocal(user)
         }
-
         this.user.value = user
+    }
+
+    fun getOrderHistory(id : String){
+        viewModelScope.launch {
+            try {
+                val response = repository.getOrderHistory(id).body()!!
+                if(response.result){
+                    orderHistoryList.value = response.body
+                }else{
+                    //Server error
+                }
+
+            }catch (e: Exception) {
+                // no internet connection
+            }
+        }
+
     }
 
 }

@@ -4,10 +4,7 @@ import com.mobye.petinto.models.Advertisement
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
-import com.mobye.petinto.models.apimodel.ApiResponse
-import com.mobye.petinto.models.apimodel.Order
-import com.mobye.petinto.models.apimodel.ProductOrder
-import com.mobye.petinto.models.apimodel.SpaBooking
+import com.mobye.petinto.models.apimodel.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -24,6 +21,11 @@ interface PetIntoApi {
     @GET("/data/news")
     suspend fun getNews(
     ) : Response<ApiResponse<List<Advertisement>>>
+
+    @GET("/data/history")
+    suspend fun getOrderHistory(
+        @Query("id") id: String
+    ) : Response<ApiResponse<List<OrderHistory>>>
 
     @POST("/user/add")
     suspend fun sendUser(

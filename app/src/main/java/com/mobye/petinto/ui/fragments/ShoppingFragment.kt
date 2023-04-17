@@ -179,11 +179,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         Log.e(DEBUG_TAG,"onResume")
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e(DEBUG_TAG,"onStart")
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

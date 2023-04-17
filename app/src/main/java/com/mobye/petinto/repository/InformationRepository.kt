@@ -98,4 +98,8 @@ class InformationRepository :IRepository {
         AccountInfoDatabase.deletePet(petInfo)
     }
 
+
+    suspend fun getOrderHistory(id: String)
+        = RetrofitInstance.api.getOrderHistory(id)
+
 }
