@@ -70,6 +70,8 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         myPetList.value = list
     }
 
+    fun getPetGenre(index: Int)
+        = myPetList.value!![index].type
     fun getUser(id : String){
         // get user data by id from backend (id,email,name)
         viewModelScope.launch {

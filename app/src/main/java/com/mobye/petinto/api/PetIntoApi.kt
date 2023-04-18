@@ -46,6 +46,14 @@ interface PetIntoApi {
         @Body order: ProductOrder
     ) : Response<ApiResponse<Any>>
 
+
+    @POST("/order/pet")
+    suspend fun sendPetOrder(
+        @Body order: ProductOrder //TODO sua lai kieu tham so
+    ) : Response<ApiResponse<Any>>
+
+
+
     //Booking
     @POST("/booking/spa/new")
     suspend fun sendSpaBooking(

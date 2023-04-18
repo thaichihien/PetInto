@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:text="Services"
                 android:textColor="@color/main_dark"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -51,7 +51,7 @@
 
                 <Spinner
                     android:id="@+id/servicesSpinner"
-                    android:layout_width="365dp"
+                    android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
@@ -72,7 +72,7 @@
                 android:layout_marginTop="20dp"
                 android:text="PET"
                 android:textColor="@color/main_dark"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -94,7 +94,7 @@
 
                 <Spinner
                     android:id="@+id/petSpinner"
-                    android:layout_width="365dp"
+                    android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
@@ -115,14 +115,14 @@
                 android:layout_marginTop="20dp"
                 android:text="OWNER"
                 android:textColor="@color/main_dark"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="30dp">
+                android:padding="24dp">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -134,7 +134,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Name"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -144,17 +143,17 @@
                             android:layout_marginStart="24dp"
                             android:text="Thái Chí Hiện"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow
+                        android:layout_marginTop="6dp">
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Phone number"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -164,17 +163,17 @@
                             android:layout_marginStart="24dp"
                             android:text="0987999999"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow
+                        android:layout_marginTop="6dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Email"
-                            android:textSize="20sp"
+
                             android:textStyle="bold" />
 
                         <TextView
@@ -187,7 +186,7 @@
                             android:singleLine="true"
                             android:text="thaichickenhien@gmail.com"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"
+
                             android:textStyle="bold" />
                     </TableRow>
                 </TableLayout>
@@ -198,10 +197,10 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="6dp"
                 android:text="Time"
                 android:textColor="@color/main_dark"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -209,84 +208,61 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/DayET"
-                    android:layout_width="100dp"
+                    android:id="@+id/etDay"
+                    android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="Day"
                     android:inputType="textPersonName"
                     android:paddingLeft="20dp" />
 
-                <EditText
-                    android:id="@+id/MonthET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toStartOf="@+id/YearET"
-                    android:layout_toEndOf="@+id/DayET"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="Month"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
-
-                <EditText
-                    android:id="@+id/YearET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="Year"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingHorizontal="20dp">
 
-                <EditText
-                    android:id="@+id/HourET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_marginLeft="100dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toStartOf="@+id/MinuteET"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="Hour"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
+                <RadioGroup
+                    android:id="@+id/rgTime"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/MinuteET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="Minute"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
+                    <RadioButton
+                        android:id="@+id/rb8h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="08:00"/>
+
+                    <RadioButton
+                        android:id="@+id/rb10h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10:00"/>
+
+                    <RadioButton
+                        android:id="@+id/rb15h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15:00"/>
+
+                    <RadioButton
+                        android:id="@+id/rb17h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="17:00"/>
+
+
+
+                </RadioGroup>
+
 
             </RelativeLayout>
 

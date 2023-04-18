@@ -105,6 +105,9 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
     }
 
+
+    // TODO thuc hien gui don dat mua pet
+    // Tham khao sendPurchaseOrder() o PaymentFragment.kt
     private fun sendPurchaseOrder() {
 
     }

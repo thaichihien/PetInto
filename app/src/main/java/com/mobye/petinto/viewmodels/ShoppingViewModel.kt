@@ -208,26 +208,6 @@ class ShoppingViewModel(
         return false
     }
 
-
-
-    fun createProductOrder(info : Order) : ProductOrder{
-        val order: ProductOrder?
-        val cart : MutableList<CartOrder> = mutableListOf()
-
-        for(orderItem in paymentItemList.value!!){
-            cart.add(
-                CartOrder(
-                orderItem.item!!.id,
-                orderItem.quantity)
-            )
-        }
-
-        order = info as ProductOrder
-        order.cart = cart
-
-        return order
-    }
-
     fun createProductOrder(id : String,customerPickup: CustomerPickup,deliveryInfo: DeliveryInfo,
                            isdelivery : Boolean,note : String,paymentMethod : String) : ProductOrder{
         val order: ProductOrder?

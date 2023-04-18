@@ -1,8 +1,10 @@
 package com.mobye.petinto.ui.fragments
 
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,18 +17,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.CalendarConstraints.DateValidator
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentSpaBinding
 import com.mobye.petinto.models.apimodel.SpaBooking
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ServiceRepository
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class SpaFragment : Fragment(R.layout.fragment_spa) {
@@ -69,6 +79,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
     // Khong nen dung findViewById ma hay su dung ViewBinding
     // vi du thay vi : val tvTest = view.findViewById(R.id.tvTest)
     //          ===>   binding.tvTest
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -83,7 +94,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                 binding.petSpinner.performClick()}
         }
 
-        // TODO nap du lieu vao spinner service (cho phep tu do sang tao cac service minh muon toi thieu 3)
+
         val serviceList=listOf("Massage","Hair cut","Bath","Nail cut")
 
         val ad: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -111,7 +122,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
         informationViewModel.getPetList()
         informationViewModel.myPetList.observe(viewLifecycleOwner){pets ->
-            // TODO nap danh sach pet vao spinner pet su dung bien pets
+
             var petsNameList= arrayListOf<String>()
             for(i in pets){
                 petsNameList.add(i.name)
@@ -129,7 +140,30 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }
         }
 
+        informationViewModel.user.observe(viewLifecycleOwner){customer ->
+            // TODO fill thong tin cua tvNameOwner,tvPhoneOwner,tvEmailOwner su dung bien customer
 
+            binding.apply {
+                //tvNameOwner.text = ...
+                //tvPhoneOwner.text = ...
+                //...
+            }
+
+
+        }
+
+        val dayPicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select a date")
+            .setCalendarConstraints(CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now()).build())
+            .build()
+
+        dayPicker.addOnPositiveButtonClickListener {
+            val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+            calendar.timeInMillis = it
+            val format = SimpleDateFormat("yyyy-MM-dd")
+            val formattedDate: String = format.format(calendar.time)
+            binding.etDay.setText(formattedDate)
+        }
 
 
         binding.apply { 
@@ -142,16 +176,33 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                     notiDialog.show()
                                    }
             }
+            etDay.setOnClickListener{
+                dayPicker.show(parentFragmentManager,"DAY_PICKER")
+            }
+
         }
 
         binding.apply {
             deleteBtn.setOnClickListener {
-                findNavController().popBackStack()
+                //findNavController().popBackStack()
+
+                // TODO clear tat ca field, radio button thi uncheck
+
             }
         }
 
 
 
+    }
+
+    private fun getTime() : String{
+        return when(binding.rgTime.checkedRadioButtonId){
+            binding.rb8h.id -> "08:00:00"
+            binding.rb10h.id -> "10:00:00"
+            binding.rb15h.id -> "15:00:00"
+            binding.rb17h.id -> "17:00:00"
+            else -> "error"
+        }
     }
 
 
@@ -160,24 +211,16 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         // chuan bi bien SpaBooking
         // LUU Y property date cua SpaBooking chi chap nhan format "YYYY-mm-ddTHH:mm:ss" vi du "2022-10-10T20:00:00"
         //       property customerID lay tu informationViewModel.getUserID()
-        var booking=SpaBooking()
-        var date: String=""
-        date.plus(binding.YearET.text.toString()).plus("-")
-        if(binding.MonthET.text.toString().length==1)
-            date.plus("0")
-        date.plus(binding.MonthET.text.toString()).plus("-")
-        if(binding.DayET.text.toString().length==1)
-            date.plus("0")
-        date.plus(binding.DayET.text.toString()).plus("T")
-        if(binding.HourET.text.toString().length==1)
-            date.plus("0")
-        date.plus(binding.HourET.text.toString()).plus(":")
-        if(binding.MinuteET.text.toString().length==1)
-            date.plus("0")
-        date.plus(binding.MinuteET.text.toString()).plus(":00")
+        val booking=SpaBooking()
+        val date = "${binding.etDay.text}T${getTime()}"
 
-        booking.date=date
-        booking.customerID=informationViewModel.getUserID()
+        booking.apply {
+            this.date =date
+            customerID = informationViewModel.getUserID()
+            type = binding.servicesSpinner.selectedItem.toString()
+            petName = binding.petSpinner.selectedItem.toString()
+            genre = informationViewModel.getPetGenre(binding.petSpinner.selectedItemPosition)
+        }
 
         serviceViewModel.sendSpaBooking(booking)
 
@@ -188,72 +231,39 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             if (response.result) {
 
                 // Hien dialog thong bao thanh cong
-                notiDialog.changeToSuccess("Succecssfully book a spa service.")
+                notiDialog.changeToSuccess("Successfully book a spa service.")
                 notiDialog.show()
                 Log.e("Spa Booking", response.body.toString())
                 val orderID = response.body.toString()
 
                 lifecycleScope.launch {
                     delay(3000)
-                    findNavController()
+                    notiDialog.dismiss()
 
                 }
 
 
+            }else{
+                notiDialog.changeToFail("Something went wrong. Please, try again.")
+                notiDialog.show()
+                lifecycleScope.launch{
+                    delay(3000)
+                    notiDialog.dismiss()
+
+                }
             }
         }
     }
 
     private fun validate(): Boolean {
-        var isValid=false
-        var maxDaysNotLeap = listOf(31,28,31,30,31,30,31,31,30,31,30,31)
-        var maxDaysLeap = listOf(31,29,31,30,31,30,31,31,30,31,30,31)
-        var maxDays=maxDaysNotLeap
+        val isValid = true
 
-        if (binding.servicesSpinner!=null || binding.servicesSpinner.selectedItem!=null)
-            isValid=true
+        // TODO Kiem tra etDay khong empty
 
-        if (binding.petSpinner!=null || binding.petSpinner.selectedItem!=null)
-            isValid=true
-        else return false
 
-        if(!binding.DayET.text.toString().isNullOrEmpty() && !binding.MonthET.text.toString().isNullOrEmpty() && !binding.YearET.text.toString().isNullOrEmpty())
-            isValid=true
-        else return false
+        //TODO Kiem tra RadioGroup  rgTime phai chon 1 cai  (rgTime.checkedRadioButtonId == -1 la chua chon)
 
-        if(!binding.HourET.text.toString().isNullOrEmpty() && !binding.MinuteET.text.toString().isNullOrEmpty())
-            isValid=true
-        else return false
 
-        if(binding.YearET.text.toString().toInt()>2000 && binding.YearET.text.toString().toInt()<10000)
-            isValid=true
-        else return false
-
-        if(binding.MonthET.text.toString().toInt()<=12 && binding.MonthET.text.toString().toInt()>=1)
-            isValid=true
-        else return false
-
-        fun isLeapYear(year: Int):Boolean{
-            if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
-                return true
-
-            return false
-        }
-
-        if(isLeapYear(binding.YearET.text.toString().toInt())) maxDays=maxDaysLeap
-
-        if(binding.DayET.text.toString().toInt()>=1 &&
-            binding.DayET.text.toString().toInt()<=maxDays[binding.MonthET.text.toString().toInt()-1])
-            isValid=true
-        else return false
-
-        if(binding.HourET.text.toString().toInt()>=0 && binding.HourET.text.toString().toInt()<=23)
-            isValid=true
-        else return false
-
-        if(binding.MinuteET.text.toString().toInt()>=0 && binding.MinuteET.text.toString().toInt()<=60)
-            isValid=true
-        else return false
 
         return isValid
     }

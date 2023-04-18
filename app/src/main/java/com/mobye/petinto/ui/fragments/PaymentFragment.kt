@@ -80,7 +80,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         informationViewModel.getDefaultDeliveryAddress(informationViewModel.getUserID())
         informationViewModel.customerPickup.observe(viewLifecycleOwner){
             it?.let {
-                Log.e("PaymentFragment",it.phone)
                 binding.tvCustomerInformation.text = it.toString()
             }
         }
@@ -141,12 +140,13 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 // Hien dialog thong bao thanh cong
                 notiDialog.changeToSuccess("Yay. It’s a nice order! It will arrive soon.")
                 notiDialog.show()
-                Log.e("Payment",response.body.toString())
+
                 val orderID = response.body.toString()
 
-                // Doi 3 giay sau do di chuyen den OrderFragment
+                // Doi 3 giay sau do di chuyen den OrderPaymentFragment (Fragment hoa don)
                 lifecycleScope.launch{
                     delay(3000)
+                    notiDialog.dismiss()
                     findNavController()
                         .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
                             orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
@@ -160,6 +160,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 notiDialog.show()
                 lifecycleScope.launch{
                     delay(3000)
+                    notiDialog.dismiss()
                     findNavController().popBackStack(R.id.shoppingFragment,false)
                 }
             }
