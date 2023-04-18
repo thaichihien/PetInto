@@ -159,6 +159,20 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - **Shopping** : Hiện
     - Thực hiện thanh toán (TH cash)
     - Thực hiện thanh toán Zalo Pay
+### Assignment 4:
+- **Pet Order**: Dũng  (**Deadline** : 22/04/2023)
+  - Thực hiện mua và thanh toán pet:
+    - Tạo lớp chứa dữ liệu để gửi lên API ở package apimodel (kế thừa từ **Order**) gồm các thông tin:
+      - tất cả thông tin của lớp cha **Order**
+      - var petID : String   _(chứa id của pet muốn mua)_
+    - Sửa lại tham số của hàm ***sendPetOrder*** ở **PetIntoApi.kt**
+    - viết hàm gọi API ở **ShoppingRepository**
+    - Viết các hàm tạo va gửi pet Order (tham khảo hàm **createProductOrder** và **sendProductOrder**) ở **ShoppingViewModel**
+    - viết hàm gửi order **sendPurchaseOrder** ở **PetPaymentFragment** tham khảo **PaymentFragment** (có thể debug để xem kết quả)
+  - Thiết kế giao diện hóa đơn sau khi mua Pet (tham khảo **OrderPaymentFragment**)
+- **Spa** : Niên  (**Deadline :** 20/04/2023)
+  - Thực hiện tất cả TODO ở **SpaFragment**
+ 
 ## 📌Project Notes
 - Trước khi làm **PULL**, làm xong một chức năng **PUSH**
 - Chỉ làm việc trên Fragment của mình, có thể thêm các Activity, Fragment khác, ***Nhưng không được sửa phần Fragment khác***
