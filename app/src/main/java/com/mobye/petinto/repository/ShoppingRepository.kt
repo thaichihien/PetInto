@@ -7,6 +7,7 @@ import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.Product
 import com.mobye.petinto.models.apimodel.ApiResponse
+import com.mobye.petinto.models.apimodel.PetOrder
 import com.mobye.petinto.models.apimodel.ProductOrder
 import retrofit2.Response
 
@@ -101,5 +102,6 @@ class ShoppingRepository : IRepository {
     suspend fun sendProductOrder(order : ProductOrder) : Response<ApiResponse<Any>>
         = RetrofitInstance.api.sendProductOrder(order)
 
-
+    suspend fun sendPetOrder(order : PetOrder) : Response<ApiResponse<Any>>
+            = RetrofitInstance.api.sendPetOrder(order)
 }

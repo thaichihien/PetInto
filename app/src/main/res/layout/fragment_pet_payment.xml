@@ -160,6 +160,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <RadioButton
+                        android:id="@+id/rbPickup"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -388,6 +389,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
+                    android:id="@+id/etNote"
                     android:textSize="15sp"
                     android:layout_marginTop="16dp"
                     android:padding="20dp"

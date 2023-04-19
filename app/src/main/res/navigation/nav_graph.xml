@@ -156,6 +156,9 @@
         <action
             android:id="@+id/action_petPaymentFragment_to_customerFragment"
             app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/action_petPaymentFragment_to_petOrderPaymentFragment"
+            app:destination="@id/petOrderPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPetFragment"
@@ -235,6 +238,15 @@
         android:label="DetailPetFragment" >
         <argument
             android:name="petItemDetail"
+            app:argType="com.mobye.petinto.models.PetInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/petOrderPaymentFragment"
+        android:name="com.mobye.petinto.ui.fragments.PetOrderPaymentFragment"
+        android:label="fragment_pet_order_payment"
+        tools:layout="@layout/fragment_pet_order_payment" >
+        <argument
+            android:name="petPayment"
             app:argType="com.mobye.petinto.models.PetInfo" />
     </fragment>
 </navigation>

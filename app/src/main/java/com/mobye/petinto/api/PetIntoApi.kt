@@ -49,7 +49,7 @@ interface PetIntoApi {
 
     @POST("/order/pet")
     suspend fun sendPetOrder(
-        @Body order: ProductOrder //TODO sua lai kieu tham so
+        @Body order: PetOrder //TODO sua lai kieu tham so
     ) : Response<ApiResponse<Any>>
 
 

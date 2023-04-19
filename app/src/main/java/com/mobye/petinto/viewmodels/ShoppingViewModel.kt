@@ -9,10 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.mobye.petinto.models.*
-import com.mobye.petinto.models.apimodel.ApiResponse
-import com.mobye.petinto.models.apimodel.CartOrder
-import com.mobye.petinto.models.apimodel.Order
-import com.mobye.petinto.models.apimodel.ProductOrder
+import com.mobye.petinto.models.apimodel.*
 import com.mobye.petinto.repository.ShoppingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -261,6 +258,37 @@ class ShoppingViewModel(
         }
 
         cartItemList.value = cart
+    }
+
+
+    fun createPetOrder(id : String,customerPickup: CustomerPickup,deliveryInfo: DeliveryInfo,
+                           isdelivery : Boolean,note : String,paymentMethod : String, petID: String) : PetOrder{
+        val order: PetOrder?
+
+        order = PetOrder().apply {
+            customerID = id
+            customerName = customerPickup.name
+            customerPhone = customerPickup.phone
+            this.isdelivery = if(isdelivery) "yes" else "no"
+            address = if(isdelivery) deliveryInfo.address else ""
+            this.note = note
+            payment = paymentMethod
+            this.petID = petID
+        }
+
+        return order
+    }
+
+    fun sendPetOrder(order: PetOrder){
+        viewModelScope.launch {
+            try {
+                val response = repository.sendPetOrder(order)
+                this@ShoppingViewModel.response.value = response.body()
+            }catch (e: Exception){
+                // no internet connection
+                Log.e(TAG,e.toString())
+            }
+        }
     }
 
 

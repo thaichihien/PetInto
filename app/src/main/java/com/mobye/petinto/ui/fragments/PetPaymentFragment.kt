@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -21,6 +22,8 @@ import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.viewmodels.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
@@ -109,7 +112,59 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
     // TODO thuc hien gui don dat mua pet
     // Tham khao sendPurchaseOrder() o PaymentFragment.kt
     private fun sendPurchaseOrder() {
+        val order = shoppingViewModel.createPetOrder(
+            id = informationViewModel.getUserID(),
+            customerPickup = informationViewModel.customerPickupInfo,
+            deliveryInfo = informationViewModel.deliveryAddressInfo,
+            isdelivery = binding.rbPickup.isChecked,
+            note = binding.etNote.text.toString().trim(),
+            paymentMethod = if(binding.rbMomo.isChecked) "momo" else "cash",
+            petID =  args.petSelected.id
+        )
 
+        // Gui order
+        shoppingViewModel.sendPetOrder(order)
+
+        // Ham nay se chay khi ket qua tra ve
+        shoppingViewModel.response.observe(viewLifecycleOwner) { response ->
+            // tat loading
+            loadingDialog.dismiss()
+
+            // response.result = true khi thanh cong
+            if (response.result) {
+
+                // Hien dialog thong bao thanh cong
+                notiDialog.changeToSuccess("Yay. It’s a nice order! It will arrive soon.")
+                notiDialog.show()
+
+                val orderID = response.body.toString()
+
+                // Doi 3 giay sau do di chuyen den OrderPaymentFragment (Fragment hoa don)
+                lifecycleScope.launch {
+                    delay(3000)
+                    notiDialog.dismiss()
+//                    findNavController()
+//                        .navigate(
+//                            PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
+//                                orderID,
+//                                binding.rbDoor.isChecked,
+//                                if (binding.rbMomo.isChecked) "momo" else "cash"
+//                            )
+//                        )
+                }
+
+
+                // response.result = false
+            } else {
+                notiDialog.changeToFail("Something went wrong. Please, try again.")
+                notiDialog.show()
+                lifecycleScope.launch {
+                    delay(3000)
+                    notiDialog.dismiss()
+//                    findNavController().popBackStack(R.id.shoppingFragment, false)
+                }
+            }
+        }
     }
 
     private fun validatePayment(): Boolean {
