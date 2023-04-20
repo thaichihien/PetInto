@@ -22,6 +22,7 @@
     <string name="pet">Thú cưng</string>
 
     <!--    Use for changing language-->
+    <!--    Home Fragment-->
     <string name="welcome_to_petinto">PetInto xin chào</string>
     <string name="search">Tìm kiếm</string>
     <string name="pet_list">Danh sách thú cưng</string>
@@ -40,7 +41,193 @@
     <string name="customer_review_1">PetInto là một ứng dụng tuyệt vời cho chủ nuôi thú cưng! Nó cung cấp một loạt các dịch vụ, bao gồm các tùy chọn mua sắm dễ sử dụng và những lời khuyên chăm sóc thú cưng hữu ích.</string>
     <string name="customer_review_2">Tôi rất khuyến khích ứng dụng này cho bất kỳ ai đang tìm cách cải thiện trải nghiệm chăm sóc thú cưng của mình.</string>
 
+    <!--Add Pet Fragment-->
+    <string name="add_your_pet">Thêm thú cưng</string>
+    <string name="pet_name">Tên</string>
+    <string name="pet_type">Loài</string>
+    <string name="pet_age">Tuổi</string>
+    <string name="pet_variety">Giống</string>
+    <string name="pet_color">Màu sắc</string>
+    <string name="pet_weight">Cân nặng</string>
+    <string name="pet_vaccine">Số mũi tiêm</string>
+    <string name="pet_gender">Giới tính: </string>
+    <string name="pet_gender_male">Nam</string>
+    <string name="pet_gender_female">Nữ</string>
+    <string name="pet_gender_other">Khác</string>
+    <string name="add_pet">THÊM</string>
+
+    <!--    Custom_dialog-->
+    <string name="success_condition">Thành công</string>
+    <string name="sentence_success_condition">Yay. Đơn hàng đã được đặt thành công! Sẽ sớm đến ngay nhé.</string>
+
+    <!--    Booking_item_list-->
+    <string name="booking_type">Dịch vụ: </string>
+    <string name="booking_time">Thời gian: </string>
+    <string name="booking_details">CHI TIẾT</string>
+
+    <!--    Booking_fragment-->
+    <string name="booking_title">Đặt dịch vụ</string>
+
+    <!--    Booking_Detail_Fragment-->
+    <string name="booking_detail_title">Chi tiết đặt</string>
+    <string name="booking_detail_title_pet">THÚ CƯNG</string>
+    <string name="booking_detail_title_owner">CHỦ</string>
+    <string name="booking_detail_title_booking">ĐẶT DỊCH VỤ</string>
+    <string name="booking_detail_title_services">DỊCH VỤ</string>
+    <string name="booking_detail_none">Không</string>
+
+    <string name="booking_pet_id">Mã số: </string>
+    <string name="booking_pet_name">Tên: </string>
+    <string name="booking_pet_type">Loài: </string>
+    <string name="booking_owner_phone_number">Điện thoại</string>
+
+    <!--    Booking_Detail_Hotel_Fragment-->
+    <string name="service_booking_details">Chi tiết lịch đặt</string>
+    <string name="booking_detail_hotel">Đặt khách sạn</string>
+    <string name="booking_detail_hotel_id">Mã đặt: </string>
+    <string name="booking_detail_hotel_check_in">Ngày nhận: </string>
+    <string name="booking_detail_hotel_check_out">Ngày trả: </string>
+    <string name="booking_detail_hotel_room">Phòng: </string>
+    <string name="booking_detail_hotel_customer_information">Thông tin khách hàng</string>
+    <string name="booking_detail_hotel_phone_number">Điện thoại: </string>
+    <string name="booking_detail_hotel_customer_email" translatable="false">Email: </string>
+    <string name="booking_detail_hotel_pet_information">Thông tin thú cưng</string>
+    <string name="booking_detail_hotel_pet_information_variety">Giống: </string>
+    <string name="booking_detail_hotel_pet_information_color">Màu: </string>
+    <string name="booking_detail_hotel_pet_color">Nâu</string>
+    <string name="booking_detail_hotel_cancel_booking">HUỶ LỊCH HẸN</string>
+
+    <!--    Booking_Detail_Spa_Fragment-->
+    <string name="booking_detail_spa">Đặt lịch Spa</string>
+    <string name="booking_detail_spa_services">Dịch vụ: </string>
+    <string name="nail_cut">Cắt móng</string>
+    <string name="hair_cut">Cắt tóc</string>
+
+    <!--    Cart_fragment-->
+    <string name="cart">Giỏ hàng</string>
+    <string name="select_all">Chọn tất cả</string>
+    <string name="buy">Mua</string>
+    <string name="change_information">Thay đổi thông tin</string>
+    <string name="full_name">Họ và tên</string>
+    <string name="change">Thay đổi</string>
+    <string name="cancel">Hủy</string>
+
+    <!--    Customer_fragment-->
+    <string name="customer">Khách hàng</string>
+    <string name="save_information">Lưu thông tin</string>
+    <string name="delivery_address">Địa chỉ giao hàng</string>
+    <string name="add_new_address">Thêm địa chỉ</string>
+    <string name="select_default_address">Chọn địa chỉ mặc định</string>
+
+    <!--    Detail_fragment-->
+    <string name="bed">Giường</string>
+    <string name="used_for">Cho: </string>
+    <string name="stock">Còn lại: </string>
+    <string name="product_details">Chi tiết:</string>
+    <string name="contact">Liên hệ</string>
+
+    <!--    Detail_pet_fragment-->
+    <string name="weight">Cân nặng: </string>
+    <string name="age">Tuổi: </string>
+    <string name="order">Đặt hàng</string>
+
+    <!--    Detail_fragment-->
+    <string name="delivery_address_details">Chi tiết địa chỉ</string>
+    <string name="address">Địa chỉ</string>
+    <string name="street_name_building_house_no_ward_district_city">Tên đường/Tòa nhà/Số nhà, Phường, Quận, Thành phố</string>
+    <string name="set_as_default_address">Đặt làm địa chỉ mặc định</string>
+    <string name="save_address">Lưu địa chỉ</string>
+
+    <!--    History_Information_fragment-->
+    <string name="history">Lịch sử</string>
+
+    <!--    History_Pet_fragment-->
+    <string name="history_pet">Lịch sử thú cưng</string>
+
+    <!--    Hotel_fragment-->
+    <string name="time">Thời gian</string>
+    <string name="check_in">Ngày nhận</string>
+    <string name="check_out">Ngày trả</string>
+    <string name="day">Ngày</string>
+    <string name="month">Tháng</string>
+    <string name="year">Năm</string>
+    <string name="booking">ĐẶT LỊCH</string>
+    <string name="delete">XÓA</string>
+
+    <!--    Order_fragment-->
+    <string name="filters">Bộ lọc</string>
+
+    <!--    Order_payment_fragment-->
+    <string name="your_information">Thông tin khách hàng</string>
+    <string name="petinto_address_title">Địa chỉ PetInto</string>
+    <string name="order_summary">Đơn hàng</string>
+    <string name="subtotal">Tạm tính</string>
+    <string name="delivery_fee">Phí ship</string>
+    <string name="total_amount">Tổng</string>
+    <string name="order_details">Chi tiết đơn hàng</string>
+    <string name="order_id">Mã đơn hàng</string>
+    <string name="shipment_date">Ngày giao hàng</string>
+    <string name="order_date">Ngày đặt hàng</string>
+    <string name="payment_method">Phương thức thanh toán</string>
+
+    <!--    Payment_fragment-->
+    <string name="pick_up_at_petinto">Nhận tại PetInto</string>
+    <string name="customer_information">Thông tin khách hàng</string>
+    <string name="door_to_door_delivery">Giao hàng tận nơi</string>
+    <string name="cash">  Tiền mặt</string>
+    <string name="notes">Ghi chú</string>
+    <string name="notes_for_order">Ghi chú đơn hàng</string>
+    <string name="purchase">Thanh toán</string>
+
+    <!--    Pet_Payment_fragment-->
+    <string name="pet_payment">Thanh toán thú cưng</string>
+
+
+    <!--    Profile Fragment-->
     <string name="settings_english">Tiếng Anh</string>
     <string name="settings_vietnamese">Tiếng Việt</string>
     <string name="settings_report_error">Báo cáo lỗi</string>
+    <string name="rate">Đánh giá</string>
+    <string name="settings">Cài đặt</string>
+    <string name="log_out">ĐĂNG XUẤT</string>
+    <string name="change_info">THAY ĐỔI</string>
+
+    <!--    Reset_pass_fragment-->
+    <string name="reset_password">ĐỔI MẬT KHẨU</string>
+    <string name="enter_your_email_to_reset_the_password">Nhập email để thay đổi mật khẩu</string>
+    <string name="send">GỬI</string>
+    <string name="sign_up">ĐĂNG KÝ</string>
+
+    <!--    Sign_in_fragment-->
+    <string name="sign_in_title">ĐĂNG NHẬP</string>
+    <string name="password">Mật khẩu</string>
+    <string name="sign_up_with_google">Đăng ký với Google</string>
+
+    <!--    Sign_up_fragment-->
+    <string name="confirm_password">Nhập lại mật khẩu</string>
+
+    <!--    Item_cart_list-->
+    <string name="food">Thức ăn</string>
+    <string name="amount">Số lượng: </string>
+
+    <!--    Item_history_info-->
+    <string name="shipping">Đang giao hàng</string>
+
+    <!--    item_history_info_things-->
+    <string name="quantity">Số lượng: </string>
+    <string name="status">Tình trạng: </string>
+    <string name="order_date_title">Ngày đặt hàng: </string>
+
+    <!--    item_service_booking_list-->
+    <string name="on_processing">Đang xử lý</string>
+    <string name="service_title">Dịch vụ: </string>
+    <string name="date">Ngày: </string>
+    <string name="customer_information_title">Thông tin khách hàng: </string>
+    <string name="pet_information">Thông tin thú cưng: </string>
+
+    <!--    Loading_dialog-->
+    <string name="please_wait">Hãy chờ chút ...</string>
+
+    <!--    Shopping_item_list-->
+    <string name="add_to_cart">Thêm vào giỏ hàng</string>
 </resources>

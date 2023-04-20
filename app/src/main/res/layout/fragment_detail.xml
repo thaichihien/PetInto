@@ -93,7 +93,7 @@
                     android:id="@+id/tvItemNameDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bed"
+                    android:text="@string/bed"
                     android:textStyle="bold"
                     android:textSize="25sp"/>
                 <TextView
@@ -101,7 +101,7 @@
                     android:id="@+id/tvItemPriceDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bed"
+                    android:text="@string/bed"
                     android:textStyle="bold"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="25sp"/>
@@ -114,13 +114,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="For: "
+                            android:text="@string/used_for"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvItemTypeDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cat"
+                            android:text="@string/type_cat"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
 
@@ -134,7 +134,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Stock: "
+                            android:text="@string/stock"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvItemStockDetails"
@@ -159,7 +159,7 @@
                         <TextView
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Details: "
+                            android:text="@string/product_details"
                             android:textSize="20sp"/>
 
 
@@ -240,7 +240,7 @@
                         android:layout_width="160dp"
                         android:layout_height="40dp"
                         android:background="@drawable/primary_button_background"
-                        android:text="Buy"
+                        android:text="@string/buy"
                         android:textStyle="bold"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -251,7 +251,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/white_button_background"
-                        android:text="Contact"
+                        android:text="@string/contact"
                         android:textStyle="bold"
                         android:textAllCaps="false"
                         android:textColor="@color/main_dark"

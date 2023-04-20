@@ -43,7 +43,7 @@
                 android:maxLines="1"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Food"
+                android:text="@string/food"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -55,7 +55,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Amount:"
+                    android:text="@string/amount"
                    />
 
                 <TextView
@@ -97,13 +97,13 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="For: "
+                   android:text="@string/used_for"
                   />
                <TextView
                    android:id="@+id/tvItemTypeCart"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Cat"
+                   android:text="@string/type_cat"
                    android:textStyle="bold"
                    />
 
@@ -119,13 +119,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Details: "
+                    android:text="@string/product_details"
                     />
                 <TextView
                     android:id="@+id/tvItemDetailCart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cat"
+                    android:text="@string/type_cat"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textStyle="bold"

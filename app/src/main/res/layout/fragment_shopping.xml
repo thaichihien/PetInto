@@ -82,7 +82,7 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/searchIcon"
             android:background="@android:color/transparent"
-            android:hint="Search"
+            android:hint="@string/search"
             android:maxLines="1"
             android:inputType="text"
             android:textColor="@color/main_dark"
@@ -110,7 +110,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Filter"
+            android:text="@string/filters"
             android:textAlignment="center"
             android:textColor="@color/main_dark" />
 

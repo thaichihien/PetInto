@@ -98,7 +98,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Information"
+                        android:text="@string/your_information"
                         app:layout_constraintStart_toEndOf="@+id/imageView3"
                         app:layout_constraintTop_toTopOf="parent"
                         android:textColor="@color/main_dark"/>
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="PetInto Address"
+                        android:text="@string/petinto_address_title"
                         android:textColor="@color/main_dark"
                         app:layout_constraintStart_toEndOf="@+id/imageLogo"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -176,7 +176,7 @@
                     android:id="@+id/lbTotalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order Summary"
+                    android:text="@string/order_summary"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold"
                     />
@@ -189,14 +189,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Subtotal"
+                        android:text="@string/subtotal"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvSubtotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 
@@ -209,14 +209,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Fee"
+                        android:text="@string/delivery_fee"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvDeliveryFee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 
@@ -229,14 +229,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Amount"
+                        android:text="@string/total_amount"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 
@@ -258,7 +258,7 @@
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order Details"
+                    android:text="@string/order_details"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold"
                     />
@@ -271,14 +271,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Order ID"
+                        android:text="@string/order_id"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvOrderID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 
@@ -291,14 +291,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Order date"
+                        android:text="@string/order_date"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvOrderDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 
@@ -312,13 +312,13 @@
                         android:id="@+id/tvPaymentMethod"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Payment method"
+                        android:text="@string/payment_method"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 
@@ -331,14 +331,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Shipment date"
+                        android:text="@string/shipment_date"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvShipmentDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/black"/>
 

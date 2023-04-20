@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Gender: "
+                android:text="@string/pet_gender"
                 />
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/lbCondition"
-                android:text="Female"
+                android:text="@string/pet_gender_female"
                 />
         </RelativeLayout>
 
@@ -83,7 +83,7 @@
                 android:id="@+id/lbId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type: "/>
+                android:text="@string/booking_pet_type"/>
 
             <TextView
                 android:textStyle="bold"
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/lbId"
-                android:text="Dog"/>
+                android:text="@string/type_dog"/>
 
         </RelativeLayout>
 
@@ -110,7 +110,7 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:background="@drawable/primary_button_background"
-                android:text="Buy"
+                android:text="@string/buy"
                 android:textAllCaps="false"
                 tools:ignore="SmallSp" />
         </LinearLayout>

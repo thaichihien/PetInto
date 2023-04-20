@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Bed"
+            android:text="@string/bed"
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="@color/main_dark"
@@ -87,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="For:"
+                    android:text="@string/used_for"
                     android:textColor="@color/main_dark"
                    />
 
@@ -96,7 +96,7 @@
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="Cat"
+                    android:text="@string/type_cat"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Details:"
+                    android:text="@string/product_details"
                     android:textColor="@color/main_dark" />
 
                 <TextView
@@ -135,7 +135,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantity :"
+                    android:text="@string/quantity"
                     android:textColor="@color/main_dark"
                   />
 
@@ -158,14 +158,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status :"
+                    android:text="@string/status"
                     android:textColor="@color/main_dark" />
 
                 <TextView
                     android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shipping"
+                    android:text="@string/shipping"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold" />
 
@@ -180,7 +180,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order date : "
+                android:text="@string/order_date_title"
                 android:textColor="@color/main_dark"
                  />
 

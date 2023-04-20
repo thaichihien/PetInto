@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:gravity="center"
-                android:text="Services"
+                android:text="@string/booking_detail_title_services"
                 android:textColor="@color/main_dark"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="PET"
+                android:text="@string/booking_detail_title_pet"
                 android:textColor="@color/main_dark"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="OWNER"
+                android:text="@string/booking_detail_title_owner"
                 android:textColor="@color/main_dark"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -133,7 +133,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Name"
+                            android:text="@string/pet_name"
                             android:textStyle="bold" />
 
                         <TextView
@@ -153,7 +153,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Phone number"
+                            android:text="@string/booking_owner_phone_number"
                             android:textStyle="bold" />
 
                         <TextView
@@ -172,7 +172,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Email"
+                            android:text="@string/booking_owner_email"
 
                             android:textStyle="bold" />
 
@@ -198,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Time"
+                android:text="@string/time"
                 android:textColor="@color/main_dark"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -218,7 +218,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/field_background"
                     android:ems="10"
-                    android:hint="Day"
+                    android:hint="@string/day"
                     android:inputType="textPersonName"
                     android:paddingLeft="20dp" />
 
@@ -274,7 +274,7 @@
                 android:background="@drawable/primary_button_background"
                 android:shadowRadius="@integer/material_motion_duration_long_1"
 
-                android:text="BOOKING"
+                android:text="@string/booking"
                 android:textColor="@color/white"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -284,7 +284,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/delete_button_background"
                 android:shadowRadius="@integer/material_motion_duration_long_1"
-                android:text="DELETE"
+                android:text="@string/delete"
                 android:textColor="@color/main_dark"/>
 
 

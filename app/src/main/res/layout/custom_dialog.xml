@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Success"
+            android:text="@string/success_condition"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -44,7 +44,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Yay. It’s a nice order! It will arrive soon."
+            android:text="@string/sentence_success_condition"
             android:textAlignment="center"
             android:textColor="@color/main_dark"
 

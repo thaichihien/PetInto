@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="6dp"
-        android:text="Type: "
+        android:text="@string/booking_type"
         android:textSize="20sp"
         android:textColor="@color/main_dark"
         app:layout_constraintStart_toEndOf="@+id/iconIV"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="6dp"
-        android:text="Hotel"
+        android:text="@string/hotel"
         android:textSize="20sp"
         android:textColor="@color/main_dark"
         android:textStyle="bold"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="Time:"
+            android:text="@string/booking_time"
             android:textSize="18sp"
             android:textColor="@color/main_dark"/>
 

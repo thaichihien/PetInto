@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Information"
+        android:text="@string/change_information"
         android:textSize="@dimen/header_text_size"
         android:textStyle="bold"
         android:textColor="@color/main_dark"
@@ -96,7 +96,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/field_background"
             android:elevation="5dp"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:paddingHorizontal="30dp"
             android:textColorHint="#CACACA"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +111,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/field_background"
             android:elevation="5dp"
-            android:hint="Email"
+            android:hint="@string/booking_owner_email"
             android:paddingHorizontal="30dp"
             android:textColorHint="#CACACA"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
             android:background="@drawable/field_background"
             android:layout_marginBottom="20dp"
             android:elevation="5dp"
-            android:hint="Phone Number"
+            android:hint="@string/booking_owner_phone_number"
             android:paddingHorizontal="30dp"
             android:textColorHint="#CACACA"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +155,7 @@
             android:layout_marginBottom="30dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/primary_button_background"
-            android:text="Change"
+            android:text="@string/change"
             android:textColor="@color/white"
             android:textStyle="bold"
 
@@ -173,7 +173,7 @@
 
             android:layout_marginBottom="30dp"
             android:background="@drawable/primary_button_background"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textColor="@color/white"
             android:textStyle="bold"
 
