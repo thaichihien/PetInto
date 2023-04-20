@@ -13,7 +13,7 @@
 <hr>
 
 ##  🐶Project Introduction
-- The project aims to develop a mobile application that helps store owners better manage their pets and accompanying services, and help pet users to connect to those stores more conveniently. 
+- The project aims to develop a mobile application that helps pet users to connect to stores more conveniently. 
 - The personal finance management app will be developed for Android platforms using Kotlin language. The app will have a simple and user-friendly interface that allows users to input their income and expenses, view reports, and set financial goals.
 - [Get an initial overview of the project (Figma)](https://www.figma.com/file/9wqdJtfTQzIUkpJq1iSCom/Untitled?node-id=0%3A1&t=39MwhdTUMpNLvlgq-1)
 
@@ -55,14 +55,12 @@
     </details>
     
 ## 🐱Project Features
-- [ ]  Admin account for shop owners to manage all customer notifications, appointments, create new pets, and publish news articles
 - [ ] User account for customers to view information about available or orderable pets in the shop
 - [ ] After selecting and adding desired items to the cart, users can proceed to checkout
 - [ ] Users can leave reviews for the shop
 - [ ] Users can opt for pet sitting services if they need to send their pets to work
 - [ ] Users can schedule health check-ups and grooming services for their pets
 - [ ] The app will have a news section where customers can stay updated on pet-related information and knowledge
-- [ ]  Customers and shop owners can chat with each other
 ## 📚Project Stack
 - **MVVM Architecture** 
 - **Navigation Component**
