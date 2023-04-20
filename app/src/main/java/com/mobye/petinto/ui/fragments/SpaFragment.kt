@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -144,9 +145,9 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             // TODO fill thong tin cua tvNameOwner,tvPhoneOwner,tvEmailOwner su dung bien customer
 
             binding.apply {
-                //tvNameOwner.text = ...
-                //tvPhoneOwner.text = ...
-                //...
+                tvEmailOwner.setText(customer.email)
+                tvNameOwner.setText(customer.name)
+                tvPhoneOwner.setText(customer.phone)
             }
 
 
@@ -187,7 +188,10 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                 //findNavController().popBackStack()
 
                 // TODO clear tat ca field, radio button thi uncheck
-
+                servicesSpinner.setSelection(0)
+                petSpinner.setSelection(0)
+                etDay.setText("")
+                rgTime.clearCheck()
             }
         }
 
@@ -256,13 +260,17 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
     }
 
     private fun validate(): Boolean {
-        val isValid = true
-
+        var isValid = true
+        val etDay=binding.etDay
         // TODO Kiem tra etDay khong empty
-
-
+        if (!etDay.text.toString().isNullOrBlank()) {
+            isValid = false
+            etDay.setError("This item cannot be empty!")
+        }
         //TODO Kiem tra RadioGroup  rgTime phai chon 1 cai  (rgTime.checkedRadioButtonId == -1 la chua chon)
-
+        val rgTime=binding.rgTime
+        if (rgTime.checkedRadioButtonId==-1)
+            isValid=false
 
 
         return isValid
