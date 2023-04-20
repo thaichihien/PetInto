@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">PetInto</string>
+    <string name="app_name" translatable="false">PetInto</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="shopping">Shopping</string>
     <string name="spa">Spa</string>
@@ -13,13 +13,13 @@
     <string name="clear_all"><u>Clear all</u></string>
     <string name="title_activity_authentication">AuthenticationActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
 
     <!--    String for sign in, sign up, reset password-->
     <string name="forget_password"><u>Forget your password?</u></string>
@@ -27,4 +27,28 @@
     <string name="payment">Payment</string>
     <string name="petinto_address">227 Nguyễn Văn Cừ, Phường 4, Quận 5, TP.HCM</string>
     <string name="pet">Pet</string>
+
+<!--    Use for changing language-->
+    <string name="welcome_to_petinto">Welcome to PetInto</string>
+    <string name="search">Search</string>
+    <string name="pet_list">Pet List</string>
+    <string name="type_dog">Dog</string>
+    <string name="type_cat">Cat</string>
+    <string name="type_mouse">Mouse</string>
+    <string name="type_rabbit">Rabbit</string>
+    <string name="type_bird">Bird</string>
+    <string name="type_fish">Fish</string>
+    <string name="order_now">Order now</string>
+    <string name="accessories">Accessories</string>
+    <string name="beauty_spa">Beauty Spa</string>
+    <string name="reviews">Reviews</string>
+    <string name="customer_review">Now I use PetInto as my favourite shopping app because services on PetInto are numerous.</string>
+    <string name="advertisement">Advertisement</string>
+    <string name="customer_review_1">PetInto is a fantastic app for pet owners! It offers a wide range of services, including easy-to-use shopping options and helpful pet care tips.</string>
+    <string name="customer_review_2">I highly recommend this app for anyone looking to improve their pet ownership experience.</string>
+
+    <string name="settings_english">English</string>
+    <string name="settings_vietnamese">Vietnamese</string>
+    <string name="settings_report_error">Report errors</string>
+
 </resources>

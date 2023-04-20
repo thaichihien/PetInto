@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
-        android:text="Welcome to PetInto"
+        android:text="@string/welcome_to_petinto"
         android:textColor="@color/main_dark"
         android:textSize="@dimen/header_text_size"
         android:textStyle="bold"
@@ -71,7 +71,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/field_background"
         android:elevation="5dp"
-        android:hint="Search"
+        android:hint="@string/search"
         android:paddingHorizontal="10dp"
         android:textColorHint="#CACACA"
         app:layout_constraintBottom_toBottomOf="@+id/header_main"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Pet List"
+                android:text="@string/pet_list"
                 android:textColor="@color/main_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -151,7 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Dog"
+                            android:text="@string/type_dog"
                             android:textColor="@color/main_dark"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -186,7 +186,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Cat"
+                            android:text="@string/type_cat"
                             android:textColor="@color/main_dark"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -221,7 +221,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Mouse"
+                            android:text="@string/type_mouse"
                             android:textColor="@color/main_dark"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -256,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Rabbit"
+                            android:text="@string/type_rabbit"
                             android:textColor="@color/main_dark"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -291,7 +291,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Bird"
+                            android:text="@string/type_bird"
                             android:textColor="@color/main_dark"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -327,7 +327,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Fish"
+                            android:text="@string/type_fish"
                             android:textColor="@color/main_dark"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -341,7 +341,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/primary_button_background"
-                android:text="Order now"
+                android:text="@string/order_now"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -357,7 +357,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Accesories"
+                android:text="@string/accessories"
                 android:textColor="@color/main_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -381,30 +381,30 @@
 
                     <ImageButton
                         android:id="@+id/accesories_btn"
-                        android:layout_width="423dp"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
-                        android:scaleType="centerInside"
+                        android:scaleType="fitXY"
                         android:src="@drawable/accessories" />
 
                     <ImageButton
                         android:id="@+id/accesories_btn1"
-                        android:layout_width="383dp"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/accessories" />
+                        android:scaleType="fitXY"
+                        android:src="@drawable/accessories_1" />
 
                     <ImageButton
                         android:id="@+id/accesories_btn2"
-                        android:layout_width="383dp"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/accessories" />
+                        android:scaleType="fitXY"
+                        android:src="@drawable/accessories_2" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -414,7 +414,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Beauty Spa"
+                android:text="@string/beauty_spa"
                 android:textColor="@color/main_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -438,24 +438,30 @@
 
                     <ImageButton
                         android:id="@+id/beauty_spa_btn"
-                        android:layout_width="460dp"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:scaleType="fitXY"
                         android:src="@drawable/beauty_spa" />
 
                     <ImageButton
                         android:id="@+id/beauty_spa_btn1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/beauty_spa" />
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/beauty_spa_1" />
 
                     <ImageButton
                         android:id="@+id/beauty_spa_btn2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/beauty_spa" />
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/beauty_spa_2" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -465,7 +471,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Hotel"
+                android:text="@string/hotel"
                 android:textColor="@color/main_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -489,24 +495,30 @@
 
                     <ImageButton
                         android:id="@+id/hotel_btn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:scaleType="fitXY"
                         android:src="@drawable/hotel" />
 
                     <ImageButton
                         android:id="@+id/hotel_btn1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/hotel" />
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/hotel_1" />
 
                     <ImageButton
                         android:id="@+id/hotel_btn2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="405dp"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/hotel" />
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/hotel_2" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -516,7 +528,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Reviews"
+                android:text="@string/reviews"
                 android:textColor="@color/main_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -576,7 +588,7 @@
                                 android:layout_marginHorizontal="10dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="25dp"
-                                android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
+                                android:text="@string/customer_review"
                                 android:textAlignment="center"
                                 android:textColor="@color/main_dark"
                                 android:textSize="13dp"
@@ -616,7 +628,7 @@
                                         android:id="@+id/review2_img_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:background="@drawable/review" />
+                                        android:background="@drawable/review_1" />
                                 </com.google.android.material.card.MaterialCardView>
 
                                 <TextView
@@ -626,8 +638,8 @@
                                     android:layout_gravity="end|bottom"
                                     android:layout_marginHorizontal="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="25dp"
-                                    android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
+                                    android:layout_marginBottom="15dp"
+                                    android:text="@string/customer_review_1"
                                     android:textAlignment="center"
                                     android:textColor="@color/main_dark"
                                     android:textSize="13dp"
@@ -668,7 +680,7 @@
                                         android:id="@+id/review3_img_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:background="@drawable/review" />
+                                        android:background="@drawable/review_2" />
                                 </com.google.android.material.card.MaterialCardView>
 
                                 <TextView
@@ -679,7 +691,7 @@
                                     android:layout_marginHorizontal="10dp"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="25dp"
-                                    android:text="Now I use PetInto as my favourite shopping app because services on PetInto are numerous. "
+                                    android:text="@string/customer_review_2"
                                     android:textAlignment="center"
                                     android:textColor="@color/main_dark"
                                     android:textSize="13dp"
@@ -697,7 +709,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Advertisement"
+                android:text="@string/advertisement"
                 android:textColor="@color/main_dark"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -723,7 +735,7 @@
                         android:layout_width="410dp"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/advertise1"/>
+                        android:src="@drawable/advertise1" />
 
                     <ImageButton
                         android:id="@+id/advertisement_btn2"
@@ -768,7 +780,6 @@
                         android:src="@drawable/advertise1" />
                 </LinearLayout>
             </HorizontalScrollView>
-
         </LinearLayout>
     </ScrollView>
 

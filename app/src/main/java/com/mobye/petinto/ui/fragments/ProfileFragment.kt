@@ -1,12 +1,16 @@
 package com.mobye.petinto.ui.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -27,6 +31,7 @@ import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
+import java.util.*
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -95,6 +100,34 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             navOrder.setOnClickListener{
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHistoryPetFragment())
             }
+//            navSetting.setOnClickListener {
+//                val popupMenu = PopupMenu(requireContext(), navSetting)
+//                popupMenu.menuInflater.inflate(R.menu.settings_popup_menu, popupMenu.menu)
+//                popupMenu.setOnMenuItemClickListener { item ->
+//                    when (item.itemId) {
+//                        R.id.option_english -> {
+//                            val preferences = binding.root.context.getSharedPreferences(
+//                                "", Context.MODE_PRIVATE);
+//                            setLocale("eng")
+//                            preferences.edit().putString("lang", "eng").commit()
+//                            true
+//                        }
+//                        R.id.option_vietnamese -> {
+//                            val preferences = binding.root.context.getSharedPreferences(
+//                                "", Context.MODE_PRIVATE);
+//                            setLocale("vi")
+//                            preferences.edit().putString("lang", "vi").commit()
+//                            true
+//                        }
+//                        R.id.option_report -> {
+//                            // Do something when menu item 3 is clicked
+//                            true
+//                        }
+//                        else -> false
+//                    }
+//                }
+//                popupMenu.show()
+//            }
             btnLogout.setOnClickListener {
                 logout()
             }
@@ -168,4 +201,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onDestroyView()
         _binding = null
     }
+
+//    fun setLocale(lang: String?) {
+//        var myLocale = Locale(lang)
+//        val res: Resources = resources
+//        val dm: DisplayMetrics = res.getDisplayMetrics()
+//        val conf: Configuration = res.getConfiguration()
+//        conf.locale = myLocale
+//        res.updateConfiguration(conf, dm)
+//        val refresh = Intent(requireContext(), MainActivity::class.java)
+//        startActivity(refresh)
+//        requireActivity().finish()
+//    }
 }

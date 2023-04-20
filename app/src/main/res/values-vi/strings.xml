@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Trang chủ</string>
+    <string name="shopping">Mua sắm</string>
+    <string name="spa">Spa</string>
+    <string name="hotel">Khách sạn</string>
+    <string name="service">Dịch vụ</string>
+    <string name="serviceBookingList">Danh sách dịch vụ</string>
+    <string name="profile">Tài khoản</string>
+    <string name="details">Chi tiết</string>
+    <string name="clear_all"><u>Xóa tất cả</u></string>
+    <string name="title_activity_authentication">Xác thực</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Tiếp theo</string>
+    <string name="previous">Trở lại</string>
+
+    <!--    String for sign in, sign up, reset password-->
+    <string name="forget_password"><u>Quên mật khẩu?</u></string>
+    <string name="sign_in">Đã có tài khoản?<u><b> Đăng nhập</b></u></string>
+    <string name="payment">Thanh toán</string>
+    <string name="petinto_address">227 Nguyễn Văn Cừ, Phường 4, Quận 5, TP.HCM</string>
+    <string name="pet">Thú cưng</string>
+
+    <!--    Use for changing language-->
+    <string name="welcome_to_petinto">PetInto xin chào</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="pet_list">Danh sách thú cưng</string>
+    <string name="type_dog">Chó</string>
+    <string name="type_cat">Mèo</string>
+    <string name="type_mouse">Chuột</string>
+    <string name="type_rabbit">Thỏ</string>
+    <string name="type_bird">Chim</string>
+    <string name="type_fish">Cá</string>
+    <string name="order_now">Đặt ngay</string>
+    <string name="accessories">Phụ kiện</string>
+    <string name="beauty_spa">Spa làm đẹp</string>
+    <string name="reviews">Đánh giá</string>
+    <string name="customer_review">Bây giờ tôi sử dụng PetInto là ứng dụng mua sắm yêu thích của tôi vì dịch vụ trên PetInto rất đa dạng.</string>
+    <string name="advertisement">Quảng cáo</string>
+    <string name="customer_review_1">PetInto là một ứng dụng tuyệt vời cho chủ nuôi thú cưng! Nó cung cấp một loạt các dịch vụ, bao gồm các tùy chọn mua sắm dễ sử dụng và những lời khuyên chăm sóc thú cưng hữu ích.</string>
+    <string name="customer_review_2">Tôi rất khuyến khích ứng dụng này cho bất kỳ ai đang tìm cách cải thiện trải nghiệm chăm sóc thú cưng của mình.</string>
+
+    <string name="settings_english">Tiếng Anh</string>
+    <string name="settings_vietnamese">Tiếng Việt</string>
+    <string name="settings_report_error">Báo cáo lỗi</string>
+</resources>
