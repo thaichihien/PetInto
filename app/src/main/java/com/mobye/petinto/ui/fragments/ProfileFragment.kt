@@ -93,7 +93,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAddPetFragment(PetInfo(),-1))
             }
             navOrder.setOnClickListener{
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOrderFragment())
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHistoryPetFragment())
             }
             btnLogout.setOnClickListener {
                 logout()

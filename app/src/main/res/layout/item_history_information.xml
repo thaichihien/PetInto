@@ -86,4 +86,17 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"/>
 
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shipping"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/main_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="44dp"
+        android:layout_marginRight="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

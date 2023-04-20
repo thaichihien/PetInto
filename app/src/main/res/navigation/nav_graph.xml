@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/orderFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_profileFragment_to_changeInforFragment"
             app:destination="@id/changeInforFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_historyPetFragment"
+            app:destination="@id/historyPetFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -249,4 +252,9 @@
             android:name="petPayment"
             app:argType="com.mobye.petinto.models.PetInfo" />
     </fragment>
+    <fragment
+        android:id="@+id/historyPetFragment"
+        android:name="com.mobye.petinto.ui.fragments.HistoryPetFragment"
+        android:label="fragment_history_pet"
+        tools:layout="@layout/fragment_history_pet" />
 </navigation>
