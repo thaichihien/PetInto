@@ -34,8 +34,8 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     val deliveryList : MutableLiveData<List<DeliveryInfo>> by lazy { MutableLiveData(listOf()) }
     val defaultDeliveryAddress : MutableLiveData<DeliveryInfo?> by lazy { MutableLiveData(null) }
 
-    val customerPickupInfo get() = customerPickup.value!!
-    val deliveryAddressInfo get() = defaultDeliveryAddress.value!!
+    val customerPickupInfo get() = customerPickup.value
+    val deliveryAddressInfo get() = defaultDeliveryAddress.value
 
     //History
     val orderHistoryList : MutableLiveData<List<OrderHistory>> by lazy { MutableLiveData(listOf()) }

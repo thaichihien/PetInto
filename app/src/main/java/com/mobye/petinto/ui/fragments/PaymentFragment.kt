@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.PaymentItemAdapter
 import com.mobye.petinto.databinding.FragmentPaymentBinding
+import com.mobye.petinto.models.CustomerPickup
+import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
@@ -119,8 +122,8 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         //Chuan di order
         val order = shoppingViewModel.createProductOrder(
             id = informationViewModel.getUserID(),
-            customerPickup = informationViewModel.customerPickupInfo,
-            deliveryInfo = informationViewModel.deliveryAddressInfo,
+            customerPickup = informationViewModel.customerPickupInfo ?: CustomerPickup(),
+            deliveryInfo = informationViewModel.deliveryAddressInfo ?: DeliveryInfo(),
             isdelivery = binding.rbPickup.isChecked,
             note = binding.etNote.text.toString().trim(),
             paymentMethod = if(binding.rbMomo.isChecked) "momo" else "cash"
@@ -184,6 +187,12 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             isEmptyChoice = true
         }else{
             binding.rbMomo.error = null
+        }
+
+        if(informationViewModel.deliveryAddressInfo == null &&
+                binding.rbDoor.isChecked){
+            isEmptyChoice = true
+            Toast.makeText(requireContext(),"Please input your delivery address",Toast.LENGTH_SHORT).show()
         }
 
         return !isEmptyChoice
