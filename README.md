@@ -179,10 +179,12 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - Cập nhật thư viện sẽ thông báo trong nhóm, lúc đó thì pull mới về và chọn **File > Sync Project with Gradle Files**
 
 ##  📍 Project Progress
-  _* Dựa theo Figma_
   ### 📱 Mobile
 - [X] Set up Fragments navigation (Bottom navigation view)
-- [ ] Màn hình giao diện **Home** ( ***!!! Thông tin gì được thể hiện trên đây? dùng để làm gì? nhấn sẽ dẫn đến đâu?*** )
+- [X] Màn hình giao diện **Home**  : **Quỳnh**
+  - [x] Ở mục Review chỉ dùng để hiển thị các đánh giá về App
+  - [x] Ở mục Advertisement, phần chữ sẽ không bấm được, các hình ảnh về bài báo được hiển thị và khi bấm vào từng ảnh sẽ dẫn đến **WebView** hiển thị trang web bài báo
+  - [X] Gọi API lấy tin tức từ Server
   - [ ] Thanh tìm kiếm sẽ dẫn tới tất cả các trang có thể phụ thuộc vào nội dung của text
   - [ ] Danh sách Pet khi nhấn vào từng Pet sẽ dẫn đến trang **Order** (fragment_order)
   - [ ] Nút **Order Now** cũng sẽ dẫn đến trang **Order** (fragment_order)
@@ -192,9 +194,7 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - [ ] **Chữ Beauty Spa** ở mục Beauty Spa khi bấm vào chuyển sang trang **Spa**
   - [ ] Ảnh ở mục Hotel chỉ để hiển thị hình ảnh
   - [ ] **Chữ Hotel** ở mục Hotel khi bấm vào chuyển sang trang **Hotel**
-  - [ ] Ở mục Review chỉ dùng để hiển thị các đánh giá về App
-  - [ ] Ở mục Advertisement, phần chữ sẽ không bấm được, các hình ảnh về bài báo được hiển thị và khi bấm vào từng ảnh sẽ dẫn đến bài báo
-- [ ] Màn hình giao diện **Shopping** 
+- [ ] Màn hình giao diện **Shopping**  : **Hiện**
   - [X] Xây dựng giao diện
   - [X] Lấy dữ liệu từ API nạp vào RecycleView
   - [X] Cài đặt giao diện xem chi tiết sản phẩm (Xem ở **ShoppingDetails**)
@@ -204,35 +204,39 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
   - [X] Bỏ khỏi giỏ hàng
   - [X] Lưu giỏ hàng vào local database (Realm)
   - [X] Paging
-  - [ ] Thanh toán?
-  - [ ] Tìm kiếm (theo tên sản phẩm)
+  - [X] Thanh toán
+  - [X] Tìm kiếm (theo tên sản phẩm)
   - [ ] Filter
-- [ ] Màn hình giao diện **Spa**
-  - [X] Xây dựng giao diện
-  - [ ] Sau khi booking sẽ dẫn đến trang Your Booking (fragment_booking_details)
+  - [X] Lịch sử mua hàng
+- [X] Màn hình giao diện **Spa** và **Hotel** : **Niên**
+  - [X] Xây dựng giao diện cho **SpaBooking** và **HotelBooking**
+  - [X] Thực hiện đặt lịch cho Spa
+  - [ ] Thực hiện đặt lịch cho Hotel
   - [ ] Nếu bấm delete thì sẽ xóa hết những thông tin đang hiển thị và trả về trạng thái không có thông tin gì ban đầu
-  - [ ] Để biết booking thành công sẽ xem ở trang Your Booking (fragment_booking_details)
-  - [ ] Có nên tự động fill vào thông tin theo tài khoản đã đăng nhập (đã có thông tin pet ở **Profile**)
-- [ ] Màn hình giao diện **Hotel**
-  - [X] Xây dựng giao diện
-  - [ ] Sau khi booking sẽ dẫn đến đâu ?
-  - [ ] Làm sao để biết booking thành công ?
-  - [ ] Có nên tự động fill vào thông tin theo tài khoản đã đăng nhập (đã có thông tin pet ở **Profile**)
-- [ ] Màn hình giao diện **Profile**
-  - [X] Xây dựng giao diện
-  - [ ] Giao diện **History**
-  - [ ] Giao diện **Rate**
-  - [ ] Giao diện **Order**/**Order Details**
-  - [ ] Mục đích của Order để phân biệt ra giữa mua Pet(Order) và mua Accesories(Shopping)
-  - [ ] Giao diện **Booking**
-  - [ ] Giao diện **Setting**
-- [X] Màn hình **Sign up /Sign in**
+  - [ ] Giao diện lịch sử đặt lịch, chi tiết
+  - [ ] Hiển thị lịch sử đặt lịch
+- [ ] Màn hình giao diện **Profile** và **Pet** : **Dũng**
+  - [X] Xây dựng giao diện Profile
+  - [X] Thêm, xóa, sửa thú nuôi của bản thân (local)
+  - [X] Xây dựng giao diện **Pet**
+  - [X] Gọi API hiển thị danh sách **Pet**
+  - [X] Thanh toán mua Pet
+  - [ ] Lịch sử mua Pet
+- [X] Màn hình **Sign up /Sign in** : **Quỳnh**
+  - [X] Đăng ký, đăng nhập  
   - [ ] Reset mật khẩu
-- [ ] Giao diện Admin? (cần một app riêng biệt)
+  - [ ] Confirm email
+- [X] Thay đổi ngôn ngữ : **Quỳnh**
+- [ ] Test, kiểm lỗi
+### Bonus
+- [ ] Báo cáo lỗi app
+- [ ] Chat GPT
 
-### 💻 Web
+
+### 💻 Web : **Hiện**
 - [X] Set up server Node js
 - [X] Xây dựng CSDL (PostgresSQL)
+- [X] Chuẩn bị dữ liệu mẫu (Dũng, Quỳnh, Niên)
 - [ ] Xây dựng API
 - [X] Deploy web
 
