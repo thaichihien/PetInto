@@ -75,6 +75,7 @@
             android:src="@drawable/search_icon" />
 
         <EditText
+            android:id="@+id/etSearchProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -82,6 +83,8 @@
             android:layout_toEndOf="@+id/searchIcon"
             android:background="@android:color/transparent"
             android:hint="Search"
+            android:maxLines="1"
+            android:inputType="text"
             android:textColor="@color/main_dark"
             android:textColorHint="@color/main_light" />
 
@@ -124,11 +127,13 @@
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
         
         <LinearLayout
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/white"
                 android:id="@+id/rvShoppingItem"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -5,10 +5,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnKeyListener
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
@@ -17,6 +20,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.mobye.petinto.R
@@ -31,11 +35,12 @@ import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
-    val DEBUG_TAG = "ShoppingFragment"
+    val TAG = "ShoppingFragment"
     private var _binding : FragmentShoppingBinding? = null
     private val binding get() = _binding!!
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
@@ -70,7 +75,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.e(DEBUG_TAG,"onViewCreated")
 
         productAdapter = ProductItemAdapter(
             {
@@ -98,7 +102,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
         lifecycleScope.launchWhenCreated {
             shoppingViewModel.productItemList.collectLatest {
-                productAdapter.submitData(it)
+                productAdapter.submitData(viewLifecycleOwner.lifecycle,it)
             }
         }
 
@@ -112,7 +116,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         productAdapter.addLoadStateListener {loadState ->
             if(loadState.refresh is LoadState.Loading ||
                 loadState.append is LoadState.Loading){
-                Log.e(DEBUG_TAG,"firstTimeLoad : $firstTimeLoad")
+
                 if(firstTimeLoad){
                     binding.loadingLayout.apply {
                         isVisible =true
@@ -129,6 +133,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                     binding.loadingLayout.isVisible = false
                     firstTimeLoad = false
                 }
+                binding.loadingLayout.isVisible = false
 
                 val errorState = when {
                     loadState.append is LoadState.Error -> loadState.append as LoadState.Error
@@ -165,6 +170,48 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                 binding.refreshLayout.isRefreshing = false
 
             }
+//            etSearchProduct.setOnKeyListener(object : OnKeyListener{
+//                override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+//
+//                    Log.e(TAG,"${event.action} : $keyCode")
+//                    if ((event.action == KeyEvent.ACTION_DOWN)
+//                        && (keyCode == KeyEvent.KEYCODE_ENTER)
+//                    ) {
+//                        Log.e(TAG,binding.etSearchProduct.text.toString())
+//
+//                        shoppingViewModel.searchProduct(binding.etSearchProduct.text.toString().trim())
+//                        return true
+//                    }
+//                    return false
+//                }
+//            })
+            etSearchProduct.setOnKeyListener { v, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    Log.e(TAG, "Enter button was pressed")
+
+                    lifecycleScope.launch{
+                        productAdapter.submitData(PagingData.empty())
+                        productAdapter.notifyDataSetChanged()
+                        binding.loadingLayout.apply {
+                            isVisible =true
+                            startShimmer()
+                        }
+                        shoppingViewModel.searchProduct(binding.etSearchProduct.text.toString().trim())
+                    }
+
+
+
+
+
+                    return@setOnKeyListener true
+                }
+                return@setOnKeyListener false
+
+            }
+
+
+
+
         }
 
     }
@@ -176,12 +223,24 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         super.onResume()
         val activity = activity as MainActivity
         activity.showBottomNav()
-        Log.e(DEBUG_TAG,"onResume")
+
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                //NOTHING
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
 }

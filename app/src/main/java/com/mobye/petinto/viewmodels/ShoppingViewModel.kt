@@ -3,6 +3,7 @@ package com.mobye.petinto.viewmodels
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -11,8 +12,7 @@ import androidx.paging.cachedIn
 import com.mobye.petinto.models.*
 import com.mobye.petinto.models.apimodel.*
 import com.mobye.petinto.repository.ShoppingRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class ShoppingViewModel(
@@ -26,6 +26,9 @@ class ShoppingViewModel(
     val cartItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
     val paymentItemList : MutableLiveData<List<CartItem>> by lazy { MutableLiveData(listOf()) }
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
+
+    private val searchQuery : MutableStateFlow<String> by lazy { MutableStateFlow("") }
+
 
     //PaymentFragment
     val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
@@ -45,11 +48,14 @@ class ShoppingViewModel(
         }
     }
 
-    val productItemList : Flow<PagingData<Product>> = Pager(
-        config = PagingConfig(pageSize = 10),
-        pagingSourceFactory = {repository.getProductSource()})
-        .flow
-        .cachedIn(viewModelScope)
+    val productItemList = searchQuery.flatMapLatest {query ->
+        repository.getProductSource(query)
+            .cachedIn(viewModelScope)
+    }
+
+    fun searchProduct(query : String){
+        searchQuery.value = query
+    }
 
     val petItemList : Flow<PagingData<PetInfo>> = Pager(
         config = PagingConfig(pageSize = 10),
@@ -69,6 +75,8 @@ class ShoppingViewModel(
             cartListToPayment()
         }
     }
+
+
 
     private fun cartListToPayment(){
         val paymentList = mutableListOf<CartItem>()
@@ -290,6 +298,7 @@ class ShoppingViewModel(
             }
         }
     }
+
 
 
 }

@@ -1,5 +1,7 @@
 package com.mobye.petinto.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.mobye.petinto.R
 import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.database.CartItemDatabase
@@ -13,7 +15,11 @@ import retrofit2.Response
 
 class ShoppingRepository : IRepository {
 
-    fun getProductSource() = ProductPagingSource()
+
+    fun getProductSource(query : String) = Pager(
+        config = PagingConfig(pageSize = 10),
+        pagingSourceFactory = {ProductPagingSource(query)})
+        .flow
 
     fun getPetSource() = PetPagingSource()
 //    suspend fun getShoppingItems() : List<Product>

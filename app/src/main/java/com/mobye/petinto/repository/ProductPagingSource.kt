@@ -6,7 +6,9 @@ import androidx.paging.PagingState
 import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.models.Product
 
-class ProductPagingSource : PagingSource<Int, Product>() {
+class ProductPagingSource(
+    private val query : String
+) : PagingSource<Int, Product>() {
     companion object{
         const val FIRST_PAGE = 1
     }
@@ -17,7 +19,7 @@ class ProductPagingSource : PagingSource<Int, Product>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         return try {
             val nextPage = params.key ?: FIRST_PAGE
-            val response = RetrofitInstance.api.getProducts(nextPage)
+            val response = RetrofitInstance.api.getProducts(nextPage,query)
             val responseApi = response.body()!!
 
             LoadResult.Page(
