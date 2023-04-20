@@ -10,6 +10,7 @@ import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.OrderHistory
+import com.mobye.petinto.models.apimodel.PetOrderHistory
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
 import io.realm.kotlin.types.RealmUUID
@@ -35,6 +36,8 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     //History
     val orderHistoryList : MutableLiveData<List<OrderHistory>> by lazy { MutableLiveData(listOf()) }
 
+    //History Pet
+    val orderPetHistoryList : MutableLiveData<List<PetOrderHistory>> by lazy { MutableLiveData(listOf()) }
 
     fun getPetList(){
         viewModelScope.launch() {

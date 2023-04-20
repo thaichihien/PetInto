@@ -9,24 +9,24 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.OrderHistoryAdapter
-import com.mobye.petinto.databinding.FragmentBookingBinding
+import com.mobye.petinto.adapters.OrderPetHistoryAdapter
 import com.mobye.petinto.databinding.FragmentHistoryInformationBinding
+import com.mobye.petinto.databinding.FragmentHistoryPetBinding
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
 
-class HistoryInformation : Fragment(R.layout.fragment_history_information) {
+class HistoryPetFragment : Fragment(R.layout.fragment_history_pet) {
 
-    val DEBUG_TAG = "HistoryFragment"
-    private var _binding : FragmentHistoryInformationBinding? = null
+    val DEBUG_TAG = "HistoryPetFragment"
+    private var _binding : FragmentHistoryPetBinding? = null
     private val binding get() = _binding!!
 
-    private val orderHistoryAdapter : OrderHistoryAdapter by lazy { OrderHistoryAdapter() }
+    private val orderPetHistoryAdapter : OrderPetHistoryAdapter by lazy { OrderPetHistoryAdapter() }
     private val informationViewModel : InformationViewModel by activityViewModels{
         PetIntoViewModelFactory(InformationRepository())
     }
@@ -37,7 +37,7 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
         savedInstanceState: Bundle?
     ): View? {
         Log.e(DEBUG_TAG,"onCreateView")
-        _binding = FragmentHistoryInformationBinding.inflate(inflater, container, false)
+        _binding = FragmentHistoryPetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -59,14 +59,14 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
                 informationViewModel.getOrderHistory(it.id)
             }
         }
-        informationViewModel.orderHistoryList.observe(viewLifecycleOwner){
-            orderHistoryAdapter.differ.submitList(it)
+        informationViewModel.orderPetHistoryList.observe(viewLifecycleOwner){
+            orderPetHistoryAdapter.differ.submitList(it)
         }
 
         binding.apply {
             rvOrderHistory.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-                adapter = orderHistoryAdapter
+                adapter = orderPetHistoryAdapter
             }
         }
 

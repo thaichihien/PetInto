@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.HistoryInformation">
+    tools:context=".ui.fragments.HistoryPetFragment">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:id="@+id/header_history"
@@ -19,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="History"
+            android:text="History Pet"
             android:textSize="@dimen/header_text_size"
             android:textStyle="bold"
             android:paddingLeft="12dp"
@@ -34,6 +36,7 @@
             android:paddingRight="20dp"
             android:paddingLeft="10dp"
             android:src="@drawable/exit_icon"/>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -46,5 +49,6 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
