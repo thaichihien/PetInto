@@ -1,6 +1,10 @@
 package com.mobye.petinto.viewmodels
 
+import android.content.Context
 import android.util.Log
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -38,6 +42,9 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
     //History Pet
     val orderPetHistoryList : MutableLiveData<List<PetOrderHistory>> by lazy { MutableLiveData(listOf()) }
+
+
+
 
     fun getPetList(){
         viewModelScope.launch() {
@@ -223,5 +230,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         }
 
     }
+
 
 }

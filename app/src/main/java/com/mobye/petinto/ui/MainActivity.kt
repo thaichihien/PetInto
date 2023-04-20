@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -20,6 +21,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -36,8 +39,13 @@ import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ActivityMainBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.utils.ContextUtils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
+import java.util.*
 
 fun Dialog.changeToFail(message : String){
     val ivIcon = this.findViewById<ImageView>(R.id.ivIcon)
@@ -58,6 +66,13 @@ fun Dialog.changeToSuccess(message : String) {
     tvResult.text = "Success"
     tvMessage.text = message
 }
+
+//Locate
+private val USER_PREFERENCES_NAME = "user_preferences"
+private val LANGUAGE_KEY = stringPreferencesKey("language")
+private val Context.dataStore by preferencesDataStore(
+    name = USER_PREFERENCES_NAME
+)
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
@@ -189,6 +204,30 @@ class MainActivity : AppCompatActivity() {
             capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
             else -> false
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        //get language code from storage
+        val languageSwitch  = runBlocking {
+            newBase!!.dataStore.data.map { preferences ->
+                preferences[LANGUAGE_KEY]
+            }.first()
+        }
+
+        // create Locale from language code
+        val localeToSwitchTo = if(languageSwitch != null) Locale(languageSwitch) else newBase!!.resources.configuration.locales.get(0)
+
+        // get Context wrapper with new locale configuration
+        val localeUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase!!, localeToSwitchTo)
+
+        super.attachBaseContext(localeUpdatedContext)
+    }
+
+    suspend fun saveLocale(languageCode : String,context: Context){
+        context.dataStore.edit { preferences ->
+            preferences[LANGUAGE_KEY] = languageCode
+        }
+        recreate()
     }
 
 }

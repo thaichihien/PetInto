@@ -14,6 +14,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -31,6 +32,7 @@ import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -100,34 +102,40 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             navOrder.setOnClickListener{
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHistoryPetFragment())
             }
-//            navSetting.setOnClickListener {
-//                val popupMenu = PopupMenu(requireContext(), navSetting)
-//                popupMenu.menuInflater.inflate(R.menu.settings_popup_menu, popupMenu.menu)
-//                popupMenu.setOnMenuItemClickListener { item ->
-//                    when (item.itemId) {
-//                        R.id.option_english -> {
+            navSetting.setOnClickListener {
+                val popupMenu = PopupMenu(requireContext(), navSetting)
+                popupMenu.menuInflater.inflate(R.menu.settings_popup_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.option_english -> {
 //                            val preferences = binding.root.context.getSharedPreferences(
 //                                "", Context.MODE_PRIVATE);
 //                            setLocale("eng")
 //                            preferences.edit().putString("lang", "eng").commit()
-//                            true
-//                        }
-//                        R.id.option_vietnamese -> {
+                            lifecycleScope.launch{
+                                (requireActivity() as MainActivity).saveLocale("en-EN",requireContext())
+                            }
+                            true
+                        }
+                        R.id.option_vietnamese -> {
 //                            val preferences = binding.root.context.getSharedPreferences(
 //                                "", Context.MODE_PRIVATE);
 //                            setLocale("vi")
 //                            preferences.edit().putString("lang", "vi").commit()
-//                            true
-//                        }
-//                        R.id.option_report -> {
-//                            // Do something when menu item 3 is clicked
-//                            true
-//                        }
-//                        else -> false
-//                    }
-//                }
-//                popupMenu.show()
-//            }
+                            lifecycleScope.launch{
+                                (requireActivity() as MainActivity).saveLocale("vi",requireContext())
+                            }
+                            true
+                        }
+                        R.id.option_report -> {
+                            // Do something when menu item 3 is clicked
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popupMenu.show()
+            }
             btnLogout.setOnClickListener {
                 logout()
             }
