@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="For: "
+                android:text="@string/used_for"
                 />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/lbFor"
-                android:text="Cat"
+                android:text="@string/type_cat"
                 />
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toStartOf="@id/tvStock"
-                android:text="Stock: "
+                android:text="@string/stock"
                 />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="Cat"
+                android:text="@string/type_cat"
 
                 />
 
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Details: "
+                android:text="@string/product_details"
                 />
 
             <TextView
@@ -119,7 +119,7 @@
                 android:ellipsize="end"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/lbDetails"
-                android:text="Cat"
+                android:text="@string/type_cat"
                 />
 
 
@@ -135,7 +135,7 @@
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quantity:"/>
+                android:text="@string/quantity"/>
 
             <LinearLayout
                 android:layout_alignParentEnd="true"
@@ -186,7 +186,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/secondary_button_background"
-                android:text="Add to cart"
+                android:text="@string/add_to_cart"
                 android:textAllCaps="false" />
             
         </LinearLayout>

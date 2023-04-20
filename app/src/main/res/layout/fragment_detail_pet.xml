@@ -115,13 +115,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Type: "
+                            android:text="@string/booking_pet_type"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvTypePet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dog"
+                            android:text="@string/type_dog"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
 
@@ -146,7 +146,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Vaccine: "
+                            android:text="@string/vaccine"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvVaccinePet"
@@ -166,7 +166,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Variety: "
+                            android:text="@string/booking_detail_hotel_pet_information_variety"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvVarietyPet"
@@ -189,13 +189,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gender: "
+                            android:text="@string/pet_gender"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvGenderPet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Male"
+                            android:text="@string/pet_gender_male"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
 
@@ -209,7 +209,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Weight: "
+                            android:text="@string/weight"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvWeightPet"
@@ -232,7 +232,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Age: "
+                            android:text="@string/age"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvAgePet"
@@ -252,13 +252,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Color: "
+                            android:text="@string/booking_detail_hotel_pet_information_color"
                             android:textSize="20sp"/>
                         <TextView
                             android:id="@+id/tvColorPet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Brown"
+                            android:text="@string/booking_detail_hotel_pet_color"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
                     </LinearLayout>
@@ -325,7 +325,7 @@
                         android:layout_width="160dp"
                         android:layout_height="40dp"
                         android:background="@drawable/primary_button_background"
-                        android:text="Order"
+                        android:text="@string/order"
                         android:textAlignment="center"
                         android:textStyle="bold"
                         android:textAllCaps="false"
@@ -338,7 +338,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/white_button_background"
-                        android:text="Contact"
+                        android:text="@string/contact"
                         android:textAlignment="center"
                         android:textStyle="bold"
                         android:textAllCaps="false"

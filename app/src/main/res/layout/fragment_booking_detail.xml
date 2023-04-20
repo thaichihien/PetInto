@@ -31,7 +31,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Booking Details"
+        android:text="@string/booking_detail_title"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/main_dark"
@@ -71,7 +71,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="PET"
+                    android:text="@string/booking_detail_title_pet"
                     android:textStyle="bold"
                     android:textColor="@color/main_dark"
                     android:textSize="24sp"
@@ -92,19 +92,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ID: "
+                            android:text="@string/booking_pet_id"
                             android:textSize="20sp"
                             android:textColor="@color/main_dark"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Name: "
+                            android:text="@string/booking_pet_name"
                             android:textSize="20sp"
                             android:textColor="@color/main_dark"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Type: "
+                            android:text="@string/booking_pet_type"
                             android:textSize="20sp"
                             android:textColor="@color/main_dark"/>
                     </LinearLayout>
@@ -150,7 +150,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="OWNER"
+                    android:text="@string/booking_detail_title_owner"
                     android:textStyle="bold"
                     android:textColor="@color/main_dark"
                     android:textSize="24sp"
@@ -170,7 +170,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Name"
+                                android:text="@string/pet_name"
                                 android:textStyle="bold"
                                 android:textSize="20sp"/>
                             <TextView
@@ -187,7 +187,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Phone number"
+                                android:text="@string/booking_owner_phone_number"
                                 android:textStyle="bold"
                                 android:textSize="20sp"/>
                             <TextView
@@ -204,7 +204,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Email"
+                                android:text="@string/booking_owner_email"
                                 android:textStyle="bold"
                                 android:textSize="20sp"/>
                             <TextView
@@ -234,7 +234,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="BOOKING"
+                    android:text="@string/booking_detail_title_booking"
                     android:textStyle="bold"
                     android:textColor="@color/main_dark"
                     android:textSize="24sp"
@@ -251,7 +251,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type:"
+                        android:text="@string/booking_type"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
                     <TextView
@@ -259,7 +259,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hotel"
+                        android:text="@string/hotel"
                         android:textStyle="bold"
                         android:textColor="@color/main_dark"
                         android:textSize="20sp"/>
@@ -276,7 +276,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="SERVICES"
+                    android:text="@string/booking_detail_title_services"
                     android:textStyle="bold"
                     android:textColor="@color/main_dark"
                     android:textSize="24sp"
@@ -292,7 +292,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="None"
+                        android:text="@string/booking_detail_none"
                         android:textStyle="bold"
                         android:textSize="20sp"/>
                 </LinearLayout>

@@ -21,7 +21,7 @@
         android:id="@+id/signup_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SIGN UP"
+        android:text="@string/sign_up"
         android:textAlignment="center"
         android:textColor="@color/main_dark"
         android:textSize="22dp"
@@ -37,7 +37,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/field_background"
         android:elevation="5dp"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
         android:paddingHorizontal="30dp"
         android:textColorHint="#CACACA"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/field_background"
         android:elevation="5dp"
-        android:hint="Email"
+        android:hint="@string/booking_owner_email"
         android:paddingHorizontal="30dp"
         android:textColorHint="#CACACA"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="30dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:textColor="@color/main_dark"
            android:background="@android:color/transparent"
             android:inputType="textPassword"/>
@@ -111,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="30dp"
-            android:hint="Confirm password"
+            android:hint="@string/confirm_password"
             android:textColor="@color/main_dark"
             android:background="@android:color/transparent"
             android:inputType="textPassword"/>
@@ -143,7 +143,7 @@
 
         android:layout_marginBottom="30dp"
         android:background="@drawable/primary_button_background"
-        android:text="SIGN UP"
+        android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textStyle="bold"
 

@@ -29,6 +29,7 @@
     <string name="pet">Pet</string>
 
 <!--    Use for changing language-->
+    <!--    Home Fragment-->
     <string name="welcome_to_petinto">Welcome to PetInto</string>
     <string name="search">Search</string>
     <string name="pet_list">Pet List</string>
@@ -47,8 +48,194 @@
     <string name="customer_review_1">PetInto is a fantastic app for pet owners! It offers a wide range of services, including easy-to-use shopping options and helpful pet care tips.</string>
     <string name="customer_review_2">I highly recommend this app for anyone looking to improve their pet ownership experience.</string>
 
+    <!--Add Pet Fragment-->
+    <string name="add_your_pet">Add Your Pet</string>
+    <string name="pet_name">Name</string>
+    <string name="pet_type">Type</string>
+    <string name="pet_age">Age</string>
+    <string name="pet_variety">Variety</string>
+    <string name="pet_color">Color</string>
+    <string name="pet_weight">Weight</string>
+    <string name="pet_vaccine">Number of vaccines</string>
+    <string name="pet_gender">Gender: </string>
+    <string name="pet_gender_male">Male</string>
+    <string name="pet_gender_female">Female</string>
+    <string name="pet_gender_other">Other</string>
+    <string name="add_pet">ADD PET</string>
+
+    <!--    Custom_dialog-->
+    <string name="success_condition">Success</string>
+    <string name="sentence_success_condition">Yay. It’s a nice order! It will arrive soon.</string>
+
+    <!--    Booking_item_list-->
+    <string name="booking_type">Type: </string>
+    <string name="booking_time">Time: </string>
+    <string name="booking_details">DETAILS</string>
+
+    <!--    Booking_fragment-->
+    <string name="booking_title">Booking</string>
+
+    <!--    Booking_Detail_Fragment-->
+    <string name="booking_detail_title">Booking Details</string>
+    <string name="booking_detail_title_pet">PET</string>
+    <string name="booking_detail_title_owner">OWNER</string>
+    <string name="booking_detail_title_booking">BOOKING</string>
+    <string name="booking_detail_title_services">SERVICES</string>
+    <string name="booking_detail_none">None</string>
+    <string name="booking_pet_id">ID: </string>
+    <string name="booking_pet_name">Name: </string>
+    <string name="booking_pet_type">Type: </string>
+    <string name="booking_owner_phone_number">Phone number</string>
+    <string name="booking_owner_email" translatable="false">Email</string>
+
+    <!--    Booking_Detail_Hotel_Fragment-->
+    <string name="service_booking_details">Service Booking Details</string>
+    <string name="booking_detail_hotel">Hotel Booking</string>
+    <string name="booking_detail_hotel_id">Booking id: </string>
+    <string name="booking_detail_hotel_check_in">Check in: </string>
+    <string name="booking_detail_hotel_check_out">Check out: </string>
+    <string name="booking_detail_hotel_room">Room: </string>
+    <string name="booking_detail_hotel_customer_information">Customer Information</string>
+    <string name="booking_detail_hotel_phone_number">Phone number: </string>
+    <string name="booking_detail_hotel_customer_email" translatable="false">Email: </string>
+    <string name="booking_detail_hotel_pet_information">Pet Information</string>
+    <string name="booking_detail_hotel_pet_information_variety">Variety: </string>
+    <string name="booking_detail_hotel_pet_information_color">Color: </string>
+    <string name="booking_detail_hotel_pet_color">Brown</string>
+    <string name="booking_detail_hotel_cancel_booking">CANCEL BOOKING</string>
+
+    <!--    Booking_Detail_Spa_Fragment-->
+    <string name="booking_detail_spa">Spa Booking</string>
+    <string name="booking_detail_spa_services">Services: </string>
+    <string name="nail_cut">Nail cut</string>
+    <string name="hair_cut">Hair cut</string>
+
+    <!--    Cart_fragment-->
+    <string name="cart">Cart</string>
+    <string name="select_all">Select All</string>
+    <string name="buy">Buy</string>
+
+    <!--    Change_infor_fragment-->
+    <string name="change_information">Change Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="change">Change</string>
+    <string name="cancel">Cancel</string>
+
+    <!--    Customer_fragment-->
+    <string name="customer">Customer</string>
+    <string name="save_information">Save Information</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="add_new_address">Add new address</string>
+    <string name="select_default_address">Select Default Address</string>
+
+    <!--    Detail_fragment-->
+    <string name="bed">Bed</string>
+    <string name="used_for">For: </string>
+    <string name="stock">Stock: </string>
+    <string name="product_details">Details:</string>
+    <string name="contact">Contact</string>
+
+    <!--    Detail_pet_fragment-->
+    <string name="vaccine" translatable="false">Vaccine: </string>
+    <string name="weight">Weight: </string>
+    <string name="age">Age: </string>
+    <string name="order">Order</string>
+
+    <!--    Delivery_address_fragment-->
+    <string name="delivery_address_details">Delivery Address Details</string>
+    <string name="address">Address</string>
+    <string name="street_name_building_house_no_ward_district_city">Street Name/Building/House No., Ward, District, City</string>
+    <string name="set_as_default_address">Set as default address</string>
+    <string name="save_address">Save address</string>
+
+    <!--    History_Information_fragment-->
+    <string name="history">History</string>
+
+    <!--    History_Pet_fragment-->
+    <string name="history_pet">History Pet</string>
+
+    <!--    Hotel_fragment-->
+    <string name="time">Time</string>
+    <string name="check_in">Check in</string>
+    <string name="check_out">Check out</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="booking">BOOKING</string>
+    <string name="delete">DELETE</string>
+
+    <!--    Order_fragment-->
+    <string name="filters">Filters</string>
+    <string name="your_information">Your Information</string>
+    <string name="petinto_address_title">PetInto Address</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="delivery_fee">Delivery Fee</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="order_details">Order Details</string>
+    <string name="order_id">Order ID</string>
+    <string name="shipment_date">Shipment date</string>
+    <string name="order_date">Order date</string>
+    <string name="payment_method">Payment method</string>
+
+    <!--    Payment_fragment-->
+    <string name="pick_up_at_petinto">Pick up at PetInto</string>
+    <string name="customer_information">Customer Information</string>
+    <string name="door_to_door_delivery">Door-To-Door Delivery</string>
+    <string name="cash">  Cash</string>
+    <string name="momo" translatable="false">  Momo</string>
+    <string name="notes">Notes</string>
+    <string name="notes_for_order">Notes for order</string>
+    <string name="purchase">Purchase</string>
+    <string name="pet_payment">Pet Payment</string>
+
+
+    <!--    Profile Fragment-->
     <string name="settings_english">English</string>
     <string name="settings_vietnamese">Vietnamese</string>
     <string name="settings_report_error">Report errors</string>
+    <string name="rate">Rate</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">LOG OUT</string>
+    <string name="change_info">Change Info</string>
+
+    <!--    Reset_pass_fragment-->
+    <string name="reset_password">RESET PASSWORD</string>
+    <string name="enter_your_email_to_reset_the_password">Enter your Email to reset the password</string>
+    <string name="send">SEND</string>
+    <string name="sign_up">SIGN UP</string>
+
+    <!--    Sign_in_fragment-->
+    <string name="sign_in_title">SIGN IN</string>
+    <string name="password">Password</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+
+    <!--    Sign_up_fragment-->
+    <string name="confirm_password">Confirm password</string>
+
+    <!--    Item_cart_list-->
+    <string name="food">Food</string>
+    <string name="amount">Amount: </string>
+
+    <!--    Item_history_info-->
+    <string name="shipping">Shipping</string>
+
+    <!--    item_history_info_things-->
+    <string name="quantity">Quantity: </string>
+    <string name="status">Status: </string>
+    <string name="order_date_title">Order date: </string>
+
+    <!--    item_service_booking_list-->
+    <string name="on_processing">On Processing</string>
+    <string name="service_title">Service: </string>
+    <string name="date">Date: </string>
+    <string name="customer_information_title">Customer Information: </string>
+    <string name="pet_information">Pet Information: </string>
+
+    <!--    Loading_dialog-->
+    <string name="please_wait">Please wait ...</string>
+
+    <!--    Shopping_item_list-->
+    <string name="add_to_cart">Add to cart</string>
 
 </resources>

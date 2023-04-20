@@ -29,7 +29,7 @@
         android:id="@+id/titleOwnerPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Your Pet"
+        android:text="@string/add_your_pet"
         android:textSize="@dimen/header_text_size"
         android:textStyle="bold"
         android:textColor="@color/main_dark"
@@ -88,7 +88,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Name"
+                android:hint="@string/pet_name"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
 
@@ -101,7 +101,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Type"
+                android:hint="@string/pet_type"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
 
@@ -114,7 +114,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Age"
+                android:hint="@string/pet_age"
                 android:inputType="number"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
@@ -128,7 +128,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Variety"
+                android:hint="@string/pet_variety"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
 
@@ -141,7 +141,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Color"
+                android:hint="@string/pet_color"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
 
@@ -154,7 +154,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Weight"
+                android:hint="@string/pet_weight"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
 
@@ -167,7 +167,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/field_background"
                 android:elevation="5dp"
-                android:hint="Number of vaccines"
+                android:hint="@string/pet_vaccine"
                 android:paddingHorizontal="20dp"
                 android:textColorHint="#CACACA" />
 
@@ -182,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
-                    android:text="Gender: "
+                    android:text="@string/pet_gender"
                     android:textSize="18sp" />
 
                 <RadioButton
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Male" />
+                    android:text="@string/pet_gender_male" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
                     android:id="@+id/rbFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female" />
+                    android:text="@string/pet_gender_female" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
                     android:id="@+id/rbOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Other" />
+                    android:text="@string/pet_gender_other" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -226,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/secondary_button_background"
                 android:shadowRadius="@integer/material_motion_duration_long_1"
-                android:text="ADD PET"
+                android:text="@string/add_pet"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/main_dark">
 

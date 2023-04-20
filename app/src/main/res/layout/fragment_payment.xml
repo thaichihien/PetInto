@@ -86,7 +86,7 @@
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pick up at PetInto"
+                        android:text="@string/pick_up_at_petinto"
                         android:buttonTint="@color/background_light"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,7 +118,7 @@
                                 android:layout_marginStart="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Customer Information"
+                                android:text="@string/customer_information"
                                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                                 app:layout_constraintTop_toTopOf="parent"
                                 android:textColor="@color/main_dark"/>
@@ -180,7 +180,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="PetInto Address"
+                                android:text="@string/petinto_address_title"
                                 android:textColor="@color/main_dark"
                                 app:layout_constraintStart_toEndOf="@+id/imageLogo"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -206,7 +206,7 @@
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Door-To-Door Delivery"
+                        android:text="@string/door_to_door_delivery"
                         android:buttonTint="@color/background_light"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -231,7 +231,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="PetInto Address"
+                            android:text="@string/petinto_address_title"
                             android:textColor="@color/main_dark"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageLogo1"
@@ -267,7 +267,7 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment Method"
+                    android:text="@string/payment_method"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -289,10 +289,11 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/cash"
                         android:paddingStart="10dp"
-                        android:text="  Cash"
-                        android:scaleY="0.8"
                         android:scaleX="0.8"
-                        android:textSize="20dp"/>
+                        android:scaleY="0.8"
+                        android:text="@string/cash"
+                        android:textSize="20dp" />
+
                     <RadioButton
                         android:id="@+id/rbMomo"
                         android:layout_width="match_parent"
@@ -302,7 +303,7 @@
                         android:textSize="20dp"
                         android:scaleY="0.8"
                         android:scaleX="0.8"
-                        android:text="  Momo"/>
+                        android:text="@string/momo"/>
 
 
                 </RadioGroup>
@@ -319,7 +320,7 @@
                     android:id="@+id/lbNote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notes"
+                    android:text="@string/notes"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -334,7 +335,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_light_background"
                     app:layout_constraintTop_toBottomOf="@+id/lbNote"
-                    android:hint="Notes for order"
+                    android:hint="@string/notes_for_order"
                     android:lines="5"
                     android:gravity="top|start"
                     android:textColorHint="@color/main_medium"/>
@@ -354,7 +355,7 @@
                     android:id="@+id/lbTotalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Amount"
+                    android:text="@string/total_amount"
                     android:textColor="@color/main_dark"
                     android:textStyle="bold"
                      />
@@ -367,14 +368,14 @@
                   <TextView
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="Subtotal"
-                      android:textColor="@color/main_dark"/>
+                      android:text="@string/subtotal"
+                      android:textColor="@color/main_dark" />
 
                   <TextView
                       android:id="@+id/tvSubtotal"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="1.0515.0000 đ"
+                      android:text="1.055.0000 đ"
                       android:layout_alignParentEnd="true"
                       android:textColor="@color/main_dark"/>
 
@@ -387,14 +388,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Fee"
+                        android:text="@string/delivery_fee"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvDeliveryFee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/main_dark"/>
 
@@ -407,14 +408,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Amount"
+                        android:text="@string/total_amount"
                         android:textColor="@color/main_dark"/>
 
                     <TextView
                         android:id="@+id/tvTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="1.055.0000 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/main_dark"/>
 
@@ -442,7 +443,7 @@
             android:id="@+id/lbTotalAmountPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Amount"
+            android:text="@string/total_amount"
             android:textColor="@color/main_dark"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -466,16 +467,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/primary_button_background"
-            android:text="Purchase"
+            android:text="@string/purchase"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:paddingHorizontal="45dp"
             android:textAllCaps="false"/>
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

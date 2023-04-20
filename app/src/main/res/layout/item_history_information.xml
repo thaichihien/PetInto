@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="Color:"
+            android:text="@string/booking_detail_hotel_pet_information_color"
             android:textSize="18sp"
             android:textColor="@color/main_dark"/>
 
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="Brown"
+            android:text="@string/booking_detail_hotel_pet_color"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/main_dark"/>
@@ -90,7 +90,7 @@
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shipping"
+        android:text="@string/shipping"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/main_dark"

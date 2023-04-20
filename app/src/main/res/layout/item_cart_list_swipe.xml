@@ -74,7 +74,7 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:layout_height="wrap_content"
-                    android:text="Food"
+                    android:text="@string/food"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Stock:" />
+                        android:text="@string/stock" />
 
                     <TextView
                         android:id="@+id/tvItemStockCart"
@@ -126,13 +126,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="For: " />
+                        android:text="@string/used_for" />
 
                     <TextView
                         android:id="@+id/tvItemTypeCart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cat"
+                        android:text="@string/type_cat"
                         android:textStyle="bold" />
 
 
@@ -147,7 +147,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Details: " />
+                        android:text="@string/product_details" />
 
                     <TextView
                         android:id="@+id/tvItemDetailCart"
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="Cat"
+                        android:text="@string/type_cat"
                         android:textStyle="bold" />
 
 
