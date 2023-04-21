@@ -238,4 +238,9 @@
     <!--    Shopping_item_list-->
     <string name="add_to_cart">Add to cart</string>
 
+    <!--    Report_fragment-->
+    <string name="report_of_petinto">Report</string>
+    <string name="we_are_in_the_process_of_developing_and_improving_the_application_please_share_your_feedback_on_your_app_experience_so_that_we_can_address_and_support_it_as_soon_as_possible">We are in the process of developing and improving the application. Please share your feedback on your app experience so that we can address and support it as soon as possible!</string>
+    <string name="tell_petinto_about_your_problem">Tell PetInto about your problem</string>
+
 </resources>
