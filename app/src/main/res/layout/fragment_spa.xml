@@ -189,6 +189,15 @@
 
                             android:textStyle="bold" />
                     </TableRow>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_marginTop="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:textColor="@color/white"
+                        android:background="@drawable/primary_button_background"/>
                 </TableLayout>
 
             </LinearLayout>

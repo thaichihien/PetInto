@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="30dp">
+                android:padding="24dp">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -91,7 +91,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/pet_name"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -101,17 +100,17 @@
                             android:layout_marginStart="24dp"
                             android:text="Thái Chí Hiện"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow
+                        android:layout_marginTop="6dp">
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/booking_owner_phone_number"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -121,17 +120,17 @@
                             android:layout_marginStart="24dp"
                             android:text="0987999999"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow
+                        android:layout_marginTop="6dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/booking_owner_email"
-                            android:textSize="20sp"
+
                             android:textStyle="bold" />
 
                         <TextView
@@ -144,12 +143,62 @@
                             android:singleLine="true"
                             android:text="thaichickenhien@gmail.com"
                             android:textColor="@color/main_dark"
-                            android:textSize="20sp"
+
                             android:textStyle="bold" />
                     </TableRow>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_marginTop="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:textColor="@color/white"
+                        android:background="@drawable/primary_button_background"/>
                 </TableLayout>
 
             </LinearLayout>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Room type"
+                android:textColor="@color/main_dark"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="20dp">
+
+                <RadioGroup
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb8h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Normal : 200.00 đ/day"/>
+
+                    <RadioButton
+                        android:id="@+id/rb10h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VIP : 500.00 đ/day"/>
+
+                </RadioGroup>
+
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/textView4"
@@ -161,127 +210,60 @@
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/check_in"
-                android:textColor="@color/main_dark"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From date :"
+                    android:layout_marginStart="16dp"/>
 
                 <EditText
-                    android:id="@+id/checkInDayET"
-                    android:layout_width="100dp"
+
+                    android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+
+
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="@string/day"
                     android:inputType="textPersonName"
                     android:paddingLeft="20dp" />
 
-                <EditText
-                    android:id="@+id/checkInMonthET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toStartOf="@+id/checkInYearET"
-                    android:layout_toEndOf="@+id/checkInDayET"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="@string/month"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
-
-                <EditText
-                    android:id="@+id/checkInYearET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="@string/year"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/check_out"
-                android:textColor="@color/main_dark"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To date :"
+                    android:layout_marginStart="16dp"/>
 
                 <EditText
-                    android:id="@+id/checkOutDayET"
-                    android:layout_width="100dp"
+
+                    android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+
+
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="@string/day"
                     android:inputType="textPersonName"
                     android:paddingLeft="20dp" />
 
-                <EditText
-                    android:id="@+id/checkOutMonthET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toStartOf="@+id/checkOutYearET"
-                    android:layout_toEndOf="@+id/checkOutDayET"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="@string/month"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
-
-                <EditText
-                    android:id="@+id/checkOutYearET"
-                    android:layout_width="100dp"
-                    android:layout_height="52dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/field_background"
-                    android:ems="10"
-                    android:hint="@string/year"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="20dp" />
             </RelativeLayout>
+
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bookingBtn"
@@ -292,7 +274,7 @@
                 android:shadowRadius="@integer/material_motion_duration_long_1"
 
                 android:text="@string/booking"
-                android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+                android:textColor="@color/white"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteBtn"
@@ -302,7 +284,7 @@
                 android:background="@drawable/delete_button_background"
                 android:shadowRadius="@integer/material_motion_duration_long_1"
                 android:text="@string/delete"
-                android:textColor="@color/main_dark"></androidx.appcompat.widget.AppCompatButton>
+                android:textColor="@color/main_dark"/>
 
 
         </LinearLayout>

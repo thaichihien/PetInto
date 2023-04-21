@@ -85,6 +85,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             advertisementBtn7.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToWebViewFragment(advertisements[6].url))
             }
+
+
+            accesories.setOnClickListener {
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.shoppingFragment
+            }
+            beautySpa.setOnClickListener {
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.serviceFragment
+            }
+            hotel.setOnClickListener {
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.hotelFragment
+            }
+
         }
     }
 }

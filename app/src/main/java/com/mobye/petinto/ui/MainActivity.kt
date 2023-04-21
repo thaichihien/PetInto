@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
     private lateinit var navController: NavController
-    private lateinit var bottomNavView : BottomNavigationView
+    lateinit var bottomNavView : BottomNavigationView
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
 
     private val informationViewModel : InformationViewModel by viewModels {
@@ -151,6 +151,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         bottomNavView = binding.bottomNavView
         setupWithNavController(bottomNavView, navController)
+
 
     }
 
