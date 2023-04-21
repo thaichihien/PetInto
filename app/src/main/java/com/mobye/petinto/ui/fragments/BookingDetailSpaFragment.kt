@@ -98,7 +98,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
         qrgEncoder.colorBlack = Color.BLACK
         qrgEncoder.colorWhite = Color.WHITE
         try {
-            val bitmap = qrgEncoder.bitmap
+            val bitmap = qrgEncoder.getBitmap(0)
             return bitmap
         } catch (e: Exception) {
             e.printStackTrace()

@@ -83,7 +83,9 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        informationViewModel.getCustomerPickup()
+        informationViewModel.user.observe(viewLifecycleOwner){
+            informationViewModel.getCustomerPickup()
+        }
         informationViewModel.customerPickup.observe(viewLifecycleOwner){
             it?.let {
                 binding.apply {
