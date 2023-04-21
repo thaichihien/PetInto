@@ -124,7 +124,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         informationViewModel.getPetList()
         informationViewModel.myPetList.observe(viewLifecycleOwner){pets ->
 
-            var petsNameList= arrayListOf<String>()
+            val petsNameList= arrayListOf<String>()
             for(i in pets){
                 petsNameList.add(i.name)
             }
@@ -145,9 +145,9 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             // TODO fill thong tin cua tvNameOwner,tvPhoneOwner,tvEmailOwner su dung bien customer
 
             binding.apply {
-                tvEmailOwner.setText(customer.email)
-                tvNameOwner.setText(customer.name)
-                tvPhoneOwner.setText(customer.phone)
+                tvEmailOwner.text = customer.email
+                tvNameOwner.text = customer.name
+                tvPhoneOwner.text = customer.phone
             }
 
 
@@ -263,9 +263,9 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         var isValid = true
         val etDay=binding.etDay
         // TODO Kiem tra etDay khong empty
-        if (!etDay.text.toString().isNullOrBlank()) {
+        if (!etDay.text.toString().isBlank()) {
             isValid = false
-            etDay.setError("This item cannot be empty!")
+            etDay.error = "This item cannot be empty!"
         }
         //TODO Kiem tra RadioGroup  rgTime phai chon 1 cai  (rgTime.checkedRadioButtonId == -1 la chua chon)
         val rgTime=binding.rgTime

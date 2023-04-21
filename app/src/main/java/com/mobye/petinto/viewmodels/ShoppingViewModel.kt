@@ -32,6 +32,7 @@ class ShoppingViewModel(
 
     //PaymentFragment
     val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
+    val isDeliviery : MutableLiveData<Boolean> by lazy {MutableLiveData(false)}
 
 
     val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
@@ -162,6 +163,10 @@ class ShoppingViewModel(
         val cartItem = cartList!![index]
 
         total.value = total.value?.plus(cartItem.item!!.price * number)
+    }
+
+    fun changeTotal(amount : Int){
+        total.value = total.value?.plus(amount)
     }
 
     fun resetTotal(){
