@@ -1,60 +1,104 @@
 package com.mobye.petinto.ui.fragments
 
+import android.R.attr.bitmap
+import android.content.Context.WINDOW_SERVICE
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
+import android.view.*
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
+import com.mobye.petinto.databinding.FragmentBookingDetailSpaBinding
+import com.mobye.petinto.models.apimodel.Booking
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BookingDetailSpaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class BookingDetailSpaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) {
+
+    private var _binding : FragmentBookingDetailSpaBinding? = null
+    private val binding get() = _binding!!
+
+    private val args : BookingDetailSpaFragmentArgs by navArgs()
+    private lateinit var booking : Booking
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentBookingDetailSpaBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        booking = args.booking
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking_detail_spa, container, false)
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookingDetailSpaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BookingDetailSpaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+
+        binding.apply {
+            ivBookingID.setImageBitmap(generateQR())
+            tvBookingID.text = booking.id
+            lbService.text = if(booking.service == "Spa") "Service:" else "Room:"
+            tvService.text = booking.type
+            tvStatus.text = booking.status
+            tvCost.text = "%,d đ".format(booking.charge)
+            tvCheckIn.text = booking.checkIn
+            if(booking.service == "Spa"){
+                tvCheckOut.visibility = View.GONE
+            }else{
+                tvCheckOut.text = booking.checkOut
             }
+            customerNameTV.text = booking.customerName
+            customerPhoneNumberTV.text = booking.customerPhone
+            tvPetName.text = booking.petName
+            tvPetGenre.text = booking.genre
+            tvPetWeight.text = booking.weight
+
+            //TODO handle Cancel button
+        }
+
+
+
+
     }
+
+    private fun generateQR() : Bitmap? {
+        val manager = requireActivity().getSystemService(WINDOW_SERVICE) as WindowManager
+        val display = manager.currentWindowMetrics
+
+        val point = display.bounds
+        val width: Int = point.width()
+        val height: Int = point.height()
+        var smallerDimension = width.coerceAtMost(height)
+        smallerDimension = smallerDimension * 3 / 4
+
+        val qrgEncoder = QRGEncoder(booking.id, QRGContents.Type.TEXT, smallerDimension)
+        qrgEncoder.colorBlack = Color.BLACK
+        qrgEncoder.colorWhite = Color.WHITE
+        try {
+            val bitmap = qrgEncoder.bitmap
+            return bitmap
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
+
+
+
+    }
+
+
+
+
 }
