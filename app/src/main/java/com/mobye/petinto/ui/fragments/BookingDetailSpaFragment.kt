@@ -9,10 +9,13 @@ import android.view.*
 import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentBookingDetailSpaBinding
 import com.mobye.petinto.models.apimodel.Booking
+import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.utils.Utils
 
 
 class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) {
@@ -44,26 +47,34 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val activity = activity as MainActivity
+        activity.hideBottomNav()
 
         binding.apply {
+
+            // TODO remove border
             ivBookingID.setImageBitmap(generateQR())
             tvBookingID.text = booking.id
             lbService.text = if(booking.service == "Spa") "Service:" else "Room:"
             tvService.text = booking.type
             tvStatus.text = booking.status
             tvCost.text = "%,d đ".format(booking.charge)
-            tvCheckIn.text = booking.checkIn
+            // TODO Fix checkin
+            tvCheckIn.text = Utils.formatToLocalDate(booking.checkIn)
             if(booking.service == "Spa"){
                 tvCheckOut.visibility = View.GONE
             }else{
                 tvCheckOut.text = booking.checkOut
             }
             customerNameTV.text = booking.customerName
-            customerPhoneNumberTV.text = booking.customerPhone
+            customerPhoneNumberTV.text = booking.phone
             tvPetName.text = booking.petName
             tvPetGenre.text = booking.genre
             tvPetWeight.text = booking.weight
+
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
 
             //TODO handle Cancel button
         }

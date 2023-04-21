@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -166,18 +167,17 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
         binding.apply {
             btnEdit.setOnClickListener{
-                findNavController().navigate(SpaFragmentDirections.actionSpaFragmentToCustomerFragment())
+
+//                val navController = (requireActivity() as MainActivity).navController
+//                navController.navigate(SpaFragmentDirections.actionSpaFragmentToCustomerFragment())
+                findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToCustomerFragment())
             }
 
 
             bookingBtn.setOnClickListener { 
                 if(validate()){
                     sendSpaBooking()
-                }else{
-                    // TODO hien loi chua nhap cac truong
-                    notiDialog.changeToSuccess("Please correctly input all the fields!!!")
-                    notiDialog.show()
-                                   }
+                }
             }
             etDay.setOnClickListener{
                 dayPicker.show(parentFragmentManager,"DAY_PICKER")
@@ -239,18 +239,18 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                 // Hien dialog thong bao thanh cong
                 notiDialog.changeToSuccess("Successfully book a spa service.")
                 notiDialog.show()
-                Log.e("Spa Booking", response.body.toString())
-                val orderID = response.body.toString()
+                //Log.e("Spa Booking", response.body.toString())
+
 
                 lifecycleScope.launch {
                     delay(3000)
                     notiDialog.dismiss()
-
+                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
                 }
 
 
             }else{
-                notiDialog.changeToFail("Something went wrong. Please, try again.")
+                notiDialog.changeToFail(response.reason)
                 notiDialog.show()
                 lifecycleScope.launch{
                     delay(3000)
@@ -279,7 +279,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             Toast.makeText(requireContext(),"Please choose a spa service",Toast.LENGTH_SHORT).show()
         }
 
-        if (!etDay.text.toString().isBlank()) {
+        if (etDay.text.toString().isBlank()) {
             isValid = false
             etDay.error = "This item cannot be empty!"
         }

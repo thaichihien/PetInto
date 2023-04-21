@@ -12,6 +12,7 @@ import com.mobye.petinto.R
 import com.mobye.petinto.adapters.ServiceViewPagerAdapter
 import com.mobye.petinto.databinding.FragmentOrderPaymentBinding
 import com.mobye.petinto.databinding.FragmentServiceBinding
+import com.mobye.petinto.ui.MainActivity
 
 
 class ServiceFragment : Fragment(R.layout.fragment_service) {
@@ -57,4 +58,13 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
         tabLayoutMediator.attach()
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as MainActivity
+        activity.showBottomNav()
+
+    }
+
+
 }

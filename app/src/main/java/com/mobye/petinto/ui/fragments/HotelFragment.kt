@@ -124,58 +124,58 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
 
     private fun validate(): Boolean {
         var isValid=false
-        var maxDaysNotLeap = listOf(31,28,31,30,31,30,31,31,30,31,30,31)
-        var maxDaysLeap = listOf(31,29,31,30,31,30,31,31,30,31,30,31)
-        var maxDays=maxDaysNotLeap
-
-        if (binding.petSpinner!=null || binding.petSpinner.selectedItem!=null)
-            isValid=true
-        else return false
-
-        if(!binding.checkInDayET.text.toString().isNullOrEmpty() && !binding.checkInMonthET.text.toString().isNullOrEmpty()
-            && !binding.checkInYearET.text.toString().isNullOrEmpty())
-            isValid=true
-        else return false
-
-        if(!binding.checkOutDayET.text.toString().isNullOrEmpty() && !binding.checkOutMonthET.text.toString().isNullOrEmpty()
-            && !binding.checkOutYearET.text.toString().isNullOrEmpty())
-            isValid=true
-        else return false
-
-        if(binding.checkInYearET.text.toString().toInt()>2000 && binding.checkInYearET.text.toString().toInt()<10000)
-            isValid=true
-        else return false
-
-        if(binding.checkInMonthET.text.toString().toInt()<=12 && binding.checkInMonthET.text.toString().toInt()>=1)
-            isValid=true
-        else return false
-
-        if(binding.checkOutYearET.text.toString().toInt()>2000 && binding.checkOutYearET.text.toString().toInt()<10000)
-            isValid=true
-        else return false
-
-        if(binding.checkOutMonthET.text.toString().toInt()<=12 && binding.checkOutMonthET.text.toString().toInt()>=1)
-            isValid=true
-        else return false
-
-        fun isLeapYear(year: Int):Boolean{
-            if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
-                return true
-
-            return false
-        }
-
-        if(isLeapYear(binding.checkInYearET.text.toString().toInt())) maxDays=maxDaysLeap
-
-        if(binding.checkInDayET.text.toString().toInt()>=1 &&
-            binding.checkInDayET.text.toString().toInt()<=maxDays[binding.checkInMonthET.text.toString().toInt()-1])
-            isValid=true
-        else return false
-
-        if(binding.checkOutDayET.text.toString().toInt()>=1 &&
-            binding.checkOutDayET.text.toString().toInt()<=maxDays[binding.checkOutMonthET.text.toString().toInt()-1])
-            isValid=true
-        else return false
+//        var maxDaysNotLeap = listOf(31,28,31,30,31,30,31,31,30,31,30,31)
+//        var maxDaysLeap = listOf(31,29,31,30,31,30,31,31,30,31,30,31)
+//        var maxDays=maxDaysNotLeap
+//
+//        if (binding.petSpinner!=null || binding.petSpinner.selectedItem!=null)
+//            isValid=true
+//        else return false
+//
+//        if(!binding.checkInDayET.text.toString().isNullOrEmpty() && !binding.checkInMonthET.text.toString().isNullOrEmpty()
+//            && !binding.checkInYearET.text.toString().isNullOrEmpty())
+//            isValid=true
+//        else return false
+//
+//        if(!binding.checkOutDayET.text.toString().isNullOrEmpty() && !binding.checkOutMonthET.text.toString().isNullOrEmpty()
+//            && !binding.checkOutYearET.text.toString().isNullOrEmpty())
+//            isValid=true
+//        else return false
+//
+//        if(binding.checkInYearET.text.toString().toInt()>2000 && binding.checkInYearET.text.toString().toInt()<10000)
+//            isValid=true
+//        else return false
+//
+//        if(binding.checkInMonthET.text.toString().toInt()<=12 && binding.checkInMonthET.text.toString().toInt()>=1)
+//            isValid=true
+//        else return false
+//
+//        if(binding.checkOutYearET.text.toString().toInt()>2000 && binding.checkOutYearET.text.toString().toInt()<10000)
+//            isValid=true
+//        else return false
+//
+//        if(binding.checkOutMonthET.text.toString().toInt()<=12 && binding.checkOutMonthET.text.toString().toInt()>=1)
+//            isValid=true
+//        else return false
+//
+//        fun isLeapYear(year: Int):Boolean{
+//            if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+//                return true
+//
+//            return false
+//        }
+//
+//        if(isLeapYear(binding.checkInYearET.text.toString().toInt())) maxDays=maxDaysLeap
+//
+//        if(binding.checkInDayET.text.toString().toInt()>=1 &&
+//            binding.checkInDayET.text.toString().toInt()<=maxDays[binding.checkInMonthET.text.toString().toInt()-1])
+//            isValid=true
+//        else return false
+//
+//        if(binding.checkOutDayET.text.toString().toInt()>=1 &&
+//            binding.checkOutDayET.text.toString().toInt()<=maxDays[binding.checkOutMonthET.text.toString().toInt()-1])
+//            isValid=true
+//        else return false
 
         return isValid
     }

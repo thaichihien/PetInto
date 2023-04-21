@@ -59,7 +59,7 @@ interface PetIntoApi {
     @POST("/booking/spa/new")
     suspend fun sendSpaBooking(
         @Body booking: Booking
-    ) : Response<ApiResponse<Any>>
+    ) : Response<ApiResponse<Booking>>
 
 
     //Pets

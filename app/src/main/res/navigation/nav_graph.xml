@@ -230,7 +230,14 @@
         android:id="@+id/serviceFragment"
         android:name="com.mobye.petinto.ui.fragments.ServiceFragment"
         android:label="fragment_service"
-        tools:layout="@layout/fragment_service" />
+        tools:layout="@layout/fragment_service" >
+        <action
+            android:id="@+id/actionServiceFragmentToCustomerFragment"
+            app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/actionServiceFragmentToBookingDetailSpaFragment"
+            app:destination="@id/bookingDetailSpaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/orderPaymentFragment"
         android:name="com.mobye.petinto.ui.fragments.OrderPaymentFragment"

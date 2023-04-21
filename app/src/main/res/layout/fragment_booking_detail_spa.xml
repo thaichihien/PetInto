@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="@color/background_dark"
         android:paddingHorizontal="9dp"
@@ -20,16 +20,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
             android:contentDescription="@string/shopping"
             android:src="@drawable/back"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/service_booking_details"
@@ -45,8 +48,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="639dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

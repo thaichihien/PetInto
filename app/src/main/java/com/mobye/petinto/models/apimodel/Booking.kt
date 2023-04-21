@@ -8,7 +8,7 @@ class Booking(
     var id : String = "",
     var customerID : String = "",
     var customerName : String = "",
-    var customerPhone : String = "",
+    var phone : String = "",
     var petName: String = "",
     var genre : String = "",
     var weight : String = "",

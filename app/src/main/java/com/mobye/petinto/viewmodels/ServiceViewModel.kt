@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() {
 
     private val TAG = "ServiceViewModel"
-    val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
+    val response : MutableLiveData<ApiResponse<Booking>> by lazy { MutableLiveData() }
 
 
     val serviceList=listOf("Massage","Hair cut","Bath","Nail cut")
@@ -46,7 +46,7 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
             this.checkOut = checkOut
             this.type = type
             this.customerName = customerPickup.name
-            this.customerPhone = customerPickup.phone
+            this.phone = customerPickup.phone
             this.charge = charge
         }
 
