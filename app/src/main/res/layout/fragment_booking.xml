@@ -49,6 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBookingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +58,30 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/booking_header"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <include layout="@layout/item_service_booking_list_load"/>
+            <include layout="@layout/item_service_booking_list_load"/>
+
+
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 

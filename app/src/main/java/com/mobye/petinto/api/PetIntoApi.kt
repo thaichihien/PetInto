@@ -28,6 +28,11 @@ interface PetIntoApi {
         @Query("id") id: String
     ) : Response<ApiResponse<List<OrderHistory>>>
 
+    @GET("/data/pethistory")
+    suspend fun getPetOrderHistory(
+        @Query("id") id: String
+    ) : Response<ApiResponse<List<PetOrderHistory>>>
+
     @POST("/user/add")
     suspend fun sendUser(
         @Body user : Customer,
@@ -50,16 +55,21 @@ interface PetIntoApi {
 
     @POST("/order/pet")
     suspend fun sendPetOrder(
-        @Body order: PetOrder //TODO sua lai kieu tham so
+        @Body order: PetOrder
     ) : Response<ApiResponse<Any>>
 
 
 
     //Booking
-    @POST("/booking/spa/new")
-    suspend fun sendSpaBooking(
-        @Body booking: SpaBooking
-    ) : Response<ApiResponse<Any>>
+    @POST("/booking/new")
+    suspend fun sendBooking(
+        @Body booking: Booking
+    ) : Response<ApiResponse<Booking>>
+
+    @GET("/booking/history")
+    suspend fun getBookingHistory(
+        @Query("id") id : String
+    ) : Response<ApiResponse<List<Booking>>>
 
 
     //Pets

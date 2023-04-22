@@ -56,7 +56,7 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
 
         informationViewModel.user.observe(viewLifecycleOwner){
             it?.let {
-                informationViewModel.getOrderHistory(it.id)
+                informationViewModel.getOrderHistory()
             }
         }
         informationViewModel.orderHistoryList.observe(viewLifecycleOwner){

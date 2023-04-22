@@ -166,29 +166,17 @@
                             android:textStyle="bold" />
                     </TableRow>
 
-                    <TableRow
-                        android:layout_marginTop="6dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/booking_owner_email"
 
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvEmailOwner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:ellipsize="marquee"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"
-                            android:text="thaichickenhien@gmail.com"
-                            android:textColor="@color/main_dark"
-
-                            android:textStyle="bold" />
-                    </TableRow>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_marginTop="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:id="@+id/btnEdit"
+                        android:textColor="@color/white"
+                        android:background="@drawable/primary_button_background"/>
                 </TableLayout>
 
             </LinearLayout>
@@ -262,6 +250,33 @@
 
 
                 </RadioGroup>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total cost:"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTotalCost"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 đ"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
 
 
             </RelativeLayout>

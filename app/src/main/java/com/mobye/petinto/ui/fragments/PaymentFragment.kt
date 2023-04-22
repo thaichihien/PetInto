@@ -69,6 +69,9 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = activity as MainActivity
+        activity.hideBottomNav()
+
         paymentItemAdapter = PaymentItemAdapter()
 
         shoppingViewModel.getPaymentList()
@@ -212,11 +215,11 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         return !isEmptyChoice
     }
 
-    override fun onResume() {
-        super.onResume()
-        val activity = activity as MainActivity
-        activity.showBottomNav()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        val activity = activity as MainActivity
+//        activity.showBottomNav()
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

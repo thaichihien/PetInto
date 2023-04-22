@@ -80,7 +80,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 tvEmail.text = it.email
                 Glide.with(binding.root)
                     .load(it.image)
-                    .placeholder(R.drawable.avatar_1)
+                    .placeholder(R.drawable.logo_chat)
                     .into(imgAvatar)
                 loadingLayout.isVisible = false
             }

@@ -170,21 +170,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                 binding.refreshLayout.isRefreshing = false
 
             }
-//            etSearchProduct.setOnKeyListener(object : OnKeyListener{
-//                override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
-//
-//                    Log.e(TAG,"${event.action} : $keyCode")
-//                    if ((event.action == KeyEvent.ACTION_DOWN)
-//                        && (keyCode == KeyEvent.KEYCODE_ENTER)
-//                    ) {
-//                        Log.e(TAG,binding.etSearchProduct.text.toString())
-//
-//                        shoppingViewModel.searchProduct(binding.etSearchProduct.text.toString().trim())
-//                        return true
-//                    }
-//                    return false
-//                }
-//            })
+
             etSearchProduct.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     Log.e(TAG, "Enter button was pressed")

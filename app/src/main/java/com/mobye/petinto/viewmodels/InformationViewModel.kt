@@ -82,6 +82,10 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
     fun getPetGenre(index: Int)
         = myPetList.value!![index].type
+    fun getPet(index: Int)
+        = myPetList.value!![index]
+
+
     fun getUser(id : String){
         // get user data by id from backend (id,email,name)
         viewModelScope.launch {
@@ -214,10 +218,10 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         this.user.value = user
     }
 
-    fun getOrderHistory(id : String){
+    fun getOrderHistory(){
         viewModelScope.launch {
             try {
-                val response = repository.getOrderHistory(id).body()!!
+                val response = repository.getOrderHistory(getUserID()).body()!!
                 if(response.result){
                     orderHistoryList.value = response.body
                 }else{
@@ -228,7 +232,22 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
                 // no internet connection
             }
         }
+    }
 
+    fun getPetOrderHistory(){
+        viewModelScope.launch {
+            try {
+                val response = repository.getPetOrderHistory(getUserID()).body()!!
+                if(response.result){
+                    orderPetHistoryList.value = response.body
+                }else{
+                    //Server error
+                }
+
+            }catch (e: Exception) {
+                // no internet connection
+            }
+        }
     }
 
 

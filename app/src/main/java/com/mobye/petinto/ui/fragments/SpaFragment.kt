@@ -4,9 +4,7 @@ package com.mobye.petinto.ui.fragments
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
-import android.app.TimePickerDialog
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,15 +15,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.CalendarConstraints.DateValidator
-import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentSpaBinding
-import com.mobye.petinto.models.apimodel.SpaBooking
+import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ServiceRepository
 import com.mobye.petinto.ui.MainActivity
@@ -61,6 +58,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         activity.notiDialog
     }
 
+
     //Cai dat ViewBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,24 +82,37 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        informationViewModel.user.observe(viewLifecycleOwner){
+            informationViewModel.getCustomerPickup()
+            informationViewModel.getPetList()
+        }
+        informationViewModel.customerPickup.observe(viewLifecycleOwner){
+            it?.let {
+                binding.apply {
+                    tvNameOwner.text =  it.name
+                    tvPhoneOwner.text = it.phone
+                }
+            }
+        }
+
+
+
         binding.apply {
             servicesSpinnerBtn.setOnClickListener {
                 binding.servicesSpinner.performClick()
             }
-        }
-
-        binding.apply {
             petSpinnerBtn.setOnClickListener {
                 binding.petSpinner.performClick()}
         }
 
 
-        val serviceList=listOf("Massage","Hair cut","Bath","Nail cut")
+
 
         val ad: ArrayAdapter<String> = ArrayAdapter<String>(
             requireActivity().baseContext,
             android.R.layout.simple_spinner_dropdown_item,
-            serviceList
+            serviceViewModel.serviceList
         ).also {
             adapter ->
             adapter.setDropDownViewResource(
@@ -111,17 +122,17 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         binding.apply {
             servicesSpinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
                 override fun onNothingSelected(p0: AdapterView<*>?) {
-
+                    binding.tvTotalCost.text = "0 đ"
                 }
 
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                    binding.tvTotalCost.text = "%,d đ".format(serviceViewModel.serviceCharge[pos])
                 }
             }
         }
 
 
-        informationViewModel.getPetList()
+
         informationViewModel.myPetList.observe(viewLifecycleOwner){pets ->
 
             val petsNameList= arrayListOf<String>()
@@ -141,17 +152,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }
         }
 
-        informationViewModel.user.observe(viewLifecycleOwner){customer ->
-            // TODO fill thong tin cua tvNameOwner,tvPhoneOwner,tvEmailOwner su dung bien customer
 
-            binding.apply {
-                tvEmailOwner.text = customer.email
-                tvNameOwner.text = customer.name
-                tvPhoneOwner.text = customer.phone
-            }
-
-
-        }
 
         val dayPicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select a date")
@@ -161,42 +162,49 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         dayPicker.addOnPositiveButtonClickListener {
             val calendar: Calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
             calendar.timeInMillis = it
-            val format = SimpleDateFormat("yyyy-MM-dd")
+            val format = SimpleDateFormat("dd/MM/yyyy")
             val formattedDate: String = format.format(calendar.time)
+            serviceViewModel.checkIn = calendar.time
             binding.etDay.setText(formattedDate)
         }
 
 
-        binding.apply { 
+        binding.apply {
+            btnEdit.setOnClickListener{
+
+                findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToCustomerFragment())
+            }
+
+
             bookingBtn.setOnClickListener { 
                 if(validate()){
+                    loadingDialog.show()
                     sendSpaBooking()
-                }else{
-                    // TODO hien loi chua nhap cac truong
-                    notiDialog.changeToSuccess("Please correctly input all the fields!!!")
-                    notiDialog.show()
-                                   }
+                }
             }
             etDay.setOnClickListener{
                 dayPicker.show(parentFragmentManager,"DAY_PICKER")
             }
-
-        }
-
-        binding.apply {
             deleteBtn.setOnClickListener {
-                //findNavController().popBackStack()
+                clearService()
 
-                // TODO clear tat ca field, radio button thi uncheck
-                servicesSpinner.setSelection(0)
-                petSpinner.setSelection(0)
-                etDay.setText("")
-                rgTime.clearCheck()
             }
+
         }
 
 
 
+
+
+    }
+
+    private fun clearService() {
+        binding.apply {
+            servicesSpinner.setSelection(0)
+            petSpinner.setSelection(0)
+            etDay.setText("")
+            rgTime.clearCheck()
+        }
     }
 
     private fun getTime() : String{
@@ -212,21 +220,25 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
     // Tham khao co huong dan chi tiet tai ham sendPurchaseOrder() o PaymentFragment.kt
     private fun sendSpaBooking() {
-        // chuan bi bien SpaBooking
-        // LUU Y property date cua SpaBooking chi chap nhan format "YYYY-mm-ddTHH:mm:ss" vi du "2022-10-10T20:00:00"
-        //       property customerID lay tu informationViewModel.getUserID()
-        val booking=SpaBooking()
-        val date = "${binding.etDay.text}T${getTime()}"
 
-        booking.apply {
-            this.date =date
-            customerID = informationViewModel.getUserID()
-            type = binding.servicesSpinner.selectedItem.toString()
-            petName = binding.petSpinner.selectedItem.toString()
-            genre = informationViewModel.getPetGenre(binding.petSpinner.selectedItemPosition)
-        }
+        val format = SimpleDateFormat("yyyy-MM-dd")
+        val formattedDate: String = format.format(serviceViewModel.checkIn)
+        val date = "${formattedDate}T${getTime()}"
 
-        serviceViewModel.sendSpaBooking(booking)
+
+        val booking= serviceViewModel.createBooking(
+            customerID = informationViewModel.getUserID(),
+            customerPickup = informationViewModel.customerPickupInfo ?: CustomerPickup(),
+            pet = informationViewModel.getPet(binding.petSpinner.selectedItemPosition),
+            service = "Spa",
+            checkIn = date,
+            checkOut = "",
+            type = binding.servicesSpinner.selectedItem.toString(),
+            charge = serviceViewModel.serviceCharge[binding.servicesSpinner.selectedItemPosition]
+        )
+
+
+        serviceViewModel.sendBooking(booking)
 
         serviceViewModel.response.observe(viewLifecycleOwner) { response ->
             loadingDialog.dismiss()
@@ -237,18 +249,19 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                 // Hien dialog thong bao thanh cong
                 notiDialog.changeToSuccess("Successfully book a spa service.")
                 notiDialog.show()
-                Log.e("Spa Booking", response.body.toString())
-                val orderID = response.body.toString()
+                //Log.e("Spa Booking", response.body.toString())
+
 
                 lifecycleScope.launch {
                     delay(3000)
                     notiDialog.dismiss()
-
+                    clearService()
+                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
                 }
 
 
             }else{
-                notiDialog.changeToFail("Something went wrong. Please, try again.")
+                notiDialog.changeToFail(response.reason)
                 notiDialog.show()
                 lifecycleScope.launch{
                     delay(3000)
@@ -262,15 +275,32 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
     private fun validate(): Boolean {
         var isValid = true
         val etDay=binding.etDay
-        // TODO Kiem tra etDay khong empty
-        if (!etDay.text.toString().isBlank()) {
+
+
+        if(binding.petSpinner.adapter.isEmpty){
+            isValid = false
+            Toast.makeText(requireContext(),"Please add your pet information at Profile",Toast.LENGTH_SHORT).show()
+        }else if(binding.petSpinner.selectedItem == null){
+            isValid = false
+            Toast.makeText(requireContext(),"Please choose a pet for the service",Toast.LENGTH_SHORT).show()
+        }
+
+        if(binding.servicesSpinner.selectedItem == null){
+            isValid = false
+            Toast.makeText(requireContext(),"Please choose a spa service",Toast.LENGTH_SHORT).show()
+        }
+
+        if (etDay.text.toString().isBlank()) {
             isValid = false
             etDay.error = "This item cannot be empty!"
         }
-        //TODO Kiem tra RadioGroup  rgTime phai chon 1 cai  (rgTime.checkedRadioButtonId == -1 la chua chon)
+
         val rgTime=binding.rgTime
-        if (rgTime.checkedRadioButtonId==-1)
+        if (rgTime.checkedRadioButtonId==-1){
             isValid=false
+            Toast.makeText(requireContext(),"Please pick a time",Toast.LENGTH_SHORT).show()
+        }
+
 
 
         return isValid
