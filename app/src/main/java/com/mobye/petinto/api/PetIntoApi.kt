@@ -50,14 +50,14 @@ interface PetIntoApi {
 
     @POST("/order/pet")
     suspend fun sendPetOrder(
-        @Body order: PetOrder //TODO sua lai kieu tham so
+        @Body order: PetOrder
     ) : Response<ApiResponse<Any>>
 
 
 
     //Booking
-    @POST("/booking/spa/new")
-    suspend fun sendSpaBooking(
+    @POST("/booking/new")
+    suspend fun sendBooking(
         @Body booking: Booking
     ) : Response<ApiResponse<Booking>>
 

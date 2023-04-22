@@ -64,7 +64,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             if(booking.service == "Spa"){
                 tvCheckOut.visibility = View.GONE
             }else{
-                tvCheckOut.text = booking.checkOut
+                tvCheckOut.text = Utils.formatToLocalDate(booking.checkOut)
             }
             customerNameTV.text = booking.customerName
             customerPhoneNumberTV.text = booking.phone
@@ -97,12 +97,12 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
         val qrgEncoder = QRGEncoder(booking.id, QRGContents.Type.TEXT, smallerDimension)
         qrgEncoder.colorBlack = Color.BLACK
         qrgEncoder.colorWhite = Color.WHITE
-        try {
+        return try {
             val bitmap = qrgEncoder.getBitmap(0)
-            return bitmap
+            bitmap
         } catch (e: Exception) {
             e.printStackTrace()
-            return null
+            null
         }
 
 

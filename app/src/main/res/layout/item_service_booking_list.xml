@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp">
 
     <TextView
         android:id="@+id/textView6"
@@ -19,22 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="412dp"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
         android:background="@color/service_booking_item"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
             android:text="@string/booking_detail_hotel"
-            android:textStyle="bold"
             android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,8 +48,8 @@
             android:layout_marginTop="20dp"
             android:text="@string/date"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintStart_toStartOf="@+id/tvService"
+            app:layout_constraintTop_toBottomOf="@+id/tvService" />
 
         <TextView
             android:id="@+id/textView9"
@@ -85,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
-            android:text="@string/booking_detail_hotel_pet_information_variety"
+            android:text="Weight"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView11"
             app:layout_constraintStart_toEndOf="@+id/textView11"
@@ -99,24 +102,38 @@
             android:layout_marginStart="60dp"
             android:text="@string/service_title"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="@+id/textView7" />
+            app:layout_constraintBottom_toBottomOf="@+id/tvService"
+            app:layout_constraintStart_toEndOf="@+id/tvService"
+            app:layout_constraintTop_toTopOf="@+id/tvService" />
 
-        <Button
-            android:id="@+id/cancelBtn"
-            android:layout_width="203dp"
-            android:layout_height="49dp"
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:text="@string/service_title"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvService"
+            app:layout_constraintStart_toEndOf="@+id/tvService"
+            app:layout_constraintTop_toTopOf="@+id/tvService" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="16dp"
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/booking_detail_hotel_cancel_booking"
-            android:textColor="@color/main_dark"
-
+            android:textColor="@color/white"
+            android:background="@drawable/primary_button_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <TextView
-            android:id="@+id/dateTV"
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -130,39 +147,43 @@
 
         <TextView
             android:id="@+id/genreTV"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="TextView"
+            android:textColor="@color/main_dark"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/main_dark"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/textView11"
             app:layout_constraintStart_toEndOf="@+id/textView11"
             app:layout_constraintTop_toTopOf="@+id/textView11" />
 
         <TextView
-            android:id="@+id/varietyTV"
-            android:layout_width="wrap_content"
+            android:id="@+id/weightTV"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="TextView"
+            android:textColor="@color/main_dark"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/main_dark"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/textView12"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="@+id/textView12" />
 
         <TextView
-            android:id="@+id/listOfServiceTV"
+            android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="TextView"
+            android:textColor="@color/main_dark"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/main_dark"
             app:layout_constraintBottom_toBottomOf="@+id/serviceLabelTV"
             app:layout_constraintStart_toEndOf="@+id/serviceLabelTV"
             app:layout_constraintTop_toTopOf="@+id/serviceLabelTV" />
@@ -173,22 +194,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="TextView"
+            android:textColor="@color/main_dark"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/main_dark"
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.014"
             app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="@+id/textView9" />
+            app:layout_constraintTop_toTopOf="@+id/textView9"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/petInformationTV"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="TextView"
+            android:textColor="@color/main_dark"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/main_dark"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/textView10" />

@@ -9,7 +9,11 @@ import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.Booking
 import com.mobye.petinto.repository.ServiceRepository
+import com.mobye.petinto.utils.Constants.Companion.NORMAL_ROOM_COST
+import com.mobye.petinto.utils.Constants.Companion.VIP_ROOM_COST
 import kotlinx.coroutines.launch
+import java.util.Date
+import java.util.concurrent.TimeUnit
 
 class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() {
 
@@ -19,11 +23,15 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
 
     val serviceList=listOf("Massage","Hair cut","Bath","Nail cut")
     val serviceCharge = listOf(300000,2300000,270000,100000)
+    var checkIn : Date = Date()
+    var checkOut = Date()
+    val hotelCost : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
-    fun sendSpaBooking(spaBooking: Booking){
+
+    fun sendBooking(booking: Booking){
         viewModelScope.launch {
             try {
-                val response = repository.sendSpaBooking(spaBooking)
+                val response = repository.sendBooking(booking)
                 this@ServiceViewModel.response.value = response.body()
             }catch (e: Exception){
                 // no internet connection
@@ -53,6 +61,15 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
         return booking
     }
 
+    fun calculateHotelCost(isVIP : Boolean){
+        val millionSeconds = checkOut.time - checkIn.time
+        val roomCost = if(isVIP) VIP_ROOM_COST else NORMAL_ROOM_COST
+        val cost = TimeUnit.MILLISECONDS.toDays(millionSeconds) * roomCost
+        hotelCost.value = cost.toInt()
+    }
+
+    fun checkDateValid()
+        = checkOut.time >= checkIn.time
 
 
 }

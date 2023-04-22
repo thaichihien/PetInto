@@ -123,31 +123,9 @@
                             android:textStyle="bold" />
                     </TableRow>
 
-                    <TableRow
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/booking_owner_email"
-
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvEmailOwner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:ellipsize="marquee"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:singleLine="true"
-                            android:text="thaichickenhien@gmail.com"
-                            android:textColor="@color/main_dark"
-
-                            android:textStyle="bold" />
-                    </TableRow>
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnEdit"
                         android:layout_marginTop="16dp"
                         android:layout_width="wrap_content"
                         android:layout_marginHorizontal="50dp"
@@ -178,19 +156,19 @@
                 android:paddingHorizontal="20dp">
 
                 <RadioGroup
-
+                    android:id="@+id/rgRoomType"
                     android:layout_centerHorizontal="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/rb8h"
+                        android:id="@+id/rbNormalRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Normal : 200.00 đ/day"/>
 
                     <RadioButton
-                        android:id="@+id/rb10h"
+                        android:id="@+id/rbVIPRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VIP : 500.00 đ/day"/>
@@ -223,7 +201,7 @@
                     android:layout_marginStart="16dp"/>
 
                 <EditText
-
+                    android:id="@+id/etFromDate"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
 
@@ -232,7 +210,7 @@
                     android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="@string/day"
-                    android:inputType="textPersonName"
+                    android:inputType="none"
                     android:paddingLeft="20dp" />
 
             </RelativeLayout>
@@ -249,17 +227,42 @@
                     android:layout_marginStart="16dp"/>
 
                 <EditText
-
+                    android:id="@+id/etToDate"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-
-
                     android:layout_marginTop="30dp"
                     android:background="@drawable/field_background"
                     android:ems="10"
                     android:hint="@string/day"
-                    android:inputType="textPersonName"
+                    android:inputType="none"
                     android:paddingLeft="20dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total cost:"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTotalCost"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 đ"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+
 
             </RelativeLayout>
 
