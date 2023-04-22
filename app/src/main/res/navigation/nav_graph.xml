@@ -155,7 +155,11 @@
         android:id="@+id/bookingFragment"
         android:name="com.mobye.petinto.ui.fragments.BookingFragment"
         android:label="fragment_booking"
-        tools:layout="@layout/fragment_booking" />
+        tools:layout="@layout/fragment_booking" >
+        <action
+            android:id="@+id/actionBookingFragmentToBookingDetailSpaFragment"
+            app:destination="@id/bookingDetailSpaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/petPaymentFragment"
         android:name="com.mobye.petinto.ui.fragments.PetPaymentFragment"

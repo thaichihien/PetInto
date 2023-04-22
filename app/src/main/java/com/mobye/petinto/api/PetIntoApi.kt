@@ -61,6 +61,11 @@ interface PetIntoApi {
         @Body booking: Booking
     ) : Response<ApiResponse<Booking>>
 
+    @GET("/booking/history")
+    suspend fun getBookingHistory(
+        @Query("id") id : String
+    ) : Response<ApiResponse<List<Booking>>>
+
 
     //Pets
     @GET("/data/pets")

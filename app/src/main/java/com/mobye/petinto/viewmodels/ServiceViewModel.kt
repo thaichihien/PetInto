@@ -19,15 +19,32 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
 
     private val TAG = "ServiceViewModel"
     val response : MutableLiveData<ApiResponse<Booking>> by lazy { MutableLiveData() }
-
+    val bookingList : MutableLiveData<List<Booking>> by lazy { MutableLiveData(listOf())}
 
     val serviceList=listOf("Massage","Hair cut","Bath","Nail cut")
     val serviceCharge = listOf(300000,2300000,270000,100000)
     var checkIn : Date = Date()
     var checkOut = Date()
+
     val hotelCost : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
 
+    fun getBookingHistory(id : String){
+        viewModelScope.launch {
+            try {
+                val response = repository.getBookingHistory(id).body()!!
+                if(response.result){
+                    bookingList.value =  response.body
+                }else{
+                    Log.e("ServiceViewModel",response.error)
+                }
+
+            }catch (e: Exception){
+                // no internet connection
+                Log.e(TAG,e.toString())
+            }
+        }
+    }
     fun sendBooking(booking: Booking){
         viewModelScope.launch {
             try {

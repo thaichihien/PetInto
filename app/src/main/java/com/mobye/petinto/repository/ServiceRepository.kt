@@ -8,4 +8,7 @@ class ServiceRepository : IRepository {
     suspend fun sendBooking(spaBooking: Booking)
         = RetrofitInstance.api.sendBooking(spaBooking)
 
+    suspend fun getBookingHistory(id : String)
+        = RetrofitInstance.api.getBookingHistory(id)
+
 }
