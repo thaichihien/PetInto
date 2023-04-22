@@ -28,6 +28,11 @@ interface PetIntoApi {
         @Query("id") id: String
     ) : Response<ApiResponse<List<OrderHistory>>>
 
+    @GET("/data/pethistory")
+    suspend fun getPetOrderHistory(
+        @Query("id") id: String
+    ) : Response<ApiResponse<List<PetOrderHistory>>>
+
     @POST("/user/add")
     suspend fun sendUser(
         @Body user : Customer,

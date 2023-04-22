@@ -102,4 +102,7 @@ class InformationRepository :IRepository {
     suspend fun getOrderHistory(id: String)
         = RetrofitInstance.api.getOrderHistory(id)
 
+    suspend fun getPetOrderHistory(id : String)
+        = RetrofitInstance.api.getPetOrderHistory(id)
+
 }
