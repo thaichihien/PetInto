@@ -251,6 +251,15 @@
         <argument
             android:name="petPayment"
             app:argType="com.mobye.petinto.models.PetInfo" />
+        <argument
+            android:name="isDelivery"
+            app:argType="boolean" />
+        <argument
+            android:name="orderID"
+            app:argType="string" />
+        <argument
+            android:name="paymentMethod"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/historyPetFragment"

@@ -131,6 +131,4 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
     }
 
 
-
-
 }
