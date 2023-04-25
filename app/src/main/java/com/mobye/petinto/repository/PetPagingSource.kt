@@ -6,7 +6,9 @@ import androidx.paging.PagingState
 import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.models.PetInfo
 
-class PetPagingSource : PagingSource<Int, PetInfo>(){
+class PetPagingSource(
+    private val query : String
+) : PagingSource<Int, PetInfo>(){
 
     companion object{
         const val FIRST_PAGE = 1
@@ -19,7 +21,7 @@ class PetPagingSource : PagingSource<Int, PetInfo>(){
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PetInfo> {
         return try {
             val nextPage = params.key ?: PetPagingSource.FIRST_PAGE
-            val response = RetrofitInstance.api.getPets(nextPage)
+            val response = RetrofitInstance.api.getPets(nextPage,query)
             val responseApi = response.body()!!
 
             LoadResult.Page(

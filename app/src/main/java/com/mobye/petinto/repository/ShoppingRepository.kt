@@ -21,7 +21,10 @@ class ShoppingRepository : IRepository {
         pagingSourceFactory = {ProductPagingSource(query)})
         .flow
 
-    fun getPetSource() = PetPagingSource()
+    fun getPetSource(query : String) = Pager(
+        config = PagingConfig(pageSize = 10),
+        pagingSourceFactory = {PetPagingSource(query)})
+        .flow
 //    suspend fun getShoppingItems() : List<Product>
 //         = listOf(
 //            Product(

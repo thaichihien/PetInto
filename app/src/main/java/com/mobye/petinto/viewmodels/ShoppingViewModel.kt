@@ -28,26 +28,15 @@ class ShoppingViewModel(
     val total : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
     private val searchQuery : MutableStateFlow<String> by lazy { MutableStateFlow("") }
-
+    private val petSearchQuery : MutableStateFlow<String> by lazy { MutableStateFlow("") }
 
     //PaymentFragment
     val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
-    val isDeliviery : MutableLiveData<Boolean> by lazy {MutableLiveData(false)}
 
 
     val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
 
-    fun getOrderList(){
-        viewModelScope.launch {
-            shopOrderList.value = repository.getPetItems()
-        }
-    }
 
-    fun getShoppingItems(){
-        viewModelScope.launch {
-            //shopItemList.value = repository.getShoppingItems()
-        }
-    }
 
     val productItemList = searchQuery.flatMapLatest {query ->
         repository.getProductSource(query)
@@ -58,11 +47,14 @@ class ShoppingViewModel(
         searchQuery.value = query
     }
 
-    val petItemList : Flow<PagingData<PetInfo>> = Pager(
-        config = PagingConfig(pageSize = 10),
-        pagingSourceFactory = {repository.getPetSource()})
-        .flow
-        .cachedIn(viewModelScope)
+    val petItemList =  petSearchQuery.flatMapLatest {query ->
+        repository.getPetSource(query)
+            .cachedIn(viewModelScope)
+    }
+
+    fun searchPet(query : String){
+        petSearchQuery.value = query
+    }
 
 
     fun getCartItems(){

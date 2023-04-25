@@ -17,5 +17,7 @@ class Utils {
                 "00-00-0000 00:00"
             }
 
+        fun formatMoneyVND(amount : Int) : String
+            = "%,d đ".format(amount)
     }
 }

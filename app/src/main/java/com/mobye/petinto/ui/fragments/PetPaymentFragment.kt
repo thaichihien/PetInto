@@ -146,14 +146,11 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
                 lifecycleScope.launch {
                     delay(3000)
                     notiDialog.dismiss()
-//                    findNavController()
-//                        .navigate(
-//                            PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
-//                                orderID,
-//                                binding.rbDoor.isChecked,
-//                                if (binding.rbMomo.isChecked) "momo" else "cash"
-//                            )
-//                        )
+                    findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
+                        args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
+                    ))
+
+
                 }
 
 
@@ -164,7 +161,7 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
                 lifecycleScope.launch {
                     delay(3000)
                     notiDialog.dismiss()
-//                    findNavController().popBackStack(R.id.shoppingFragment, false)
+                    findNavController().popBackStack(R.id.orderFragment, false)
                 }
             }
         }

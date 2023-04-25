@@ -20,6 +20,7 @@ import com.mobye.petinto.adapters.PaymentItemAdapter
 import com.mobye.petinto.databinding.FragmentOrderPaymentBinding
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
+import com.mobye.petinto.utils.Constants
 import com.mobye.petinto.viewmodels.*
 import java.util.*
 
@@ -90,12 +91,24 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
         val current = formatter.format(currentTime.time)
         currentTime.add(Calendar.DATE,3)
         val shipmentDate = formatter.format(currentTime.time)
+        val shippingFee = if(args.isDelivery) Constants.SHIPPING_FEE else 0
 
         binding.apply {
             tvOrderID.text = args.orderID
             tvOrderDate.text = current
-            tvShipmentDate.text = shipmentDate
+            if(args.isDelivery){
+                lbShipment.visibility = View.VISIBLE
+                tvShipmentDate.text = shipmentDate
+            }else{
+                lbShipment.visibility = View.GONE
+                tvShipmentDate.visibility = View.GONE
+            }
             tvPaymentMethod.text = args.paymentMethod
+            tvSubtotal.text = "%,d đ".format(shoppingViewModel.total.value!! - shippingFee)
+            tvDeliveryFee.text = "%,d đ".format(shippingFee)
+            tvTotalAmount.text = "%,d đ".format(shoppingViewModel.total.value)
+
+
 
             btnBack.setOnClickListener {
                 backToShopping()

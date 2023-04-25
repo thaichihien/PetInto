@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ShoppingItemListBinding
 import com.mobye.petinto.models.Product
+import com.mobye.petinto.utils.Utils
 
 class ProductItemAdapter(
     private val detailListener: (Product) -> Unit,
@@ -39,7 +40,7 @@ class ProductItemAdapter(
             fun setData(item : Product){
                 binding.apply {
                     tvShoppingItemName.text = item.name
-                    tvShoppingItemPrice.text =  "%,d đ".format(item.price)
+                    tvShoppingItemPrice.text =  Utils.formatMoneyVND(item.price)
                     tvAnimalType.text = item.typePet
                     tvDetails.text = item.detail
                     tvStock.text = item.stock.toString()

@@ -42,14 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/order_icon"
-        android:layout_marginTop="52dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <LinearLayout
         android:id="@+id/nav_order"
@@ -59,7 +52,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/edt_search_order"
+            android:id="@+id/etSearchPet"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.mobye.petinto.databinding.ItemCartListBinding
 import com.mobye.petinto.models.CartItem
+import com.mobye.petinto.utils.Utils
 
 class PaymentItemAdapter : RecyclerView.Adapter<PaymentItemAdapter.PaymentItemViewHolder>() {
 
@@ -34,7 +35,7 @@ class PaymentItemAdapter : RecyclerView.Adapter<PaymentItemAdapter.PaymentItemVi
                     .load(cartItem.item!!.image)
                     .into(ivItemCart)
                 tvItemNameCart.text = cartItem.item!!.name
-                tvItemPriceCart.text = "%,d đ".format(cartItem.item!!.price)
+                tvItemPriceCart.text = Utils.formatMoneyVND(cartItem.item!!.price)
                 tvItemTypeCart.text = cartItem.item!!.typePet
                 tvItemQuantityCart.text = cartItem.quantity.toString()
                 tvItemDetailCart.text = cartItem.item!!.detail

@@ -47,9 +47,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/purchaseLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <LinearLayout
@@ -490,6 +491,7 @@
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/purchaseLayout"
         android:background="@color/white"
         android:padding="16dp"
         android:layout_width="match_parent"

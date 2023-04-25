@@ -75,6 +75,7 @@ interface PetIntoApi {
     //Pets
     @GET("/data/pets")
     suspend fun getPets(
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("query") query : String = ""
     ) : Response<ApiResponse<List<PetInfo>>>
 }

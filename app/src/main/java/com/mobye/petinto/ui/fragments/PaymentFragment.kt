@@ -24,6 +24,7 @@ import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.utils.Constants.Companion.SHIPPING_FEE
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
@@ -107,7 +108,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             btnBackPayment.setOnClickListener {
                 findNavController().popBackStack()
             }
-            tvSubtotal.text = "%,d đ".format(shoppingViewModel.total.value)
+            tvSubtotal.text = Utils.formatMoneyVND(shoppingViewModel.total.value!!)
             btnEditCustomerInfo.setOnClickListener{
                 findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToCustomerFragment())
             }
@@ -116,10 +117,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             }
             rbDoor.setOnCheckedChangeListener{_,isChecked ->
                 if(isChecked){
-                    binding.tvDeliveryFee.setText("%,d đ".format(SHIPPING_FEE))
+                    binding.tvDeliveryFee.setText(Utils.formatMoneyVND(SHIPPING_FEE))
                     shoppingViewModel.changeTotal(SHIPPING_FEE)
                 }else{
-                    binding.tvDeliveryFee.setText("%,d đ".format(0))
+                    binding.tvDeliveryFee.setText("0 đ")
                     shoppingViewModel.changeTotal(-1* SHIPPING_FEE)
                 }
             }

@@ -2,6 +2,7 @@ package com.mobye.petinto.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.OrderAdapter
@@ -21,6 +23,7 @@ import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class OrderFragment : Fragment(R.layout.fragment_order) {
@@ -58,7 +61,7 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
             findNavController().navigate(action)
         },{
 
-            var action = OrderFragmentDirections.actionOrderFragmentToDetailPetFragment(it)
+            val action = OrderFragmentDirections.actionOrderFragmentToDetailPetFragment(it)
             findNavController().navigate(action)
         })
 
@@ -94,6 +97,7 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
                     binding.loadingLayout.isVisible = false
                     firstTimeLoad = false
                 }
+                binding.loadingLayout.isVisible = false
 
                 val errorState = when {
                     loadState.append is LoadState.Error -> loadState.append as LoadState.Error
@@ -115,6 +119,23 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
             rvOrderItem.apply {
                 layoutManager = GridLayoutManager(requireContext(), 2)
                 adapter = orderItemAdapter
+            }
+            etSearchPet.setOnKeyListener { v, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+
+                    lifecycleScope.launch{
+                        orderItemAdapter.submitData(PagingData.empty())
+                        orderItemAdapter.notifyDataSetChanged()
+                        binding.loadingLayout.apply {
+                            isVisible =true
+                            startShimmer()
+                        }
+                        orderViewModel.searchPet(binding.etSearchPet.text.toString().trim())
+                    }
+                    return@setOnKeyListener true
+                }
+                return@setOnKeyListener false
+
             }
         }
     }

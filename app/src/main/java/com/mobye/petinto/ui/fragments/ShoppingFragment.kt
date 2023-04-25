@@ -184,19 +184,11 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                         }
                         shoppingViewModel.searchProduct(binding.etSearchProduct.text.toString().trim())
                     }
-
-
-
-
-
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener false
 
             }
-
-
-
 
         }
 

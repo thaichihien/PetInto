@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ItemCartListBinding
 import com.mobye.petinto.databinding.ItemHistoryInformationThingsBinding
 import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.apimodel.OrderHistory
+import com.mobye.petinto.utils.Utils
 
 class OrderHistoryAdapter : RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryViewHolder>() {
 
@@ -32,14 +34,15 @@ class OrderHistoryAdapter : RecyclerView.Adapter<OrderHistoryAdapter.OrderHistor
         fun setData(orderHistory: OrderHistory){
             binding.apply {
                 tvName.text = orderHistory.name
-                tvPrice.text = orderHistory.price.toString()
+                tvPrice.text = Utils.formatMoneyVND(orderHistory.price)
                 tvTypePet.text = orderHistory.typePet
                 tvDetail.text = orderHistory.detail
                 tvQuantity.text = orderHistory.quantity.toString()
                 tvStatus.text = orderHistory.status
-                tvDate.text = orderHistory.date
+                tvDate.text = Utils.formatToLocalDate(orderHistory.date)
                 Glide.with(binding.root)
                     .load(orderHistory.image)
+                    .placeholder(R.drawable.logo_chat)
                     .into(binding.ivImage)
             }
         }

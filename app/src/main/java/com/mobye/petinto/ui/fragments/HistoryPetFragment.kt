@@ -56,7 +56,7 @@ class HistoryPetFragment : Fragment(R.layout.fragment_history_pet) {
 
         informationViewModel.user.observe(viewLifecycleOwner){
             it?.let {
-                informationViewModel.getOrderHistory(it.id)
+                informationViewModel.getOrderHistory()
             }
         }
         informationViewModel.orderPetHistoryList.observe(viewLifecycleOwner){
