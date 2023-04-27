@@ -38,7 +38,7 @@
     <string name="reviews">Đánh giá</string>
     <string name="customer_review">Bây giờ tôi sử dụng PetInto là ứng dụng mua sắm yêu thích của tôi vì dịch vụ trên PetInto rất đa dạng.</string>
     <string name="advertisement">Quảng cáo</string>
-    <string name="customer_review_1">PetInto là một ứng dụng tuyệt vời cho chủ nuôi thú cưng! Nó cung cấp một loạt các dịch vụ, bao gồm các tùy chọn mua sắm dễ sử dụng và những lời khuyên chăm sóc thú cưng hữu ích.</string>
+    <string name="customer_review_1">PetInto là một ứng dụng tuyệt vời cho chủ nuôi! Nó cung cấp các dịch vụ, tùy chọn mua sắm dễ sử dụng và lời khuyên chăm sóc thú cưng hữu ích.</string>
     <string name="customer_review_2">Tôi rất khuyến khích ứng dụng này cho bất kỳ ai đang tìm cách cải thiện trải nghiệm chăm sóc thú cưng của mình.</string>
 
     <!--Add Pet Fragment-->
@@ -235,4 +235,9 @@
     <string name="report_of_petinto">Báo cáo lỗi</string>
     <string name="we_are_in_the_process_of_developing_and_improving_the_application_please_share_your_feedback_on_your_app_experience_so_that_we_can_address_and_support_it_as_soon_as_possible">Chúng tôi đang trong quá trình phát triển và hoàn thiện ứng dụng. Hãy để lại những chia sẻ về quá trình trải nghiệm ứng dụng của bạn để chúng tôi có thể khắc phục và hỗ trợ trong thời gian sớm nhất nhé!</string>
     <string name="tell_petinto_about_your_problem">Hãy chia sẻ trải nghiệm của bạn khi sử dụng PetInto</string>
+    <string name="edit">Sửa</string>
+    <string name="room_type">Loại phòng</string>
+    <string name="from_date">Từ ngày:</string>
+    <string name="to_date">Đến ngày:</string>
+    <string name="total_cost">Tổng chi phí:</string>
 </resources>
