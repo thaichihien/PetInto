@@ -248,5 +248,6 @@
     <string name="to_date">To date :</string>
     <string name="total_cost">Total cost:</string>
     <string name="booking_payment">Booking Payment</string>
+    <string name="order_history">Order History</string>
 
 </resources>
