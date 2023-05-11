@@ -1,5 +1,6 @@
 package com.mobye.petinto.ui.fragments
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -30,6 +31,7 @@ import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import kotlinx.coroutines.launch
@@ -49,11 +51,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val informationViewModel : InformationViewModel by activityViewModels {
         PetIntoViewModelFactory(InformationRepository())
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.e(DEBUG_TAG,"onCreate")
+    private val warningLogoutDialog : AlertDialog by lazy {
+        Utils.createConfirmDialog(requireContext(),"Logout","Log out of the app ?"){
+            logout()
+        }
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -128,7 +132,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                             true
                         }
                         R.id.option_report -> {
-                            // Do something when menu item 3 is clicked
+                           findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToReportFragment())
                             true
                         }
                         else -> false
@@ -137,7 +141,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 popupMenu.show()
             }
             btnLogout.setOnClickListener {
-                logout()
+                warningLogoutDialog.show()
             }
         }
 
@@ -186,7 +190,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun logout() {
         if(firebaseAuth.currentUser != null){
             firebaseAuth.signOut()
-//            informationViewModel.clearUser()
+
             val gotoMainIntent = Intent(this@ProfileFragment.requireContext(), AuthenticationActivity::class.java)
             gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(gotoMainIntent)
@@ -194,10 +198,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
 
-    override fun onPause() {
-        super.onPause()
-        Log.e(DEBUG_TAG,"onPause")
-    }
 
     override fun onResume() {
         super.onResume()

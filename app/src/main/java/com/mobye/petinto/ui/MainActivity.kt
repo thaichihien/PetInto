@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     lateinit var bottomNavView : BottomNavigationView
     private val firebaseAuth : FirebaseAuth by lazy { Firebase.auth }
 
@@ -91,14 +91,6 @@ class MainActivity : AppCompatActivity() {
         .setCancelable(false)
         .setView(R.layout.loading_dialog)
         .create()
-    }
-
-    val notiDialog : Dialog by lazy {
-        Dialog(this).apply {
-            setCancelable(false)
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setContentView(R.layout.custom_dialog)
-        }
     }
 
 
@@ -122,26 +114,15 @@ class MainActivity : AppCompatActivity() {
 
 
         if(firebaseAuth.currentUser != null){
-            // check where user from
-
-            // GET user data from Cloud (id,email,name)
-
-            // find user on local database (Realm)
-                //if exist -> get that user
-                // else -> save user to Realm
-
-            Log.d("LOGIN_ACCOUNT","Profile : ${firebaseAuth.currentUser!!.email} | ${firebaseAuth.currentUser!!.displayName}")
-            informationViewModel.getUser(firebaseAuth.uid!!)
-
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener {
                 if(it.isSuccessful){
                     val token = it.result
+                    informationViewModel.getUser(firebaseAuth.uid!!,token)
                     Log.e(TAG,"token : $token")
                 }else{
                     Log.e(TAG,"token : FAIL")
                 }
             })
-
 
         }
 
@@ -151,8 +132,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         bottomNavView = binding.bottomNavView
         setupWithNavController(bottomNavView, navController)
-
-
     }
 
     // Declare the launcher at the top of your Activity/Fragment:

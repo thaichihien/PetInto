@@ -28,6 +28,7 @@ import com.mobye.petinto.repository.ServiceRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
@@ -53,10 +54,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         val activity = requireActivity() as MainActivity
         activity.dialog
     }
-    private val notiDialog : Dialog by lazy {
-        val activity = requireActivity() as MainActivity
-        activity.notiDialog
-    }
+    private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext())}
 
 
     //Cai dat ViewBinding
@@ -74,10 +72,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         _binding = null
     }
 
-    //Chi nen viet code bat dau o ham onViewCreated (khi nay ui moi co ma sai)
-    // Khong nen dung findViewById ma hay su dung ViewBinding
-    // vi du thay vi : val tvTest = view.findViewById(R.id.tvTest)
-    //          ===>   binding.tvTest
+
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -192,10 +187,6 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
         }
 
-
-
-
-
     }
 
     private fun clearService() {
@@ -250,11 +241,11 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                 notiDialog.changeToSuccess("Successfully book a spa service.")
                 notiDialog.show()
                 //Log.e("Spa Booking", response.body.toString())
-
-
-                lifecycleScope.launch {
-                    delay(3000)
-                    notiDialog.dismiss()
+                notiDialog.setOnCancelListener {
+                    clearService()
+                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
+                }
+                notiDialog.setOnDismissListener {
                     clearService()
                     findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
                 }
@@ -263,10 +254,11 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }else{
                 notiDialog.changeToFail(response.reason)
                 notiDialog.show()
-                lifecycleScope.launch{
-                    delay(3000)
-                    notiDialog.dismiss()
-
+                notiDialog.setOnCancelListener {
+                    //nothing
+                }
+                notiDialog.setOnDismissListener {
+                 //nothing
                 }
             }
         }

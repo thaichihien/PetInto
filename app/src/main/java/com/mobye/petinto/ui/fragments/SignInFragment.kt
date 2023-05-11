@@ -203,8 +203,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     }
 
     private fun login() {
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
 
 
         firebaseAuth.signInWithEmailAndPassword(email,password)
@@ -223,7 +223,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     }
 
-    fun goToMainActivity(){
+    private fun goToMainActivity(){
         val gotoMainIntent = Intent(this@SignInFragment.requireContext(), MainActivity::class.java)
         gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(gotoMainIntent)

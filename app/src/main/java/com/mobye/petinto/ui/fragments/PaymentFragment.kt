@@ -47,10 +47,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         val activity = requireActivity() as MainActivity
         activity.dialog
     }
-    private val notiDialog : Dialog by lazy {
-        val activity = requireActivity() as MainActivity
-        activity.notiDialog
-    }
+    private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext())}
 
 
 
@@ -81,8 +78,8 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         }
         shoppingViewModel.total.observe(viewLifecycleOwner){
             binding.apply {
-                tvTotalMoney.text = "%,d đ".format(it)
-                tvTotalAmount.text = "%,d đ".format(it)
+                tvTotalMoney.text = Utils.formatMoneyVND(it)
+                tvTotalAmount.text = Utils.formatMoneyVND(it)
             }
         }
 
@@ -117,10 +114,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             }
             rbDoor.setOnCheckedChangeListener{_,isChecked ->
                 if(isChecked){
-                    binding.tvDeliveryFee.setText(Utils.formatMoneyVND(SHIPPING_FEE))
+                    binding.tvDeliveryFee.text = Utils.formatMoneyVND(SHIPPING_FEE)
                     shoppingViewModel.changeTotal(SHIPPING_FEE)
                 }else{
-                    binding.tvDeliveryFee.setText("0 đ")
+                    binding.tvDeliveryFee.text = "0 đ"
                     shoppingViewModel.changeTotal(-1* SHIPPING_FEE)
                 }
             }
@@ -158,16 +155,20 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             // response.result = true khi thanh cong
             if(response.result){
 
-                // Hien dialog thong bao thanh cong
+
                 notiDialog.changeToSuccess("Yay. It’s a nice order! It will arrive soon.")
                 notiDialog.show()
 
                 val orderID = response.body.toString()
 
-                // Doi 3 giay sau do di chuyen den OrderPaymentFragment (Fragment hoa don)
-                lifecycleScope.launch{
-                    delay(3000)
-                    notiDialog.dismiss()
+
+                notiDialog.setOnDismissListener {
+                    findNavController()
+                        .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
+                            orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
+                        ))
+                }
+                notiDialog.setOnCancelListener {
                     findNavController()
                         .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
                             orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
@@ -175,13 +176,14 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 }
 
 
-            // response.result = false
+
             }else{
                 notiDialog.changeToFail("Something went wrong. Please, try again.")
                 notiDialog.show()
-                lifecycleScope.launch{
-                    delay(3000)
-                    notiDialog.dismiss()
+                notiDialog.setOnDismissListener {
+                    findNavController().popBackStack(R.id.shoppingFragment,false)
+                }
+                notiDialog.setOnCancelListener{
                     findNavController().popBackStack(R.id.shoppingFragment,false)
                 }
             }
@@ -215,12 +217,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
 
         return !isEmptyChoice
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        val activity = activity as MainActivity
-//        activity.showBottomNav()
-//    }
 
     override fun onDestroy() {
         super.onDestroy()

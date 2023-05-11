@@ -28,7 +28,7 @@
     <string name="petinto_address">227 Nguyễn Văn Cừ, Phường 4, Quận 5, TP.HCM</string>
     <string name="pet">Pet</string>
 
-<!--    Use for changing language-->
+    <!--    Use for changing language-->
     <!--    Home Fragment-->
     <string name="welcome_to_petinto">Welcome to PetInto</string>
     <string name="search">Search</string>
@@ -247,5 +247,6 @@
     <string name="from_date">From date :</string>
     <string name="to_date">To date :</string>
     <string name="total_cost">Total cost:</string>
+    <string name="booking_payment">Booking Payment</string>
 
 </resources>

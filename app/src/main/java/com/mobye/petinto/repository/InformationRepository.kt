@@ -1,8 +1,5 @@
 package com.mobye.petinto.repository
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import com.mobye.petinto.R
 import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.database.AccountInfoDatabase
 import com.mobye.petinto.models.Customer
@@ -10,35 +7,13 @@ import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.models.DeliveryInfo
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
+import com.mobye.petinto.models.apimodel.Report
 import io.realm.kotlin.types.RealmUUID
 import retrofit2.Response
 
 class InformationRepository :IRepository {
 
-    suspend fun getPetItems() : List<PetInfo> = listOf(
-        PetInfo("PET10001",
-            "Golden Dog",
-            11800000,
-            "Dog",
-            "",
-            "Male",
-            1,
-            1,
-            "Golden",
-            "",
-            "Brown"),
-        PetInfo("PET10002",
-            "British Golden Cat",
-            15000000,
-            "Cat",
-            "",
-            "Female",
-            2,
-            2,
-            "Golden",
-            "",
-            "Yellow")
-    )
+
 
     suspend fun sendUser(user: Customer) : Response<ApiResponse<Any>>
         = RetrofitInstance.api.sendUser(user)
@@ -46,8 +21,8 @@ class InformationRepository :IRepository {
     suspend fun sendGoogleUser(user: Customer) : Response<ApiResponse<Any>>
             = RetrofitInstance.api.sendUser(user,true)
 
-    suspend fun getUser(id : String) : Response<ApiResponse<Customer>>
-        = RetrofitInstance.api.getUser(id)
+    suspend fun getUser(id: String, token: Map<String, String>) : Response<ApiResponse<Customer>>
+        = RetrofitInstance.api.getUser(id,token)
 
     suspend fun getUserLocal(id: String) : Customer?
         = AccountInfoDatabase.getUser(id)
@@ -104,5 +79,8 @@ class InformationRepository :IRepository {
 
     suspend fun getPetOrderHistory(id : String)
         = RetrofitInstance.api.getPetOrderHistory(id)
+
+    suspend fun sendReport(report: Report)
+        = RetrofitInstance.api.sendReport(report)
 
 }

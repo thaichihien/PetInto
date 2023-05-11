@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_profileFragment_to_historyPetFragment"
             app:destination="@id/historyPetFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -297,4 +300,9 @@
             android:name="booking"
             app:argType="com.mobye.petinto.models.apimodel.Booking" />
     </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.mobye.petinto.ui.fragments.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
 </navigation>

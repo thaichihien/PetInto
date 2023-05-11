@@ -24,6 +24,7 @@ import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,10 +48,7 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
         val activity = requireActivity() as MainActivity
         activity.dialog
     }
-    private val notiDialog : Dialog by lazy {
-        val activity = requireActivity() as MainActivity
-        activity.notiDialog
-    }
+    private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext())}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -112,8 +110,7 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
     }
 
 
-    // TODO thuc hien gui don dat mua pet
-    // Tham khao sendPurchaseOrder() o PaymentFragment.kt
+
     private fun sendPurchaseOrder() {
         val order = shoppingViewModel.createPetOrder(
             id = informationViewModel.getUserID(),
@@ -142,15 +139,15 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
                 val orderID = response.body.toString()
 
-                // Doi 3 giay sau do di chuyen den OrderPaymentFragment (Fragment hoa don)
-                lifecycleScope.launch {
-                    delay(3000)
-                    notiDialog.dismiss()
+                notiDialog.setOnDismissListener {
                     findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
                         args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
                     ))
-
-
+                }
+                notiDialog.setOnCancelListener {
+                    findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
+                        args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
+                    ))
                 }
 
 
@@ -158,9 +155,10 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
             } else {
                 notiDialog.changeToFail("Something went wrong. Please, try again.")
                 notiDialog.show()
-                lifecycleScope.launch {
-                    delay(3000)
-                    notiDialog.dismiss()
+               notiDialog.setOnDismissListener {
+                   findNavController().popBackStack(R.id.orderFragment, false)
+               }
+                notiDialog.setOnCancelListener {
                     findNavController().popBackStack(R.id.orderFragment, false)
                 }
             }

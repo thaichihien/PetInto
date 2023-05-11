@@ -39,10 +39,16 @@ interface PetIntoApi {
         @Query("google") isGoogle: Boolean = false
     ) : Response<ApiResponse<Any>>
 
+    @POST("/user/report")
+    suspend fun sendReport(
+        @Body report : Report
+    ) : Response<ApiResponse<Any>>
 
-    @GET("/user/info")
+
+    @POST("/user/info")
     suspend fun getUser(
-        @Query("id") id : String
+        @Query("id") id : String,
+        @Body token : Map<String, String>
     ) : Response<ApiResponse<Customer>>
 
 

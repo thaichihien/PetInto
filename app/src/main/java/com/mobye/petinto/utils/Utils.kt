@@ -1,5 +1,13 @@
 package com.mobye.petinto.utils
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
+import android.view.Window
+import android.widget.Button
+import com.mobye.petinto.R
+import com.mobye.petinto.ui.MainActivity
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
@@ -19,5 +27,36 @@ class Utils {
 
         fun formatMoneyVND(amount : Int) : String
             = "%,d đ".format(amount)
+
+
+        fun getLoadingDialog(activity: Activity)
+                = (activity as MainActivity).dialog
+
+        fun createNotificationDialog(context : Context)
+                =  Dialog(context).apply {
+            setCancelable(true)
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.custom_dialog)
+            findViewById<Button>(R.id.btnClose).setOnClickListener{
+                this.dismiss()
+            }
+        }
+
+        fun createConfirmDialog(context : Context,title : String,message : String,listener : () -> Unit) : AlertDialog {
+            val builder = AlertDialog.Builder(context)
+            builder.apply {
+                setMessage(message)
+                setTitle(title)
+                setPositiveButton("Yes") { _, _ ->
+                    listener()
+                }
+                setNegativeButton("No") { _, _ ->
+                    //nothing
+                }
+            }
+            return builder.create()
+        }
+
+
     }
 }

@@ -1,10 +1,6 @@
 package com.mobye.petinto.viewmodels
 
-import android.content.Context
 import android.util.Log
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,11 +11,12 @@ import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.OrderHistory
 import com.mobye.petinto.models.apimodel.PetOrderHistory
+import com.mobye.petinto.models.apimodel.Report
 import com.mobye.petinto.repository.InformationRepository
-import com.mobye.petinto.repository.ShoppingRepository
 import io.realm.kotlin.types.RealmUUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.net.SocketTimeoutException
 
 class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
@@ -86,11 +83,14 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         = myPetList.value!![index]
 
 
-    fun getUser(id : String){
+    fun getUser(id : String,token : String){
         // get user data by id from backend (id,email,name)
         viewModelScope.launch {
             try {
-                val response = repository.getUser(id)
+                val tokenSend = mapOf<String,String>(Pair("token",token))
+
+
+                val response = repository.getUser(id,tokenSend)
                 if(response.isSuccessful){
                     val userFromBE = response.body()!!.body!!
                     val userFromLocal = repository.getUserLocal(userFromBE.id)
@@ -108,9 +108,12 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
                 }
 
-            }catch (e: Exception){
+            }catch (e : SocketTimeoutException){
+                Log.e(TAG,e.toString())
+            }
+            catch (e: Exception){
                 // no internet connection
-                Log.e(TAG,"73 $e")
+                Log.e(TAG,e.toString())
             }
         }
 
@@ -243,6 +246,29 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
                 }else{
                     //Server error
                 }
+
+            }catch (e: Exception) {
+                // no internet connection
+            }
+        }
+    }
+
+
+    fun sendReport(commentReport : String){
+        viewModelScope.launch {
+            try {
+                val report = Report(
+                    comment = commentReport,
+                    CustomerId = this@InformationViewModel.getUserID()
+                )
+
+
+                val response = repository.sendReport(report)
+               if(response.isSuccessful){
+                  this@InformationViewModel.responseAPI.value =response.body()
+               }else{
+                   Log.e(TAG,response.errorBody().toString())
+               }
 
             }catch (e: Exception) {
                 // no internet connection

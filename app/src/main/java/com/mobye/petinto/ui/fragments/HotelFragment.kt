@@ -26,6 +26,7 @@ import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
@@ -52,10 +53,7 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
         val activity = requireActivity() as MainActivity
         activity.dialog
     }
-    private val notiDialog : Dialog by lazy {
-        val activity = requireActivity() as MainActivity
-        activity.notiDialog
-    }
+    private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext())}
 
     //Cai dat ViewBinding
     override fun onCreateView(
@@ -231,10 +229,12 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
                 notiDialog.show()
                 //Log.e("Spa Booking", response.body.toString())
 
-                clearService()
-                lifecycleScope.launch {
-                    delay(3000)
-                    notiDialog.dismiss()
+                notiDialog.setOnCancelListener {
+                    clearService()
+                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
+                }
+                notiDialog.setOnDismissListener {
+                    clearService()
                     findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
                 }
 
@@ -242,10 +242,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             }else{
                 notiDialog.changeToFail(response.reason)
                 notiDialog.show()
-                lifecycleScope.launch{
-                    delay(3000)
-                    notiDialog.dismiss()
-
+                notiDialog.setOnCancelListener{
+                    //nothing
+                }
+                notiDialog.setOnDismissListener {
+                    //nothing
                 }
             }
         }
