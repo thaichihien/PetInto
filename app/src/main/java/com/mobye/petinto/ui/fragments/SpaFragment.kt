@@ -237,19 +237,8 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             // response.result = true khi thanh cong
             if (response.result) {
 
-                // Hien dialog thong bao thanh cong
-                notiDialog.changeToSuccess("Successfully book a spa service.")
-                notiDialog.show()
-                //Log.e("Spa Booking", response.body.toString())
-                notiDialog.setOnCancelListener {
-                    clearService()
-                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
-                }
-                notiDialog.setOnDismissListener {
-                    clearService()
-                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
-                }
-
+                clearService()
+                findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(response.body!!))
 
             }else{
                 notiDialog.changeToFail(response.reason)

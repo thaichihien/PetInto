@@ -125,7 +125,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             val format = SimpleDateFormat("dd/MM/yyyy")
             val formattedDate: String = format.format(calendar.time)
             serviceViewModel.checkIn = calendar.time
-            binding.etFromDate.setText(formattedDate)
+            binding.etFromDate.text = formattedDate
+            if(!checkValidDate()){
+                Toast.makeText(requireContext(),"Booking date is not valid !",Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
         val toDatePicker = MaterialDatePicker.Builder.datePicker()
@@ -139,7 +143,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             val format = SimpleDateFormat("dd/MM/yyyy")
             val formattedDate: String = format.format(calendar.time)
             serviceViewModel.checkOut = calendar.time
-            binding.etToDate.setText(formattedDate)
+            binding.etToDate.text = formattedDate
+            if(!checkValidDate()){
+                Toast.makeText(requireContext(),"Booking date is not valid !",Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
 
@@ -196,6 +204,16 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
         }
     }
 
+    fun checkValidDate() : Boolean{
+        val checkField = with(binding){
+            etToDate.text.isNotBlank() && etFromDate.text.isNotBlank()
+        }
+
+        if(!checkField) return true
+
+        return serviceViewModel.checkDateValid()
+    }
+
 
     private fun sendHotelBooking() {
         val format = SimpleDateFormat("yyyy-MM-dd")
@@ -224,21 +242,8 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             // response.result = true khi thanh cong
             if (response.result) {
 
-                // Hien dialog thong bao thanh cong
-                notiDialog.changeToSuccess("Successfully book a hotel service.")
-                notiDialog.show()
-                //Log.e("Spa Booking", response.body.toString())
-
-                notiDialog.setOnCancelListener {
-                    clearService()
-                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
-                }
-                notiDialog.setOnDismissListener {
-                    clearService()
-                    findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingDetailSpaFragment(response.body!!))
-                }
-
-
+                clearService()
+                findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(response.body!!))
             }else{
                 notiDialog.changeToFail(response.reason)
                 notiDialog.show()
@@ -291,6 +296,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             Toast.makeText(requireContext(),"Please pick a room type",Toast.LENGTH_SHORT).show()
         }
 
+        if(!checkValidDate()){
+            isValid = false
+            Toast.makeText(requireContext(),"Booking date is not valid !",Toast.LENGTH_SHORT)
+                .show()
+        }
 
         return isValid
     }

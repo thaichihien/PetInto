@@ -181,6 +181,28 @@
                     </TableRow>
                     <TableRow>
                         <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Payment Method:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/tvPayment"
+                            android:layout_marginStart="24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On Processing"
+                            android:textStyle="bold"
+                            android:textColor="@color/main_dark"
+                            android:textSize="20sp"
+                            android:ellipsize="marquee"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:singleLine="true"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/booking_detail_hotel_check_in"
@@ -266,7 +288,29 @@
                     app:layout_constraintStart_toStartOf="@+id/textView18"
                     app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/notes"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView19"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
+
+                <TextView
+                    android:layout_marginHorizontal="30dp"
+                    android:id="@+id/tvNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/notes"
+                    android:textColor="@color/main_dark"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                 <TextView
                     android:id="@+id/customerNameTV"
@@ -388,7 +432,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
+                android:id="@+id/btnCancel"
                 android:layout_width="217dp"
                 android:layout_height="wrap_content"
                 android:text="@string/booking_detail_hotel_cancel_booking"

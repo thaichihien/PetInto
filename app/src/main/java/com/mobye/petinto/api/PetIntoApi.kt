@@ -75,6 +75,21 @@ interface PetIntoApi {
         @Body booking: Booking
     ) : Response<ApiResponse<Booking>>
 
+    @POST("/booking/payment")
+    suspend fun sendPaymentBooking(
+        @Body booking: Booking
+    ) : Response<ApiResponse<Booking>>
+
+    @POST("/booking/delete")
+    suspend fun destroyBooking(
+        @Body booking: Booking
+    ) : Response<ApiResponse<Booking>>
+
+    @POST("/booking/cancel")
+    suspend fun cancelBooking(
+        @Body booking: Booking
+    ) : Response<ApiResponse<Booking>>
+
     @GET("/booking/history")
     suspend fun getBookingHistory(
         @Query("id") id : String

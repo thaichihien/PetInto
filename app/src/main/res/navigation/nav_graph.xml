@@ -249,6 +249,9 @@
         <action
             android:id="@+id/actionServiceFragmentToBookingDetailSpaFragment"
             app:destination="@id/bookingDetailSpaFragment" />
+        <action
+            android:id="@+id/action_serviceFragment_to_bookingPaymentFragment"
+            app:destination="@id/bookingPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderPaymentFragment"
@@ -315,4 +318,16 @@
         android:name="com.mobye.petinto.ui.fragments.ProductFilterFragment"
         android:label="fragment_product_filter"
         tools:layout="@layout/fragment_product_filter" />
+    <fragment
+        android:id="@+id/bookingPaymentFragment"
+        android:name="com.mobye.petinto.ui.fragments.BookingPaymentFragment"
+        android:label="fragment_booking_payment"
+        tools:layout="@layout/fragment_booking_payment" >
+        <action
+            android:id="@+id/action_bookingPaymentFragment_to_bookingDetailSpaFragment"
+            app:destination="@id/bookingDetailSpaFragment" />
+        <argument
+            android:name="currentBooking"
+            app:argType="com.mobye.petinto.models.apimodel.Booking" />
+    </fragment>
 </navigation>

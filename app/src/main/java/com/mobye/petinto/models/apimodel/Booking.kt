@@ -17,6 +17,8 @@ class Booking(
     var checkIn : String = "",
     var checkOut : String = "",
     var status : String = "",
-    var charge : Int = 0
+    var charge : Int = 0,
+    var payment : String = "",
+    var note : String = ""
 ) : Parcelable {
 }

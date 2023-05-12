@@ -1,6 +1,8 @@
 package com.mobye.petinto.ui.fragments
 
 import android.R.attr.bitmap
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Context.WINDOW_SERVICE
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -8,14 +10,19 @@ import android.os.Bundle
 import android.view.*
 import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentBookingDetailSpaBinding
 import com.mobye.petinto.models.apimodel.Booking
+import com.mobye.petinto.repository.ServiceRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.utils.Utils
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
+import com.mobye.petinto.viewmodels.ServiceViewModel
 
 
 class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) {
@@ -25,6 +32,23 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
 
     private val args : BookingDetailSpaFragmentArgs by navArgs()
     private lateinit var booking : Booking
+
+    private val serviceViewModel : ServiceViewModel by activityViewModels {
+        PetIntoViewModelFactory(ServiceRepository())
+    }
+
+    private val loadingDialog : AlertDialog by lazy {
+        val activity = requireActivity() as MainActivity
+        activity.dialog
+    }
+
+    private val warningCancelDialog : AlertDialog by lazy {
+        Utils.createConfirmDialog(requireContext(),"Cancel","Are you sure you want to cancel this appointment ?"){
+            cancelBooking()
+        }
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,8 +71,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activity = activity as MainActivity
-        activity.hideBottomNav()
+
 
         binding.apply {
 
@@ -59,10 +82,14 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             tvService.text = booking.type
             tvStatus.text = booking.status
             tvCost.text = "%,d đ".format(booking.charge)
+            tvPayment.text = booking.payment
+            tvNote.text = booking.note
+
             // TODO Fix checkin
             tvCheckIn.text = Utils.formatToLocalDate(booking.checkIn)
             if(booking.service == "Spa"){
-                tvCheckOut.visibility = View.GONE
+
+                trCheckout.visibility = View.GONE
             }else{
                 tvCheckOut.text = Utils.formatToLocalDate(booking.checkOut)
             }
@@ -73,10 +100,15 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             tvPetWeight.text = booking.weight
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                findNavController().popBackStack(R.id.serviceFragment,false)
             }
 
-            //TODO handle Cancel button
+           btnCancel.setOnClickListener {
+               warningCancelDialog.show()
+           }
+
+
+
         }
 
 
@@ -109,6 +141,30 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
 
     }
 
+
+    private fun cancelBooking() {
+        loadingDialog.show()
+
+        serviceViewModel.cancelBooking(booking)
+
+        serviceViewModel.response.observe(viewLifecycleOwner) {
+            loadingDialog.dismiss()
+            findNavController().popBackStack(R.id.serviceFragment,false)
+        }
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack(R.id.serviceFragment,false)
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
+    }
 
 
 

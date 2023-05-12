@@ -14,10 +14,10 @@ import java.util.*
 
 class Utils {
     companion object{
-        fun formatToLocalDate(ourDate: String) : String
+        fun formatToLocalDate(ourDate: String,pattern : String ="HH:mm dd-MM-yyyy") : String
             = try {
                 val value: Date = Date.from(Instant.parse(ourDate))
-                val dateFormatter = SimpleDateFormat("HH:mm MM-dd-yyyy") //this format changeable
+                val dateFormatter = SimpleDateFormat(pattern) //this format changeable
                 dateFormatter.timeZone = TimeZone.getDefault()
                 dateFormatter.format(value)
                 //Log.d("ourDate", ourDate);

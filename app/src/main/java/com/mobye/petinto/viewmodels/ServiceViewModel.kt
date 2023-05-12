@@ -78,11 +78,58 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
         return booking
     }
 
+    fun makePayment(booking: Booking,payment : String,note : String){
+
+        booking.apply {
+            this.payment = payment
+            this.note = note
+        }
+
+        viewModelScope.launch {
+            try {
+                val response = repository.sendPaymentBooking(booking)
+                this@ServiceViewModel.response.value = response.body()
+            }catch (e: Exception){
+                // no internet connection
+                Log.e(TAG,e.toString())
+            }
+        }
+
+    }
+
+    fun destroyBooking(booking: Booking){
+        viewModelScope.launch {
+            try {
+                val response = repository.destroyBooking(booking)
+                this@ServiceViewModel.response.value = response.body()
+            }catch (e: Exception){
+                // no internet connection
+                Log.e(TAG,e.toString())
+            }
+        }
+    }
+
+    fun cancelBooking(booking: Booking){
+        viewModelScope.launch {
+            try {
+                val response = repository.cancelBooking(booking)
+                this@ServiceViewModel.response.value = response.body()
+            }catch (e: Exception){
+                // no internet connection
+                Log.e(TAG,e.toString())
+            }
+        }
+    }
+
+
+
     fun calculateHotelCost(isVIP : Boolean){
-        val millionSeconds = checkOut.time - checkIn.time
-        val roomCost = if(isVIP) VIP_ROOM_COST else NORMAL_ROOM_COST
-        val cost = TimeUnit.MILLISECONDS.toDays(millionSeconds) * roomCost
-        hotelCost.value = cost.toInt()
+        if(checkDateValid()){
+            val millionSeconds = checkOut.time - checkIn.time
+            val roomCost = if(isVIP) VIP_ROOM_COST else NORMAL_ROOM_COST
+            val cost = TimeUnit.MILLISECONDS.toDays(millionSeconds) * roomCost
+            hotelCost.value = cost.toInt()
+        }
     }
 
     fun checkDateValid()

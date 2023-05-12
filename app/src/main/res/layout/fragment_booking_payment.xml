@@ -250,6 +250,7 @@
                     >
 
                     <RadioButton
+                        android:id="@+id/rbCash"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cash"/>
@@ -324,6 +325,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
+            android:id="@+id/tvTotal"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="20sp"
             android:textStyle="bold"
