@@ -106,14 +106,21 @@ class BookingPaymentFragment : Fragment() {
             if (response.result) {
 
                 // Hien dialog thong bao thanh cong
-                notiDialog.changeToSuccess("Successfully book a spa service.")
+                val booking = response.body!!
+                if(booking.service == "Spa"){
+                    notiDialog.changeToSuccess("Successfully book a spa service.")
+                }else{
+                    notiDialog.changeToSuccess("Successfully book a hotel service.")
+                }
+
+
                 notiDialog.show()
-                //Log.e("Spa Booking", response.body.toString())
+
                 notiDialog.setOnCancelListener {
-                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(response.body!!))
+                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking))
                 }
                 notiDialog.setOnDismissListener {
-                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(response.body!!))
+                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking))
                 }
 
 

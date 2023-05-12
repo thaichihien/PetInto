@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoppingFragment"
@@ -329,5 +332,20 @@
         <argument
             android:name="currentBooking"
             app:argType="com.mobye.petinto.models.apimodel.Booking" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.mobye.petinto.ui.fragments.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_historyInformation"
+            app:destination="@id/historyInformation" />
+        <action
+            android:id="@+id/action_notificationFragment_to_historyPetFragment"
+            app:destination="@id/historyPetFragment" />
     </fragment>
 </navigation>

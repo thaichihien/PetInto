@@ -96,6 +96,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             hotel.setOnClickListener {
                 (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.hotelFragment
             }
+            btnNotification.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNotificationFragment())
+            }
+
+
 
         }
     }

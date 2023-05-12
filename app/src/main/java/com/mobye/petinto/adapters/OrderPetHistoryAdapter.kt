@@ -32,15 +32,15 @@ class OrderPetHistoryAdapter : RecyclerView.Adapter<OrderPetHistoryAdapter.Order
     inner class OrderPetHistoryViewHolder : RecyclerView.ViewHolder(binding.root){
         fun setData(orderPetHistory: PetOrderHistory){
             binding.apply {
-//                tvFullname.text = orderPetHistory.name
-//                tvPrice.text = Utils.formatMoneyVND(orderPetHistory.price)
-//                tvColor.text = orderPetHistory.color
-//                tvStatus.text = orderPetHistory.status
-//                tvDateBuy.text = Utils.formatToLocalDate(orderPetHistory.date)
-//                Glide.with(binding.root)
-//                    .load(orderPetHistory.image)
-//                    .placeholder(R.drawable.logo_chat)
-//                    .into(binding.iconIV)
+                tvFullname.text = orderPetHistory.name
+                tvPrice.text = Utils.formatMoneyVND(orderPetHistory.price)
+                tvColor.text = orderPetHistory.color
+                tvStatus.text = orderPetHistory.status
+                tvDateBuy.text = Utils.formatToLocalDate(orderPetHistory.date)
+                Glide.with(binding.root)
+                    .load(orderPetHistory.image)
+                    .placeholder(R.drawable.logo_chat)
+                    .into(binding.iconIV)
             }
         }
     }

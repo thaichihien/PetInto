@@ -250,5 +250,6 @@
     <string name="booking_payment">Booking Payment</string>
     <string name="order_history">Order History</string>
     <string name="apply">Apply</string>
+    <string name="notification">Notification</string>
 
 </resources>

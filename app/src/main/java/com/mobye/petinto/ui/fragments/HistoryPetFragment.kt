@@ -49,9 +49,9 @@ class HistoryPetFragment : Fragment(R.layout.fragment_history_pet) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.apply {
-//            exitBtn.setOnClickListener {
-//                findNavController().popBackStack()
-//            }
+            exitBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
         informationViewModel.user.observe(viewLifecycleOwner){

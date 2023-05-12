@@ -10,9 +10,14 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.NavDeepLinkBuilder
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.mobye.petinto.R
+import com.mobye.petinto.database.NotificationDatabase
+import com.mobye.petinto.models.Notification
+import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.utils.Utils
 
 class PetIntoMessagingService : FirebaseMessagingService() {
 
@@ -29,8 +34,19 @@ class PetIntoMessagingService : FirebaseMessagingService() {
             //Log.d(TAG, "title: ${remoteMessage.data["title"]}")
             val body = remoteMessage.data["body"]
             val title = remoteMessage.data["title"]
+            val type = remoteMessage.data["type"]
 
-            showNotification(title!!,body!!)
+            // TODO FIX HERE
+
+            val notification = Notification(
+                title!!,body!!,type!!,
+                Utils.getCurrentTimeString()
+            )
+
+            NotificationDatabase.createNotification(notification)
+
+
+            showNotification(title!!,body!!,type!!)
 
 //            if (/* Check if data needs to be processed by long running job */ true) {
 //                // For long-running tasks (10 seconds or more) use WorkManager.
@@ -42,15 +58,15 @@ class PetIntoMessagingService : FirebaseMessagingService() {
         }
 
         // Check if message contains a notification payload.
-        remoteMessage.notification?.let {
-            Log.d(TAG, "Message Notification Body: ${it.body}")
-
-            val body = remoteMessage.notification!!.body
-            val title = remoteMessage.notification!!.title
-
-            showNotification(title!!,body!!)
-
-        }
+//        remoteMessage.notification?.let {
+//            Log.d(TAG, "Message Notification Body: ${it.body}")
+//
+//            val body = remoteMessage.notification!!.body
+//            val title = remoteMessage.notification!!.title
+//
+//            showNotification(title!!,body!!)
+//
+//        }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
@@ -58,7 +74,7 @@ class PetIntoMessagingService : FirebaseMessagingService() {
 
     }
 
-    private fun showNotification(title: String, body: String) {
+    private fun showNotification(title: String, body: String,type : String) {
         val channelID = "PetIntoChannel"
         val notificationID = 111111
 
@@ -82,6 +98,25 @@ class PetIntoMessagingService : FirebaseMessagingService() {
                 .bigText(body))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
+
+        if(type == "BOOKING"){
+//            val profileIntent = Intent(this,MainActivity::class.java)
+//            profileIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            profileIntent.putExtra("fragment","report")
+//            val pendingIntent = PendingIntent.getActivity(this,0,
+//                profileIntent,PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+
+            val pendingIntent = NavDeepLinkBuilder(this)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.bookingFragment)
+                .setComponentName(MainActivity::class.java)
+                .createPendingIntent()
+
+
+            builder.setContentIntent(pendingIntent)
+
+
+        }
 
 
         with(NotificationManagerCompat.from(this)){

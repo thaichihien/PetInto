@@ -139,7 +139,6 @@ class ShoppingViewModel(
             repository.deleteCartItem(itemRemove)
         }
 
-
         cartItemList.value = cartList
     }
 
