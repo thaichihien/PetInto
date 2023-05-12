@@ -58,5 +58,18 @@ class Utils {
         }
 
 
+        fun getProductTypeIndex(type : String) : Int
+            = when(type){
+                "Tất cả" -> 0
+                "Dog" -> 1
+                "Cat" -> 2
+                "Rabbit" -> 3
+                "Mouse" -> 4
+                "Bird" -> 5
+                "Fish" -> 6
+                else -> 0
+            }
+
+
     }
 }

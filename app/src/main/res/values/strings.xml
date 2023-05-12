@@ -249,5 +249,6 @@
     <string name="total_cost">Total cost:</string>
     <string name="booking_payment">Booking Payment</string>
     <string name="order_history">Order History</string>
+    <string name="apply">Apply</string>
 
 </resources>

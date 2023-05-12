@@ -5,5 +5,13 @@ class Constants {
         const val SHIPPING_FEE = 30000
         const val NORMAL_ROOM_COST = 200000
         const val VIP_ROOM_COST = 500000
+
+        val productTypeList = listOf<String>(
+            "Tất cả",
+            "Dog","Cat","Rabbit","Mouse","Bird",
+            "Fish"
+        )
+
+
     }
 }

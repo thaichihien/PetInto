@@ -117,7 +117,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             if(loadState.refresh is LoadState.Loading ||
                 loadState.append is LoadState.Loading){
 
-                if(firstTimeLoad){
+                if(productAdapter.itemCount == 0){
                     binding.loadingLayout.apply {
                         isVisible =true
                         startShimmer()
@@ -159,6 +159,10 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             btnCartShopping.setOnClickListener {
                 findNavController().navigate(ShoppingFragmentDirections.shoppingFragmentToCartFragment())
             }
+            btnFilter.setOnClickListener {
+                findNavController().navigate(ShoppingFragmentDirections.actionShoppingFragmentToProductFilterFragment())
+            }
+
             refreshLayout.setOnRefreshListener {
                 if((requireActivity() as MainActivity).hasInternetConnection()){
                     productAdapter.retry()
@@ -178,10 +182,10 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                     lifecycleScope.launch{
                         productAdapter.submitData(PagingData.empty())
                         productAdapter.notifyDataSetChanged()
-                        binding.loadingLayout.apply {
-                            isVisible =true
-                            startShimmer()
-                        }
+//                        binding.loadingLayout.apply {
+//                            isVisible =true
+//                            startShimmer()
+//                        }
                         shoppingViewModel.searchProduct(binding.etSearchProduct.text.toString().trim())
                     }
                     return@setOnKeyListener true
@@ -210,15 +214,15 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         _binding = null
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        val callback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                //NOTHING
-            }
-        }
-
-        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//
+//        val callback = object : OnBackPressedCallback(true){
+//            override fun handleOnBackPressed() {
+//                //NOTHING
+//            }
+//        }
+//
+//        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
+//    }
 }

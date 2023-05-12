@@ -16,7 +16,10 @@ interface PetIntoApi {
     @GET("/data/products")
     suspend fun getProducts(
         @Query("page") page: Int,
-        @Query("query") query : String = ""
+        @Query("query") query : String = "",
+        @Query("min") min : String = "",
+        @Query("max") max : String = "",
+        @Query("type") type : String = ""
     ) : Response<ApiResponse<List<Product>>>
 
     @GET("/data/news")

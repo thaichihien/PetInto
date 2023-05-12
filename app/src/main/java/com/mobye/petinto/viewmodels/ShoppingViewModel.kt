@@ -37,14 +37,35 @@ class ShoppingViewModel(
     val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
 
 
+    //Filter
+     var min : String = ""
+     var max : String = ""
+     var type : String = ""
+
+
+
 
     val productItemList = searchQuery.flatMapLatest {query ->
-        repository.getProductSource(query)
+
+        repository.getProductSource(query,min,max,type)
             .cachedIn(viewModelScope)
     }
 
     fun searchProduct(query : String){
         searchQuery.value = query
+    }
+
+    fun applyFilter(min : String,max : String,type : String){
+        this.min = min
+        this.max = max
+        this.type = type
+
+    }
+
+    fun clearFilter(){
+        this.min = ""
+        this.max = ""
+        this.type = ""
     }
 
     val petItemList =  petSearchQuery.flatMapLatest {query ->

@@ -12,13 +12,19 @@ import com.mobye.petinto.models.apimodel.ApiResponse
 import com.mobye.petinto.models.apimodel.PetOrder
 import com.mobye.petinto.models.apimodel.ProductOrder
 import retrofit2.Response
+import retrofit2.http.Query
 
 class ShoppingRepository : IRepository {
 
 
-    fun getProductSource(query : String) = Pager(
+    fun getProductSource(
+        query : String,
+        min : String,
+        max : String,
+        type : String
+    ) = Pager(
         config = PagingConfig(pageSize = 10),
-        pagingSourceFactory = {ProductPagingSource(query)})
+        pagingSourceFactory = {ProductPagingSource(query,min,max,type)})
         .flow
 
     fun getPetSource(query : String) = Pager(

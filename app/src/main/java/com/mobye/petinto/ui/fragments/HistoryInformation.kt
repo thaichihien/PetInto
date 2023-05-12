@@ -48,11 +48,7 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
-            exitBtn.setOnClickListener {
-                findNavController().popBackStack()
-            }
-        }
+
 
         informationViewModel.user.observe(viewLifecycleOwner){
             it?.let {
