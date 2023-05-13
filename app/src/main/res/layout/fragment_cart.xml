@@ -42,7 +42,7 @@
                 android:id="@+id/btnBackCart"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="50dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/shopping"
                 android:padding="12dp"

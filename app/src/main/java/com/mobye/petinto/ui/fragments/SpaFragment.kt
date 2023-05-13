@@ -121,7 +121,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
                 }
 
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
-                    binding.tvTotalCost.text = "%,d đ".format(serviceViewModel.serviceCharge[pos])
+                    binding.tvTotalCost.text = Utils.formatMoneyVND(serviceViewModel.serviceCharge[pos])
                 }
             }
         }
@@ -260,26 +260,26 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
         if(binding.petSpinner.adapter.isEmpty){
             isValid = false
-            Toast.makeText(requireContext(),"Please add your pet information at Profile",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_petinfo),Toast.LENGTH_SHORT).show()
         }else if(binding.petSpinner.selectedItem == null){
             isValid = false
-            Toast.makeText(requireContext(),"Please choose a pet for the service",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_pet_service),Toast.LENGTH_SHORT).show()
         }
 
         if(binding.servicesSpinner.selectedItem == null){
             isValid = false
-            Toast.makeText(requireContext(),"Please choose a spa service",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_spa_service),Toast.LENGTH_SHORT).show()
         }
 
         if (etDay.text.toString().isBlank()) {
             isValid = false
-            etDay.error = "This item cannot be empty!"
+            etDay.error = getString(R.string.missing_date)
         }
 
         val rgTime=binding.rgTime
         if (rgTime.checkedRadioButtonId==-1){
             isValid=false
-            Toast.makeText(requireContext(),"Please pick a time",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_time),Toast.LENGTH_SHORT).show()
         }
 
 

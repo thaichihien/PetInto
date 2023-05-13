@@ -55,7 +55,10 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity() as MainActivity).showBottomNav()
+
+
         orderItemAdapter = OrderAdapter ({
             val action = OrderFragmentDirections.actionOrderFragmentToPetPaymentFragment(it)
             findNavController().navigate(action)
@@ -135,8 +138,12 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener false
-
             }
+
+            btnFilter.setOnClickListener {
+                findNavController().navigate(OrderFragmentDirections.actionOrderFragmentToPetFilterFragment())
+            }
+
         }
     }
 

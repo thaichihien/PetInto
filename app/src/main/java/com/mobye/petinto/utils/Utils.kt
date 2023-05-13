@@ -77,6 +77,14 @@ class Utils {
                 else -> 0
             }
 
-
+        fun getGenderIndex(type : String) : Int
+                = when(type){
+            "Tất cả" -> 0
+            "Male" -> 1
+            "Female" -> 2
+            "Bigender" -> 3
+            "Polygender" -> 4
+            else -> 0
+        }
     }
 }

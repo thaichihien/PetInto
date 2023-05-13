@@ -98,7 +98,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/serviceLabelTV"
+            android:id="@+id/lbService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
@@ -177,9 +177,9 @@
             android:textColor="@color/main_dark"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/serviceLabelTV"
-            app:layout_constraintStart_toEndOf="@+id/serviceLabelTV"
-            app:layout_constraintTop_toTopOf="@+id/serviceLabelTV" />
+            app:layout_constraintBottom_toBottomOf="@+id/lbService"
+            app:layout_constraintStart_toEndOf="@+id/lbService"
+            app:layout_constraintTop_toTopOf="@+id/lbService" />
 
         <TextView
             android:id="@+id/customerInformationTV"

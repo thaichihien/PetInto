@@ -108,9 +108,9 @@ class BookingPaymentFragment : Fragment() {
                 // Hien dialog thong bao thanh cong
                 val booking = response.body!!
                 if(booking.service == "Spa"){
-                    notiDialog.changeToSuccess("Successfully book a spa service.")
+                    notiDialog.changeToSuccess(getString(R.string.success_spa_booking))
                 }else{
-                    notiDialog.changeToSuccess("Successfully book a hotel service.")
+                    notiDialog.changeToSuccess(getString(R.string.success_hotel_booking))
                 }
 
 
@@ -143,7 +143,7 @@ class BookingPaymentFragment : Fragment() {
             var isValidated = true
 
             if(rgPayment.checkedRadioButtonId < 0){
-                rbMomo.error = "Please choose a payment method"
+                rbMomo.error = getString(R.string.missing_payment_method)
                 isValidated = false
             }else{
                 rbMomo.error = null

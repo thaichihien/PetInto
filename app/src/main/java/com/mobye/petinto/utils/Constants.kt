@@ -12,6 +12,11 @@ class Constants {
             "Fish"
         )
 
+        val genderList = listOf(
+            "Tất cả",
+            "Male","Female","Bigender","Polygender"
+        )
+
 
     }
 }

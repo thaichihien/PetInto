@@ -36,7 +36,6 @@ class HistoryPetFragment : Fragment(R.layout.fragment_history_pet) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e(DEBUG_TAG,"onCreateView")
         _binding = FragmentHistoryPetBinding.inflate(inflater, container, false)
         return binding.root
     }

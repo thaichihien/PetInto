@@ -21,6 +21,7 @@ import com.mobye.petinto.databinding.FragmentOrderPaymentBinding
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.utils.Constants
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.*
 import java.util.*
 
@@ -64,7 +65,7 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
             paymentItemAdapter.differ.submitList(it)
         }
         shoppingViewModel.total.observe(viewLifecycleOwner){
-            binding.tvSubtotal.text = "%,d đ".format(it)
+            binding.tvSubtotal.text = Utils.formatMoneyVND(it)
 
         }
 
@@ -80,7 +81,7 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
         if(args.isDelivery){
             informationViewModel.getDefaultDeliveryAddress(informationViewModel.getUserID())
             informationViewModel.defaultDeliveryAddress.observe(viewLifecycleOwner){
-                binding.lbPetIntoAddress.text = "Your Address"
+                binding.lbPetIntoAddress.text = getString(R.string.your_address)
                 it?.let {
                     binding.tvDeliveryAddress.text = it.address
                 }
@@ -104,9 +105,9 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
                 tvShipmentDate.visibility = View.GONE
             }
             tvPaymentMethod.text = args.paymentMethod
-            tvSubtotal.text = "%,d đ".format(shoppingViewModel.total.value!! - shippingFee)
-            tvDeliveryFee.text = "%,d đ".format(shippingFee)
-            tvTotalAmount.text = "%,d đ".format(shoppingViewModel.total.value)
+            tvSubtotal.text = Utils.formatMoneyVND(shoppingViewModel.total.value!! - shippingFee)
+            tvDeliveryFee.text = Utils.formatMoneyVND(shippingFee)
+            tvTotalAmount.text = Utils.formatMoneyVND(shoppingViewModel.total.value!!)
 
 
 

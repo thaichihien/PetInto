@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/title_background_dark"
             android:paddingVertical="8dp"
-            android:text="Your Order"
+            android:text="@string/your_order"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:paddingStart="24dp"
@@ -415,8 +415,30 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/primary_button_background"
+                        android:paddingHorizontal="45dp"
+                        android:text="@string/save_pet_information"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
 
             </LinearLayout>
+
+
 
         </LinearLayout>
 

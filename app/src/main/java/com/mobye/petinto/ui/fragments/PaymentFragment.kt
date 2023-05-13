@@ -141,7 +141,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             deliveryInfo = informationViewModel.deliveryAddressInfo ?: DeliveryInfo(),
             isdelivery = binding.rbPickup.isChecked,
             note = binding.etNote.text.toString().trim(),
-            paymentMethod = if(binding.rbMomo.isChecked) "momo" else "cash"
+            paymentMethod = if(binding.rbMomo.isChecked) "momo" else getString(R.string.cash)
         )
 
         // Gui order
@@ -156,7 +156,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             if(response.result){
 
 
-                notiDialog.changeToSuccess("Yay. It’s a nice order! It will arrive soon.")
+                notiDialog.changeToSuccess(getString(R.string.success_order))
                 notiDialog.show()
 
                 val orderID = response.body.toString()
@@ -178,7 +178,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
 
 
             }else{
-                notiDialog.changeToFail("Something went wrong. Please, try again.")
+                notiDialog.changeToFail(getString(R.string.failed_order))
                 notiDialog.show()
                 notiDialog.setOnDismissListener {
                     findNavController().popBackStack(R.id.shoppingFragment,false)
@@ -196,14 +196,14 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     private fun validatePayment(): Boolean {
         var isEmptyChoice = false
         if(binding.rgDelivery.checkedRadioButtonId < 0){
-            binding.rbDoor.error = "Please choose a way to get your items"
+            binding.rbDoor.error = getString(R.string.missing_delivery_method)
             isEmptyChoice = true
         }else{
             binding.rbDoor.error = null
         }
 
         if(binding.rgPayment.checkedRadioButtonId < 0){
-            binding.rbMomo.error = "Please choose a payment method"
+            binding.rbMomo.error = getString(R.string.missing_payment_method)
             isEmptyChoice = true
         }else{
             binding.rbMomo.error = null
@@ -212,7 +212,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         if(informationViewModel.deliveryAddressInfo == null &&
                 binding.rbDoor.isChecked){
             isEmptyChoice = true
-            Toast.makeText(requireContext(),"Please input your delivery address",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_delivery_address),Toast.LENGTH_SHORT).show()
         }
 
         return !isEmptyChoice

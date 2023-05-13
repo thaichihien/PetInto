@@ -251,5 +251,28 @@
     <string name="order_history">Order History</string>
     <string name="apply">Apply</string>
     <string name="notification">Notification</string>
+    <string name="your_order">Your Order</string>
+    <string name="save_pet_information">Save Pet Information</string>
+    <string name="type">Type</string>
+    <string name="booking_details_pet_name">Pet name:</string>
+    <string name="booking_details_pet_genre">Pet genre:</string>
+    <string name="booking_detail_pet_weight">Pet weight:</string>
+    <string name="success_order">Yay. It’s a nice order! It will arrive soon.</string>
+    <string name="failed_order">Something went wrong. Please, try again.</string>
+    <string name="missing_delivery_method">Please choose a way to get your items</string>
+    <string name="missing_payment_method">Please choose a payment method</string>
+    <string name="missing_delivery_address">Please input your delivery address</string>
+    <string name="your_address">Your Address</string>
+    <string name="missing_petinfo">Please add your pet information at Profile</string>
+    <string name="missing_pet_service">Please choose a pet for the service</string>
+    <string name="missing_spa_service">Please choose a spa service</string>
+    <string name="missing_date">Please pick a date</string>
+    <string name="missing_time">Please pick a time</string>
+    <string name="invalid_booking_date">Booking date is not valid !</string>
+    <string name="missing_room_type">Please pick a room type</string>
+    <string name="success_spa_booking">Successfully book a spa service.</string>
+    <string name="success_hotel_booking">Successfully book a hotel service.</string>
+    <string name="confirm_cancel_booking">Are you sure you want to cancel this appointment ?</string>
+
 
 </resources>

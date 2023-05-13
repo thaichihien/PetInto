@@ -41,7 +41,12 @@ class BookingListItemAdapter(
                 lbService.text = if(booking.service == "Spa") "Service:" else "Room:"
                 tvType.text = booking.type
                 tvDate.text = Utils.formatToLocalDate(booking.checkIn)
-                customerInformationTV.text = "${booking.customerName}|${booking.phone}"
+                if(booking.phone.isNotBlank()){
+                    customerInformationTV.text = "${booking.customerName}|${booking.phone}"
+                }else{
+                    customerInformationTV.text = booking.customerName
+                }
+
                 petInformationTV.text = booking.petName
                 genreTV.text = booking.genre
                 weightTV.text = booking.weight

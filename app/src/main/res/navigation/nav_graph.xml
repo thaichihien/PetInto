@@ -156,6 +156,11 @@
         <action
             android:id="@+id/action_orderFragment_to_detailPetFragment"
             app:destination="@id/detailPetFragment" />
+        <action
+            android:id="@+id/action_orderFragment_to_petFilterFragment"
+            app:destination="@id/petFilterFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:popExitAnim="@anim/slide_to_right" />
     </fragment>
     <fragment
         android:id="@+id/historyInformation"
@@ -348,4 +353,9 @@
             android:id="@+id/action_notificationFragment_to_historyPetFragment"
             app:destination="@id/historyPetFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/petFilterFragment"
+        android:name="com.mobye.petinto.ui.fragments.PetFilterFragment"
+        android:label="fragment_pet_filter"
+        tools:layout="@layout/fragment_pet_filter" />
 </navigation>

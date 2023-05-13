@@ -43,7 +43,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
     }
 
     private val warningCancelDialog : AlertDialog by lazy {
-        Utils.createConfirmDialog(requireContext(),"Cancel","Are you sure you want to cancel this appointment ?"){
+        Utils.createConfirmDialog(requireContext(),getString(R.string.cancel),getString(R.string.confirm_cancel_booking)){
             cancelBooking()
         }
     }
@@ -78,7 +78,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             // TODO remove border
             ivBookingID.setImageBitmap(generateQR())
             tvBookingID.text = booking.id
-            lbService.text = if(booking.service == "Spa") "Service:" else "Room:"
+            lbService.text = if(booking.service == "Spa") getString(R.string.booking_detail_spa_services) else getString(R.string.booking_detail_hotel_room)
             tvService.text = booking.type
             tvStatus.text = booking.status
             tvCost.text = "%,d đ".format(booking.charge)

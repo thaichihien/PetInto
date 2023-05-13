@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,9 +16,11 @@ import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentHomeBinding
 import com.mobye.petinto.models.Advertisement
 import com.mobye.petinto.repository.HomeRepository
+import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.HomeViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
+import com.mobye.petinto.viewmodels.ShoppingViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -29,6 +32,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val homeViewModel : HomeViewModel by viewModels {
         PetIntoViewModelFactory(HomeRepository())
     }
+    private val shoppingViewModel : ShoppingViewModel by activityViewModels {
+        PetIntoViewModelFactory(ShoppingRepository())
+    }
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +63,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    fun loadImage(advertisements: List<Advertisement>) {
+    private fun loadImage(advertisements: List<Advertisement>) {
         Glide.with(this).load(advertisements[0].image).into(binding.advertisementBtn1)
         Glide.with(this).load(advertisements[1].image).into(binding.advertisementBtn2)
         Glide.with(this).load(advertisements[2].image).into(binding.advertisementBtn3)
@@ -86,6 +95,34 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToWebViewFragment(advertisements[6].url))
             }
 
+            btnDog.setOnClickListener{
+                shoppingViewModel.typePet = "Dog"
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+
+            btnCat.setOnClickListener{
+                shoppingViewModel.typePet = "Cat"
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+
+            btnMouse.setOnClickListener{
+                shoppingViewModel.typePet = "Mouse"
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+
+            btnBird.setOnClickListener{
+                shoppingViewModel.typePet = "Bird"
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+            btnFish.setOnClickListener{
+                shoppingViewModel.typePet = "Fish"
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+            btnRabbit.setOnClickListener{
+                shoppingViewModel.typePet = "Rabbit"
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+
 
             accesories.setOnClickListener {
                 (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.shoppingFragment
@@ -96,6 +133,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             hotel.setOnClickListener {
                 (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.hotelFragment
             }
+            btnOrder.setOnClickListener{
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
+            }
+
+
             btnNotification.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNotificationFragment())
             }

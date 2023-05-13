@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/header_main"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="120dp"
         android:outlineAmbientShadowColor="@color/grey"
         android:src="@drawable/header_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,36 +48,13 @@
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/welcome_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/welcome_title"
         app:srcCompat="@drawable/noti_icon" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnNotification"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnNotification"
-        app:srcCompat="@drawable/chat_icon" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/field_background"
-        android:elevation="5dp"
-        android:hint="@string/search"
-        android:paddingHorizontal="10dp"
-        android:textColorHint="#CACACA"
-        app:layout_constraintBottom_toBottomOf="@+id/header_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -140,7 +117,7 @@
                             app:cardCornerRadius="50dp">
 
                             <ImageButton
-                                android:id="@+id/dog_img_btn"
+                                android:id="@+id/btnDog"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/dog" />
@@ -175,7 +152,7 @@
                             app:cardCornerRadius="50dp">
 
                             <ImageButton
-                                android:id="@+id/cat_img_btn"
+                                android:id="@+id/btnCat"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/cat" />
@@ -204,7 +181,7 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/mouse_choice_btn"
+                            android:id="@+id/btnMouse"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
@@ -239,7 +216,7 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/rabbit_choice_btn"
+                            android:id="@+id/btnRabbit"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
@@ -274,7 +251,7 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/bird_choice_btn"
+                            android:id="@+id/btnBird"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
@@ -310,7 +287,7 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/fish_choice_btn"
+                            android:id="@+id/btnFish"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
@@ -335,7 +312,7 @@
             </HorizontalScrollView>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/order_btn"
+                android:id="@+id/btnOrder"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -362,7 +339,7 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/order_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/btnOrder" />
 
             <HorizontalScrollView
                 android:id="@+id/accesories_list"

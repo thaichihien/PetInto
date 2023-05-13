@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/title_background_dark"
             android:paddingVertical="8dp"
-            android:text="Your Order"
+            android:text="@string/your_order"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:paddingStart="24dp"
@@ -210,7 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/delivery_fee"
-                        android:textColor="@color/main_dark"/>
+                        android:textColor="@color/main_dark" />
 
                     <TextView
                         android:id="@+id/tvDeliveryFee"

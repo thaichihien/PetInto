@@ -52,7 +52,7 @@ class OrderAdapter(
         binding.apply {
             Glide.with(binding.root)
                 .load(pet.image)
-                .placeholder(R.drawable.dog)
+                .placeholder(R.drawable.logo_chat)
                 .into(binding.imgviewOrder)
             tvName.text = pet.name
             tvGender.text = pet.gender

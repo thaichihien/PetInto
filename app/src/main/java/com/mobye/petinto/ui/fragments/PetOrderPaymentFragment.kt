@@ -1,5 +1,6 @@
 package com.mobye.petinto.ui.fragments
 
+import android.app.AlertDialog
 import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.utils.Constants.Companion.SHIPPING_FEE
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
@@ -33,6 +35,13 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
 
     private val informationViewModel : InformationViewModel by activityViewModels{
         PetIntoViewModelFactory(InformationRepository())
+    }
+
+    private val warningDialg : AlertDialog by lazy {
+        Utils.createConfirmDialog(requireContext(),
+        "Add new pet","Do you want to save this pet information?"){
+            saveToLocal()
+        }
     }
 
     private val args : PetOrderPaymentFragmentArgs by navArgs()
@@ -113,8 +122,18 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
             btnBack.setOnClickListener {
                 backToShopping()
             }
+
+
+            btnSave.setOnClickListener {
+                warningDialg.show()
+            }
         }
 
+    }
+
+    private fun saveToLocal() {
+        informationViewModel.addPet(args.petPayment)
+        binding.btnSave.isEnabled = false
     }
 
     override fun onAttach(context: Context) {

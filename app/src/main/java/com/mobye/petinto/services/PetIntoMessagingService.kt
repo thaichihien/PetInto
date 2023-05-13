@@ -36,7 +36,7 @@ class PetIntoMessagingService : FirebaseMessagingService() {
             val title = remoteMessage.data["title"]
             val type = remoteMessage.data["type"]
 
-            // TODO FIX HERE
+
 
             val notification = Notification(
                 title!!,body!!,type!!,

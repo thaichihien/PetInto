@@ -127,7 +127,7 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             serviceViewModel.checkIn = calendar.time
             binding.etFromDate.text = formattedDate
             if(!checkValidDate()){
-                Toast.makeText(requireContext(),"Booking date is not valid !",Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(),getString(R.string.invalid_booking_date),Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -145,7 +145,7 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             serviceViewModel.checkOut = calendar.time
             binding.etToDate.text = formattedDate
             if(!checkValidDate()){
-                Toast.makeText(requireContext(),"Booking date is not valid !",Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(),getString(R.string.invalid_booking_date),Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -153,7 +153,7 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
 
         serviceViewModel.hotelCost.observe(viewLifecycleOwner){
             if(checkDateIsNotEmpty()){
-                binding.tvTotalCost.text = "%,d đ".format(it)
+                binding.tvTotalCost.text = Utils.formatMoneyVND(it)
             }
         }
 
@@ -275,30 +275,30 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
 
         if(binding.petSpinner.adapter.isEmpty){
             isValid = false
-            Toast.makeText(requireContext(),"Please add your pet information at Profile", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_petinfo), Toast.LENGTH_SHORT).show()
         }else if(binding.petSpinner.selectedItem == null){
             isValid = false
-            Toast.makeText(requireContext(),"Please choose a pet for the service", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_pet_service), Toast.LENGTH_SHORT).show()
         }
 
         if(binding.etFromDate.text.isBlank()){
             isValid = false
-            binding.etFromDate.error = "Please pick a date"
+            binding.etFromDate.error = getString(R.string.missing_date)
         }
 
         if(binding.etToDate.text.isBlank()){
             isValid = false
-            binding.etToDate.error = "Please pick a date"
+            binding.etToDate.error = getString(R.string.missing_date)
         }
 
         if (binding.rgRoomType.checkedRadioButtonId==-1){
             isValid=false
-            Toast.makeText(requireContext(),"Please pick a room type",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.missing_room_type),Toast.LENGTH_SHORT).show()
         }
 
         if(!checkValidDate()){
             isValid = false
-            Toast.makeText(requireContext(),"Booking date is not valid !",Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(),getString(R.string.invalid_booking_date),Toast.LENGTH_SHORT)
                 .show()
         }
 

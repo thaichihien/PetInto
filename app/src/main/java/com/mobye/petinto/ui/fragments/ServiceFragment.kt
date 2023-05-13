@@ -38,7 +38,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).showBottomNav()
 
         viewPagerAdapter = ServiceViewPagerAdapter(this)
 

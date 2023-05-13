@@ -36,7 +36,6 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e(DEBUG_TAG,"onCreateView")
         _binding = FragmentHistoryInformationBinding.inflate(inflater, container, false)
         return binding.root
     }

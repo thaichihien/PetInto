@@ -100,6 +100,12 @@ interface PetIntoApi {
     @GET("/data/pets")
     suspend fun getPets(
         @Query("page") page: Int,
-        @Query("query") query : String = ""
+        @Query("query") query : String = "",
+        @Query("type") type : String = "",
+        @Query("gender") gender : String = "",
+        @Query("minprice") minPrice : String = "",
+        @Query("maxprice") maxPrice : String = "",
+        @Query("minage") minAge : String = "",
+        @Query("maxage") maxAge : String = ""
     ) : Response<ApiResponse<List<PetInfo>>>
 }

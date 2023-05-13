@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="@string/profile"
         android:textSize="@dimen/header_text_size"
         android:textStyle="bold"
         android:textColor="@color/main_dark"
@@ -131,27 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <LinearLayout
-            android:id="@+id/navRate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/rate_icon"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rate"/>
-
-        </LinearLayout>
-        <View android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
 
         <LinearLayout
             android:id="@+id/navSetting"

@@ -43,6 +43,14 @@ class ShoppingViewModel(
      var type : String = ""
 
 
+    //Pet filter
+    var typePet: String = ""
+     var gender : String = ""
+     var minPrice : String = ""
+     var maxPrice : String = ""
+     var minAge : String = ""
+     var maxAge : String = ""
+
 
 
     val productItemList = searchQuery.flatMapLatest {query ->
@@ -69,8 +77,26 @@ class ShoppingViewModel(
     }
 
     val petItemList =  petSearchQuery.flatMapLatest {query ->
-        repository.getPetSource(query)
+        repository.getPetSource(query,typePet,gender,minAge, maxAge, minPrice, maxPrice)
             .cachedIn(viewModelScope)
+    }
+
+    fun applyPetFilter(typePet: String,gender : String,minAge : String,maxAge : String, minPrice : String,maxPrice : String){
+      this.typePet = typePet
+        this.gender = gender
+        this.minAge = minAge
+        this.maxAge =maxAge
+        this.minPrice = minPrice
+        this.maxPrice = maxPrice
+    }
+
+    fun clearPetFilter(){
+        this.typePet = ""
+        this.gender = ""
+        this.minAge = ""
+        this.maxAge =""
+        this.minPrice = ""
+        this.maxPrice = ""
     }
 
     fun searchPet(query : String){
