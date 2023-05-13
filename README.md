@@ -240,3 +240,9 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - [ ] Xây dựng API
 - [X] Deploy web
 
+### Các Bugs
+- [ ] Ở trang Profile, khi bấm vào History hiện được trang history nhưng không đóng được.
+- [ ] Tại mục Room type, trang Spa phần Hotel Booking sai giá cụ thể 200.00đ
+- [ ] Phần chữ Hotel ở trang Home chưa được link tới Spa
+- [ ] Khi bấm Delete ở trang Spa phần Hotel Booking thì total cost chưa được set về số 0đ
+- [ ] Sau khi bấm vào từng lịch hẹn tại Booking trang Profile thì không thể bấm quay lại được cũng như bấm Cancel Booking thì cũng chỉ mới hiện thông báo chọn yes no chứ không có gì xảy ra.
