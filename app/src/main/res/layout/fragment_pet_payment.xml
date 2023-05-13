@@ -130,18 +130,7 @@
                         android:textColor="@color/main_dark"/>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvDateBuy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="11/02/2023"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@color/main_dark"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
