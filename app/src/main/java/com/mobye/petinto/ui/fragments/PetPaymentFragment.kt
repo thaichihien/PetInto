@@ -195,3 +195,4 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
         _binding = null
     }
 }
+

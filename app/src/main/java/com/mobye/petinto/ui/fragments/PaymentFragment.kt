@@ -210,7 +210,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         }
 
         if(informationViewModel.deliveryAddressInfo == null &&
-                binding.rbDoor.isChecked){
+            binding.rbDoor.isChecked){
             isEmptyChoice = true
             Toast.makeText(requireContext(),getString(R.string.missing_delivery_address),Toast.LENGTH_SHORT).show()
         }
