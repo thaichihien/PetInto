@@ -246,3 +246,5 @@ Mỗi người sẽ làm việc trên Fragment, tự code UI (ở layout có tê
 - [ ] Phần chữ Hotel ở trang Home chưa được link tới Spa
 - [ ] Khi bấm Delete ở trang Spa phần Hotel Booking thì total cost chưa được set về số 0đ
 - [ ] Sau khi bấm vào từng lịch hẹn tại Booking trang Profile thì không thể bấm quay lại được cũng như bấm Cancel Booking thì cũng chỉ mới hiện thông báo chọn yes no chứ không có gì xảy ra.
+- [ ] Tại trang Details khi mua sắm Accessories và chọn vào thông tin chi tiết sản phẩm button buy contact và số lượng không hoạt động có thể loại bỏ các nút.
+- [ ] Không thanh toán được ở cả order và booking sau khi đã thêm địa chỉ mặc định
