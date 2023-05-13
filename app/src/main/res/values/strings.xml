@@ -268,7 +268,7 @@
     <string name="missing_spa_service">Please choose a spa service</string>
     <string name="missing_date">Please pick a date</string>
     <string name="missing_time">Please pick a time</string>
-    <string name="invalid_booking_date">Booking date is not valid !</string>
+    <string name="invalid_booking_date">Booking date is not valid!</string>
     <string name="missing_room_type">Please pick a room type</string>
     <string name="success_spa_booking">Successfully book a spa service.</string>
     <string name="success_hotel_booking">Successfully book a hotel service.</string>

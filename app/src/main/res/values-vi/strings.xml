@@ -240,4 +240,32 @@
     <string name="from_date">Từ ngày:</string>
     <string name="to_date">Đến ngày:</string>
     <string name="total_cost">Tổng chi phí:</string>
+
+    <string name="booking_payment">Phương thức thanh toán</string>
+    <string name="order_history">Lịch sử đặt hàng</string>
+    <string name="apply">Áp dụng</string>
+    <string name="notification">Thông báo</string>
+    <string name="your_order">Giỏ hàng</string>
+    <string name="save_pet_information">Lưu thông tin thú cưng</string>
+    <string name="type">Loại</string>
+    <string name="booking_details_pet_name">Tên thú cưng:</string>
+    <string name="booking_details_pet_genre">Giới tính thú cưng:</string>
+    <string name="booking_detail_pet_weight">Cân nặng thú cưng:</string>
+    <string name="success_order">Đơn đặt hàng thành công! Đơn hàng sẽ sớm đến thôi!</string>
+    <string name="failed_order">Đã xảy ra lỗi! Hãy thử lại.</string>
+    <string name="missing_delivery_method">Chọn phương thức nhận hàng</string>
+    <string name="missing_payment_method">Chọn phương thức thanh toán</string>
+    <string name="missing_delivery_address">Hãy nhập địa chỉ</string>
+    <string name="your_address">Địa chỉ nhận hàng</string>
+    <string name="missing_petinfo">Hãy điền thông tin thú cưng tại mục Tài Khoản</string>
+    <string name="missing_pet_service">Hãy chọn thú cưng cho dịch vụ</string>
+    <string name="missing_spa_service">Hãy chọn dịch vụ chăm sóc</string>
+    <string name="missing_date">Hãy chọn ngày</string>
+    <string name="missing_time">Hãy chọn thời gian</string>
+    <string name="invalid_booking_date">Ngày đặt lịch không hợp lệ!</string>
+    <string name="missing_room_type">Hãy chọn loại phòng</string>
+    <string name="success_spa_booking">Đặt lịch dịch vụ spa thành công.</string>
+    <string name="success_hotel_booking">Đặt lịch dich vụ khách sạn thành công.</string>
+    <string name="confirm_cancel_booking">Bạn có chắc muốn hủy cuộc hẹn?</string>
+
 </resources>
