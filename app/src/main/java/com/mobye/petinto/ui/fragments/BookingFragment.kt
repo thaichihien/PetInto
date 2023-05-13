@@ -1,5 +1,6 @@
 package com.mobye.petinto.ui.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,8 +14,11 @@ import com.mobye.petinto.R
 import com.mobye.petinto.adapters.BookingListItemAdapter
 import com.mobye.petinto.databinding.FragmentBookingBinding
 import com.mobye.petinto.databinding.FragmentProfileBinding
+import com.mobye.petinto.models.apimodel.Booking
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ServiceRepository
+import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
@@ -27,6 +31,8 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
 
 
     private lateinit var bookingAdapter : BookingListItemAdapter
+    private lateinit var currentBooking : Booking
+
 
     private val serviceViewModel : ServiceViewModel by activityViewModels {
         PetIntoViewModelFactory(ServiceRepository())
@@ -34,6 +40,19 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
     private val informationViewModel : InformationViewModel by activityViewModels{
         PetIntoViewModelFactory(InformationRepository())
     }
+
+    private val loadingDialog : AlertDialog by lazy {
+        val activity = requireActivity() as MainActivity
+        activity.dialog
+    }
+
+    private val warningCancelDialog : AlertDialog by lazy {
+        Utils.createConfirmDialog(requireContext(),getString(R.string.cancel),getString(R.string.confirm_cancel_booking)){
+            cancelBooking()
+        }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,18 +71,26 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
         }
 
 
-        bookingAdapter = BookingListItemAdapter {
-            findNavController().navigate(BookingFragmentDirections.actionBookingFragmentToBookingDetailSpaFragment(it))
-        }
+        bookingAdapter = BookingListItemAdapter(
+            {
+                findNavController().navigate(BookingFragmentDirections.actionBookingFragmentToBookingDetailSpaFragment(it,"history"))
+            },
+            {
+                currentBooking = it
+                warningCancelDialog.show()
+            }
+        )
 
         informationViewModel.user.observe(viewLifecycleOwner){
             bookingAdapter.differ.submitList(listOf())
             bookingAdapter.notifyDataSetChanged()
             serviceViewModel.getBookingHistory(it.id)
+
         }
 
         serviceViewModel.bookingList.observe(viewLifecycleOwner){
             bookingAdapter.differ.submitList(it)
+            bookingAdapter.notifyDataSetChanged()
             binding.loadingLayout.visibility = View.GONE
         }
 
@@ -76,7 +103,27 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
                 adapter = bookingAdapter
             }
 
+        }
+
+
+    }
+
+    private fun cancelBooking() {
+        loadingDialog.show()
+
+        serviceViewModel.cancelBooking(currentBooking)
+        bookingAdapter.differ.submitList(listOf())
+        bookingAdapter.notifyDataSetChanged()
+        binding.rvBookingList.adapter = null
+
+
+        serviceViewModel.response.observe(viewLifecycleOwner) {
+            loadingDialog.dismiss()
+            binding.rvBookingList.adapter = bookingAdapter
+            binding.loadingLayout.visibility = View.VISIBLE
+            serviceViewModel.getBookingHistory(informationViewModel.getUserID())
 
         }
     }
+
 }

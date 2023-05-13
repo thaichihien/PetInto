@@ -46,6 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/btnCart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:contentDescription="@string/shopping"
@@ -199,6 +200,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
+                        android:id="@+id/btnDecrease"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:background="@android:color/transparent"
@@ -207,6 +209,7 @@
                         android:contentDescription="@string/shopping" />
 
                     <TextView
+                        android:id="@+id/tvQuantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
@@ -215,6 +218,7 @@
                         android:textStyle="bold"/>
 
                     <ImageButton
+                        android:id="@+id/btnIncrease"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:background="@android:color/transparent"
@@ -237,6 +241,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnBuy"
                         android:layout_width="160dp"
                         android:layout_height="40dp"
                         android:background="@drawable/primary_button_background"
@@ -247,11 +252,12 @@
                         android:textSize="20sp"/>
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnReport"
                         android:layout_width="160dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/white_button_background"
-                        android:text="@string/contact"
+                        android:text="@string/report_of_petinto"
                         android:textStyle="bold"
                         android:textAllCaps="false"
                         android:textColor="@color/main_dark"

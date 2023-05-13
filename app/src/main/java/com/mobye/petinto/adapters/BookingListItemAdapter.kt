@@ -17,6 +17,7 @@ import com.mobye.petinto.utils.Utils
 
 class BookingListItemAdapter(
     private val detailListener: (Booking) -> Unit,
+    private val cancelListener: (Booking) -> Unit
 ) : RecyclerView.Adapter<BookingListItemAdapter.BookingViewHolder>() {
 
     private lateinit var binding: ItemServiceBookingListBinding
@@ -25,9 +26,9 @@ class BookingListItemAdapter(
             return oldItem.id == newItem.id
         }
 
-        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: Booking, newItem: Booking): Boolean {
-           return oldItem == newItem
+           return oldItem.id == newItem.id &&
+                   oldItem.status == newItem.status
         }
 
 
@@ -41,16 +42,20 @@ class BookingListItemAdapter(
                 lbService.text = if(booking.service == "Spa") "Service:" else "Room:"
                 tvType.text = booking.type
                 tvDate.text = Utils.formatToLocalDate(booking.checkIn)
-                if(booking.phone.isNotBlank()){
-                    customerInformationTV.text = "${booking.customerName}|${booking.phone}"
-                }else{
+                if(booking.phone.isNullOrBlank()){
                     customerInformationTV.text = booking.customerName
+                }else{
+
+                    customerInformationTV.text = "${booking.customerName}|${booking.phone}"
                 }
 
                 petInformationTV.text = booking.petName
                 genreTV.text = booking.genre
                 weightTV.text = booking.weight
                 tvStatus.text = booking.status
+                btnCancel.setOnClickListener{
+                    cancelListener(booking)
+                }
 
                 layoutBookingItem.setOnClickListener{
                     detailListener(booking)
@@ -66,11 +71,10 @@ class BookingListItemAdapter(
         return BookingViewHolder()
     }
 
-    override fun getItemCount(): Int =differ.currentList.size
+    override fun getItemCount(): Int = differ.currentList.size
 
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
-        val item = differ.currentList[position]
-        holder.setData(item)
+        holder.setData(differ.currentList[position])
         holder.setIsRecyclable(false)
     }
 }

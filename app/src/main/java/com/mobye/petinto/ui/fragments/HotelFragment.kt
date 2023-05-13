@@ -198,13 +198,14 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
     private fun clearService() {
         binding.apply {
             petSpinner.setSelection(0)
-            etFromDate.setText("")
-            etToDate.setText("")
+            etFromDate.text = ""
+            etToDate.text = ""
             rgRoomType.clearCheck()
+            serviceViewModel.clearHotelCost()
         }
     }
 
-    fun checkValidDate() : Boolean{
+    private fun checkValidDate() : Boolean{
         val checkField = with(binding){
             etToDate.text.isNotBlank() && etFromDate.text.isNotBlank()
         }

@@ -63,6 +63,9 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = orderHistoryAdapter
             }
+            exitBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
 

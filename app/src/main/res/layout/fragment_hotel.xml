@@ -220,13 +220,13 @@
                         android:id="@+id/rbNormalRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Normal : 200.00 đ/day"/>
+                        android:text="@string/normal_200_000_vn_day"/>
 
                     <RadioButton
                         android:id="@+id/rbVIPRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="VIP : 500.00 đ/day"/>
+                        android:text="@string/vip_500_000_vn_day"/>
 
                 </RadioGroup>
 

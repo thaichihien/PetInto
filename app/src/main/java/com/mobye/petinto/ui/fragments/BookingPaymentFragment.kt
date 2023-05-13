@@ -117,10 +117,10 @@ class BookingPaymentFragment : Fragment() {
                 notiDialog.show()
 
                 notiDialog.setOnCancelListener {
-                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking))
+                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
                 }
                 notiDialog.setOnDismissListener {
-                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking))
+                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
                 }
 
 

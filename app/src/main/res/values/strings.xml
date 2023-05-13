@@ -273,6 +273,8 @@
     <string name="success_spa_booking">Successfully book a spa service.</string>
     <string name="success_hotel_booking">Successfully book a hotel service.</string>
     <string name="confirm_cancel_booking">Are you sure you want to cancel this appointment ?</string>
+    <string name="normal_200_000_vn_day">Normal : 200.000 VNĐ/day</string>
+    <string name="vip_500_000_vn_day">VIP : 500.000 VNĐ/day</string>
 
 
 </resources>

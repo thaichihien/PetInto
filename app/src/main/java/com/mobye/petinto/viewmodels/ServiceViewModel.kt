@@ -132,6 +132,10 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
         }
     }
 
+    fun clearHotelCost(){
+        hotelCost.value = 0
+    }
+
     fun checkDateValid()
         = checkOut.time >= checkIn.time
 

@@ -131,7 +131,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.serviceFragment
             }
             hotel.setOnClickListener {
-                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.hotelFragment
+                (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.serviceFragment
             }
             btnOrder.setOnClickListener{
                 (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment

@@ -50,9 +50,6 @@
         <action
             android:id="@+id/actionSpaFragmentToCustomerFragment"
             app:destination="@id/customerFragment" />
-        <action
-            android:id="@+id/actionSpaFragmentToBookingDetailSpaFragment"
-            app:destination="@id/bookingDetailSpaFragment" />
     </fragment>
     <fragment
         android:id="@+id/hotelFragment"
@@ -107,6 +104,9 @@
         <argument
             android:name="item"
             app:argType="com.mobye.petinto.models.Product" />
+        <action
+            android:id="@+id/action_detailFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -255,9 +255,6 @@
             android:id="@+id/actionServiceFragmentToCustomerFragment"
             app:destination="@id/customerFragment" />
         <action
-            android:id="@+id/actionServiceFragmentToBookingDetailSpaFragment"
-            app:destination="@id/bookingDetailSpaFragment" />
-        <action
             android:id="@+id/action_serviceFragment_to_bookingPaymentFragment"
             app:destination="@id/bookingPaymentFragment" />
     </fragment>
@@ -315,6 +312,9 @@
         <argument
             android:name="booking"
             app:argType="com.mobye.petinto.models.apimodel.Booking" />
+        <argument
+            android:name="from"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/reportFragment"

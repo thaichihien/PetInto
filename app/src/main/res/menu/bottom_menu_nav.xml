@@ -10,7 +10,7 @@
         android:icon="@drawable/shopping_btn_icon"/>
     <item
         android:id="@+id/serviceFragment"
-        android:title="@string/spa"
+        android:title="@string/service"
         android:icon="@drawable/spa_btn_icon"/>
     <item
         android:id="@+id/orderFragment"

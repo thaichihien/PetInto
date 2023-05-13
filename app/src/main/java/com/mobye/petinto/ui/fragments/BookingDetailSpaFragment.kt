@@ -81,7 +81,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             lbService.text = if(booking.service == "Spa") getString(R.string.booking_detail_spa_services) else getString(R.string.booking_detail_hotel_room)
             tvService.text = booking.type
             tvStatus.text = booking.status
-            tvCost.text = "%,d đ".format(booking.charge)
+            tvCost.text = Utils.formatMoneyVND(booking.charge)
             tvPayment.text = booking.payment
             tvNote.text = booking.note
 
@@ -100,19 +100,23 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             tvPetWeight.text = booking.weight
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack(R.id.serviceFragment,false)
+                if(args.from == "history"){
+                    findNavController().popBackStack()
+                }else{
+                    findNavController().popBackStack(R.id.serviceFragment,false)
+                }
             }
 
-           btnCancel.setOnClickListener {
-               warningCancelDialog.show()
-           }
-
+            if(booking.status == "Done" || booking.status == "Cancelled" || booking.status == "Unaccepted"){
+                btnCancel.visibility = View.GONE
+            }else{
+                btnCancel.setOnClickListener {
+                    warningCancelDialog.show()
+                }
+            }
 
 
         }
-
-
-
 
     }
 
@@ -149,7 +153,11 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
 
         serviceViewModel.response.observe(viewLifecycleOwner) {
             loadingDialog.dismiss()
-            findNavController().popBackStack(R.id.serviceFragment,false)
+            if(args.from == "history"){
+                findNavController().popBackStack()
+            }else{
+                findNavController().popBackStack(R.id.serviceFragment,false)
+            }
         }
     }
 
@@ -159,7 +167,11 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
 
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                findNavController().popBackStack(R.id.serviceFragment,false)
+                if(args.from == "history"){
+                    findNavController().popBackStack()
+                }else{
+                    findNavController().popBackStack(R.id.serviceFragment,false)
+                }
             }
         }
 

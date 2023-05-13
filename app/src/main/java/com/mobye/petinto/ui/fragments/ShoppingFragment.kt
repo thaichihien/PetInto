@@ -52,20 +52,12 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     private var firstTimeLoad = true
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         _binding = FragmentShoppingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -87,11 +79,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
         )
 
-        //shoppingViewModel.getShoppingItems()
         shoppingViewModel.getCartItems()
-//        shoppingViewModel.shopItemList.observe(viewLifecycleOwner) {
-//            shoppingItemAdapter.differ.submitList(it)
-//        }
 
 
         if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
