@@ -63,7 +63,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         shoppingViewModel.getCartItems()
 
         if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
-            Log.e("RETRY_SHOPPING","yes")
             productAdapter.retry()
             shoppingViewModel.lostNetwork = false
         }
@@ -110,7 +109,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                 errorState?.let {
                     // TODO show net work error
                     shoppingViewModel.lostNetwork = true
-                    Toast.makeText(requireContext(),"error : ${errorState.error}",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),"No Internet Connection",Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -137,8 +136,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
             etSearchProduct.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    Log.e(TAG, "Enter button was pressed")
-
                     lifecycleScope.launch{
                         productAdapter.submitData(PagingData.empty())
                         productAdapter.notifyDataSetChanged()

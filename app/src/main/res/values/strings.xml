@@ -275,6 +275,16 @@
     <string name="confirm_cancel_booking">Are you sure you want to cancel this appointment ?</string>
     <string name="normal_200_000_vn_day">Normal : 200.000 VNĐ/day</string>
     <string name="vip_500_000_vn_day">VIP : 500.000 VNĐ/day</string>
+    <string name="missing_email">Please fill in a email</string>
+    <string name="invalid_email">Please fill in a valid email</string>
+    <string name="missing_name">Please fill in a name</string>
+    <string name="missing_password">Please fill in password</string>
+    <string name="incorrect_confirm_password">Confirm password is incorrect</string>
+    <string name="incorrect_password">The password is incorrect</string>
+    <string name="not_found_account">This account could not be found</string>
+    <string name="email_already">The email address is already in use by another account</string>
+    <string name="send_email_success">Send email to reset password successfully</string>
+    <string name="check_email_reset">Please check your email inbox to reset your password</string>
 
 
 </resources>

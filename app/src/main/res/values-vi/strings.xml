@@ -267,5 +267,17 @@
     <string name="success_spa_booking">Đặt lịch dịch vụ spa thành công.</string>
     <string name="success_hotel_booking">Đặt lịch dich vụ khách sạn thành công.</string>
     <string name="confirm_cancel_booking">Bạn có chắc muốn hủy cuộc hẹn?</string>
+    <string name="normal_200_000_vn_day">Thường : 200.000 VNĐ/ngày</string>
+    <string name="vip_500_000_vn_day">VIP : 500.000 VNĐ/ngày</string>
+    <string name="missing_email">Vui lòng nhập email</string>
+    <string name="invalid_email">Vui lòng nhập email hợp lệ</string>
+    <string name="missing_name">Vui lòng nhập tên</string>
+    <string name="missing_password">Vui lòng nhập mật khẩu</string>
+    <string name="incorrect_confirm_password">Mật khẩu xác nhận không chính xác</string>
+    <string name="incorrect_password">Mật khẩu không chính xác</string>
+    <string name="not_found_account">Không tìm thấy tài khoản này</string>
+    <string name="email_already">Địa chỉ email này đã được sử dụng bởi tài khoản khác</string>
+    <string name="send_email_success">Gửi email reset mật khẩu thành công</string>
+    <string name="check_email_reset">Vui lòng kiểm tra hòm thư email của bạn để reset lại mật khẩu</string>
 
 </resources>

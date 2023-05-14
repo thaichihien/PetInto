@@ -52,7 +52,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         homeViewModel.getNews()
         lifecycleScope.launchWhenCreated {
             homeViewModel.newsList.collectLatest {
-                Log.e(TAG,"newList = ${it.size}")
                 loadImage(it)
             }
         }

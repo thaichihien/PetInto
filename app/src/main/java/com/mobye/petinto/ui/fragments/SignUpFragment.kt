@@ -1,6 +1,7 @@
 package com.mobye.petinto.ui.fragments
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,12 +13,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentSignUpBinding
 import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.ui.changeToFail
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
@@ -29,6 +33,9 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private val loadingDialog : AlertDialog by lazy {
         val activity = requireActivity() as AuthenticationActivity
         activity.dialog
+    }
+    private val notiDialog : Dialog by lazy {
+        Utils.createNotificationDialog(requireContext())
     }
 
     private val informationViewModel : InformationViewModel by activityViewModels {
@@ -67,9 +74,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         loadingDialog.show()
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(requireActivity()){task ->
-                if(task.isSuccessful){
 
-                    // TODO save data to database
+                if(task.isSuccessful){
 
                     val newUser = Customer().apply {
                         id = firebaseAuth.uid!!
@@ -90,6 +96,24 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                     }
 
                 }else{
+                    loadingDialog.dismiss()
+                    val notiError = when((task.exception as FirebaseAuthException).errorCode){
+                        "ERROR_EMAIL_ALREADY_IN_USE" -> getString(R.string.email_already)
+                        "ERROR_INVALID_EMAIL" -> getString(R.string.invalid_email)
+                        else -> task.exception!!.message!!
+                    }
+
+                    notiDialog.changeToFail(notiError)
+//                    notiDialog.setOnCancelListener {
+//
+//                    }
+//                    notiDialog.setOnDismissListener {
+//
+//                    }
+                    notiDialog.show()
+
+
+
                     if(task.exception.toString().contentEquals("email-already-in-use")){
                         Log.e("SignUp","Email already in use")
                     }
@@ -101,38 +125,38 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private fun validate(): Boolean {
         var isValidated = true
         if(binding.etEmail.text.isBlank()){
-            binding.etEmail.error = "Please fill in a email"
+            binding.etEmail.error = getString(R.string.missing_email)
             isValidated = false
         }else if(!Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text).matches()){
-            binding.etEmail.error = "Please fill in a valid email"
+            binding.etEmail.error = getString(R.string.invalid_email)
             isValidated = false
         }else{
             binding.etEmail.error = null
         }
 
         if(binding.etUsername.text.isBlank()){
-            binding.etUsername.error = "Please fill in a name"
+            binding.etUsername.error = getString(R.string.missing_name)
             isValidated =false
         }else{
             binding.etUsername.error = null
         }
 
         if(binding.etPassword.text!!.isBlank()){
-            binding.etPassword.error = "Please fill in a name"
+            binding.etPassword.error = getString(R.string.missing_password)
             isValidated =false
         }else{
             binding.etPassword.error = null
         }
 
         if(binding.etConfirmPassword.text!!.isBlank()){
-            binding.etConfirmPassword.error = "Please fill in a name"
+            binding.etConfirmPassword.error = getString(R.string.missing_password)
             isValidated =false
         }else{
             binding.etConfirmPassword.error = null
         }
 
         if(!binding.etPassword.text.contentEquals(binding.etConfirmPassword.text) ){
-            binding.etConfirmPassword.error = "Confirm password is incorrect"
+            binding.etConfirmPassword.error = getString(R.string.incorrect_confirm_password)
             isValidated =false
         }else{
             binding.etConfirmPassword.error = null

@@ -100,9 +100,6 @@ class MainActivity : AppCompatActivity() {
                 if(it.isSuccessful){
                     val token = it.result
                     informationViewModel.getUser(firebaseAuth.uid!!,token,this)
-                    Log.e(TAG,"token : $token")
-                }else{
-                    Log.e(TAG,"token : FAIL")
                 }
             })
 

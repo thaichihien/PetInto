@@ -2,6 +2,7 @@ package com.mobye.petinto.ui.fragments
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentSignInBinding
@@ -28,7 +30,9 @@ import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.AuthenticationActivity
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.utils.Secret.WEB_CLIENT
+import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
@@ -41,6 +45,10 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         val activity = requireActivity() as AuthenticationActivity
         activity.dialog
     }
+    private val notiDialog : Dialog by lazy {
+        Utils.createNotificationDialog(requireContext())
+    }
+
     private val informationViewModel : InformationViewModel by activityViewModels {
         PetIntoViewModelFactory(InformationRepository())
     }
@@ -91,6 +99,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             btnSignUp.setOnClickListener {
                 findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
             }
+            etForgotPassword.setOnClickListener {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToResetPasswordFragment())
+            }
             btnSignUpGoogle.setOnClickListener {
                 oneTapClient.beginSignIn(signInRequest)
                     .addOnSuccessListener(requireActivity()) { result ->
@@ -111,17 +122,17 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private fun validate(): Boolean {
         var isValidated = true
         if(binding.etEmail.text.isBlank()){
-            binding.etEmail.error = "Please fill in a email"
+            binding.etEmail.error = getString(R.string.missing_email)
             isValidated = false
         }else if(!Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text).matches()){
-            binding.etEmail.error = "Please fill in a valid email"
+            binding.etEmail.error = getString(R.string.invalid_email)
             isValidated = false
         }else{
             binding.etEmail.error = null
         }
 
         if(binding.etPassword.text!!.isBlank()){
-            binding.etPassword.error = "Please fill in a name"
+            binding.etPassword.error = getString(R.string.missing_password)
             isValidated =false
         }else{
             binding.etPassword.error = null
@@ -133,7 +144,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private val getResult  = registerForActivityResult(
         ActivityResultContracts.StartIntentSenderForResult()
     ){
-        Log.e(TAG,"getResult : ${it.resultCode}")
+
         if(it.resultCode == Activity.RESULT_OK){
             try {
                 val credential = oneTapClient.getSignInCredentialFromIntent(it.data)
@@ -171,7 +182,10 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
 
                                 } else {
-                                    // If sign in fails, display a message to the user.
+
+
+
+
                                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                                     Toast.makeText(requireContext(),"Login error : ${task.exception}",
                                         Toast.LENGTH_SHORT).show()
@@ -194,11 +208,30 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         firebaseAuth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(requireActivity()){task ->
+                loadingDialog.dismiss()
                 if(task.isSuccessful){
-                    loadingDialog.dismiss()
+
                     goToMainActivity()
                 }else{
-                    // TODO show error
+
+                    val notiError = when((task.exception as FirebaseAuthException).errorCode){
+                        "ERROR_WRONG_PASSWORD" -> getString(R.string.incorrect_password)
+                        "ERROR_USER_NOT_FOUND" -> getString(R.string.not_found_account)
+                        "ERROR_INVALID_EMAIL" -> getString(R.string.invalid_email)
+                        else -> task.exception!!.message!!
+                    }
+
+                    notiDialog.changeToFail(notiError)
+//                    notiDialog.setOnCancelListener {
+//
+//                    }
+//                    notiDialog.setOnDismissListener {
+//
+//                    }
+                    notiDialog.show()
+
+
+
                     Log.e("SignIn",task.exception.toString())
                 }
             }

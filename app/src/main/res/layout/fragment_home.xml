@@ -216,13 +216,13 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/btnRabbit"
+
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
 
                             <ImageButton
-                                android:id="@+id/rabbit_img_btn"
+                                android:id="@+id/btnRabbit"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/rabbit" />
@@ -251,13 +251,13 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/btnBird"
+
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
 
                             <ImageButton
-                                android:id="@+id/bird_img_btn"
+                                android:id="@+id/btnBird"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bird" />
@@ -287,13 +287,13 @@
                         android:textAlignment="center">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/btnFish"
+
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             app:cardCornerRadius="50dp">
 
                             <ImageButton
-                                android:id="@+id/fish_img_btn"
+                                android:id="@+id/btnFish"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/fish" />
