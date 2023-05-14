@@ -39,6 +39,7 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 }
             }catch (e: Exception){
                 // no internet connection
+                bookingList.value = listOf()
                 Log.e(TAG,e.toString())
             }
         }
@@ -49,7 +50,10 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 val response = repository.sendBooking(booking)
                 this@ServiceViewModel.response.value = response.body()
             }catch (e: Exception){
-                // no internet connection
+
+                this@ServiceViewModel.response.value = ApiResponse(
+                    false,"No Internet Connection",e.toString(),null
+                )
                 Log.e(TAG,e.toString())
             }
         }
@@ -87,6 +91,9 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 this@ServiceViewModel.response.value = response.body()
             }catch (e: Exception){
                 // no internet connection
+                this@ServiceViewModel.response.value = ApiResponse(
+                    false,"No Internet Connection",e.toString(),null
+                )
                 Log.e(TAG,e.toString())
             }
         }
@@ -99,6 +106,9 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 this@ServiceViewModel.response.value = response.body()
             }catch (e: Exception){
                 // no internet connection
+                this@ServiceViewModel.response.value = ApiResponse(
+                    false,"No Internet Connection",e.toString(),null
+                )
                 Log.e(TAG,e.toString())
             }
         }
@@ -111,6 +121,9 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 this@ServiceViewModel.response.value = response.body()
             }catch (e: Exception){
                 // no internet connection
+                this@ServiceViewModel.response.value = ApiResponse(
+                    false,"No Internet Connection",e.toString(),null
+                )
                 Log.e(TAG,e.toString())
             }
         }

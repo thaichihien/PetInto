@@ -1,6 +1,8 @@
 package com.mobye.petinto.viewmodels
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -79,7 +81,7 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         = myPetList.value!![index]
 
 
-    fun getUser(id : String,token : String){
+    fun getUser(id : String,token : String,context : Context){
         // get user data by id from backend (id,email,name)
         viewModelScope.launch {
             try {
@@ -102,10 +104,12 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
                 }
 
             }catch (e : SocketTimeoutException){
+                Toast.makeText(context,"No Internet Connection",Toast.LENGTH_SHORT).show()
                 Log.e(TAG,e.toString())
             }
             catch (e: Exception){
                 // no internet connection
+                Toast.makeText(context,"No Internet Connection",Toast.LENGTH_SHORT).show()
                 Log.e(TAG,e.toString())
             }
         }

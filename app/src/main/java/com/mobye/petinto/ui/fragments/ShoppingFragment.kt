@@ -135,7 +135,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                 binding.refreshLayout.isRefreshing = false
             }
 
-            etSearchProduct.setOnKeyListener { v, keyCode, event ->
+            etSearchProduct.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     Log.e(TAG, "Enter button was pressed")
 

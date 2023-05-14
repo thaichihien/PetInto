@@ -34,7 +34,6 @@ class NotificationItemAdapter (
     var differ = AsyncListDiffer(this,differCallBack)
 
     inner class NotificationViewHolder : ViewHolder(binding.root){
-        fun setData(item: Notification){}
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {

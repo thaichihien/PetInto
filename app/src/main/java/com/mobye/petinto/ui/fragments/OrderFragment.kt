@@ -122,7 +122,7 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
                 layoutManager = GridLayoutManager(requireContext(), 2)
                 adapter = orderItemAdapter
             }
-            etSearchPet.setOnKeyListener { v, keyCode, event ->
+            etSearchPet.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
 
                     lifecycleScope.launch{

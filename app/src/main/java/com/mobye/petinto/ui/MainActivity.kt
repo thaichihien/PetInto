@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener {
                 if(it.isSuccessful){
                     val token = it.result
-                    informationViewModel.getUser(firebaseAuth.uid!!,token)
+                    informationViewModel.getUser(firebaseAuth.uid!!,token,this)
                     Log.e(TAG,"token : $token")
                 }else{
                     Log.e(TAG,"token : FAIL")
@@ -123,6 +124,7 @@ class MainActivity : AppCompatActivity() {
             // FCM SDK (and your app) can post notifications.
         } else {
             // TODO: Inform user that that your app will not show notifications.
+            Toast.makeText(this,"Notification required or your app will not show notifications",Toast.LENGTH_SHORT).show()
         }
     }
 

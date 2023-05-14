@@ -39,7 +39,7 @@ class PetIntoMessagingService : FirebaseMessagingService() {
             )
             NotificationDatabase.createNotification(notification)
 
-            showNotification(title!!,body!!,type!!)
+            showNotification(title,body,type)
         }
     }
 
