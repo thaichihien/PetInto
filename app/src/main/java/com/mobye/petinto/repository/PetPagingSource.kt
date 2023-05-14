@@ -5,7 +5,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.models.PetInfo
-
 class PetPagingSource(
     private val query : String,
     private val type: String,
@@ -35,7 +34,6 @@ class PetPagingSource(
                 prevKey = if(nextPage == ProductPagingSource.FIRST_PAGE) null else nextPage - 1,
                 nextKey = if(responseApi.body!!.isEmpty()) null else nextPage + 1
             )
-
         }catch (e: Exception){
             Log.e("PetPagingSource",e.toString())
             LoadResult.Error(e)

@@ -5,15 +5,12 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.models.Product
-import retrofit2.http.Query
 
 class ProductPagingSource(
     private val query : String,
     private val  min : String = "",
     private val  max : String = "",
     private val type : String = ""
-
-
 ) : PagingSource<Int, Product>() {
     companion object{
         const val FIRST_PAGE = 1

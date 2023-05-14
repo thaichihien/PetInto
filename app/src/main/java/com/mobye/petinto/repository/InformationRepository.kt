@@ -13,8 +13,6 @@ import retrofit2.Response
 
 class InformationRepository :IRepository {
 
-
-
     suspend fun sendUser(user: Customer) : Response<ApiResponse<Any>>
         = RetrofitInstance.api.sendUser(user)
 
@@ -60,7 +58,6 @@ class InformationRepository :IRepository {
     suspend fun getDefaultDeliveryAddress(id : String)
         = AccountInfoDatabase.getDefaultDeliveryAddress(id)
 
-
     //Pet
     suspend fun getPetList(id: String)
         = AccountInfoDatabase.getPetList(id)
@@ -73,7 +70,6 @@ class InformationRepository :IRepository {
         AccountInfoDatabase.deletePet(petInfo)
     }
 
-
     suspend fun getOrderHistory(id: String)
         = RetrofitInstance.api.getOrderHistory(id)
 
@@ -82,5 +78,4 @@ class InformationRepository :IRepository {
 
     suspend fun sendReport(report: Report)
         = RetrofitInstance.api.sendReport(report)
-
 }
