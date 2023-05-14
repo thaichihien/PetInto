@@ -6,7 +6,6 @@ import io.realm.kotlin.types.RealmUUID
 import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
-
 @Parcelize
 class PetInfo (
     var id : String = "",

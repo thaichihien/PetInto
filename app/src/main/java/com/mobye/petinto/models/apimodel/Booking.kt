@@ -2,7 +2,6 @@ package com.mobye.petinto.models.apimodel
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-
 @Parcelize
 class Booking(
     var id : String = "",
