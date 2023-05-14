@@ -25,7 +25,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     val user : MutableLiveData<Customer> by lazy { MutableLiveData() }
     val responseAPI : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
 
-
     //Payment
     val customerPickup : MutableLiveData<CustomerPickup?> by lazy { MutableLiveData(null) }
     val deliveryList : MutableLiveData<List<DeliveryInfo>> by lazy { MutableLiveData(listOf()) }
@@ -39,9 +38,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
 
     //History Pet
     val orderPetHistoryList : MutableLiveData<List<PetOrderHistory>> by lazy { MutableLiveData(listOf()) }
-
-
-
 
     fun getPetList(){
         viewModelScope.launch() {
@@ -88,8 +84,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         viewModelScope.launch {
             try {
                 val tokenSend = mapOf<String,String>(Pair("token",token))
-
-
                 val response = repository.getUser(id,tokenSend)
                 if(response.isSuccessful){
                     val userFromBE = response.body()!!.body!!
@@ -100,7 +94,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
                         repository.saveUserLocal(userFromBE)
                         this@InformationViewModel.user.value = userFromBE
                     }
-
                 }else{
                     //505 server error
                     this@InformationViewModel.responseAPI.value = ApiResponse.convertToAny(response.body()!!)
@@ -116,7 +109,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
                 Log.e(TAG,e.toString())
             }
         }
-
     }
 
     fun getUserID() = user.value!!.id
@@ -124,7 +116,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
     fun clearUser(){
         user.value = null
     }
-
 
     // Send user data to database
     fun sendUser(user: Customer){
@@ -150,7 +141,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
             }
         }
     }
-
 
     fun getCustomerPickup(){
         viewModelScope.launch {
@@ -253,7 +243,6 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
         }
     }
 
-
     fun sendReport(commentReport : String){
         viewModelScope.launch {
             try {
@@ -275,6 +264,4 @@ class InformationViewModel(val repository: InformationRepository) : ViewModel(){
             }
         }
     }
-
-
 }

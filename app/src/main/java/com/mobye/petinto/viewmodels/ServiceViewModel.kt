@@ -28,7 +28,6 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
 
     val hotelCost : MutableLiveData<Int> by lazy { MutableLiveData(0) }
 
-
     fun getBookingHistory(id : String){
         viewModelScope.launch {
             try {
@@ -38,7 +37,6 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 }else{
                     Log.e("ServiceViewModel",response.error)
                 }
-
             }catch (e: Exception){
                 // no internet connection
                 Log.e(TAG,e.toString())
@@ -74,7 +72,6 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
             this.phone = customerPickup.phone
             this.charge = charge
         }
-
         return booking
     }
 
@@ -84,7 +81,6 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
             this.payment = payment
             this.note = note
         }
-
         viewModelScope.launch {
             try {
                 val response = repository.sendPaymentBooking(booking)
@@ -94,7 +90,6 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
                 Log.e(TAG,e.toString())
             }
         }
-
     }
 
     fun destroyBooking(booking: Booking){
@@ -121,8 +116,6 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
         }
     }
 
-
-
     fun calculateHotelCost(isVIP : Boolean){
         if(checkDateValid()){
             val millionSeconds = checkOut.time - checkIn.time
@@ -131,13 +124,9 @@ class ServiceViewModel(private val repository: ServiceRepository) : ViewModel() 
             hotelCost.value = cost.toInt()
         }
     }
-
     fun clearHotelCost(){
         hotelCost.value = 0
     }
 
-    fun checkDateValid()
-        = checkOut.time >= checkIn.time
-
-
+    fun checkDateValid() = checkOut.time >= checkIn.time
 }

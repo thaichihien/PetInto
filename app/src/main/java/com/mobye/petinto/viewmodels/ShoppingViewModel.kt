@@ -3,11 +3,7 @@ package com.mobye.petinto.viewmodels
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.mobye.petinto.models.*
 import com.mobye.petinto.models.apimodel.*
@@ -33,15 +29,12 @@ class ShoppingViewModel(
     //PaymentFragment
     val response : MutableLiveData<ApiResponse<Any>> by lazy { MutableLiveData() }
 
-
     val shopOrderList :MutableLiveData<List<PetInfo>> by lazy { MutableLiveData(listOf()) }
-
 
     //Filter
      var min : String = ""
      var max : String = ""
      var type : String = ""
-
 
     //Pet filter
     var typePet: String = ""
@@ -51,14 +44,10 @@ class ShoppingViewModel(
      var minAge : String = ""
      var maxAge : String = ""
 
-
-
     val productItemList = searchQuery.flatMapLatest {query ->
-
         repository.getProductSource(query,min,max,type)
             .cachedIn(viewModelScope)
     }
-
     fun searchProduct(query : String){
         searchQuery.value = query
     }
@@ -67,7 +56,6 @@ class ShoppingViewModel(
         this.min = min
         this.max = max
         this.type = type
-
     }
 
     fun clearFilter(){
@@ -103,7 +91,6 @@ class ShoppingViewModel(
         petSearchQuery.value = query
     }
 
-
     fun getCartItems(){
         viewModelScope.launch {
             cartItemList.value = repository.getAllCartItems()
@@ -116,8 +103,6 @@ class ShoppingViewModel(
         }
     }
 
-
-
     private fun cartListToPayment(){
         val paymentList = mutableListOf<CartItem>()
         for(cartItem in cartItemList.value!!){
@@ -125,7 +110,6 @@ class ShoppingViewModel(
                 paymentList.add(cartItem)
             }
         }
-
         paymentItemList.value = paymentList
     }
 
@@ -139,7 +123,6 @@ class ShoppingViewModel(
                 repository.saveCartItem(newCartItem)
             }
         }
-
         cartItemList.value = cartList
     }
 
@@ -151,7 +134,6 @@ class ShoppingViewModel(
                 viewModelScope.launch{
                     repository.saveCartItem(cartItem)
                 }
-
                 return true
             }
         }
@@ -164,7 +146,6 @@ class ShoppingViewModel(
         viewModelScope.launch{
             repository.deleteCartItem(itemRemove)
         }
-
         cartItemList.value = cartList
     }
 
@@ -178,10 +159,7 @@ class ShoppingViewModel(
             }
         }
         // TODO deal with stock
-
-
         cartItemList.value = cartList
-
     }
 
     fun changeTotal(index : Int,isAdded: Boolean){
@@ -219,8 +197,6 @@ class ShoppingViewModel(
             cartItem.selected = yes
             total.value = total.value!! + (cartItem.item!!.price * cartItem.quantity)
         }
-
-
         cartItemList.value = cartList
     }
 
@@ -230,7 +206,6 @@ class ShoppingViewModel(
         for(cartItem in cartList){
            if(!cartItem.selected) return false
         }
-
         return true
     }
 
@@ -311,7 +286,6 @@ class ShoppingViewModel(
         cartItemList.value = cart
     }
 
-
     fun createPetOrder(id : String,customerPickup: CustomerPickup,deliveryInfo: DeliveryInfo,
                            isdelivery : Boolean,note : String,paymentMethod : String, petID: String) : PetOrder{
         val order: PetOrder?
@@ -329,7 +303,6 @@ class ShoppingViewModel(
 
         return order
     }
-
     fun sendPetOrder(order: PetOrder){
         viewModelScope.launch {
             try {
@@ -341,7 +314,5 @@ class ShoppingViewModel(
             }
         }
     }
-
-
 
 }

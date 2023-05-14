@@ -2,15 +2,12 @@ package com.mobye.petinto.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.mobye.petinto.models.Advertisement
-import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.Notification
 import com.mobye.petinto.repository.HomeRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
@@ -51,6 +48,4 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
         }
         notificationList.value = listOf()
     }
-
-
 }
