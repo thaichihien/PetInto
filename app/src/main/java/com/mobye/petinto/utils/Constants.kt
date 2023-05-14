@@ -16,7 +16,5 @@ class Constants {
             "Tất cả",
             "Male","Female","Bigender","Polygender"
         )
-
-
     }
 }

@@ -35,7 +35,6 @@ class Utils {
         fun formatMoneyVND(amount : Int) : String
             = "%,d đ".format(amount)
 
-
         fun getLoadingDialog(activity: Activity)
                 = (activity as MainActivity).dialog
 
@@ -63,7 +62,6 @@ class Utils {
             }
             return builder.create()
         }
-
 
         fun getProductTypeIndex(type : String) : Int
             = when(type){

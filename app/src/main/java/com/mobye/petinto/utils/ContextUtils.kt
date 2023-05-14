@@ -9,7 +9,6 @@ import android.os.LocaleList
 import java.util.*
 
 class ContextUtils(base: Context) : ContextWrapper(base) {
-
     companion object {
         fun updateLocale(c: Context, localeToSwitchTo: Locale): ContextWrapper {
             var context = c
