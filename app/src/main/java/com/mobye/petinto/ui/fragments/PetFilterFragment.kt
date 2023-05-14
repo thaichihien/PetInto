@@ -9,16 +9,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentPetFilterBinding
-import com.mobye.petinto.databinding.FragmentProductFilterBinding
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.utils.Constants
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-
 
 class PetFilterFragment : Fragment() {
     private var _binding : FragmentPetFilterBinding? = null
@@ -75,16 +72,9 @@ class PetFilterFragment : Fragment() {
                     applyFilter()
                     findNavController().popBackStack()
                 }
-
             }
-
-
         }
-
-
         fillFilter()
-
-
     }
 
     private fun validate(): Boolean {
@@ -102,7 +92,6 @@ class PetFilterFragment : Fragment() {
                     }else{
                         etMin.error = null
                         etMax.error = null
-
                     }
                 }
 
@@ -117,11 +106,8 @@ class PetFilterFragment : Fragment() {
                     }else{
                         etMinAge.error = null
                         etMaxAge.error = null
-
                     }
                 }
-
-
                 true
             }
 
@@ -129,7 +115,6 @@ class PetFilterFragment : Fragment() {
             Toast.makeText(requireContext(),"Please enter an integer value",Toast.LENGTH_SHORT).show()
             false
         }
-
     }
 
     private fun applyFilter() {
@@ -139,13 +124,11 @@ class PetFilterFragment : Fragment() {
             }else{
                 spType.selectedItem.toString()
             }
-
             val gender = if(spGender.selectedItemPosition == 0){
                 ""
             }else{
                 spGender.selectedItem.toString()
             }
-
             shoppingViewModel.applyPetFilter(
                 type,gender,
                 etMinAge.text.toString().trim(),
@@ -166,7 +149,6 @@ class PetFilterFragment : Fragment() {
             etMinAge.setText("")
         }
     }
-
     private fun fillFilter() {
         binding.apply {
             spType.setSelection(Utils.getProductTypeIndex(shoppingViewModel.typePet))
@@ -177,11 +159,4 @@ class PetFilterFragment : Fragment() {
             etMaxAge.setText(shoppingViewModel.maxAge)
         }
     }
-
-
-
-
-
-
-
 }

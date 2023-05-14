@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentHotelBinding
 import com.mobye.petinto.databinding.FragmentReportBinding
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.MainActivity
@@ -20,7 +18,6 @@ import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class ReportFragment : Fragment() {
 
     private var _binding : FragmentReportBinding? = null
@@ -29,10 +26,8 @@ class ReportFragment : Fragment() {
     private val informationViewModel : InformationViewModel by activityViewModels {
         PetIntoViewModelFactory(InformationRepository())
     }
-
     private val loadingDialog : AlertDialog by lazy { Utils.getLoadingDialog(requireActivity()) }
     private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext()) }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,7 +56,6 @@ class ReportFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-
     }
 
     private fun sendReport() {
@@ -95,18 +89,10 @@ class ReportFragment : Fragment() {
                     notiDialog.show()
                 }
             }
-
-
-
-
-
-
         }
     }
 
     private fun validate(): Boolean {
         return binding.etReport.text.isNotBlank()
     }
-
-
 }

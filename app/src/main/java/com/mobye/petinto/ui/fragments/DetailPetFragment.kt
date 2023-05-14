@@ -10,10 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentDetailBinding
 import com.mobye.petinto.databinding.FragmentDetailPetBinding
 import com.mobye.petinto.ui.MainActivity
-
 
 class DetailPetFragment : Fragment(R.layout.fragment_detail_pet) {
 
@@ -57,7 +55,6 @@ class DetailPetFragment : Fragment(R.layout.fragment_detail_pet) {
                 findNavController().popBackStack()
             }
         }
-
     }
 
     override fun onResume() {
@@ -72,10 +69,8 @@ class DetailPetFragment : Fragment(R.layout.fragment_detail_pet) {
         Log.e(DEBUG_TAG,"onStart")
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

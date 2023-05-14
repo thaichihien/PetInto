@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentBookingPaymentBinding
-import com.mobye.petinto.databinding.FragmentReportBinding
 import com.mobye.petinto.repository.ServiceRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
@@ -22,7 +21,6 @@ import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
-
 
 class BookingPaymentFragment : Fragment() {
 
@@ -74,10 +72,6 @@ class BookingPaymentFragment : Fragment() {
                 cancelBooking()
             }
         }
-
-
-
-
     }
 
     private fun cancelBooking() {
@@ -113,7 +107,6 @@ class BookingPaymentFragment : Fragment() {
                     notiDialog.changeToSuccess(getString(R.string.success_hotel_booking))
                 }
 
-
                 notiDialog.show()
 
                 notiDialog.setOnCancelListener {
@@ -122,7 +115,6 @@ class BookingPaymentFragment : Fragment() {
                 notiDialog.setOnDismissListener {
                     findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
                 }
-
 
             }else{
                 notiDialog.changeToFail(response.reason)
@@ -135,7 +127,6 @@ class BookingPaymentFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun validate(): Boolean {
@@ -151,7 +142,6 @@ class BookingPaymentFragment : Fragment() {
 
             return isValidated
         }
-
     }
 
     private fun fillFields() {
@@ -179,9 +169,6 @@ class BookingPaymentFragment : Fragment() {
                 cancelBooking()
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
-
-
 }

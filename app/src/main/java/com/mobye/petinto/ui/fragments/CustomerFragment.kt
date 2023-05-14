@@ -15,7 +15,6 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class CustomerFragment : Fragment(R.layout.fragment_customer) {
 
     private var _binding : FragmentCustomerBinding? = null
@@ -23,7 +22,6 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
     private val informationViewModel : InformationViewModel by activityViewModels{
         PetIntoViewModelFactory(InformationRepository())
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,9 +51,6 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
                 }
             }
         }
-
-
-
     }
 
     private fun validate(): Boolean {
@@ -66,14 +61,12 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
         }else{
             binding.etName.error = null
         }
-
         if(binding.etPhone.text.isBlank()){
             binding.etPhone.error = "Please provide a phone number"
             isValidated  = false
         }else{
             binding.etPhone.error = null
         }
-
         return isValidated
     }
 
@@ -94,6 +87,5 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
             if(customerPickup.phone.isNotBlank()) etPhone.setText(customerPickup.phone)
         }
     }
-
 
 }

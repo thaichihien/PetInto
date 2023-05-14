@@ -1,12 +1,9 @@
 package com.mobye.petinto.ui.fragments
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -35,15 +32,12 @@ import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import kotlinx.coroutines.launch
-import java.util.*
-
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     val DEBUG_TAG = "ProfileFragment"
     private var _binding : FragmentProfileBinding? = null
     private val binding get() = _binding!!
-
 
     private lateinit var carouselAdapter: CarouselAdapter
 
@@ -56,9 +50,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             logout()
         }
     }
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -112,20 +103,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.option_english -> {
-//                            val preferences = binding.root.context.getSharedPreferences(
-//                                "", Context.MODE_PRIVATE);
-//                            setLocale("eng")
-//                            preferences.edit().putString("lang", "eng").commit()
                             lifecycleScope.launch{
                                 (requireActivity() as MainActivity).saveLocale("en-EN",requireContext())
                             }
                             true
                         }
                         R.id.option_vietnamese -> {
-//                            val preferences = binding.root.context.getSharedPreferences(
-//                                "", Context.MODE_PRIVATE);
-//                            setLocale("vi")
-//                            preferences.edit().putString("lang", "vi").commit()
                             lifecycleScope.launch{
                                 (requireActivity() as MainActivity).saveLocale("vi",requireContext())
                             }
@@ -167,8 +150,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 informationViewModel.deletePet(petInfo,i)
             })
 
-//        carouselViewModel.getOrderList()
-
         informationViewModel.user.observe(viewLifecycleOwner){
             informationViewModel.getPetList()
         }
@@ -197,8 +178,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-
-
     override fun onResume() {
         super.onResume()
         val activity = activity as MainActivity
@@ -209,16 +188,4 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onDestroyView()
         _binding = null
     }
-
-//    fun setLocale(lang: String?) {
-//        var myLocale = Locale(lang)
-//        val res: Resources = resources
-//        val dm: DisplayMetrics = res.getDisplayMetrics()
-//        val conf: Configuration = res.getConfiguration()
-//        conf.locale = myLocale
-//        res.updateConfiguration(conf, dm)
-//        val refresh = Intent(requireContext(), MainActivity::class.java)
-//        startActivity(refresh)
-//        requireActivity().finish()
-//    }
 }

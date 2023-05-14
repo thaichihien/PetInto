@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,7 +22,6 @@ import com.mobye.petinto.utils.Constants
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.*
 import java.util.*
-
 
 class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
     private var _binding : FragmentOrderPaymentBinding? = null
@@ -109,29 +106,22 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
             tvDeliveryFee.text = Utils.formatMoneyVND(shippingFee)
             tvTotalAmount.text = Utils.formatMoneyVND(shoppingViewModel.total.value!!)
 
-
-
             btnBack.setOnClickListener {
                 backToShopping()
             }
         }
-
-
     }
 
     private fun clearOrder(){
         //TODO clear cart list with item in payment list
         shoppingViewModel.clearCartAfterPayment()
-        //reset total
         shoppingViewModel.resetTotal()
-        //force refresh shopping ?
     }
 
     private fun backToShopping(){
         clearOrder()
         findNavController().popBackStack(R.id.shoppingFragment,false)
     }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -140,9 +130,6 @@ class OrderPaymentFragment : Fragment(R.layout.fragment_order_payment) {
                 backToShopping()
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
-
-
 }

@@ -1,19 +1,12 @@
 package com.mobye.petinto.ui.fragments
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities.*
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnKeyListener
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,21 +15,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.ProductItemAdapter
-import com.mobye.petinto.adapters.ShoppingItemAdapter
-import com.mobye.petinto.api.RetrofitInstance
 import com.mobye.petinto.databinding.FragmentShoppingBinding
-import com.mobye.petinto.models.Product
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
 
 class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
@@ -49,9 +36,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
 
     private lateinit var productAdapter : ProductItemAdapter
 
-
     private var firstTimeLoad = true
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,11 +47,8 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         return binding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         productAdapter = ProductItemAdapter(
             {
@@ -78,9 +60,7 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                 shoppingViewModel.addToCart(item,quantity)
             }
         )
-
         shoppingViewModel.getCartItems()
-
 
         if(shoppingViewModel.lostNetwork && (requireActivity() as MainActivity).hasInternetConnection()){
             Log.e("RETRY_SHOPPING","yes")
@@ -97,7 +77,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
         lifecycleScope.launchWhenCreated {
             productAdapter.loadStateFlow.collect{loadState ->
                 binding.loadingBar.isVisible = loadState.source.append is LoadState.Loading
-                //binding.refreshLayout.isRefreshing = loadState.source.append is LoadState.Loading
             }
         }
 
@@ -111,7 +90,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                         startShimmer()
                     }
                 }
-
 
             }else{
                 if(firstTimeLoad){
@@ -138,7 +116,6 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             }
         }
 
-
         binding.apply {
             rvShoppingItem.apply {
                 layoutManager = GridLayoutManager(requireContext(),2)
@@ -154,13 +131,8 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
             refreshLayout.setOnRefreshListener {
                 if((requireActivity() as MainActivity).hasInternetConnection()){
                     productAdapter.retry()
-                    //productAdapter.refresh()
-
-                }else{
-
-                }
+                }else{}
                 binding.refreshLayout.isRefreshing = false
-
             }
 
             etSearchProduct.setOnKeyListener { v, keyCode, event ->
@@ -170,47 +142,24 @@ class ShoppingFragment : Fragment(R.layout.fragment_shopping) {
                     lifecycleScope.launch{
                         productAdapter.submitData(PagingData.empty())
                         productAdapter.notifyDataSetChanged()
-//                        binding.loadingLayout.apply {
-//                            isVisible =true
-//                            startShimmer()
-//                        }
                         shoppingViewModel.searchProduct(binding.etSearchProduct.text.toString().trim())
                     }
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener false
-
             }
-
         }
-
     }
-
-
-
 
     override fun onResume() {
         super.onResume()
         val activity = activity as MainActivity
         activity.showBottomNav()
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//
-//        val callback = object : OnBackPressedCallback(true){
-//            override fun handleOnBackPressed() {
-//                //NOTHING
-//            }
-//        }
-//
-//        requireActivity().onBackPressedDispatcher.addCallback(this,callback)
-//    }
 }

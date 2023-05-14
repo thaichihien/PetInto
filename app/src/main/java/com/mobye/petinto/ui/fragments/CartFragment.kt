@@ -20,7 +20,6 @@ import com.mobye.petinto.viewmodels.ShoppingViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private var _binding : FragmentCartBinding? = null
@@ -69,7 +68,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 shoppingViewModel.changeTotal(index,amount)
             }
         )
-        //cartItemAdapter.differ.submitList(shoppingViewModel.cartItemList.value)
+
         shoppingViewModel.cartItemList.observe(viewLifecycleOwner) {
             cartItemAdapter.differ.submitList(it)
         }
@@ -91,13 +90,10 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                         cartItemAdapter.notifyDataSetChanged()
                     }
                 }
-                setNegativeButton("No") { _, _ ->
-                    //nothing
-                }
+                setNegativeButton("No") { _, _ ->}
                 builder.create()
             }
         }
-
 
         binding.apply {
             rvCartItem.apply {
@@ -122,21 +118,15 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 lifecycleScope.launch(Dispatchers.Main){
                     cartItemAdapter.notifyDataSetChanged()
                 }
-
             }
 
             btnBuyCart.setOnClickListener {
-
                 if(validate()){
                     val action = CartFragmentDirections.cartFragmentToPaymentFragment()
                     findNavController().navigate(action)
                 }
-
-
             }
-
         }
-
     }
 
     private fun validate(): Boolean {
@@ -147,7 +137,6 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             // TODO show network error
         }
 
-
         if(!shoppingViewModel.isCartHaveSelected()){
             // TODO show error should choose at least one item
             isValidated = false
@@ -155,11 +144,8 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         return isValidated
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

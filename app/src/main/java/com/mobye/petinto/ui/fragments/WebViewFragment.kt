@@ -8,16 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
-import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentDeliveryAddressBinding
 import com.mobye.petinto.databinding.FragmentWebViewBinding
 import com.mobye.petinto.ui.MainActivity
-
 
 class WebViewFragment : Fragment(R.layout.fragment_web_view) {
 

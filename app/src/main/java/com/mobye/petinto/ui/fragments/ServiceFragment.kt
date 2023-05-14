@@ -5,15 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.ServiceViewPagerAdapter
-import com.mobye.petinto.databinding.FragmentOrderPaymentBinding
 import com.mobye.petinto.databinding.FragmentServiceBinding
 import com.mobye.petinto.ui.MainActivity
-
 
 class ServiceFragment : Fragment(R.layout.fragment_service) {
 
@@ -36,7 +32,6 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
         _binding = null
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (requireActivity() as MainActivity).showBottomNav()
 
@@ -54,17 +49,12 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
         binding.apply {
             serviceViewPager.adapter = viewPagerAdapter
         }
-
         tabLayoutMediator.attach()
-
     }
 
     override fun onResume() {
         super.onResume()
         val activity = activity as MainActivity
         activity.showBottomNav()
-
     }
-
-
 }

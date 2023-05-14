@@ -20,7 +20,6 @@ import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     val DEBUG_TAG = "AddPetFragment"
     private var _binding : FragmentAddPetBinding? = null
@@ -39,8 +38,6 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     private var newPet : PetInfo = PetInfo()
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        // Callback is invoked after the user selects a media item or closes the
-        // photo picker.
         if (uri != null) {
             Glide.with(binding.root)
                 .load(uri)
@@ -51,7 +48,6 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
             Log.d("PhotoPicker", "No media selected")
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(DEBUG_TAG,"onCreate")
@@ -62,7 +58,6 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
             currentIndex = args.indexCurrentPet
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,17 +67,14 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         _binding = FragmentAddPetBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.e(DEBUG_TAG,"onViewCreated")
-
 
         binding.apply {
             imgAvatar.setOnClickListener {
                 pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             }
-
             btnAdd.setOnClickListener {
                 val newPet = createPet()
 
@@ -90,13 +82,10 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
                     carouselViewModel.updatePet(newPet,currentIndex)
                 }
                 else{
-
                     carouselViewModel.addPet(newPet)
                 }
-
                 findNavController().popBackStack()
             }
-
         }
 
         if(isEditing){
@@ -150,7 +139,6 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
                 id = currentPet.id
             }
         }
-
         return newPet
     }
 

@@ -10,32 +10,23 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentHotelBinding
-import com.mobye.petinto.databinding.FragmentShoppingBinding
-import com.mobye.petinto.databinding.FragmentSpaBinding
 import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ServiceRepository
-import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
-import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
-import com.mobye.petinto.viewmodels.ShoppingViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class HotelFragment : Fragment(R.layout.fragment_hotel) {
 
@@ -55,7 +46,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
     }
     private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext())}
 
-    //Cai dat ViewBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,7 +59,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
         super.onDestroy()
         _binding = null
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -91,7 +80,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
                 }
             }
         }
-
 
         informationViewModel.myPetList.observe(viewLifecycleOwner){pets ->
             // TODO nap danh sach pet vao spinner pet su dung bien pets
@@ -150,14 +138,11 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             }
         }
 
-
         serviceViewModel.hotelCost.observe(viewLifecycleOwner){
             if(checkDateIsNotEmpty()){
                 binding.tvTotalCost.text = Utils.formatMoneyVND(it)
             }
         }
-
-
 
         binding.apply {
             btnEdit.setOnClickListener{
@@ -170,7 +155,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             etToDate.setOnClickListener {
                 toDatePicker.show(parentFragmentManager,"TO")
             }
-
 
             bookingBtn.setOnClickListener {
                 if(validate()){
@@ -188,11 +172,7 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             deleteBtn.setOnClickListener {
                 clearService()
             }
-
         }
-
-
-
     }
 
     private fun clearService() {
@@ -234,7 +214,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             charge = serviceViewModel.hotelCost.value as Int
         )
 
-
         serviceViewModel.sendBooking(booking)
 
         serviceViewModel.response.observe(viewLifecycleOwner) { response ->
@@ -256,7 +235,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
                 }
             }
         }
-
     }
 
     private fun getRoomType() : String{
@@ -302,10 +280,6 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
             Toast.makeText(requireContext(),getString(R.string.invalid_booking_date),Toast.LENGTH_SHORT)
                 .show()
         }
-
         return isValid
     }
-
-
-
 }

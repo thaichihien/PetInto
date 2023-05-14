@@ -3,14 +3,12 @@ package com.mobye.petinto.ui.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
@@ -28,8 +26,6 @@ import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class PaymentFragment : Fragment(R.layout.fragment_payment) {
@@ -49,8 +45,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     }
     private val notiDialog : Dialog by lazy { Utils.createNotificationDialog(requireContext())}
 
-
-
     private lateinit var paymentItemAdapter: PaymentItemAdapter
 
     override fun onCreateView(
@@ -61,8 +55,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         _binding = FragmentPaymentBinding.inflate(layoutInflater)
         return binding.root
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -122,7 +114,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 }
             }
 
-
             // Khi nhan nut mua
             btnPurchase.setOnClickListener {
                 if(validatePayment()){
@@ -155,12 +146,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             // response.result = true khi thanh cong
             if(response.result){
 
-
                 notiDialog.changeToSuccess(getString(R.string.success_order))
                 notiDialog.show()
 
                 val orderID = response.body.toString()
-
 
                 notiDialog.setOnDismissListener {
                     findNavController()
@@ -175,8 +164,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                         ))
                 }
 
-
-
             }else{
                 notiDialog.changeToFail(getString(R.string.failed_order))
                 notiDialog.show()
@@ -188,9 +175,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 }
             }
         }
-
-
-
     }
 
     private fun validatePayment(): Boolean {
@@ -214,7 +198,6 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
             isEmptyChoice = true
             Toast.makeText(requireContext(),getString(R.string.missing_delivery_address),Toast.LENGTH_SHORT).show()
         }
-
         return !isEmptyChoice
     }
 
@@ -222,5 +205,4 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         super.onDestroy()
         _binding = null
     }
-
 }

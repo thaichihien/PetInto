@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.mobye.petinto.R
-import com.mobye.petinto.adapters.OrderViewPagerAdapter
-import com.mobye.petinto.databinding.FragmentOrderHistoryBinding
 import com.mobye.petinto.databinding.FragmentProductFilterBinding
 import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
@@ -26,7 +23,6 @@ class ProductFilterFragment : Fragment() {
     private val shoppingViewModel : ShoppingViewModel by activityViewModels {
         PetIntoViewModelFactory(ShoppingRepository())
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,12 +31,10 @@ class ProductFilterFragment : Fragment() {
         _binding = FragmentProductFilterBinding.inflate(layoutInflater)
         return binding.root
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (requireActivity() as MainActivity).hideBottomNav()
 
@@ -49,7 +43,6 @@ class ProductFilterFragment : Fragment() {
             android.R.layout.simple_spinner_dropdown_item,
             Constants.productTypeList
         )
-
         binding.apply {
             spType.adapter = typeListAdapter
 
@@ -66,13 +59,8 @@ class ProductFilterFragment : Fragment() {
                     applyFilter()
                     findNavController().popBackStack()
                 }
-
             }
-
-
         }
-
-
         fillFilter()
     }
 
@@ -92,7 +80,6 @@ class ProductFilterFragment : Fragment() {
                 }
             }
 
-
             true
         }catch (e : Exception){
             binding.apply {
@@ -101,7 +88,6 @@ class ProductFilterFragment : Fragment() {
             }
             false
         }
-
     }
 
     private fun applyFilter() {
@@ -111,7 +97,6 @@ class ProductFilterFragment : Fragment() {
             }else{
                 spType.selectedItem.toString()
             }
-
             shoppingViewModel.applyFilter(
                 etMin.text.toString().trim(),
                 etMax.text.toString().trim(),
@@ -135,6 +120,4 @@ class ProductFilterFragment : Fragment() {
             etMax.setText(shoppingViewModel.max)
         }
     }
-
-
 }

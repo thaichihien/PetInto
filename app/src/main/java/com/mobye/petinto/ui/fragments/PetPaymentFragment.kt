@@ -10,12 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.FragmentDetailBinding
 import com.mobye.petinto.databinding.FragmentPetPaymentBinding
 import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.models.DeliveryInfo
@@ -26,8 +24,6 @@ import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
@@ -58,7 +54,6 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
         _binding = FragmentPetPaymentBinding.inflate(inflater,container,false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -105,10 +100,7 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
                 binding.tvDeliveryAddress.text = it.address
             }
         }
-
     }
-
-
 
     private fun sendPurchaseOrder() {
         val order = shoppingViewModel.createPetOrder(
@@ -149,7 +141,6 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
                     ))
                 }
 
-
                 // response.result = false
             } else {
                 notiDialog.changeToFail(getString(R.string.failed_order))
@@ -179,13 +170,11 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
         }else{
             binding.rbMomo.error = null
         }
-
         if(informationViewModel.deliveryAddressInfo == null &&
             binding.rbDoor.isChecked){
             isEmptyChoice = true
             Toast.makeText(requireContext(),getString(R.string.missing_delivery_address), Toast.LENGTH_SHORT).show()
         }
-
         return !isEmptyChoice
     }
 

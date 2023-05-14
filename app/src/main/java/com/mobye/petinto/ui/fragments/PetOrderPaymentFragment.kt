@@ -15,19 +15,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
-import com.mobye.petinto.adapters.PaymentItemAdapter
-import com.mobye.petinto.databinding.FragmentOrderPaymentBinding
 import com.mobye.petinto.databinding.FragmentPetOrderPaymentBinding
 import com.mobye.petinto.models.PetInfo
 import com.mobye.petinto.repository.InformationRepository
-import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.utils.Constants.Companion.SHIPPING_FEE
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
-import com.mobye.petinto.viewmodels.ShoppingViewModel
 import java.util.*
-
 
 class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
     private var _binding : FragmentPetOrderPaymentBinding? = null
@@ -78,9 +73,6 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
                 binding.tvCustomerInformation.text = it.toString()
             }
         }
-
-
-
         if(args.isDelivery){
             informationViewModel.getDefaultDeliveryAddress(informationViewModel.getUserID())
             informationViewModel.defaultDeliveryAddress.observe(viewLifecycleOwner){
@@ -96,7 +88,6 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
         currentTime.add(Calendar.DATE,3)
         val shipmentDate = formatter.format(currentTime.time)
         val shippingFee = if(args.isDelivery) SHIPPING_FEE else 0
-
 
         binding.apply {
             tvOrderID.text = args.orderID
@@ -114,7 +105,6 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
             tvDeliveryFee.text = "%,d đ".format(shippingFee)
             tvTotalAmount.text = "%,d đ".format(petPayment.price + shippingFee)
 
-
             Glide.with(root)
                 .load(petPayment.image)
                 .placeholder(R.drawable.logo_chat)
@@ -123,12 +113,10 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
                 backToShopping()
             }
 
-
             btnSave.setOnClickListener {
                 warningDialg.show()
             }
         }
-
     }
 
     private fun saveToLocal() {
@@ -138,7 +126,6 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 backToShopping()
@@ -146,5 +133,4 @@ class PetOrderPaymentFragment : Fragment(R.layout.fragment_pet_order_payment) {
         }
         requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
-
 }

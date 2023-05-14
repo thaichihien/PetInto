@@ -9,19 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mobye.petinto.R
-import com.mobye.petinto.adapters.CartItemAdapter
 import com.mobye.petinto.adapters.NotificationItemAdapter
-import com.mobye.petinto.databinding.FragmentCartBinding
 import com.mobye.petinto.databinding.FragmentNotificationBinding
 import com.mobye.petinto.repository.HomeRepository
-import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.HomeViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
-import com.mobye.petinto.viewmodels.ShoppingViewModel
-
 
 class NotificationFragment : Fragment() {
 
@@ -40,7 +34,6 @@ class NotificationFragment : Fragment() {
             clearNotification()
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,8 +78,6 @@ class NotificationFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-
-
     }
 
     private fun handleNotification(type: String) {
@@ -106,5 +97,4 @@ class NotificationFragment : Fragment() {
     private fun clearNotification(){
         homeViewModel.clearAllNotification()
     }
-
 }

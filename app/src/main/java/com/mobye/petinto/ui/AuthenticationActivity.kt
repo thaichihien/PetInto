@@ -2,10 +2,7 @@ package com.mobye.petinto.ui
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.firebase.auth.FirebaseAuth
@@ -13,7 +10,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ActivityAuthenticationBinding
-
 
 class AuthenticationActivity : AppCompatActivity() {
 
@@ -24,7 +20,6 @@ class AuthenticationActivity : AppCompatActivity() {
         .setView(R.layout.loading_dialog)
         .create()
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
@@ -39,9 +34,5 @@ class AuthenticationActivity : AppCompatActivity() {
             gotoLoginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(gotoLoginIntent)
         }
-
-
     }
-
-
 }

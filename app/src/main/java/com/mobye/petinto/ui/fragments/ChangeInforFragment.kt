@@ -19,16 +19,6 @@ import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ChangeInforFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
 
     val DEBUG_TAG = "ChangeInforFragment"
@@ -42,8 +32,6 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
     val currentUser: Customer = Customer()
 
     val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        // Callback is invoked after the user selects a media item or closes the
-        // photo picker.
         if (uri != null) {
             Glide.with(binding.root)
                 .load(uri)
@@ -54,7 +42,6 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
             Log.d("PhotoPicker", "No media selected")
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

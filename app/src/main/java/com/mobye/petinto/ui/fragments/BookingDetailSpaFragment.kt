@@ -24,7 +24,6 @@ import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
 
-
 class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) {
 
     private var _binding : FragmentBookingDetailSpaBinding? = null
@@ -48,7 +47,6 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,8 +68,6 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         binding.apply {
 
@@ -114,10 +110,7 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
                     warningCancelDialog.show()
                 }
             }
-
-
         }
-
     }
 
     private fun generateQR() : Bitmap? {
@@ -140,9 +133,6 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
             e.printStackTrace()
             null
         }
-
-
-
     }
 
 
@@ -174,10 +164,6 @@ class BookingDetailSpaFragment : Fragment(R.layout.fragment_booking_detail_spa) 
                 }
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(this,callback)
     }
-
-
-
 }

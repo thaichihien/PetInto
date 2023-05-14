@@ -1,7 +1,6 @@
 package com.mobye.petinto.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.OrderHistoryAdapter
-import com.mobye.petinto.databinding.FragmentBookingBinding
 import com.mobye.petinto.databinding.FragmentHistoryInformationBinding
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
-
 
 class HistoryInformation : Fragment(R.layout.fragment_history_information) {
 
@@ -45,10 +41,7 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
         val activity = activity as MainActivity
         activity.hideBottomNav()
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
         informationViewModel.user.observe(viewLifecycleOwner){
             it?.let {
                 informationViewModel.getOrderHistory()
@@ -67,8 +60,5 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
                 findNavController().popBackStack()
             }
         }
-
-
     }
-
 }

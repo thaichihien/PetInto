@@ -18,7 +18,6 @@ import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 
-
 class DetailFragment () : Fragment(R.layout.fragment_detail) {
 
     val DEBUG_TAG = "DetailFragment"
@@ -33,7 +32,6 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
 
     private var quantity : Int = 1
     private var stock : Int = 0
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,17 +84,11 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
             btnBuy.setOnClickListener {
                 addToCart()
             }
-
-
-
-
         }
-
     }
 
     private fun addToCart() {
         val item = args.item
-
         stock -= quantity
         binding.tvItemStockDetails.text = stock.toString()
 
@@ -106,15 +98,11 @@ class DetailFragment () : Fragment(R.layout.fragment_detail) {
 
     private fun addQuantity(amount: Int) {
         quantity += amount
-
         if(quantity <= 0){
             quantity = 0
         }else if(quantity > stock){
             quantity = stock
         }
-
         binding.tvQuantity.text = quantity.toString()
     }
-
-
 }

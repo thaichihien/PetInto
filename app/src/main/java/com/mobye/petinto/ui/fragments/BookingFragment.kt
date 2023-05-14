@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobye.petinto.R
 import com.mobye.petinto.adapters.BookingListItemAdapter
 import com.mobye.petinto.databinding.FragmentBookingBinding
-import com.mobye.petinto.databinding.FragmentProfileBinding
 import com.mobye.petinto.models.apimodel.Booking
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ServiceRepository
@@ -23,16 +22,13 @@ import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
 
-
 class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
     val DEBUG_TAG = "BookingFragment"
     private var _binding : FragmentBookingBinding? = null
     private val binding get() = _binding!!
 
-
     private lateinit var bookingAdapter : BookingListItemAdapter
     private lateinit var currentBooking : Booking
-
 
     private val serviceViewModel : ServiceViewModel by activityViewModels {
         PetIntoViewModelFactory(ServiceRepository())
@@ -52,8 +48,6 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
         }
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,10 +64,9 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
             startShimmer()
         }
 
-
         bookingAdapter = BookingListItemAdapter(
             {
-                findNavController().navigate(BookingFragmentDirections.actionBookingFragmentToBookingDetailSpaFragment(it,"history"))
+                findNavController().navigate(BookingFragmentDirections.actionBookingFragmentToBookingDetailSpaFragment(it, "history"))
             },
             {
                 currentBooking = it
@@ -85,7 +78,6 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
             bookingAdapter.differ.submitList(listOf())
             bookingAdapter.notifyDataSetChanged()
             serviceViewModel.getBookingHistory(it.id)
-
         }
 
         serviceViewModel.bookingList.observe(viewLifecycleOwner){
@@ -102,10 +94,7 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = bookingAdapter
             }
-
         }
-
-
     }
 
     private fun cancelBooking() {
@@ -116,14 +105,11 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
         bookingAdapter.notifyDataSetChanged()
         binding.rvBookingList.adapter = null
 
-
         serviceViewModel.response.observe(viewLifecycleOwner) {
             loadingDialog.dismiss()
             binding.rvBookingList.adapter = bookingAdapter
             binding.loadingLayout.visibility = View.VISIBLE
             serviceViewModel.getBookingHistory(informationViewModel.getUserID())
-
         }
     }
-
 }

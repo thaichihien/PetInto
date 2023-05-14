@@ -25,7 +25,6 @@ import com.mobye.petinto.viewmodels.ShoppingViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
 class OrderFragment : Fragment(R.layout.fragment_order) {
 
     val DEBUG_TAG = "OrderFragment"
@@ -143,8 +142,6 @@ class OrderFragment : Fragment(R.layout.fragment_order) {
             btnFilter.setOnClickListener {
                 findNavController().navigate(OrderFragmentDirections.actionOrderFragmentToPetFilterFragment())
             }
-
         }
     }
-
 }

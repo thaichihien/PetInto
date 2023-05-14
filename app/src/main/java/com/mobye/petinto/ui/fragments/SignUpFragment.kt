@@ -21,7 +21,6 @@ import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     private var _binding : FragmentSignUpBinding? = null
@@ -69,11 +68,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(requireActivity()){task ->
                 if(task.isSuccessful){
-//                    FirebaseAuth.getInstance().uid?.let {
-//                        db.collection("User")
-//                            .document(it)
-//                            .set(User(name,email))
-//                    }
 
                     // TODO save data to database
 
@@ -102,7 +96,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                     Log.e("SignUp",task.exception.toString())
                 }
             }
-
     }
 
     private fun validate(): Boolean {
@@ -144,15 +137,12 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         }else{
             binding.etConfirmPassword.error = null
         }
-
         return isValidated
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

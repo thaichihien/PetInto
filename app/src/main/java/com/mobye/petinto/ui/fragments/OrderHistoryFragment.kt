@@ -7,12 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
-import com.mobye.petinto.R
 import com.mobye.petinto.adapters.OrderViewPagerAdapter
-import com.mobye.petinto.adapters.ServiceViewPagerAdapter
 import com.mobye.petinto.databinding.FragmentOrderHistoryBinding
-import com.mobye.petinto.databinding.FragmentServiceBinding
-
 
 class OrderHistoryFragment : Fragment() {
     private var _binding : FragmentOrderHistoryBinding? = null
@@ -34,7 +30,6 @@ class OrderHistoryFragment : Fragment() {
         _binding = null
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -55,8 +50,6 @@ class OrderHistoryFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-
         tabLayoutMediator.attach()
-
     }
 }

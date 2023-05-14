@@ -16,7 +16,6 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
 
     private var _binding : FragmentDeliveryAddressBinding? = null
@@ -26,7 +25,6 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
     }
     private lateinit var deliveryInfoAdapter: DeliveryInfoAdapter
     private var selectedIndex = -1
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,15 +46,10 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
             {
                 selectedIndex = it
                 deliveryInfoAdapter.notifyDataSetChanged()
-                //informationViewModel.setDefaultDeliveryAddress(selectedIndex,true)
             },
+            {},
             {
-                //informationViewModel.setDefaultDeliveryAddress(it,false)
-            },
-            {
-                findNavController().navigate(DeliveryAddressFragmentDirections.actionDeliveryAddressFragmentToDetailsDeliveryAddressFragment(
-                    it
-                ))
+                findNavController().navigate(DeliveryAddressFragmentDirections.actionDeliveryAddressFragmentToDetailsDeliveryAddressFragment(it))
             }
         )
 
@@ -84,12 +77,10 @@ class DeliveryAddressFragment : Fragment(R.layout.fragment_delivery_address) {
         }
     }
 
-
     private fun saveDefaultAddress() {
         if(selectedIndex >= 0){
             informationViewModel.setDefaultDeliveryAddress(selectedIndex)
         }
         findNavController().popBackStack()
     }
-
 }

@@ -32,7 +32,6 @@ import com.mobye.petinto.utils.Secret.WEB_CLIENT
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     private var _binding : FragmentSignInBinding? = null
@@ -88,7 +87,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     loadingDialog.show()
                     login()
                 }
-
             }
             btnSignUp.setOnClickListener {
                 findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
@@ -97,10 +95,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 oneTapClient.beginSignIn(signInRequest)
                     .addOnSuccessListener(requireActivity()) { result ->
                         try {
-//                            startIntentSenderForResult(
-//                                result.pendingIntent.intentSender, REQ_ONE_TAP,
-//                                null, 0, 0, 0, null)
-
                             val intent = IntentSenderRequest.Builder(result.pendingIntent.intentSender).build()
                             getResult.launch(intent)
 
@@ -109,16 +103,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                         }
                     }
                     .addOnFailureListener(requireActivity()) { e ->
-                        // No saved credentials found. Launch the One Tap sign-up flow, or
-                        // do nothing and continue presenting the signed-out UI.
                         e.let { _ -> Log.d(TAG, e.toString()) }
                     }
             }
         }
-
-
     }
-
     private fun validate(): Boolean {
         var isValidated = true
         if(binding.etEmail.text.isBlank()){
@@ -130,7 +119,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }else{
             binding.etEmail.error = null
         }
-
 
         if(binding.etPassword.text!!.isBlank()){
             binding.etPassword.error = "Please fill in a name"
@@ -185,12 +173,10 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-//                                        updateUI(null)
                                     Toast.makeText(requireContext(),"Login error : ${task.exception}",
                                         Toast.LENGTH_SHORT).show()
                                 }
                             }
-
                     }
                     else -> {
                         // Shouldn't happen.
@@ -206,11 +192,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
 
-
         firebaseAuth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(requireActivity()){task ->
                 if(task.isSuccessful){
-
                     loadingDialog.dismiss()
                     goToMainActivity()
                 }else{
@@ -219,20 +203,14 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 }
             }
 
-
-
     }
-
     private fun goToMainActivity(){
         val gotoMainIntent = Intent(this@SignInFragment.requireContext(), MainActivity::class.java)
         gotoMainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(gotoMainIntent)
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

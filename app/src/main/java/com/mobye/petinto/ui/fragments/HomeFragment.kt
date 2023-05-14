@@ -23,7 +23,6 @@ import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ShoppingViewModel
 import kotlinx.coroutines.flow.collectLatest
 
-
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val TAG = "HomeFragment"
@@ -36,8 +35,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         PetIntoViewModelFactory(ShoppingRepository())
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +43,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +54,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             homeViewModel.newsList.collectLatest {
                 Log.e(TAG,"newList = ${it.size}")
                 loadImage(it)
-                // TODO get news list here
             }
         }
     }
@@ -137,13 +132,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 (requireActivity() as MainActivity).bottomNavView.selectedItemId = R.id.orderFragment
             }
 
-
             btnNotification.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNotificationFragment())
             }
-
-
-
         }
     }
 }

@@ -13,8 +13,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,9 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.gms.tasks.OnCompleteListener
@@ -37,7 +33,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ActivityMainBinding
-import com.mobye.petinto.models.Customer
 import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.utils.ContextUtils
 import com.mobye.petinto.viewmodels.InformationViewModel
@@ -46,7 +41,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import java.util.*
-
 fun Dialog.changeToFail(message : String){
     val ivIcon = this.findViewById<ImageView>(R.id.ivIcon)
     val tvResult = this.findViewById<TextView>(R.id.tvResult)
@@ -56,7 +50,6 @@ fun Dialog.changeToFail(message : String){
     tvResult.text = "Something Wrong..."
     tvMessage.text = message
 }
-
 fun Dialog.changeToSuccess(message : String) {
     val ivIcon = this.findViewById<ImageView>(R.id.ivIcon)
     val tvResult = this.findViewById<TextView>(R.id.tvResult)
@@ -66,7 +59,6 @@ fun Dialog.changeToSuccess(message : String) {
     tvResult.text = "Success"
     tvMessage.text = message
 }
-
 //Locate
 private val USER_PREFERENCES_NAME = "user_preferences"
 private val LANGUAGE_KEY = stringPreferencesKey("language")
@@ -93,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         .create()
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -102,16 +93,6 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
-
-//        if (Build.VERSION.SDK_INT >= 19) {
-//
-//        }
-//
-//        if (Build.VERSION.SDK_INT >= 21) {
-//
-//        }
-
-
 
         if(firebaseAuth.currentUser != null){
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener {
@@ -209,5 +190,4 @@ class MainActivity : AppCompatActivity() {
         }
         recreate()
     }
-
 }

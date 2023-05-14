@@ -15,7 +15,6 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
-
 class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delivery_address) {
 
     private var _binding : FragmentDetailsDeliveryAddressBinding? = null
@@ -50,8 +49,6 @@ class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delive
                 findNavController().popBackStack()
             }
         }
-
-
     }
 
     private fun validate(): Boolean {
@@ -82,7 +79,6 @@ class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delive
     private fun saveDeliveryInfo() {
         val deliveryInfo = if(isEditing()){
             args.deliveryInfo
-
         }else{
             DeliveryInfo()
         }
@@ -93,12 +89,10 @@ class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delive
             isDefault = binding.cbDefault.isChecked
             customerID = informationViewModel.getUserID()
         }
-
         informationViewModel.updateDeliveryAddress(deliveryInfo)
         if(binding.cbDefault.isChecked){
             informationViewModel.setDefaultDeliveryAddress(deliveryInfo.id)
         }
-
     }
 
     private fun fillField() {
@@ -113,7 +107,6 @@ class DetailsDeliveryAddressFragment : Fragment(R.layout.fragment_details_delive
         }
     }
 
-    private fun isEditing(): Boolean
-        = args.deliveryInfo.customerID.isNotBlank()
+    private fun isEditing(): Boolean = args.deliveryInfo.customerID.isNotBlank()
 
 }

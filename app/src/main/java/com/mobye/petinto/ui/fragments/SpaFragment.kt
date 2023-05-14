@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -27,16 +24,12 @@ import com.mobye.petinto.repository.InformationRepository
 import com.mobye.petinto.repository.ServiceRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
-import com.mobye.petinto.ui.changeToSuccess
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 import com.mobye.petinto.viewmodels.ServiceViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class SpaFragment : Fragment(R.layout.fragment_spa) {
 
@@ -66,12 +59,10 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         _binding = FragmentSpaBinding.inflate(layoutInflater)
         return binding.root
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
-
 
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -91,8 +82,6 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }
         }
 
-
-
         binding.apply {
             servicesSpinnerBtn.setOnClickListener {
                 binding.servicesSpinner.performClick()
@@ -100,8 +89,6 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             petSpinnerBtn.setOnClickListener {
                 binding.petSpinner.performClick()}
         }
-
-
 
 
         val ad: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -126,8 +113,6 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }
         }
 
-
-
         informationViewModel.myPetList.observe(viewLifecycleOwner){pets ->
 
             val petsNameList= arrayListOf<String>()
@@ -147,8 +132,6 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }
         }
 
-
-
         val dayPicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select a date")
             .setCalendarConstraints(CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now()).build())
@@ -163,13 +146,11 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             binding.etDay.setText(formattedDate)
         }
 
-
         binding.apply {
             btnEdit.setOnClickListener{
 
                 findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToCustomerFragment())
             }
-
 
             bookingBtn.setOnClickListener { 
                 if(validate()){
@@ -182,11 +163,9 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             }
             deleteBtn.setOnClickListener {
                 clearService()
-
             }
 
         }
-
     }
 
     private fun clearService() {
@@ -208,14 +187,11 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         }
     }
 
-
-    // Tham khao co huong dan chi tiet tai ham sendPurchaseOrder() o PaymentFragment.kt
     private fun sendSpaBooking() {
 
         val format = SimpleDateFormat("yyyy-MM-dd")
         val formattedDate: String = format.format(serviceViewModel.checkIn)
         val date = "${formattedDate}T${getTime()}"
-
 
         val booking= serviceViewModel.createBooking(
             customerID = informationViewModel.getUserID(),
@@ -227,7 +203,6 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             type = binding.servicesSpinner.selectedItem.toString(),
             charge = serviceViewModel.serviceCharge[binding.servicesSpinner.selectedItemPosition]
         )
-
 
         serviceViewModel.sendBooking(booking)
 
@@ -281,11 +256,7 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
             isValid=false
             Toast.makeText(requireContext(),getString(R.string.missing_time),Toast.LENGTH_SHORT).show()
         }
-
-
-
         return isValid
     }
-
 
 }

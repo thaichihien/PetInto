@@ -68,8 +68,6 @@ class HistoryPetFragment : Fragment(R.layout.fragment_history_pet) {
                 adapter = orderPetHistoryAdapter
             }
         }
-
-
     }
 
 }
