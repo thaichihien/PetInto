@@ -18,7 +18,6 @@ object AccountInfoDatabase {
             ).name(REALM_NAME).build()
         )
     }
-
     fun getUser(id: String) : Customer?{
         return try {
             realm.query<Customer>("id == $0", id).first().find()
@@ -26,7 +25,6 @@ object AccountInfoDatabase {
             null
         }
     }
-
 
     fun saveUser(user: Customer) {
         realm.writeBlocking {
@@ -130,7 +128,6 @@ object AccountInfoDatabase {
     // Pet database
     fun getPetList(id : String)
         = realm.copyFromRealm(realm.query<PetInfo>("customerID = $0",id).find())
-
 
     fun updatePet(pet : PetInfo){
         realm.writeBlocking {

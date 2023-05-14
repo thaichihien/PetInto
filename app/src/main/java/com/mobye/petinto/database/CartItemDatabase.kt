@@ -18,13 +18,11 @@ object  CartItemDatabase {
             ).name(REALM_NAME).build()
         )
     }
-
     fun createOrUpdate(cartItem: CartItem){
         realm.writeBlocking {
             copyToRealm(cartItem,UpdatePolicy.ALL)
         }
     }
-
     fun remove(cartItem: CartItem){
         realm.writeBlocking {
             val cartItemDB =findLatest(realm.query<CartItem>("item.id == $0", cartItem.item!!.id).find().first())
@@ -52,6 +50,4 @@ object  CartItemDatabase {
 
     fun getAllCart() : List<CartItem>
             = realm.copyFromRealm(realm.query<CartItem>().find())
-
-
 }

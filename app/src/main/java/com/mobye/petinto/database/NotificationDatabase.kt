@@ -1,6 +1,5 @@
 package com.mobye.petinto.database
 
-import android.icu.text.CaseMap.Title
 import com.mobye.petinto.models.*
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
@@ -19,13 +18,11 @@ object NotificationDatabase {
             ).name(REALM_NAME).build()
         )
     }
-
     fun createNotification(notification: Notification){
         realm.writeBlocking {
             copyToRealm(notification, UpdatePolicy.ALL)
         }
     }
-
     fun remove(notification: Notification){
         realm.writeBlocking {
             val notificationDB =findLatest(realm.query<Notification>("id == $0", notification.id).find().first())
@@ -34,16 +31,12 @@ object NotificationDatabase {
             }
         }
     }
-
     fun removeAll(){
         realm.writeBlocking {
             val notiList: RealmResults<Notification> = this.query<Notification>().find()
             delete(notiList)
         }
     }
-
     fun getAllNotification() : List<Notification>
             = realm.copyFromRealm(realm.query<Notification>().find())
-
-
 }
