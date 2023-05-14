@@ -19,7 +19,6 @@ class ShoppingItemAdapter(
     private lateinit var binding: ShoppingItemListBinding
     private val differCallBack = object : DiffUtil.ItemCallback<Product>(){
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-            //TEMP
             return oldItem.name == newItem.name
         }
 
@@ -61,38 +60,24 @@ class ShoppingItemAdapter(
                             quantity -= 1
                             tvShoppingItemQuantity.text = quantity.toString()
                         }
-
                     }
 
                     btnAddToCart.setOnClickListener {
                         val quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()
                         addListener(item,quantity)
                     }
-
                 }
-
-
             }
-
-
-
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingItemViewHolder {
-        binding = ShoppingItemListBinding.inflate(
-            LayoutInflater.from(parent.context),parent,false)
-
+        binding = ShoppingItemListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ShoppingItemViewHolder()
     }
 
     override fun getItemCount(): Int = differ.currentList.size
-
-
     override fun onBindViewHolder(holder: ShoppingItemViewHolder, position: Int) {
         holder.setData(differ.currentList[position])
         holder.setIsRecyclable(false)
-
     }
-
-
 }

@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.ListOwnerPetBinding
 import com.mobye.petinto.models.PetInfo
-import com.mobye.petinto.models.Product
 
 class CarouselAdapter(
     private val updateListener: (PetInfo, Int) -> Unit,
@@ -48,8 +47,6 @@ class CarouselAdapter(
                     .load(item.image)
                     .placeholder(R.drawable.dog)
                     .into(imgAvatar)
-
-
             }
         }
     }

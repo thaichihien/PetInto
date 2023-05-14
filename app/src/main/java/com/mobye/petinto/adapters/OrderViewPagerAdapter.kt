@@ -4,8 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mobye.petinto.ui.fragments.HistoryInformation
 import com.mobye.petinto.ui.fragments.HistoryPetFragment
-import com.mobye.petinto.ui.fragments.HotelFragment
-import com.mobye.petinto.ui.fragments.SpaFragment
 
 class OrderViewPagerAdapter (fragment: Fragment): FragmentStateAdapter(fragment) {
 

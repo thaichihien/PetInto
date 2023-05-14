@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
-import com.mobye.petinto.databinding.ItemCartListBinding
 import com.mobye.petinto.databinding.ItemHistoryInformationThingsBinding
-import com.mobye.petinto.models.CartItem
 import com.mobye.petinto.models.apimodel.OrderHistory
 import com.mobye.petinto.utils.Utils
 

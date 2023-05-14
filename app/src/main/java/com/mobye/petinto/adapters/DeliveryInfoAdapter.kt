@@ -71,8 +71,6 @@ class DeliveryInfoAdapter(
                         selected = holder.absoluteAdapterPosition
                         chooseListener(holder.absoluteAdapterPosition)
                     }
-
-
                 }
             }
         }

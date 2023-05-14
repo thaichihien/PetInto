@@ -33,22 +33,10 @@ class CartItemAdapter(
     }
 
     var differ = AsyncListDiffer(this,differCallBack)
-//    private val binderHelper : ViewBinderHelper by lazy {
-//        val setting = ViewBinderHelper()
-//        setting.setOpenOnlyOne(true)
-//        setting
-//    }
 
     private var isSelectedAll = false
 
-    inner class CartItemViewHolder : RecyclerView.ViewHolder(binding.root){
-//        fun setData(cartItem : CartItem,index: Int){
-//
-//            //TODO set listener for check box
-//
-//
-//        }
-    }
+    inner class CartItemViewHolder : RecyclerView.ViewHolder(binding.root){}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
         binding = ItemCartListSwipeBinding.inflate(
@@ -60,7 +48,6 @@ class CartItemAdapter(
     override fun getItemCount(): Int = differ.currentList.size
 
     override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
-        //holder.setData(,holder.adapterPosition)
         val cartItem = differ.currentList[position]
 
 
@@ -78,10 +65,8 @@ class CartItemAdapter(
 
             //Log.e("SELECTED_CART","${holder.adapterPosition} : ${cartItem.selected}")
             cbSelectedCart.isChecked = cartItem.selected
-            //selectedListener(isSelectedAll,holder.adapterPosition)
 
             btnDelete.setOnClickListener{
-                //swipeLayout.close(true)
                 swipeLayout.visibility = View.GONE
                 removedListener(cartItem,holder.absoluteAdapterPosition)
             }
@@ -111,13 +96,5 @@ class CartItemAdapter(
             }
         }
         holder.setIsRecyclable(false)
-        //binderHelper.bind(binding.swipeLayout,differ.currentList[position].item!!.id)
     }
-
-//    fun selectedAll(yes: Boolean){
-//        isSelectedAll = yes
-//        notifyDataSetChanged()
-//    }
-
-
 }

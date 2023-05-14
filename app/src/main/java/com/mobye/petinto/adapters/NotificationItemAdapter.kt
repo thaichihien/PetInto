@@ -33,11 +33,8 @@ class NotificationItemAdapter (
 
     var differ = AsyncListDiffer(this,differCallBack)
 
-
     inner class NotificationViewHolder : ViewHolder(binding.root){
-        fun setData(item: Notification){
-
-        }
+        fun setData(item: Notification){}
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -57,16 +54,13 @@ class NotificationItemAdapter (
             tvContent.text = item.content
             tvDate.text = item.date
             btnDelete.setOnClickListener{
-                //swipeLayout.close(true)
                 swipeLayout.visibility = View.GONE
                 removedListener(holder.absoluteAdapterPosition)
             }
             swipeLayout.setOnClickListener{
                 detailListener(item.type)
             }
-
         }
         holder.setIsRecyclable(false)
-
     }
 }

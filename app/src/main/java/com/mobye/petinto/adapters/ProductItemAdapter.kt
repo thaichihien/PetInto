@@ -1,10 +1,8 @@
 package com.mobye.petinto.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,7 +18,6 @@ class ProductItemAdapter(
 
     private lateinit var binding: ShoppingItemListBinding
 
-
     class DiffUtilCallBack : DiffUtil.ItemCallback<Product>(){
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem.name == newItem.name
@@ -30,10 +27,7 @@ class ProductItemAdapter(
             return oldItem.name == newItem.name
                     && oldItem.id == newItem.id
         }
-
     }
-
-
 
     inner class ProductViewHolder()
         : RecyclerView.ViewHolder(binding.root){
@@ -65,9 +59,7 @@ class ProductItemAdapter(
                             quantity -= 1
                             tvShoppingItemQuantity.text = quantity.toString()
                         }
-
                     }
-
                     btnAddToCart.setOnClickListener {
                         val quantity : Int  = tvShoppingItemQuantity.text.toString().toInt()
                         addListener(item,quantity)
@@ -83,9 +75,6 @@ class ProductItemAdapter(
         return ProductViewHolder()
     }
 
-
-
-
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = getItem(position)
         product?.let{
@@ -93,6 +82,4 @@ class ProductItemAdapter(
             holder.setIsRecyclable(false)
         }
     }
-
-
 }

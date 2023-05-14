@@ -34,8 +34,7 @@ class OrderAdapter(
     }
 
 
-    inner class OrderViewHolder : RecyclerView.ViewHolder(binding.root){
-    }
+    inner class OrderViewHolder : RecyclerView.ViewHolder(binding.root){}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -68,6 +67,5 @@ class OrderAdapter(
             }
         }
         holder.setIsRecyclable(false)
-//        binderHelper.bind(binding.itemOrderLayout,differ.currentList[position].id)
     }
 }

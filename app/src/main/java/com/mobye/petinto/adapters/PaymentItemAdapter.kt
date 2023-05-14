@@ -57,6 +57,4 @@ class PaymentItemAdapter : RecyclerView.Adapter<PaymentItemAdapter.PaymentItemVi
         holder.setData(cartItem)
         holder.setIsRecyclable(false)
     }
-
-
 }

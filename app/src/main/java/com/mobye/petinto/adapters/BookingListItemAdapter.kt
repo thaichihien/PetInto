@@ -7,11 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.mobye.petinto.databinding.BookingItemListBinding
-import com.mobye.petinto.databinding.ItemCartListBinding
 import com.mobye.petinto.databinding.ItemServiceBookingListBinding
-import com.mobye.petinto.models.CartItem
-import com.mobye.petinto.models.Product
 import com.mobye.petinto.models.apimodel.Booking
 import com.mobye.petinto.utils.Utils
 
@@ -30,9 +26,8 @@ class BookingListItemAdapter(
            return oldItem.id == newItem.id &&
                    oldItem.status == newItem.status
         }
-
-
     }
+
     var differ = AsyncListDiffer(this,differCallBack)
     inner class BookingViewHolder() : ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
