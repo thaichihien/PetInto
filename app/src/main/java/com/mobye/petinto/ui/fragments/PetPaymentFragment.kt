@@ -107,7 +107,7 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
             id = informationViewModel.getUserID(),
             customerPickup = informationViewModel.customerPickupInfo ?: CustomerPickup(),
             deliveryInfo = informationViewModel.deliveryAddressInfo ?: DeliveryInfo(),
-            isdelivery = binding.rbPickup.isChecked,
+            isdelivery = binding.rbDoor.isChecked,
             note = binding.etNote.text.toString().trim(),
             paymentMethod = if(binding.rbMomo.isChecked) "momo" else getString(R.string.cash),
             petID =  args.petSelected.id

@@ -1,6 +1,7 @@
 package com.mobye.petinto.database
 
 import com.mobye.petinto.models.CartItem
+import com.mobye.petinto.models.Customer
 import com.mobye.petinto.models.Product
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
@@ -20,7 +21,21 @@ object  CartItemDatabase {
     }
     fun createOrUpdate(cartItem: CartItem){
         realm.writeBlocking {
-            copyToRealm(cartItem,UpdatePolicy.ALL)
+            val cartItemDB = try {
+                findLatest(realm.query<CartItem>("item.id == $0",cartItem.item!!.id).find().first())
+            }catch(_ : Exception) {
+                null
+            }
+
+            if(cartItemDB != null){
+                cartItemDB.apply {
+                    quantity = cartItem.quantity
+                }
+                copyToRealm(cartItemDB,UpdatePolicy.ALL)
+            }else{
+                copyToRealm(cartItem,UpdatePolicy.ALL)
+            }
+
         }
     }
     fun remove(cartItem: CartItem){

@@ -76,6 +76,22 @@ class PetIntoMessagingService : FirebaseMessagingService() {
                 .createPendingIntent()
 
             builder.setContentIntent(pendingIntent)
+        }else if(type == "ORDER"){
+            val pendingIntent = NavDeepLinkBuilder(this)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.historyInformation)
+                .setComponentName(MainActivity::class.java)
+                .createPendingIntent()
+
+            builder.setContentIntent(pendingIntent)
+        }else if(type == "PET"){
+            val pendingIntent = NavDeepLinkBuilder(this)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.historyPetFragment)
+                .setComponentName(MainActivity::class.java)
+                .createPendingIntent()
+
+            builder.setContentIntent(pendingIntent)
         }
 
 

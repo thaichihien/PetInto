@@ -56,7 +56,10 @@ class NotificationItemAdapter (
                 swipeLayout.visibility = View.GONE
                 removedListener(holder.absoluteAdapterPosition)
             }
-            swipeLayout.setOnClickListener{
+            tvTitle.setOnClickListener {
+                detailListener(item.type)
+            }
+            ivNotification.setOnClickListener {
                 detailListener(item.type)
             }
         }

@@ -46,10 +46,10 @@
         android:id="@+id/btnNotification"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/welcome_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/welcome_title"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="@+id/welcome_title"
         app:srcCompat="@drawable/noti_icon" />
 
 
@@ -294,7 +294,7 @@
 
                             <ImageButton
                                 android:id="@+id/btnFish"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/fish" />
                         </com.google.android.material.card.MaterialCardView>
