@@ -12,7 +12,6 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface PetIntoApi {
-
     @GET("/data/products")
     suspend fun getProducts(
         @Query("page") page: Int,
@@ -47,13 +46,11 @@ interface PetIntoApi {
         @Body report : Report
     ) : Response<ApiResponse<Any>>
 
-
     @POST("/user/info")
     suspend fun getUser(
         @Query("id") id : String,
         @Body token : Map<String, String>
     ) : Response<ApiResponse<Customer>>
-
 
     //Order
     @POST("/order/new")
@@ -61,13 +58,10 @@ interface PetIntoApi {
         @Body order: ProductOrder
     ) : Response<ApiResponse<Any>>
 
-
     @POST("/order/pet")
     suspend fun sendPetOrder(
         @Body order: PetOrder
     ) : Response<ApiResponse<Any>>
-
-
 
     //Booking
     @POST("/booking/new")
@@ -94,7 +88,6 @@ interface PetIntoApi {
     suspend fun getBookingHistory(
         @Query("id") id : String
     ) : Response<ApiResponse<List<Booking>>>
-
 
     //Pets
     @GET("/data/pets")

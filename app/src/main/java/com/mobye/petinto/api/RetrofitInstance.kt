@@ -16,9 +16,6 @@ object RetrofitInstance {
             addInterceptor(interceptor)
         }.build()
 
-
-
-
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -29,6 +26,4 @@ object RetrofitInstance {
     val api : PetIntoApi by lazy {
         retrofit.create(PetIntoApi::class.java)
     }
-
-
 }
