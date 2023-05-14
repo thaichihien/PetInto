@@ -67,8 +67,12 @@ class NotificationFragment : Fragment() {
         }
 
         binding.apply {
+
+            val notiLayoutManager = LinearLayoutManager(requireContext())
+            notiLayoutManager.reverseLayout = true
+            notiLayoutManager.stackFromEnd = true
             rvNotification.apply {
-                layoutManager = LinearLayoutManager(requireContext())
+                layoutManager = notiLayoutManager
                 adapter = notificationAdapter
             }
             btnClearAll.setOnClickListener {
