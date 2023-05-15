@@ -141,38 +141,43 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
 
         // Ham nay se chay khi ket qua tra ve
         shoppingViewModel.response.observe(viewLifecycleOwner) { response ->
-            // tat loading
-            loadingDialog.dismiss()
+            response?.let {
+                response.body?.let {
+                    // tat loading
+                    loadingDialog.dismiss()
 
-            // response.result = true khi thanh cong
-            if (response.result) {
+                    // response.result = true khi thanh cong
+                    if (response.result) {
 
-                // Hien dialog thong bao thanh cong
-                notiDialog.changeToSuccess(getString(R.string.success_order))
-                notiDialog.show()
+                        // Hien dialog thong bao thanh cong
+                        notiDialog.changeToSuccess(getString(R.string.success_order))
+                        notiDialog.show()
 
-                val orderID = response.body.toString()
+                        val orderID = response.body.toString()
+                        shoppingViewModel.response.value = null
+                        notiDialog.setOnDismissListener {
+                            findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
+                                args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
+                            ))
+                        }
+                        notiDialog.setOnCancelListener {
+                            findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
+                                args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
+                            ))
+                        }
 
-                notiDialog.setOnDismissListener {
-                    findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
-                        args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
-                    ))
-                }
-                notiDialog.setOnCancelListener {
-                    findNavController().navigate(PetPaymentFragmentDirections.actionPetPaymentFragmentToPetOrderPaymentFragment(
-                        args.petSelected,binding.rbPickup.isChecked,orderID,order.payment
-                    ))
-                }
-
-                // response.result = false
-            } else {
-                notiDialog.changeToFail(getString(R.string.failed_order))
-                notiDialog.show()
-               notiDialog.setOnDismissListener {
-                   findNavController().popBackStack(R.id.orderFragment, false)
-               }
-                notiDialog.setOnCancelListener {
-                    findNavController().popBackStack(R.id.orderFragment, false)
+                        // response.result = false
+                    } else {
+                        shoppingViewModel.response.value = null
+                        notiDialog.changeToFail(getString(R.string.failed_order))
+                        notiDialog.show()
+                        notiDialog.setOnDismissListener {
+                            findNavController().popBackStack(R.id.orderFragment, false)
+                        }
+                        notiDialog.setOnCancelListener {
+                            findNavController().popBackStack(R.id.orderFragment, false)
+                        }
+                    }
                 }
             }
         }

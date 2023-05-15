@@ -94,36 +94,40 @@ class BookingPaymentFragment : Fragment() {
             )
 
         serviceViewModel.response.observe(viewLifecycleOwner) { response ->
-            loadingDialog.dismiss()
+            response?.let {
+                response.body?.let {
+                    loadingDialog.dismiss()
+                    if (response.result) {
 
+                        // Hien dialog thong bao thanh cong
+                        val booking = response.body!!
+                        serviceViewModel.response.value = null
+                        if(booking.service == "Spa"){
+                            notiDialog.changeToSuccess(getString(R.string.success_spa_booking))
+                        }else{
+                            notiDialog.changeToSuccess(getString(R.string.success_hotel_booking))
+                        }
 
-            if (response.result) {
+                        notiDialog.show()
 
-                // Hien dialog thong bao thanh cong
-                val booking = response.body!!
-                if(booking.service == "Spa"){
-                    notiDialog.changeToSuccess(getString(R.string.success_spa_booking))
-                }else{
-                    notiDialog.changeToSuccess(getString(R.string.success_hotel_booking))
-                }
+                        notiDialog.setOnCancelListener {
+                            findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
+                        }
+                        notiDialog.setOnDismissListener {
+                            findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
+                        }
 
-                notiDialog.show()
-
-                notiDialog.setOnCancelListener {
-                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
-                }
-                notiDialog.setOnDismissListener {
-                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToBookingDetailSpaFragment(booking,"payment"))
-                }
-
-            }else{
-                notiDialog.changeToFail(response.reason)
-                notiDialog.show()
-                notiDialog.setOnCancelListener {
-                    cancelBooking()
-                }
-                notiDialog.setOnDismissListener {
-                    cancelBooking()
+                    }else{
+                        serviceViewModel.response.value = null
+                        notiDialog.changeToFail(response.reason)
+                        notiDialog.show()
+                        notiDialog.setOnCancelListener {
+                            cancelBooking()
+                        }
+                        notiDialog.setOnDismissListener {
+                            cancelBooking()
+                        }
+                    }
                 }
             }
         }

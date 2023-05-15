@@ -69,7 +69,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e(DEBUG_TAG,"onViewCreated")
+        (requireActivity() as MainActivity).hideBottomNav()
 
         binding.apply {
             imgAvatar.setOnClickListener {

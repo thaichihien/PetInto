@@ -141,39 +141,45 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         // Ham nay se chay khi ket qua tra ve
         shoppingViewModel.response.observe(viewLifecycleOwner){response ->
             // tat loading
-            loadingDialog.dismiss()
+           response?.let {
+               response.body?.let {
+                   loadingDialog.dismiss()
 
-            // response.result = true khi thanh cong
-            if(response.result){
+                   // response.result = true khi thanh cong
+                   if(response.result){
 
-                notiDialog.changeToSuccess(getString(R.string.success_order))
-                notiDialog.show()
+                       notiDialog.changeToSuccess(getString(R.string.success_order))
+                       notiDialog.show()
 
-                val orderID = response.body.toString()
+                       val orderID = response.body.toString()
+                       shoppingViewModel.response.value = null
 
-                notiDialog.setOnDismissListener {
-                    findNavController()
-                        .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
-                            orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
-                        ))
-                }
-                notiDialog.setOnCancelListener {
-                    findNavController()
-                        .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
-                            orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
-                        ))
-                }
+                       notiDialog.setOnDismissListener {
+                           findNavController()
+                               .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
+                                   orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
+                               ))
+                       }
+                       notiDialog.setOnCancelListener {
+                           findNavController()
+                               .navigate(PaymentFragmentDirections.actionPaymentFragmentToOrderPaymentFragment(
+                                   orderID,binding.rbDoor.isChecked,if(binding.rbMomo.isChecked) "momo" else "cash"
+                               ))
+                       }
 
-            }else{
-                notiDialog.changeToFail(getString(R.string.failed_order))
-                notiDialog.show()
-                notiDialog.setOnDismissListener {
-                    findNavController().popBackStack(R.id.shoppingFragment,false)
-                }
-                notiDialog.setOnCancelListener{
-                    findNavController().popBackStack(R.id.shoppingFragment,false)
-                }
-            }
+                   }else{
+                       shoppingViewModel.response.value = null
+                       notiDialog.changeToFail(getString(R.string.failed_order))
+                       notiDialog.show()
+                       notiDialog.setOnDismissListener {
+                           findNavController().popBackStack(R.id.shoppingFragment,false)
+                       }
+                       notiDialog.setOnCancelListener{
+                           findNavController().popBackStack(R.id.shoppingFragment,false)
+                       }
+                   }
+               }
+           }
         }
     }
 

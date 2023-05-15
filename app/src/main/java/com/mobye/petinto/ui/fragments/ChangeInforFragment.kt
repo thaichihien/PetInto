@@ -60,7 +60,9 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e(DEBUG_TAG,"onViewCreated")
+
+        (requireActivity() as MainActivity).hideBottomNav()
+
 
         informationViewModel.user.observe(viewLifecycleOwner){
             binding.apply {

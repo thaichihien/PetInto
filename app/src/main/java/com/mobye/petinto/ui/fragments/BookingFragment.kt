@@ -59,6 +59,10 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        (requireActivity() as MainActivity).hideBottomNav()
+
+
         binding.loadingLayout.apply {
             visibility = View.VISIBLE
             startShimmer()
@@ -105,11 +109,17 @@ class BookingFragment : Fragment(R.layout.fragment_booking_detail) {
         bookingAdapter.notifyDataSetChanged()
         binding.rvBookingList.adapter = null
 
-        serviceViewModel.response.observe(viewLifecycleOwner) {
-            loadingDialog.dismiss()
-            binding.rvBookingList.adapter = bookingAdapter
-            binding.loadingLayout.visibility = View.VISIBLE
-            serviceViewModel.getBookingHistory(informationViewModel.getUserID())
+        serviceViewModel.response.observe(viewLifecycleOwner) {response ->
+            response?.let {
+                response.body?.let {
+                    serviceViewModel.response.value = null
+                    loadingDialog.dismiss()
+                    binding.rvBookingList.adapter = bookingAdapter
+                    binding.loadingLayout.visibility = View.VISIBLE
+                    serviceViewModel.getBookingHistory(informationViewModel.getUserID())
+                }
+            }
+
         }
     }
 }

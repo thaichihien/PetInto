@@ -179,10 +179,10 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
 
     private fun getTime() : String{
         return when(binding.rgTime.checkedRadioButtonId){
-            binding.rb8h.id -> "08:00:00"
-            binding.rb10h.id -> "10:00:00"
-            binding.rb15h.id -> "15:00:00"
-            binding.rb17h.id -> "17:00:00"
+            binding.rb8h.id -> "01:00:00"
+            binding.rb10h.id -> "03:00:00"
+            binding.rb15h.id -> "08:00:00"
+            binding.rb17h.id -> "10:00:00"
             else -> "error"
         }
     }
@@ -207,24 +207,30 @@ class SpaFragment : Fragment(R.layout.fragment_spa) {
         serviceViewModel.sendBooking(booking)
 
         serviceViewModel.response.observe(viewLifecycleOwner) { response ->
-            loadingDialog.dismiss()
+           response?.let {
+              response.body?.let {
+                  loadingDialog.dismiss()
 
-            // response.result = true khi thanh cong
-            if (response.result) {
+                  // response.result = true khi thanh cong
+                  if (response.result) {
 
-                clearService()
-                findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(response.body!!))
+                      clearService()
+                      val newBooking = response.body!!
+                      serviceViewModel.response.value = null
+                      findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(newBooking))
 
-            }else{
-                notiDialog.changeToFail(response.reason)
-                notiDialog.show()
-                notiDialog.setOnCancelListener {
-                    //nothing
-                }
-                notiDialog.setOnDismissListener {
-                 //nothing
-                }
-            }
+                  }else{
+                      notiDialog.changeToFail(response.reason)
+                      notiDialog.show()
+                      notiDialog.setOnCancelListener {
+                          //nothing
+                      }
+                      notiDialog.setOnDismissListener {
+                          //nothing
+                      }
+                  }
+              }
+           }
         }
     }
 

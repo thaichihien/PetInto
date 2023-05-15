@@ -217,23 +217,29 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
         serviceViewModel.sendBooking(booking)
 
         serviceViewModel.response.observe(viewLifecycleOwner) { response ->
-            loadingDialog.dismiss()
+           response?.let {
+             response.body?.let {
+                 loadingDialog.dismiss()
 
-            // response.result = true khi thanh cong
-            if (response.result) {
+                 // response.result = true khi thanh cong
+                 if (response.result) {
 
-                clearService()
-                findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(response.body!!))
-            }else{
-                notiDialog.changeToFail(response.reason)
-                notiDialog.show()
-                notiDialog.setOnCancelListener{
-                    //nothing
-                }
-                notiDialog.setOnDismissListener {
-                    //nothing
-                }
-            }
+                     clearService()
+                     val newBooking = response.body!!
+                     serviceViewModel.response.value = null
+                     findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(newBooking))
+                 }else{
+                     notiDialog.changeToFail(response.reason)
+                     notiDialog.show()
+                     notiDialog.setOnCancelListener{
+                         //nothing
+                     }
+                     notiDialog.setOnDismissListener {
+                         //nothing
+                     }
+                 }
+             }
+           }
         }
     }
 

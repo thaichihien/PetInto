@@ -35,7 +35,7 @@ class CarouselAdapter(
         fun setData(item : PetInfo){
             binding.apply {
                 tvName.text =  item.name
-                tvIsVaccinated.text = item.vaccine.toString()
+                tvIsVaccinatedCount.text = item.vaccine.toString()
                 tvGender.text = item.gender
                 tvAge.text = item.age.toString()
                 tvType.text = item.type
