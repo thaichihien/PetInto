@@ -22,6 +22,7 @@ import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.ui.changeToFail
 import com.mobye.petinto.ui.changeToSuccess
+import com.mobye.petinto.utils.Constants
 import com.mobye.petinto.utils.Utils
 import com.mobye.petinto.viewmodels.*
 
@@ -85,6 +86,28 @@ class PetPaymentFragment : Fragment(R.layout.fragment_pet_payment) {
                     sendPurchaseOrder()
                 }
             }
+            tvTotalAmount.text = Utils.formatMoneyVND(item.price)
+            tvSubtotal.text = Utils.formatMoneyVND(item.price)
+            tvTotalMoney.text = Utils.formatMoneyVND(item.price)
+
+            rbDoor.setOnCheckedChangeListener{_,isChecked ->
+                if(isChecked){
+                    tvDeliveryFee.text = Utils.formatMoneyVND(Constants.SHIPPING_FEE)
+                    tvTotalAmount.text = Utils.formatMoneyVND(item.price + Constants.SHIPPING_FEE)
+
+                    tvTotalMoney.text = Utils.formatMoneyVND(item.price + Constants.SHIPPING_FEE)
+                }else{
+                    binding.tvDeliveryFee.text = "0 đ"
+                    shoppingViewModel.changeTotal(-1* Constants.SHIPPING_FEE)
+                    tvTotalAmount.text = Utils.formatMoneyVND(item.price)
+                    tvTotalMoney.text = Utils.formatMoneyVND(item.price)
+                }
+            }
+
+        }
+
+        shoppingViewModel.total.observe(viewLifecycleOwner){
+
         }
 
         informationViewModel.getCustomerPickup()

@@ -424,11 +424,12 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvSubtotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
                         android:layout_alignParentEnd="true"
-                        android:textColor="@color/main_dark"/>
+                        android:text="1.0515.0000 đ"
+                        android:textColor="@color/main_dark" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -443,9 +444,10 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvDeliveryFee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.0515.0000 đ"
+                        android:text="0 đ"
                         android:layout_alignParentEnd="true"
                         android:textColor="@color/main_dark"/>
 
@@ -462,6 +464,7 @@
                         android:textColor="@color/main_dark"/>
 
                     <TextView
+                        android:id="@+id/tvTotalMoney"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1.0515.0000 đ"
@@ -498,6 +501,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
+            android:id="@+id/tvTotalAmount"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="20sp"
             android:textStyle="bold"
