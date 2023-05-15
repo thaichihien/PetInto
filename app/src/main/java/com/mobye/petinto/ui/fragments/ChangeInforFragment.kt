@@ -66,7 +66,7 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
             binding.apply {
                 Glide.with(binding.root)
                     .load(it.image)
-                    .placeholder(R.drawable.avatar_1)
+                    .placeholder(R.drawable.logo_chat)
                     .into(imgAvatar)
                 etUsername.setText(it.name)
                 etEmail.setText(it.email)

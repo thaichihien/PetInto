@@ -101,7 +101,7 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
                 edtVariety.setText(currentPet.variety.toString())
                 Glide.with(binding.root)
                     .load(currentPet.image)
-                    .placeholder(R.drawable.avatar_1)
+                    .placeholder(R.drawable.logo_chat)
                     .into(imgAvatar)
                 when (currentPet.gender) {
                     "Male" -> {
@@ -126,13 +126,18 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         newPet.variety = binding.edtVariety.text.toString().trim()
         newPet.weight = binding.edtWeight.text.toString().trim()
         newPet.color = binding.edtColor.text.toString().trim()
-        newPet.gender = if(binding.rbMale.isSelected){
+        newPet.gender = if(binding.rbMale.isChecked){
             "Male"
-        } else if (binding.rbFemale.isSelected){
+        } else if (binding.rbFemale.isChecked){
             "Female"
         } else{
             "Other"
         }
+
+        Log.e("AddPet",newPet.gender)
+
+
+
         newPet.vaccine = binding.edtVaccine.text.toString().trim().toInt()
         if(isEditing){
             newPet.apply {

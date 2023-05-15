@@ -40,7 +40,7 @@ class ProductItemAdapter(
                     tvStock.text = item.stock.toString()
                     Glide.with(binding.root)
                         .load(item.image)
-                        .placeholder(R.drawable.ic_launcher_background)
+                        .placeholder(R.drawable.logo_chat)
                         .into(ivShoppingItem)
                     ivShoppingItem.setOnClickListener{
                         detailListener(item)

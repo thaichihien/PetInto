@@ -51,8 +51,8 @@
     <string name="pet_weight">Cân nặng</string>
     <string name="pet_vaccine">Số mũi tiêm</string>
     <string name="pet_gender">Giới tính: </string>
-    <string name="pet_gender_male">Nam</string>
-    <string name="pet_gender_female">Nữ</string>
+    <string name="pet_gender_male">Đực</string>
+    <string name="pet_gender_female">Cái</string>
     <string name="pet_gender_other">Khác</string>
     <string name="add_pet">THÊM</string>
 

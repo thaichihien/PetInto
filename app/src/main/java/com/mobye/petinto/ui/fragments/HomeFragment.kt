@@ -58,13 +58,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun loadImage(advertisements: List<Advertisement>) {
-        Glide.with(this).load(advertisements[0].image).into(binding.advertisementBtn1)
-        Glide.with(this).load(advertisements[1].image).into(binding.advertisementBtn2)
-        Glide.with(this).load(advertisements[2].image).into(binding.advertisementBtn3)
-        Glide.with(this).load(advertisements[3].image).into(binding.advertisementBtn4)
-        Glide.with(this).load(advertisements[4].image).into(binding.advertisementBtn5)
-        Glide.with(this).load(advertisements[5].image).into(binding.advertisementBtn6)
-        Glide.with(this).load(advertisements[6].image).into(binding.advertisementBtn7)
+        Glide.with(binding.root).load(advertisements[0].image).into(binding.advertisementBtn1)
+        Glide.with(binding.root).load(advertisements[1].image).into(binding.advertisementBtn2)
+        Glide.with(binding.root).load(advertisements[2].image).into(binding.advertisementBtn3)
+        Glide.with(binding.root).load(advertisements[3].image).into(binding.advertisementBtn4)
+        Glide.with(binding.root).load(advertisements[4].image).into(binding.advertisementBtn5)
+        Glide.with(binding.root).load(advertisements[5].image).into(binding.advertisementBtn6)
+        Glide.with(binding.root).load(advertisements[6].image).into(binding.advertisementBtn7)
 
         binding.apply {
             advertisementBtn1.setOnClickListener {

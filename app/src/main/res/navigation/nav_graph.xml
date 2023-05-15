@@ -284,6 +284,12 @@
         <argument
             android:name="petItemDetail"
             app:argType="com.mobye.petinto.models.PetInfo" />
+        <action
+            android:id="@+id/action_detailPetFragment_to_petPaymentFragment"
+            app:destination="@id/petPaymentFragment" />
+        <action
+            android:id="@+id/action_detailPetFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/petOrderPaymentFragment"

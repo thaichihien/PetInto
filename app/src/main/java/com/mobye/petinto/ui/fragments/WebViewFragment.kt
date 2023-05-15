@@ -53,7 +53,7 @@ class WebViewFragment : Fragment(R.layout.fragment_web_view) {
             Log.e(TAG, e.toString() )
         }
         backBtn.setOnClickListener {
-            findNavController().navigate(WebViewFragmentDirections.actionWebViewFragmentToHomeFragment())
+            findNavController().popBackStack()
         }
     }
 }

@@ -45,7 +45,7 @@ class CarouselAdapter(
 
                 Glide.with(binding.root)
                     .load(item.image)
-                    .placeholder(R.drawable.dog)
+                    .placeholder(R.drawable.logo_chat)
                     .into(imgAvatar)
             }
         }

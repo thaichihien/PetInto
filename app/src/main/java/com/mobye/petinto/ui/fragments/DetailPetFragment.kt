@@ -6,18 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentDetailPetBinding
+import com.mobye.petinto.repository.ShoppingRepository
 import com.mobye.petinto.ui.MainActivity
+import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
+import com.mobye.petinto.viewmodels.ShoppingViewModel
 
 class DetailPetFragment : Fragment(R.layout.fragment_detail_pet) {
 
     val DEBUG_TAG = "DetailPetFragment"
     private var _binding : FragmentDetailPetBinding? = null
     private val binding get() = _binding!!
+
+    private val shoppingViewModel : ShoppingViewModel by activityViewModels {
+        PetIntoViewModelFactory(ShoppingRepository())
+    }
 
     private val args : DetailPetFragmentArgs by navArgs()
 
@@ -54,6 +62,15 @@ class DetailPetFragment : Fragment(R.layout.fragment_detail_pet) {
              btnBackDetail.setOnClickListener {
                 findNavController().popBackStack()
             }
+            btnContactPet.setOnClickListener {
+                findNavController().navigate(DetailPetFragmentDirections.actionDetailPetFragmentToReportFragment())
+            }
+
+            btnOrderPet.setOnClickListener {
+                findNavController().navigate(DetailPetFragmentDirections.actionDetailPetFragmentToPetPaymentFragment(args.petItemDetail))
+            }
+
+
         }
     }
 

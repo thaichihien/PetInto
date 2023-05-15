@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:layout_width="50dp"
@@ -76,8 +76,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/dog" />
+                    android:src="@drawable/logo_chat" />
+
             </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="-15dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/pencil"
+                />
 
             <EditText
                 android:id="@+id/edtNamePet"
