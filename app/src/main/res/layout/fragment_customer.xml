@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/header_main"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:outlineAmbientShadowColor="@color/grey"
         android:src="@drawable/header_rectangle_white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:text="@string/customer"
         android:textColor="@color/main_dark"
         android:textSize="@dimen/header_text_size"
@@ -34,10 +34,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/exit_icon"
+        android:id="@+id/btnExit"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="30dp"
         android:src="@drawable/exit_icon"
         app:layout_constraintEnd_toEndOf="parent"

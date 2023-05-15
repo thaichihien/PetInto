@@ -41,7 +41,7 @@ class BookingListItemAdapter(
                     customerInformationTV.text = booking.customerName
                 }else{
 
-                    customerInformationTV.text = "${booking.customerName}|${booking.phone}"
+                    customerInformationTV.text = "${booking.customerName} | ${booking.phone}"
                 }
 
                 petInformationTV.text = booking.petName

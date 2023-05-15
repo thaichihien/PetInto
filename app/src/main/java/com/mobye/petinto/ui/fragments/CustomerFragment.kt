@@ -12,6 +12,7 @@ import com.mobye.petinto.R
 import com.mobye.petinto.databinding.FragmentCustomerBinding
 import com.mobye.petinto.models.CustomerPickup
 import com.mobye.petinto.repository.InformationRepository
+import com.mobye.petinto.ui.MainActivity
 import com.mobye.petinto.viewmodels.InformationViewModel
 import com.mobye.petinto.viewmodels.PetIntoViewModelFactory
 
@@ -38,6 +39,7 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).hideBottomNav()
 
         informationViewModel.customerPickup.observe(viewLifecycleOwner){
             fillField(it!!)
@@ -49,6 +51,9 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
                     saveInfo()
                     findNavController().popBackStack()
                 }
+            }
+            btnExit.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
