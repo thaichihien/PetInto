@@ -218,27 +218,41 @@ class HotelFragment : Fragment(R.layout.fragment_hotel) {
 
         serviceViewModel.response.observe(viewLifecycleOwner) { response ->
            response?.let {
-             response.body?.let {
-                 loadingDialog.dismiss()
+               if(response.body != null){
+                   loadingDialog.dismiss()
 
-                 // response.result = true khi thanh cong
-                 if (response.result) {
+                   // response.result = true khi thanh cong
+                   if (response.result) {
 
-                     clearService()
-                     val newBooking = response.body!!
-                     serviceViewModel.response.value = null
-                     findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(newBooking))
-                 }else{
-                     notiDialog.changeToFail(response.reason)
-                     notiDialog.show()
-                     notiDialog.setOnCancelListener{
-                         //nothing
-                     }
-                     notiDialog.setOnDismissListener {
-                         //nothing
-                     }
-                 }
-             }
+                       clearService()
+                       val newBooking = response.body!!
+                       serviceViewModel.response.value = null
+                       findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToBookingPaymentFragment(newBooking))
+                   }else{
+                       notiDialog.changeToFail(response.reason)
+                       notiDialog.show()
+                       notiDialog.setOnCancelListener{
+                           //nothing
+                       }
+                       notiDialog.setOnDismissListener {
+                           //nothing
+                       }
+                   }
+               }else{
+                   if(!response.result){
+                       serviceViewModel.response.value = null
+                       loadingDialog.dismiss()
+                       notiDialog.changeToFail(response.reason)
+                       notiDialog.show()
+                       notiDialog.setOnCancelListener {
+                           //nothing
+                       }
+                       notiDialog.setOnDismissListener {
+                           //nothing
+                       }
+                   }
+               }
+
            }
         }
     }

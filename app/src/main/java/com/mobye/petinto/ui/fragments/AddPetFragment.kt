@@ -69,7 +69,8 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as MainActivity).hideBottomNav()
+        val activity = requireActivity() as MainActivity
+       activity.hideBottomNav()
 
         binding.apply {
             imgAvatar.setOnClickListener {
@@ -147,16 +148,6 @@ class AddPetFragment : Fragment(R.layout.fragment_add_pet) {
         return newPet
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.e(DEBUG_TAG,"onPause")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val activity = activity as MainActivity
-        activity.showBottomNav()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

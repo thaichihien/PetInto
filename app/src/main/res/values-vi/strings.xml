@@ -90,7 +90,6 @@
     <string name="booking_detail_hotel_room">Phòng: </string>
     <string name="booking_detail_hotel_customer_information">Thông tin khách hàng</string>
     <string name="booking_detail_hotel_phone_number">Điện thoại: </string>
-    <string name="booking_detail_hotel_customer_email" translatable="false">Email: </string>
     <string name="booking_detail_hotel_pet_information">Thông tin thú cưng</string>
     <string name="booking_detail_hotel_pet_information_variety">Giống: </string>
     <string name="booking_detail_hotel_pet_information_color">Màu: </string>
@@ -127,7 +126,7 @@
     <string name="contact">Liên hệ</string>
 
     <!--    Detail_pet_fragment-->
-    <string name="weight">Cân nặng: </string>
+    <string name="weight">"Cân nặng (kg): "</string>
     <string name="age">Tuổi: </string>
     <string name="order">Đặt hàng</string>
 

@@ -67,16 +67,18 @@ class ProductFilterFragment : Fragment() {
     private fun validate(): Boolean {
         return try {
             with(binding){
-                val min = etMin.text.toString().toInt()
-                val max = etMax.text.toString().toInt()
+                if(etMin.text.isNotBlank() && etMax.text.isNotBlank()){
+                    val min = etMin.text.toString().toInt()
+                    val max = etMax.text.toString().toInt()
 
-                if(min > max){
-                    etMin.error = "Minimum price must be less than maximum price"
-                    etMax.error = "Minimum price must be less than maximum price"
-                    return false
-                }else{
-                    etMin.error = null
-                    etMax.error = null
+                    if(min > max){
+                        etMin.error = "Minimum price must be less than maximum price"
+                        etMax.error = "Minimum price must be less than maximum price"
+                        return false
+                    }else{
+                        etMin.error = null
+                        etMax.error = null
+                    }
                 }
             }
 

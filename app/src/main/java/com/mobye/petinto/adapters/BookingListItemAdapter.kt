@@ -2,6 +2,7 @@ package com.mobye.petinto.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -48,9 +49,15 @@ class BookingListItemAdapter(
                 genreTV.text = booking.genre
                 weightTV.text = booking.weight
                 tvStatus.text = booking.status
-                btnCancel.setOnClickListener{
-                    cancelListener(booking)
+
+                if(booking.status == "Done" || booking.status == "Cancelled" || booking.status == "Unaccepted") {
+                    btnCancel.visibility = View.INVISIBLE
+                }else{
+                    btnCancel.setOnClickListener{
+                        cancelListener(booking)
+                    }
                 }
+
 
                 layoutBookingItem.setOnClickListener{
                     detailListener(booking)

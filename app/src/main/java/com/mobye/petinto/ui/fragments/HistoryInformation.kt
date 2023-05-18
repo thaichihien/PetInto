@@ -38,10 +38,14 @@ class HistoryInformation : Fragment(R.layout.fragment_history_information) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val activity = activity as MainActivity
-        activity.hideBottomNav()
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val activity = activity as MainActivity
+        activity.hideBottomNav()
+
+
         informationViewModel.user.observe(viewLifecycleOwner){
             it?.let {
                 informationViewModel.getOrderHistory()

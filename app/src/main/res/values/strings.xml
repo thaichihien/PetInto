@@ -137,7 +137,7 @@
 
     <!--    Detail_pet_fragment-->
     <string name="vaccine" translatable="false">Vaccine: </string>
-    <string name="weight">Weight: </string>
+    <string name="weight">"Weight (kg): "</string>
     <string name="age">Age: </string>
     <string name="order">Order</string>
 

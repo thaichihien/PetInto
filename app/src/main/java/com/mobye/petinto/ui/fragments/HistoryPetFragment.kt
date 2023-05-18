@@ -42,11 +42,15 @@ class HistoryPetFragment : Fragment(R.layout.fragment_history_pet) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val activity = activity as MainActivity
-        activity.hideBottomNav()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val activity = activity as MainActivity
+        activity.hideBottomNav()
+
+
         binding.apply {
             exitBtn.setOnClickListener {
                 findNavController().popBackStack()

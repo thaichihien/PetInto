@@ -29,13 +29,13 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
         PetIntoViewModelFactory(InformationRepository())
     }
 
-    val currentUser: Customer = Customer()
+    private val currentUser: Customer = Customer()
 
-    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
             Glide.with(binding.root)
                 .load(uri)
-                .placeholder(R.drawable.avatar_1)
+                .placeholder(R.drawable.logo_chat)
                 .into(binding.imgAvatar)
             currentUser.image = uri.toString()
         } else {
@@ -61,7 +61,8 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as MainActivity).hideBottomNav()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav()
 
 
         informationViewModel.user.observe(viewLifecycleOwner){
@@ -96,16 +97,7 @@ class ChangeInforFragment : Fragment(R.layout.fragment_change_infor) {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.e(DEBUG_TAG,"onPause")
-    }
 
-    override fun onResume() {
-        super.onResume()
-        val activity = activity as MainActivity
-        activity.showBottomNav()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

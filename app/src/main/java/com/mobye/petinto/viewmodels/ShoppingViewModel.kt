@@ -246,8 +246,8 @@ class ShoppingViewModel(
 
         order = ProductOrder().apply {
             customerID = id
-            customerName = customerPickup.name
-            customerPhone = customerPickup.phone
+            customerName = if(isdelivery)  deliveryInfo.name else customerPickup.name
+            customerPhone = if(isdelivery)  deliveryInfo.phone else customerPickup.phone
             this.isdelivery = if(isdelivery) "yes" else "no"
             address = if(isdelivery) deliveryInfo.address else ""
             this.note = note
