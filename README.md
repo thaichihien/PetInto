@@ -15,7 +15,9 @@
 ##  🐶Project Introduction
 - The project aims to develop a mobile application that helps pet users to connect to stores more conveniently. 
 - The personal finance management app will be developed for Android platforms using Kotlin language. The app will have a simple and user-friendly interface that allows users to input their income and expenses, view reports, and set financial goals.
+- [Demo Video](https://youtu.be/EELDWfTHMd8)
 - [Get an initial overview of the project (Figma)](https://www.figma.com/file/9wqdJtfTQzIUkpJq1iSCom/Untitled?node-id=0%3A1&t=39MwhdTUMpNLvlgq-1)
+- [Admin Application](https://github.com/thaichihien/PetIntoAdmin)
 
 <details>
     <summary> <b>Details</b> </summary>
@@ -55,12 +57,12 @@
     </details>
     
 ## 🐱Project Features
-- [ ] User account for customers to view information about available or orderable pets in the shop
-- [ ] After selecting and adding desired items to the cart, users can proceed to checkout
-- [ ] Users can leave reviews for the shop
-- [ ] Users can opt for pet sitting services if they need to send their pets to work
-- [ ] Users can schedule health check-ups and grooming services for their pets
-- [ ] The app will have a news section where customers can stay updated on pet-related information and knowledge
+- [X] User account for customers to view information about available or orderable pets in the shop
+- [X] After selecting and adding desired items to the cart, users can proceed to checkout
+- [X] Users can leave reviews for the shop
+- [X] Users can opt for pet sitting services if they need to send their pets to work
+- [X] Users can schedule health check-ups and grooming services for their pets
+- [X] The app will have a news section where customers can stay updated on pet-related information and knowledge
 ## 📚Project Stack
 - **MVVM Architecture** 
 - **Navigation Component**
@@ -75,6 +77,7 @@
 - **Node JS**
 - **PostgreSQL**
 - **Realm**
+- **Preferences DataStore**
 <hr>
 
 **(Vietnamese for now)**
@@ -82,6 +85,8 @@
 Kiểm tra ở  ***Tools*** > ***SDK Manager***
 - **Android Studio** : Electric Eel | 2022.1.1
 - **SDK Platform:** Android 13.0 (Tiramisu)
+- **Min SDK** : 30
+- **Target SDK**: 33
 - **Android SDK Build-Tools:** 33.0.1
 - **Android SDK Platform-Tools:** 33.0.3
 ## 🗂️ Project Dependencies
